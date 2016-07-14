@@ -1,2 +1,17 @@
 # Chapter 1
 Hello, world!
+
+```javascript
+var s = "JavaScript syntax highlighting";
+**console.log(s);**
+```
+
+<pre>
+var s = "JavaScript syntax highlighting";
+**console.log(s);**
+</pre>
+
+<code>
+var s = "JavaScript syntax highlighting";
+**console.log(s);**
+</code>
