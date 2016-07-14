@@ -1,17 +1,84 @@
 # Chapter 1
 Hello, world!
 
+```
+var s = "JavaScript syntax highlighting";
+>**var s = "JavaScript syntax highlighting";**
+>`**`var s = "JavaScript syntax highlighting";`**`
+**var s = "JavaScript syntax highlighting";**
+`**`var s = "JavaScript syntax highlighting";`**`
+`__`var s = "JavaScript syntax highlighting";`__`
+__var s = "JavaScript syntax highlighting";__
+<b>var s = "JavaScript syntax highlighting";</b>
+const foo = () => {
+    return bar;
+}
+<div></div>
+```
+
 ```javascript
 var s = "JavaScript syntax highlighting";
-**console.log(s);**
+>**var s = "JavaScript syntax highlighting";**
+>`**`var s = "JavaScript syntax highlighting";`**`
+**var s = "JavaScript syntax highlighting";**
+`**`var s = "JavaScript syntax highlighting";`**`
+`__`var s = "JavaScript syntax highlighting";`__`
+__var s = "JavaScript syntax highlighting";__
+<b>var s = "JavaScript syntax highlighting";</b>
+const foo = () => {
+    return bar;
+}
+<div></div>
 ```
 
 <pre>
 var s = "JavaScript syntax highlighting";
 **console.log(s);**
+const foo = () => {
+    return bar;
+}
+<div></div>
 </pre>
+
+
 
 <code>
 var s = "JavaScript syntax highlighting";
 **console.log(s);**
+const foo = () => {
+    return bar;
+}
+<div></div>
 </code>
+
+<code>
+<pre>
+var s = "JavaScript syntax highlighting";
+**console.log(s);**
+const foo = () => {
+    return bar;
+}
+<div></div>
+</pre>
+</code>
+
+<pre>
+<code>
+var s = "JavaScript syntax highlighting";
+**console.log(s);**
+const foo = () => {
+    return bar;
+}
+<div></div>
+</code>
+</pre>
+
+
+Some basic Git commands are:
+```
+git status
+git add
+git commit
+```
+
+Use `git status` to list all new or modified files that haven't yet been committed.
