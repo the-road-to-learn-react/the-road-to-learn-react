@@ -1,3 +1,6 @@
+# Chapter 2
+Hello, world
+
 {{% chapter_header "Create React App" "cra" %}}
 
 We will use {{% a_blank "Create React App" "https://github.com/facebookincubator/create-react-app" %}} to bootstrap our app. The setup comes without configuration. To get started you will have to install the package to your global packages.
