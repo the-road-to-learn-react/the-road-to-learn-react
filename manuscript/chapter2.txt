@@ -95,7 +95,7 @@ The content looks pretty similar to HTML, but it's JSX. JSX allows you to mix HT
 
 *src/App.js*
 
-{lang=javascript, style=monokai}
+{lang=javascript,style=monokai,hl_lines="1 3"}
 ~~~~~~~~
 import React, { Component } from 'react';
 import logo from './logo.svg';
