@@ -95,14 +95,16 @@ The content looks pretty similar to HTML, but it's JSX. JSX allows you to mix HT
 
 *src/App.js*
 
-{lang=javascript,hl_lines=7 12}
+{lang=javascript, style=monokai}
 ~~~~~~~~
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+# leanpub-start-insert
 class App extends Component {
   render() {
+# leanpub-end-insert
     const helloWorld = 'Welcome to React';
     return (
       <div className="App">
