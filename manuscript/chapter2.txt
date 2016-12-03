@@ -95,7 +95,8 @@ The content looks pretty similar to HTML, but it's JSX. JSX allows you to mix HT
 
 *src/App.js*
 
-{{< highlight javascript "hl_lines=7 12" >}}
+{lang=javascript,hl_lines=7 12}
+~~~~~~~~
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -118,7 +119,7 @@ class App extends Component {
 }
 
 export default App;
-{{< /highlight >}}
+~~~~~~~~
 
 Additionally you might have noticed the `className` attribute. Because of technical reasons JSX had to replace HTML attributes like class (className) and for (htmlFor).
 
