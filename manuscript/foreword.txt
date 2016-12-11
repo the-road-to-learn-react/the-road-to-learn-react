@@ -10,6 +10,8 @@ It also taught me to do better. I realized the SoundCloud tutorial is suited for
 
 In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want to offer a foundation before you start to dive into the more advanced React ecosystem. It has less tooling and less external state management, but more React. It explains general concepts and patterns. Additionally it links to the official documentation, because it's a great reference to learn React. After all I want to give a clear road to learn the React ecosystem. It should provide you a solid foundation before you dive into more advanced topics like Redux.
 
+{pagebreak}
+
 ## FAQ
 
 **How do I get updates?** You can [subscribe](http://eepurl.com/caLPjr) or follow me on [Twitter](https://twitter.com/rwieruch) for updates. It keeps me motivated to work on the book as well. Once you have a copy of the book from [Leanpub](https://leanpub.com/the-road-to-learn-react), the book will stay updated.
@@ -21,6 +23,8 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 **Does the article cover all book chapters?** No. At this time the blog post covers 2 of 4 chapters. Grab your free book on [Leanpub](https://leanpub.com/the-road-to-learn-react) to get all chapters. It has over 60 pages of learning material.
 
 **Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/blog_robinwieruch_content/blob/master/the-road-to-learn-react.md). I don't claim to be an expert nor to write in the best way possible. I would appreciate your help very much.
+
+{pagebreak}
 
 ## What you can expect (so far...)
 
@@ -57,6 +61,8 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 * usage of React dev tools and performance profiling
 * get to know a diverse set of styling tools in React
 * animate your components
+
+{pagebreak}
 
 ## How to read it?
 

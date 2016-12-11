@@ -361,7 +361,7 @@ Now your JSX looks more readable again.
 * make yourself comfortable with [standard built-in functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 * use more JavaScript expression on your own in JSX (e.g. [ternary](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator))
 
-| |
+{pagebreak}
 
 Your *src/App.js* should look like the following by now:
 
