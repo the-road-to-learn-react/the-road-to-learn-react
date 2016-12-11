@@ -1,84 +1,413 @@
-# Chapter 1
-Hello, world!
+# Bootstrap your React App
 
-```
-var s = "JavaScript syntax highlighting";
->**var s = "JavaScript syntax highlighting";**
->`**`var s = "JavaScript syntax highlighting";`**`
-**var s = "JavaScript syntax highlighting";**
-`**`var s = "JavaScript syntax highlighting";`**`
-`__`var s = "JavaScript syntax highlighting";`__`
-__var s = "JavaScript syntax highlighting";__
-<b>var s = "JavaScript syntax highlighting";</b>
-const foo = () => {
-    return bar;
+The chapter will give you an introduction to React. It clarifies why you should learn React in the first place. Once that's clarified you will bootstrap your first React app. Along the way you will get an introduction to JSX to be prepared for your first React components.
+
+## Hi, my name is React.
+
+Why should you bother to learn React? In the recent years single page applications (SPA) got popular. Frameworks like Angular, Ember and Backbone helped JavaScript people to build modern web applications beyond jQuery. The list is not exhaustive. There exists a wide range of SPA frameworks. When you consider the release dates, most of them are among the first generation of SPAs: Angular 2010, Backbone 2010, Ember 2011.
+
+The initial React release was 2013 by Facebook. React is no SPA framework but a view library. You can get easily started to render your first components in a browser. But the whole ecosystem around React makes it possible to build single page applications.
+
+But why should you consider to use React over the first generation of SPA frameworks? While the first generation of SPAs tried to solve a lot of things at once, React only helps you to build your view layer. It's a library and not a whole framework. The idea behind it: Your view is a hierarchy of composable components.
+
+In React you can focus on your view before you introduce more aspects to your application. Every other aspect is another building block for your SPA. These building blocks are essential.
+
+First you can learn them step by step without worrying to understand everything at once. It's different in comparison to a framework which gives you every building block from the start.
+
+Second all building blocks are interchangeable. It makes the ecosystem around React such an innovative place. Multiple solutions are competing witch each other. You can pick the most appealing solution for you and your use case.
+
+The first generation SPA frameworks arrived at an enterprise level. React stays innovative and gets adapted by multiple tech thought leader companies like [Airbnb, Netflix and of course Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). React is probably one of the best choices for building UI nowadays. It has a good design, an amazing ecosystem and a great community. Everyone is keen to experience where it will lead us in 2017.
+
+## Requirements
+
+Before you start to read the book, you should be quite familiar with HTML, CSS and JavaScript (ES5). Additionally you will need a working [editor and terminal](http://www.robinwieruch.de/developer-setup/). Last but not least you will need an installation of [node and npm](https://nodejs.org/en/).
+
+These are my versions of node and npm at the time of writing the book.
+
+{lang=javascript}
+~~~~~~~~
+node --version
+*v5.0.0
+npm --version
+*v3.3.6
+~~~~~~~~
+
+## create-react-app
+
+You will use [create-react-app](https://github.com/facebookincubator/create-react-app) to bootstrap your app. It's an opinionated but zero-configuration starter kit for React introduced by Facebook. People like and would [recommend it to starters by 96%](https://twitter.com/dan_abramov/status/806985854099062785). In create-react-app the tools evolve in the background while the focus is on the application implementation.
+
+To get started you will have to install the package to your global packages on your command line. You should already have npm installed to install the package.
+
+{lang=javascript}
+~~~~~~~~
+npm install -g create-react-app
+~~~~~~~~
+
+Now you can bootstrap your first app and navigate into the directory:
+
+{lang=javascript}
+~~~~~~~~
+create-react-app hackernews
+cd hackernews
+~~~~~~~~
+
+When you open the app in your editor, you will find the following folder structure:
+
+{lang=javascript}
+~~~~~~~~
+hackernews/
+  README.md
+  node_modules/
+  package.json
+  .gitignore
+  public/
+    favicon.ico
+    index.html
+  src/
+    App.css
+    App.js
+    App.test.js
+    index.css
+    index.js
+    logo.svg
+~~~~~~~~
+
+In the beginning everything you need is located in the *src* folder. The main focus lies on the *App.js* file to implement React components. But there is also the *App.test.js* for tests and the *index.js* as entry point to the React world. We will get to know them in a later chapter.
+
+Additionally create-react-app comes with the following npm scripts for your command line:
+
+{lang=javascript}
+~~~~~~~~
+// Runs the app in http://localhost:3000
+npm start
+
+// Runs the tests
+npm test
+
+// Builds the app for production
+npm run build
+~~~~~~~~
+
+You can read more about [the scripts and create-react-app](https://github.com/facebookincubator/create-react-app) in general.
+
+### Exercises:
+
+* `npm start` your app and visit the page in your browser
+* run the interactive `npm test` script
+* make yourself familiar with the folder structure
+
+## Introduction to JSX
+
+Now you will get to know JSX. Let's dive into the source code provided by create-react-app. The only file you will touch in the beginning will be the *src/App.js*.
+
+{lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Welcome to React</h2>
+        </div>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+    );
+  }
 }
-<div></div>
-```
 
-```javascript
-var s = "JavaScript syntax highlighting";
->**var s = "JavaScript syntax highlighting";**
->`**`var s = "JavaScript syntax highlighting";`**`
-**var s = "JavaScript syntax highlighting";**
-`**`var s = "JavaScript syntax highlighting";`**`
-`__`var s = "JavaScript syntax highlighting";`__`
-__var s = "JavaScript syntax highlighting";__
-<b>var s = "JavaScript syntax highlighting";</b>
-const foo = () => {
-    return bar;
+export default App;
+~~~~~~~~
+
+create-react-app already scaffolded a boilerplate application. In the file you have an ES6 class component with the name App. Basically you can use the `<App />` component everywhere in your application now. Once you use it, it will produce an instance of your component. The elements it returns are specified in the `render()` function.
+
+Pretty soon you will see where the App component is used. Otherwise you wouldn't see the rendered output in the browser, would you?
+
+The content in the render block looks pretty similar to HTML, but it's JSX. JSX allows you to mix HTML and JavaScript. It's powerful yet confusing in the beginning when you are used to plain HTML. That's why a good starting point is to use basic HTML in your JSX. Next you can start to embed JavaScript expressions in between by using curly braces.
+
+Try it. Define a property and use it in JSX.
+
+{lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+class App extends Component {
+  render() {
+# leanpub-start-insert
+    const helloWorld = 'Welcome to React';
+# leanpub-end-insert
+    return (
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+# leanpub-start-insert
+          <h2>{helloWorld}</h2>
+# leanpub-end-insert
+        </div>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+    );
+  }
 }
-<div></div>
-```
 
-<pre>
-var s = "JavaScript syntax highlighting";
-**console.log(s);**
-const foo = () => {
-    return bar;
+export default App;
+~~~~~~~~
+
+Additionally you might have noticed the `className` attribute. Because of technical reasons JSX had to replace HTML attributes like class (className) and for (htmlFor).
+
+### ES6 Sugar:
+
+In ES5 you declare variables with var. In ES6 there are two more variable declarations: const and let.
+
+### Exercises:
+
+* read more about [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
+* read more about [React components, elements and instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
+* read more about [supported HTML attributes in React](https://facebook.github.io/react/docs/dom-elements.html)
+* read more about ES6 [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) and [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) variable declarations
+* define more variables to render them in your JSX
+
+## ReactDOM.render
+
+Before you continue with the App component, you might want to see where it's used. It's located in your entry point to the React world *src/index.js*.
+
+{lang=javascript}
+~~~~~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './index.css';
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+~~~~~~~~
+
+Basically ReactDOM.render uses a DOM node in your html to replace it with your React components. That's how you can easily integrate React in every app.
+
+ReactDOM.render expects two arguments.
+
+The first argument is JSX. It already takes your App component, but you don't need to pass a component. It would be sufficient to use `<div>Hello React World</div>`. After all the first argument is the content to be rendered.
+
+The second argument specifies the place where the React application hooks into your HTML. It expects an element with an `id="root"`. Open your *public/index.html* file to find the id.
+
+### Exercises:
+
+* open your *public/index.html* file to find the `id="root"`
+* read more about [React rendering element](https://facebook.github.io/react/docs/rendering-elements.html)
+
+## Map in JSX
+
+Let's get back to your App component. So far your rendered some random properties in your JSX. Now you will start to render a list of items. The list will be some mock data in the beginning, but later you will fetch the data from an external API. That will be far more exciting.
+
+Since you can use JavaSript in JSX, it's possible to map over your data to display each item.
+
+{lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+import './App.css';
+
+# leanpub-start-insert
+const list = [
+  {
+    title: 'React',
+    url: 'https://facebook.github.io/react/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: 'Redux',
+    url: 'https://github.com/reactjs/redux',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+];
+# leanpub-end-insert
+
+class App extends Component {
+
+  render() {
+    return (
+      <div className="App">
+# leanpub-start-insert
+        { list.map(function(item) {
+          return (
+            <div>
+              <span><a href={item.url}>{item.title}</a></span>
+              <span>{item.author}</span>
+              <span>{item.num_comments}</span>
+              <span>{item.points}</span>
+            </div>
+          );
+        })}
+# leanpub-end-insert
+      </div>
+    );
+  }
 }
-<div></div>
-</pre>
 
+export default App;
+~~~~~~~~
 
+Additionally you have to assign a key property to each list element. Only that way React is able to identify added, changed and removed items.
 
-<code>
-var s = "JavaScript syntax highlighting";
-**console.log(s);**
-const foo = () => {
-    return bar;
+{lang=javascript}
+~~~~~~~~
+{ list.map(function(item) {
+  return (
+# leanpub-start-insert
+    <div key={item.objectID}>
+# leanpub-end-insert
+      <span><a href={item.url}>{item.title}</a></span>
+      <span>{item.author}</span>
+      <span>{item.num_comments}</span>
+      <span>{item.points}</span>
+    </div>
+  );
+})}
+~~~~~~~~
+
+Give your elements a stable id. Don't make the mistake to use the array key which isn't stable. React will have a hard time to identify the items properly when the order of them changes.
+
+{lang=javascript}
+~~~~~~~~
+// bad example
+# leanpub-start-insert
+{ list.map(function(item, key) {
+# leanpub-end-insert
+  return (
+# leanpub-start-insert
+    <div key={key}>
+# leanpub-end-insert
+      ...
+    </div>
+  );
+})}
+~~~~~~~~
+
+Now when you open your app in a browser both list items should get rendered and be visible.
+
+### ES6 Sugar:
+
+Let's have a look again at the map function. It takes a function itself, which you can write more concise in ES6.
+
+First you can use the arrow function.
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+{ list.map((item) => {
+# leanpub-end-insert
+  return (
+    <div key={item.objectID}>
+      <span><a href={item.url}>{item.title}</a></span>
+      <span>{item.author}</span>
+      <span>{item.num_comments}</span>
+      <span>{item.points}</span>
+    </div>
+  );
+})}
+~~~~~~~~
+
+Second you can remove the block body and thus remove the return statement. In a concise body an implicit return is attached.
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+{ list.map((item) =>
+# leanpub-end-insert
+  <div key={item.objectID}>
+    <span><a href={item.url}>{item.title}</a></span>
+    <span>{item.author}</span>
+    <span>{item.num_comments}</span>
+    <span>{item.points}</span>
+  </div>
+# leanpub-start-insert
+)}
+# leanpub-end-insert
+~~~~~~~~
+
+Now your JSX looks more readable again.
+
+### Exercises:
+
+* read more about [React lists and keys](https://facebook.github.io/react/docs/lists-and-keys.html)
+* read more about [ES6 arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+* make yourself comfortable with [standard built-in functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+* use more JavaScript expression on your own in JSX (e.g. [ternary](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator))
+
+| |
+
+Your *src/App.js* should look like the following by now:
+
+{lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+import './App.css';
+
+const list = [
+  {
+    title: 'React',
+    url: 'https://facebook.github.io/react/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: 'Redux',
+    url: 'https://github.com/reactjs/redux',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+];
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        { list.map((item) =>
+          <div key={item.objectID}>
+            <span><a href={item.url}>{item.title}</a></span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
-<div></div>
-</code>
 
-<code>
-<pre>
-var s = "JavaScript syntax highlighting";
-**console.log(s);**
-const foo = () => {
-    return bar;
-}
-<div></div>
-</pre>
-</code>
+export default App;
+~~~~~~~~
 
-<pre>
-<code>
-var s = "JavaScript syntax highlighting";
-**console.log(s);**
-const foo = () => {
-    return bar;
-}
-<div></div>
-</code>
-</pre>
+You have learned to bootstrap your own React app! Let's recap the last chapters:
 
+* React
+  * create-react-app bootstraps a React app
+  * JSX mixes up HTML and JavaScript to express React components
+  * ReactDOM.render() is an entry point for a React app
+  * built-in JavaScript functionalities like map can be used render a list of items
+* ES6
+  * more variable declarations with const and let
+  * arrow functions with block and concise bodies to shorten your function declarations
 
-Some basic Git commands are:
-```
-git status
-git add
-git commit
-```
-
-Use `git status` to list all new or modified files that haven't yet been committed.
+It makes sense to make a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.

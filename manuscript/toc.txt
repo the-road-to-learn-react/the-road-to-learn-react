@@ -1,0 +1,29 @@
+# Table of Contents
+
+* Bootstrap your React App
+  * [Hi, my name is React.](#introductionToReact)
+  * [Requirements](#requirements)
+  * [create-react-app](#cra)
+  * [Introduction to JSX](#jsx)
+  * [ReactDOM.render](#reactDomRender)
+  * [Map in JSX](#mapJsx)
+* Basics in React
+  * [Internal Component State](#componentState)
+  * [Interactions in Components](#componentInteractions)
+  * [Composable Components](#componentComposable)
+  * [Different Component Declarations](#componentDeclarations)
+  * [Styling Components](#componentStyle)
+* Getting Real with an API
+  * [Lifecycle Methods](#lifecycleMethods)
+  * [Fetch Data](#fetchData)
+  * [Client- or Server-side Interaction: Search](#submitSearch)
+  * [Paginated Fetch](#paginatedFetch)
+  * [Client Cache](#clientCache)
+* Advanced React Components
+  * [Snapshot Tests with Jest](#snapshotTests)
+  * [Unit Tests with Enzyme](#unitTests)
+  * [Loading ...](#loading)
+  * [Higher Order Component](#hoc)
+  * [Advanced Sorting](#interactionsSort)
+* To be continued ...
+* Going Live!
