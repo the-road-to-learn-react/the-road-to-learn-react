@@ -4,7 +4,7 @@ I love to teach, even though I am no expert. I learn every day and I have the fo
 
 The following article includes the first chapters of an eBook to learn React. It highly depends on your feedback and contribution. I try my best to teach in the best way possible, but I can only improve with your help. Since I am no native speaker, I will even more need your improvements. You can have a direct impact on [GitHub](https://github.com/rwieruch/blog_robinwieruch_content/blob/master/the-road-to-learn-react.md). Additionally I am keen to hear your honest thoughts on [Twitter](https://twitter.com/rwieruch).
 
-But why me? In the past I have written a larger tutorial to implement a [SoundCloud Client in React + Redux](www.robinwieruch.de/the-soundcloud-client-in-react-redux). I never expected the overwhelming reaction. I learned a lot during the process of writing. But even more by getting your honest feedback. It was my first attempt to teach people in programming.
+But why me? In the past I have written a larger tutorial to implement a [SoundCloud Client in React + Redux](http://www.robinwieruch.de/the-soundcloud-client-in-react-redux). I never expected the overwhelming reaction. I learned a lot during the process of writing. But even more by getting your honest feedback. It was my first attempt to teach people in programming.
 
 It also taught me to do better. I realized the SoundCloud tutorial is suited for advanced developers. It uses several tools to bootstrap your application and dives pretty quickly into Redux. Still it helped a lot of people to get started. In my opinion it's a great tutorial to get a bigger picture of React + Redux. I use every free minute to improve the material, but it's time consuming. I am going to overhaul it as a whole in the future.
 
@@ -70,4 +70,4 @@ Are you new to React? That's perfect. I will need your feedback to improve the m
 
 In general each chapter will build up on the previous. Each of them will dive into a new learning. Don't rush through the book. You should internalize each step. You could apply your own implementations and read more about the topic. Make yourself comfortable with the learnings before you continue.
 
-After you have read the book you could dive into the [SoundCloud Client in React + Redux](www.robinwieruch.de/the-soundcloud-client-in-react-redux). It guides you to implement your own SoundCloud application with a state management library.
+After you have read the book you could dive into the [SoundCloud Client in React + Redux](http://www.robinwieruch.de/the-soundcloud-client-in-react-redux). It guides you to implement your own SoundCloud application with a state management library.
