@@ -18,6 +18,8 @@ Second all building blocks are interchangeable. It makes the ecosystem around Re
 
 The first generation SPA frameworks arrived at an enterprise level. React stays innovative and gets adapted by multiple tech thought leader companies like [Airbnb, Netflix and of course Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). React is probably one of the best choices for building UI nowadays. It has a good design, an amazing ecosystem and a great community. Everyone is keen to experience where it will lead us in 2017.
 
+{pagebreak}
+
 ## Requirements
 
 Before you start to read the book, you should be quite familiar with HTML, CSS and JavaScript (ES5). Additionally you will need a working [editor and terminal](http://www.robinwieruch.de/developer-setup/). Last but not least you will need an installation of [node and npm](https://nodejs.org/en/).
@@ -31,6 +33,8 @@ node --version
 npm --version
 *v3.3.6
 ~~~~~~~~
+
+{pagebreak}
 
 ## create-react-app
 
@@ -95,6 +99,8 @@ You can read more about [the scripts and create-react-app](https://github.com/fa
 * `npm start` your app and visit the page in your browser
 * run the interactive `npm test` script
 * make yourself familiar with the folder structure
+
+{pagebreak}
 
 ## Introduction to JSX
 
@@ -177,6 +183,8 @@ In ES5 you declare variables with var. In ES6 there are two more variable declar
 * read more about ES6 [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) and [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) variable declarations
 * define more variables to render them in your JSX
 
+{pagebreak}
+
 ## ReactDOM.render
 
 Before you continue with the App component, you might want to see where it's used. It's located in your entry point to the React world *src/index.js*.
@@ -206,6 +214,8 @@ The second argument specifies the place where the React application hooks into y
 
 * open your *public/index.html* file to find the `id="root"`
 * read more about [React rendering element](https://facebook.github.io/react/docs/rendering-elements.html)
+
+{pagebreak}
 
 ## Map in JSX
 
