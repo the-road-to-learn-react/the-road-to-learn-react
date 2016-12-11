@@ -6,7 +6,7 @@ The chapter will focus on the basics in React. You will learn to manage internal
 
 Internal component state allows you to store, modify and delete properties of your components. Let's introduce a class constructor where you can set the initial internal component state.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -30,7 +30,7 @@ In your case the initial state is the list of items.
 
 Notice that you have to call `super(props);` to call the constructor of the parent class. It's mandatory.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -61,7 +61,7 @@ In the render function you have access to the component internal state by using 
 
 You can use a shorthand syntax to initialize properties in an object. In your case it makes sense because the property and variable share the same name.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 // instead of
 this.state = {
@@ -86,7 +86,7 @@ Now you have some static internal state in your component. But you don't manipul
 
 First you define your input field in your JSX.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -118,7 +118,7 @@ In the following scenario you will type into the field and filter the list by th
 
 Let's define a callback function for the input field which manipulates the internal component state.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -141,7 +141,7 @@ class App extends Component {
 
 The callback function is bound to the component and thus a component method. You have to bind and define the method.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -173,7 +173,7 @@ class App extends Component {
 
 The callback gives you access to the input field event. The event has the value of the input field in its target object. By using `this.setState` you can manipulate the internal component state. Additionally you should define the initial state for the query.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -208,7 +208,7 @@ In React applications you will strictly follow an unidirectional data flow. The 
 
 You have to retrieve the query property from the internal component state and set it as value in the input field.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -238,7 +238,7 @@ The whole internal state management and unidirectional data flow might be new to
 
 Before you map the list you can filter it.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -271,7 +271,7 @@ The `filter` function takes a function to evaluate each item in the list. If the
 
 But now you need to pass the query property to your evaluation process. That's why you can use a higher order function, which takes the query but returns another function. The returned function will do the evaluation for each item, but has access to the query property.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 # leanpub-start-insert
 function isSearched(query) {
@@ -296,7 +296,7 @@ The search field should do its work now. Try it.
 
 You can even add some more ES6 syntax again. First you can destructure objects and arrays. Try it by destructuring the internal component state.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
   render() {
 # leanpub-start-insert
@@ -325,7 +325,7 @@ Second you can make the function more concise in ES6 by using arrow functions ag
 
 You can refactor your higher order function:
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 // before
 function isSearched(query) {
@@ -355,7 +355,7 @@ The React ecosystem uses a lot of functional programming concepts. It happens qu
 
 So far you have one large App component. Let's start to split it up into smaller composable components. You can define a component for the search input and a component for the list items.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -417,7 +417,7 @@ Now you have three ES6 class components.
 
 Still you can't compose components into each other. That's why there exists the React children property. You can try the following to see the children property in action.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -482,7 +482,7 @@ But when to use functional stateless components and ES6 class components? A good
 
 The App component uses internal state. That's why it has to stay as ES6 class component. But both of your new components are stateless without lifecycle methods. Let's refactor the Search component together to a stateless functional component. The Table component refactoring will remain as your exercise.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 function Search(props) {
   const { value, onChange, children } = props;
@@ -496,7 +496,7 @@ function Search(props) {
 
 You already know and can apply the props destructuring. The best practice is use it in the function signature in the first place.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 # leanpub-start-insert
 function Search({ value, onChange, children }) {
@@ -511,7 +511,7 @@ function Search({ value, onChange, children }) {
 
 But it can get better. You know that arrow functions allow you to keep your functions concise. Since your functional stateless component is a function, you can keep it concise as well.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 const Search = ({ value, onChange, children }) =>
   <form>
@@ -521,7 +521,7 @@ const Search = ({ value, onChange, children }) =>
 
 The last step is especially useful to enforce only to have props as input and an element as output. Nothing in between. Still you could do something in between by using a block body.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 const Search = ({ value, onChange, children }) => {
 
@@ -550,7 +550,7 @@ Let's add some basic styling to your app and components. You can reuse the *src/
 
 *src/index.css*
 
-{lang=css}
+{lang=css,linenos=off}
 ~~~~~~~~
 body {
   color: #222;
@@ -600,7 +600,7 @@ button:hover {
 
 *src/App.css*
 
-{lang=css}
+{lang=css,linenos=off}
 ~~~~~~~~
 .page {
   margin: 20px;
@@ -670,7 +670,7 @@ button:hover {
 
 Now you can use the style in your components. Don't forget to use React className.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 class App extends Component {
 
@@ -725,7 +725,7 @@ const Table = ({ list, pattern }) =>
 
 Another technique in React to style components is inline style. You can pass style objects to your components. Let's keep the Table column width flexible by using inline style.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 const Table = ({ list, pattern }) =>
   <div className="table">
@@ -752,7 +752,7 @@ const Table = ({ list, pattern }) =>
 
 It's really inlined now. You could define the style objects outside as well.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 const largeColumn = {
   width: '40%',
@@ -781,7 +781,7 @@ The chapter might get overhauled in the future to give you an opinionated approa
 
 Your *src/App.js* should look like the following by now:
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';

@@ -26,7 +26,7 @@ Before you start to read the book, you should be quite familiar with HTML, CSS a
 
 These are my versions of node and npm at the time of writing the book.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 node --version
 *v5.0.0
@@ -42,14 +42,14 @@ You will use [create-react-app](https://github.com/facebookincubator/create-reac
 
 To get started you will have to install the package to your global packages on your command line. You should already have npm installed to install the package.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 npm install -g create-react-app
 ~~~~~~~~
 
 Now you can bootstrap your first app and navigate into the directory:
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 create-react-app hackernews
 cd hackernews
@@ -57,7 +57,7 @@ cd hackernews
 
 When you open the app in your editor, you will find the following folder structure:
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 hackernews/
   README.md
@@ -80,7 +80,7 @@ In the beginning everything you need is located in the *src* folder. The main fo
 
 Additionally create-react-app comes with the following npm scripts for your command line:
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 // Runs the app in http://localhost:3000
 npm start
@@ -106,7 +106,7 @@ You can read more about [the scripts and create-react-app](https://github.com/fa
 
 Now you will get to know JSX. Let's dive into the source code provided by create-react-app. The only file you will touch in the beginning will be the *src/App.js*.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 import React, { Component } from 'react';
 import logo from './logo.svg';
@@ -139,7 +139,7 @@ The content in the render block looks pretty similar to HTML, but it's JSX. JSX 
 
 Try it. Define a property and use it in JSX.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 import React, { Component } from 'react';
 import logo from './logo.svg';
@@ -189,7 +189,7 @@ In ES5 you declare variables with var. In ES6 there are two more variable declar
 
 Before you continue with the App component, you might want to see where it's used. It's located in your entry point to the React world *src/index.js*.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -223,7 +223,7 @@ Let's get back to your App component. So far your rendered some random propertie
 
 Since you can use JavaSript in JSX, it's possible to map over your data to display each item.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';
@@ -276,7 +276,7 @@ export default App;
 
 Additionally you have to assign a key property to each list element. Only that way React is able to identify added, changed and removed items.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 { list.map(function(item) {
   return (
@@ -294,7 +294,7 @@ Additionally you have to assign a key property to each list element. Only that w
 
 Give your elements a stable id. Don't make the mistake to use the array key which isn't stable. React will have a hard time to identify the items properly when the order of them changes.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 // bad example
 # leanpub-start-insert
@@ -318,7 +318,7 @@ Let's have a look again at the map function. It takes a function itself, which y
 
 First you can use the arrow function.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 # leanpub-start-insert
 { list.map((item) => {
@@ -336,7 +336,7 @@ First you can use the arrow function.
 
 Second you can remove the block body and thus remove the return statement. In a concise body an implicit return is attached.
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 # leanpub-start-insert
 { list.map((item) =>
@@ -365,7 +365,7 @@ Now your JSX looks more readable again.
 
 Your *src/App.js* should look like the following by now:
 
-{lang=javascript}
+{lang=javascript,linenos=off}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';
