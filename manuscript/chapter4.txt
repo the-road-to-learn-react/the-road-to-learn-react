@@ -1,0 +1,1113 @@
+# Advanced React Components
+
+The chapter will focus on the implementation of advanced React components. Before you jump into this, you will need to know how to test your components. Afterwards you are ready to implement your own higher order components and advanced interactions in React.
+
+## Snapshot Tests with Jest
+
+[Jest](https://facebook.github.io/jest/) is a JavaScript testing framework. At Facebook it's used to validate the JavaScript code. In the React community it's used for React components test coverage. Fortunately create-react-app already comes with Jest.
+
+Let's start to test your first components. Before you can do that, you have to export the components you want to test during the chapter.
+
+*src/App.js*
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+...
+
+class App extends Component {
+  ...
+}
+
+...
+
+export default App;
+
+# leanpub-start-insert
+export {
+  Button,
+  Search,
+  Table,
+};
+# leanpub-end-insert
+~~~~~~~~
+
+In your *App.test.js* file you will find a first test. It verifies that the component renders without any errors.
+
+*src/App.test.js*
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<App />, div);
+});
+~~~~~~~~
+
+You can run it by using the interactive create-react-app scripts.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+npm run test
+~~~~~~~~
+
+Now Jest enables you to write Snapshot tests. These tests make a snapshot of your rendered component and run this snapshot against future snapshots. When a future snapshot changes you will get notified during the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for an error.
+
+Jest stores the snapshots in a folder. Only that way it can show the diff to future snapshots. Additionally the snapshots can be shared across teams.
+
+Before you can write your first Snapshot test you have to install an utility library.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+npm install --save-dev react-test-renderer
+~~~~~~~~
+
+Now you can extend the App component test with your first Snapshot test.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+# leanpub-start-insert
+import renderer from 'react-test-renderer';
+# leanpub-end-insert
+import App from './App';
+
+# leanpub-start-insert
+describe('App', () => {
+# leanpub-end-insert
+
+  it('renders', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<App />, div);
+  });
+
+# leanpub-start-insert
+  test('snapshots', () => {
+    const component = renderer.create(
+      <App />
+    );
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+# leanpub-end-insert
+
+# leanpub-start-insert
+});
+# leanpub-end-insert
+~~~~~~~~
+
+Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the Snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component render function.
+
+Let's add more tests for our independent components.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+...
+
+import { Search, Button } from './App'
+
+...
+
+describe('Search', () => {
+
+  it('renders', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Search>Search</Search>, div);
+  });
+
+  test('snapshots', () => {
+    const component = renderer.create(
+      <Search>Search</Search>
+    );
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+});
+
+describe('Button', () => {
+
+  it('renders', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Button>Give Me More</Button>, div);
+  });
+
+  test('snapshots', () => {
+    const component = renderer.create(
+      <Button>Give Me More</Button>
+    );
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+});
+~~~~~~~~
+
+Moreover you can add tests for the Table.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+...
+
+import { Search, Button, Table } from './App'
+
+...
+
+describe('Table', () => {
+
+  const props = {
+    list: [
+      { title: '1', author: '1', num_comments: 1, points: 2, objectID: 'y' },
+      { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z' },
+    ],
+  };
+
+  it('renders', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Table { ...props } />, div);
+  });
+
+  test('snapshots', () => {
+    const component = renderer.create(
+      <Table { ...props } />
+    );
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+});
+~~~~~~~~
+
+Snapshot tests usually stay pretty basic. You only want to cover that the component doesn't change its output.
+
+### Exercises:
+
+* see how the Snapshot tests fail once you change your component implementation
+  * either accept or deny the snapshot change
+* keep your snapshots tests up to date during the following chapters
+* read more about [Jest in React](https://facebook.github.io/jest/docs/tutorial-react.html)
+* read more about ES6 [export](https://developer.mozilla.org/en/docs/web/javascript/reference/statements/export) and [import](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/import)
+
+{pagebreak}
+
+## Unit Tests with Enzyme
+
+[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests beside of your snapshot tests.
+
+Let's see how you can use enzyme. First you have to install it since it doesn't come with create-react-app.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+npm install --save-dev enzyme react-addons-test-utils
+~~~~~~~~
+
+Now you can write your first unit test in the Table describe block. You will use `shallow` to render your component and assert that the Table has two items.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+...
+# leanpub-start-insert
+import { shallow } from 'enzyme';
+# leanpub-end-insert
+
+describe('Table', () => {
+
+  const props = {
+    list: [
+      { title: '1', author: '1', num_comments: 1, points: 2, objectID: 'y' },
+      { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z' },
+    ],
+  };
+
+  ...
+
+# leanpub-start-insert
+  it('shows two items in list', () => {
+    const element = shallow(
+      <Table { ...props } />
+    );
+
+    expect(element.find('.table-row').length).toBe(2);
+  });
+# leanpub-end-insert
+
+});
+~~~~~~~~
+
+Shallow renders the component without children. You can make the test very dedicated to one component.
+
+Enzyme has overall three rendering mechanisms in its API. You already know `shallow`, but there also exist `mount` and `render`. They instantiate instances of the parent component and all child components. Additionally `mount` gives you more access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
+
+* Always begin with a shallow test
+* If componentDidMount or componentDidUpdate should be tested, use mount
+* If you want to test component lifecycle and children behavior, use mount
+* If you want to test children rendering with less overhead than mount and you are not interested in lifecycle methods, use render
+
+You could continue to unit test your components. But make sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. That's why Facebook introduced Snapshot tests with Jest in the first place.
+
+### Exercises:
+
+* keep your unit tests up to date during the following chapters
+* read more about [enzyme and its rendering API](https://github.com/airbnb/enzyme)
+
+{pagebreak}
+
+## Loading ...
+
+Now let's get back to your application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+const Loading = () =>
+  <div>Loading ...</div>
+~~~~~~~~
+
+Now you will need a property to store the loading state. Based on the loading state you can decide to show the Loading component later on.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      results: null,
+      query: DEFAULT_QUERY,
+      searchKey: '',
+# leanpub-start-insert
+      isLoading: false,
+# leanpub-end-insert
+    };
+
+    ...
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+The initial value of that property is false. You don't load anything before the App component is mounted.
+
+When you make the request, you set a loading state. Eventually the request will succeed and you can remove the loading state.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  setSearchTopstories(result) {
+    const { hits, page } = result;
+    const { searchKey } = this.state;
+
+    const oldHits = page === 0 ? [] : this.state.results[searchKey].hits;
+    const updatedHits = [ ...oldHits, ...hits ];
+
+    this.setState({
+      results: { ...this.state.results, [searchKey]: { hits: updatedHits, page } },
+# leanpub-start-insert
+      isLoading: false
+# leanpub-end-insert
+    });
+  }
+
+  fetchSearchTopstories(query, page) {
+# leanpub-start-insert
+    this.setState({ isLoading: true });
+# leanpub-end-insert
+
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(response => response.json())
+      .then(result => this.setSearchTopstories(result));
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+In the last step you will use the Loading component in your App. A conditional rendering based on the loading state will decide whether you show a Loading or Button component. The latter one is your button to fetch more data.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+# leanpub-start-insert
+    const { query, results, searchKey, isLoading } = this.state;
+# leanpub-end-insert
+    const page = (results && results[searchKey] && results[searchKey].page) || 0;
+    const list = (results && results[searchKey] && results[searchKey].hits) || [];
+    return (
+      <div className="page">
+        <div className="interactions">
+          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+            Search
+          </Search>
+        </div>
+        <Table list={result.hits} />
+        <div className="interactions">
+# leanpub-start-insert
+        { isLoading ?
+          <Loading /> :
+# leanpub-end-insert
+          <Button onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
+            More
+          </Button>
+# leanpub-start-insert
+        }
+# leanpub-end-insert
+        </div>
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+Initially the Loading component will show up when you start your app, because you make a request on `componentDidMount`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false and the Loading component disappears. The button to fetch more data appears. Once you fetch more data, the button will disappear and instead the Loading component will show up.
+
+### Exercises:
+
+* use a library like [Font Awesome](http://fontawesome.io/) to show a loading icon instead of text
+
+{pagebreak}
+
+## Higher Order Component
+
+Higher order components (HOC) are equivalent to higher order functions. They take any input, mostly a component, and return a component as output. The component gets modified on the way.
+
+Let's do a simple HOC which takes a component as input and returns a component.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+const withSomething = (Component) => (props) =>
+  <Component { ...props } />;
+~~~~~~~~
+
+In the example the input component would be the same as the output component. It renders the same component instance and passes all of the props to the output component.
+
+Now let's enhance the output component. The output component should show the Loading component, when the loading state is true, otherwise it should show the input component.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+# leanpub-start-insert
+const withLoading = (Component) => ({ isLoading, ...props }) =>
+  isLoading ? <Loading /> : <Component { ...props } />;
+# leanpub-end-insert
+~~~~~~~~
+
+You use a conditional rendering based on the loading property. It will return the Loading component or input component.
+
+Additionally you may have noticed the `{ isLoading, ...props }` ES6 rest destructuring. It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+
+Now you can use the HOC. In your use case you want to show either the More Button or Loading component. The HOC can take the Button component as input. The output is a ButtonWithLoading component.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+const Button = ({ onClick, children }) =>
+  <button onClick={onClick} type="button">
+    {children}
+  </button>
+
+const Loading = () =>
+  <div>Loading ...</div>
+
+# leanpub-start-insert
+const ButtonWithLoading = withLoading(Button);
+# leanpub-end-insert
+~~~~~~~~
+
+As last step you have to use the ButtonWithLoading component which receives the loading state as additionally property. While the HOC consumes the loading property, the `onClick property gets passed to the Button component.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    const { query, results, searchKey, isLoading } = this.state;
+    const page = (results && results[searchKey] && results[searchKey].page) || 0;
+    const list = (results && results[searchKey] && results[searchKey].hits) || [];
+    return (
+      <div className="page">
+        <div className="interactions">
+          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+            Search
+          </Search>
+        </div>
+        <Table list={result.hits} />
+        <div className="interactions">
+# leanpub-start-insert
+          <ButtonWithLoading
+            isLoading={isLoading}
+# leanpub-end-insert
+            onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
+            More
+# leanpub-start-insert
+          </ButtonWithLoading>
+# leanpub-end-insert
+        </div>
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+Higher order components are an advanced technique in React. They enable multi-purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view.
+
+### Exercises:
+
+* experiment with the HOC you have created
+* implement another HOC
+
+{pagebreak}
+
+## Advanced Sorting
+
+You already have implemented a client- and server-sided search functionality. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about enabling to sort the Table columns?
+
+It would be possible to write an own sort function, but personally I prefer to use utility libraries for such cases. [Lodash](https://lodash.com/) is one of these utility libraries. Let's install and use it for the sort functionality.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+npm install --save lodash
+~~~~~~~~
+
+Now you can import the sort functionality of lodash in your *App.js* file.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+import { sortBy } from 'lodash';
+~~~~~~~~
+
+You have four columns in your Table: title, author, comments and points. For each of them you can define a sort function where each function takes a list and returns a list of items sorted by property. Additionally you will need one default sort function which doesn't sort but only returns the unsorted list.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+const SORTS = {
+  NONE: list => list,
+  TITLE: list => sortBy(list, 'title'),
+  AUTHOR: list => sortBy(list, 'author'),
+  COMMENTS: list => sortBy(list, 'num_comments').reverse(),
+  POINTS: list => sortBy(list, 'points').reverse(),
+};
+~~~~~~~~
+
+You can see that two of the sort functions are reverse. That's because you want to see the items with the highest comments and points rather than to see the items with the lowest. The `SORTS` object allows you to reference any sort function now.
+
+Again your App component is responsible to store the state of the sort. The initial state will be the initial default sort function, which doesn't sort at all and returns the input list as output.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+this.state = {
+  results: null,
+  query: DEFAULT_QUERY,
+  searchKey: '',
+  isLoading: false,
+  sortKey: 'NONE',
+};
+~~~~~~~~
+
+Once you choose a different `sortKey`, let's say `AUTHOR`, you will sort the list by the author property.
+
+Now you can define a new sort method in your App component which simply sets a sort key to your internal component state.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+class App extends Component {
+
+  constructor(props) {
+
+    ...
+
+    this.setSearchTopstories = this.setSearchTopstories.bind(this);
+    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+# leanpub-start-insert
+    this.onSort = this.onSort.bind(this);
+# leanpub-end-insert
+  }
+
+  ...
+
+# leanpub-start-insert
+  onSort(sortKey) {
+    this.setState({ sortKey });
+  }
+# leanpub-end-insert
+
+  ...
+
+}
+~~~~~~~~
+
+The next step is to pass the method and sortKey to your Table component.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+# leanpub-start-insert
+    const { query, results, searchKey, isLoading, sortKey } = this.state;
+# leanpub-end-insert
+    const page = (results && results[searchKey] && results[searchKey].page) || 0;
+    const list = (results && results[searchKey] && results[searchKey].hits) || [];
+    return (
+      <div className="page">
+        <div className="interactions">
+          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+            Search
+          </Search>
+        </div>
+# leanpub-start-insert
+        <Table list={list} sortKey={sortKey} onSort={this.onSort} />
+# leanpub-end-insert
+        <div className="interactions">
+          <ButtonWithLoading
+            isLoading={isLoading}
+            onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
+            More
+          </ButtonWithLoading>
+        </div>
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+The Table component is responsible to sort the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterwards it still maps over the sorted list.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+# leanpub-start-insert
+const Table = ({ list, sortKey, onSort }) =>
+# leanpub-end-insert
+  <div className="table">
+# leanpub-start-insert
+    { SORTS[sortKey](list).map((item) =>
+# leanpub-end-insert
+      <div key={item.objectID} className="table-row">
+        <span style={{ width: '40%' }}>
+          <a href={item.url}>{item.title}</a>
+        </span>
+        <span style={{ width: '30%' }}>
+          {item.author}
+        </span>
+        <span style={{ width: '15%' }}>
+          {item.num_comments}
+        </span>
+        <span style={{ width: '15%' }}>
+          {item.points}
+        </span>
+      </div>
+    )}
+  </div>
+~~~~~~~~
+
+In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`. So far no one executes the `onSort` method to change the `sortKey`. Let's extend the Table with a header row which uses Sort components to sort each column.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+const Table = ({ list, sortKey, onSort }) =>
+  <div className="table">
+# leanpub-start-insert
+    <div className="table-header">
+      <span style={{ width: '40%' }}>
+        <Sort sortKey={'TITLE'} onSort={onSort}>Title</Sort>
+      </span>
+      <span style={{ width: '30%' }}>
+        <Sort sortKey={'AUTHOR'} onSort={onSort}>Author</Sort>
+      </span>
+      <span style={{ width: '15%' }}>
+        <Sort sortKey={'COMMENTS'} onSort={onSort}>Comments</Sort>
+      </span>
+      <span style={{ width: '15%' }}>
+        <Sort sortKey={'POINTS'} onSort={onSort}>Points</Sort>
+      </span>
+    </div>
+# leanpub-end-insert
+    { SORTS[sortKey](list).map((item) =>
+      ...
+    )}
+  </div>
+~~~~~~~~
+
+Each Sort component gets a specific `sortKey` and the general `onSort` method. Internally it calls the method with the sortKey to set the specific key.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+const Sort = ({ sortKey, onSort, children }) =>
+  <Button onClick={() => onSort(sortKey)}>
+    {children}
+  </Button>
+~~~~~~~~
+
+As you can see the Sort component reuses your common Button component. On click each individual passed `sortKey` will get set by the `onSort` method. Now you should be able to sort the list by clicking on the column headers.
+
+But a button as column header looks a bit stupid. Let's give the Sort a proper className.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+const Sort = ({ sortKey, onSort, children }) =>
+# leanpub-start-insert
+  <Button onClick={() => onSort(sortKey)} className="button-inline">
+# leanpub-end-insert
+    {children}
+  </Button>
+~~~~~~~~
+
+Since a className doesn't get applied to a component, your abstract Button component needs to take care of it.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+# leanpub-start-insert
+const Button = ({ onClick, className, children }) =>
+  <button onClick={onClick} className={className} type="button">
+# leanpub-end-insert
+    {children}
+  </button>
+~~~~~~~~
+
+It should look nice now. The next goal would be to implement reverse sort as well. The list should get reverse sorted once you click a Sort component twice. First you need to define the reverse state.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+this.state = {
+  results: null,
+  query: DEFAULT_QUERY,
+  searchKey: '',
+  isLoading: false,
+  sortKey: 'NONE',
+# leanpub-start-insert
+  isSortReverse: false,
+# leanpub-end-insert
+};
+~~~~~~~~
+
+Now in your sort method you can evaluate if the list is reverse sorted. It's when `sortKey` in the state is the same as the incoming `sortKey` and the reverse state is not already set to true.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+onSort(sortKey) {
+# leanpub-start-insert
+  const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
+  this.setState({ sortKey, isSortReverse });
+# leanpub-end-insert
+}
+~~~~~~~~
+
+Again you can pass the reverse prop to your Table component.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+# leanpub-start-insert
+    const { query, results, searchKey, isLoading, sortKey, isSortReverse } = this.state;
+# leanpub-end-insert
+    const page = (results && results[searchKey] && results[searchKey].page) || 0;
+    const list = (results && results[searchKey] && results[searchKey].hits) || [];
+    return (
+      <div className="page">
+        <div className="interactions">
+          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+            Search
+          </Search>
+        </div>
+        <Table
+          list={list}
+          sortKey={sortKey}
+# leanpub-start-insert
+          isSortReverse={isSortReverse}
+# leanpub-end-insert
+          onSort={this.onSort}
+        />
+        <div className="interactions">
+          <ButtonWithLoading
+            isLoading={isLoading}
+            onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
+            More
+          </ButtonWithLoading>
+        </div>
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+The Table has to have a block body to compute the data now.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+# leanpub-start-insert
+const Table = ({ list, sortKey, isSortReverse, onSort }) => {
+  const sortedList = SORTS[sortKey](list);
+  const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
+# leanpub-end-insert
+
+# leanpub-start-insert
+  return(
+# leanpub-end-insert
+    <div className="table">
+      <div className="table-header">
+        ...
+      </div>
+# leanpub-start-insert
+      { reverseSortedList.map((item) =>
+# leanpub-end-insert
+        ...
+      )}
+    </div>
+# leanpub-start-insert
+  );
+}
+# leanpub-end-insert
+~~~~~~~~
+
+The reverse sort should work by now.
+
+Last but not least you have to deal with one open question for the sake of a good UX. Can an user distinguish which column is actively sorted? So far not. Let's give the user a visual feedback. Each Sort component gets its specific `sortKey` already. It could be used to identify the active sort. You can pass the sort key from the internal component state as active sort key to your Sort component.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+const Table = ({ list, sortKey, isSortReverse, onSort }) => {
+  const sortedList = SORTS[sortKey](list);
+  const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
+
+  return(
+    <div className="table">
+      <div className="table-header">
+        <span style={{ width: '40%' }}>
+# leanpub-start-insert
+          <Sort sortKey={'TITLE'} onSort={onSort} activeSortKey={sortKey}>Title</Sort>
+# leanpub-end-insert
+        </span>
+        <span style={{ width: '30%' }}>
+# leanpub-start-insert
+          <Sort sortKey={'AUTHOR'} onSort={onSort} activeSortKey={sortKey}>Author</Sort>
+# leanpub-end-insert
+        </span>
+        <span style={{ width: '15%' }}>
+# leanpub-start-insert
+          <Sort sortKey={'COMMENTS'} onSort={onSort} activeSortKey={sortKey}>Comments</Sort>
+# leanpub-end-insert
+        </span>
+        <span style={{ width: '15%' }}>
+# leanpub-start-insert
+          <Sort sortKey={'POINTS'} onSort={onSort} activeSortKey={sortKey}>Points</Sort>
+# leanpub-end-insert
+        </span>
+      </div>
+      { reverseSortedList.map((item) =>
+          ...
+      )}
+    </div>
+  );
+}
+~~~~~~~~
+
+Now in your Sort component you know based on the `sortKey` and `activeSortKey` if the sort is active. Give your Sort component an extra class when it's sorted to give the user a visual feedback.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+# leanpub-start-insert
+const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
+  const sortClass = ['button-inline'];
+
+  if (sortKey === activeSortKey) {
+    sortClass.push('button-active');
+  }
+
+  return (
+    <button onClick={() => onSort(sortKey)} className={sortClass.join(' ')} type="button">
+# leanpub-end-insert
+      {children}
+    </button>
+# leanpub-start-insert
+  );
+}
+# leanpub-end-insert
+~~~~~~~~
+
+The way to define the class is a bit clumsy, isn't it? There is a neat little library to get rid of this. First you have to install it.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+npm install --save classnames
+~~~~~~~~
+
+And second you have to import it on top of your *App.js* file.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+import classNames from 'classnames';
+~~~~~~~~
+
+Now you can use it to define your component `className` with conditional classes.
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
+# leanpub-start-insert
+  const sortClass = classNames(
+    'button-inline',
+    { 'button-active': sortKey === activeSortKey }
+  );
+# leanpub-end-insert
+
+  return (
+# leanpub-start-insert
+    <button onClick={() => onSort(sortKey)} className={sortClass} type="button">
+# leanpub-end-insert
+      {children}
+    </button>
+  );
+}
+~~~~~~~~
+
+Your advanced sort interaction is complete now. Enjoy to sort the list!
+
+### Exercises:
+
+* use a library like [Font Awesome](http://fontawesome.io/) to indicate the (reverse) sort
+  * it could be an arrow up/down icon next to each Sort header
+* read more about [classnames library](https://github.com/JedWatson/classnames)
+* implement another interaction
+
+{pagebreak}
+
+Your *src/App.js* should look like the following by now:
+
+{lang=javascript,linenos=off}
+~~~~~~~~
+import React, { Component } from 'react';
+import { sortBy } from 'lodash';
+import classNames from 'classnames';
+import './App.css';
+
+const DEFAULT_QUERY = 'redux';
+const DEFAULT_PAGE = 0;
+const DEFAULT_HPP = '100';
+
+const PATH_BASE = 'https://hn.algolia.com/api/v1';
+const PATH_SEARCH = '/search';
+const PARAM_SEARCH = 'query=';
+const PARAM_PAGE = 'page=';
+const PARAM_HPP = 'hitsPerPage=';
+
+const SORTS = {
+  NONE: list => list,
+  TITLE: list => sortBy(list, 'title'),
+  AUTHOR: list => sortBy(list, 'author'),
+  COMMENTS: list => sortBy(list, 'num_comments').reverse(),
+  POINTS: list => sortBy(list, 'points').reverse(),
+};
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      results: null,
+      query: DEFAULT_QUERY,
+      searchKey: '',
+      isLoading: false,
+      sortKey: 'NONE',
+      isSortReverse: false,
+    };
+
+    this.setSearchTopstories = this.setSearchTopstories.bind(this);
+    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
+    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onSort = this.onSort.bind(this);
+  }
+
+  setSearchTopstories(result) {
+    const { hits, page } = result;
+    const { searchKey } = this.state;
+
+    const oldHits = page === 0 ? [] : this.state.results[searchKey].hits;
+    const updatedHits = [ ...oldHits, ...hits ];
+
+    this.setState({
+      results: { ...this.state.results, [searchKey]: { hits: updatedHits, page } },
+      isLoading: false
+    });
+  }
+
+  fetchSearchTopstories(query, page) {
+    this.setState({ isLoading: true });
+
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(response => response.json())
+      .then(result => this.setSearchTopstories(result));
+  }
+
+  componentDidMount() {
+    const { query } = this.state;
+    this.setState({ searchKey: query });
+    this.fetchSearchTopstories(query, DEFAULT_PAGE);
+  }
+
+  needsToSearchTopstories(query) {
+    return !this.state.results[query];
+  }
+
+  onSearchChange(event) {
+    this.setState({ query: event.target.value });
+  }
+
+  onSearchSubmit(event) {
+    const { query } = this.state;
+    this.setState({ searchKey: query });
+    if (this.needsToSearchTopstories(query)) {
+      this.fetchSearchTopstories(query, DEFAULT_PAGE);
+    }
+    event.preventDefault();
+  }
+
+  onSort(sortKey) {
+    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
+    this.setState({ sortKey, isSortReverse });
+  }
+
+  render() {
+    const { query, results, searchKey, isLoading, sortKey, isSortReverse } = this.state;
+    const page = (results && results[searchKey] && results[searchKey].page) || 0;
+    const list = (results && results[searchKey] && results[searchKey].hits) || [];
+    return (
+      <div className="page">
+        <div className="interactions">
+          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+            Search
+          </Search>
+        </div>
+        <Table
+          list={list}
+          sortKey={sortKey}
+          isSortReverse={isSortReverse}
+          onSort={this.onSort}
+        />
+        <div className="interactions">
+          <ButtonWithLoading
+            isLoading={isLoading}
+            onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
+            More
+          </ButtonWithLoading>
+        </div>
+      </div>
+    );
+  }
+}
+
+const Search = ({ value, onChange, onSubmit, children }) =>
+  <form onSubmit={onSubmit}>
+    <input type="text" value={value} onChange={onChange} />
+    <button type="submit">{children}</button>
+  </form>
+
+const Table = ({ list, sortKey, isSortReverse, onSort }) => {
+  const sortedList = SORTS[sortKey](list);
+  const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
+
+  return(
+    <div className="table">
+      <div className="table-header">
+        <span style={{ width: '40%' }}>
+          <Sort sortKey={'TITLE'} onSort={onSort} activeSortKey={sortKey}>Title</Sort>
+        </span>
+        <span style={{ width: '30%' }}>
+          <Sort sortKey={'AUTHOR'} onSort={onSort} activeSortKey={sortKey}>Author</Sort>
+        </span>
+        <span style={{ width: '15%' }}>
+          <Sort sortKey={'COMMENTS'} onSort={onSort} activeSortKey={sortKey}>Comments</Sort>
+        </span>
+        <span style={{ width: '15%' }}>
+          <Sort sortKey={'POINTS'} onSort={onSort} activeSortKey={sortKey}>Points</Sort>
+        </span>
+      </div>
+      { reverseSortedList.map((item) =>
+        <div key={item.objectID} className="table-row">
+          <span style={{ width: '40%' }}>
+            <a href={item.url}>{item.title}</a>
+          </span>
+          <span style={{ width: '30%' }}>
+            {item.author}
+          </span>
+          <span style={{ width: '15%' }}>
+            {item.num_comments}
+          </span>
+          <span style={{ width: '15%' }}>
+            {item.points}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
+  const sortClass = classNames(
+    'button-inline',
+    { 'button-active': sortKey === activeSortKey }
+  );
+
+  return (
+    <button onClick={() => onSort(sortKey)} className={sortClass} type="button">
+      {children}
+    </button>
+  );
+}
+
+const Button = ({ onClick, className, children }) =>
+  <button onClick={onClick} className={className} type="button">
+    {children}
+  </button>
+
+const Loading = () =>
+  <div>Loading ...</div>
+
+const withLoading = (Component) => ({ isLoading, ...props }) =>
+  isLoading ? <Loading /> : <Component { ...props } />;
+
+const ButtonWithLoading = withLoading(Button);
+
+export default App;
+
+export {
+  Button,
+  Search,
+  Table,
+};
+~~~~~~~~
+
+You have learned advanced component techniques in React! Let's recap the last chapters:
+
+* React
+  * Jest allows to write snapshot tests for your components
+  * Enzyme allows to write unit tests for your components
+  * higher order components are a common way to build advanced component
+  * implementation of advanced interactions In React
+  * conditional classNames with a neat helper library
+* ES6
+  * rest destructuring
