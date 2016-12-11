@@ -1,0 +1,884 @@
+# Basics in React
+
+The chapter will focus on the basics in React. You will learn to manage internal component state, to implement component interactions and to compose components. Moreover it will show you to declare components in different ways.
+
+## Internal Component State
+
+Internal component state allows you to store, modify and delete properties of your components. Let's introduce a class constructor where you can set the initial internal component state.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+# leanpub-start-insert
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      list: list,
+    };
+
+  }
+# leanpub-end-insert
+
+  ...
+
+}
+~~~~~~~~
+
+In your case the initial state is the list of items.
+
+Notice that you have to call `super(props);` to call the constructor of the parent class. It's mandatory.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    return (
+      <div className="App">
+# leanpub-start-insert
+        { this.state.list.map((item) =>
+# leanpub-end-insert
+          <div key={item.objectID}>
+            <span><a href={item.url}>{item.title}</a></span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+In the render function you have access to the component internal state by using `this`. As before you can map over the list of items.
+
+### ES6 Sugar:
+
+You can use a shorthand syntax to initialize properties in an object. In your case it makes sense because the property and variable share the same name.
+
+{lang=javascript}
+~~~~~~~~
+// instead of
+this.state = {
+  list: list
+};
+
+// you can use
+this.state = {
+  list
+};
+~~~~~~~~
+
+### Exercises:
+
+* read more about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
+
+{pagebreak}
+
+## Interactions in Components
+
+Now you have some static internal state in your component. But you don't manipulate the internal state so far. The best to experience state manipulation is by implementing a component interaction. It could be a search field. The input of the search field should be used to filter your list.
+
+First you define your input field in your JSX.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    return (
+      <div className="App">
+# leanpub-start-insert
+        <form>
+          <input type="text" />
+        </form>
+# leanpub-end-insert
+        { this.state.list.map((item) =>
+          <div key={item.objectID}>
+            <span><a href={item.url}>{item.title}</a></span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+In the following scenario you will type into the field and filter the list by the search term. To be able to filter the list, you need the value of the input field. But where to access the value? Naturally in React the value goes into the internal component state to be accessible und updatable.
+
+Let's define a callback function for the input field which manipulates the internal component state.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    return (
+      <div className="App">
+# leanpub-start-insert
+        <form>
+          <input type="text" onChange={this.onSearchChange} />
+        </form>
+# leanpub-end-insert
+        ...
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+The callback function is bound to the component and thus a component method. You have to bind and define the method.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      list,
+    };
+
+# leanpub-start-insert
+    this.onSearchChange = this.onSearchChange.bind(this);
+# leanpub-end-insert
+  }
+
+# leanpub-start-insert
+  onSearchChange(event) {
+# leanpub-end-insert
+    ...
+# leanpub-start-insert
+  }
+# leanpub-end-insert
+
+  render() {
+    ...
+  }
+}
+~~~~~~~~
+
+The callback gives you access to the input field event. The event has the value of the input field in its target object. By using `this.setState` you can manipulate the internal component state. Additionally you should define the initial state for the query.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      list,
+# leanpub-start-insert
+      query: '',
+# leanpub-end-insert
+    };
+
+    this.onSearchChange = this.onSearchChange.bind(this);
+  }
+
+  onSearchChange(event) {
+# leanpub-start-insert
+    this.setState({ query: event.target.value });
+# leanpub-end-insert
+  }
+
+  render() {
+    ...
+  }
+}
+~~~~~~~~
+
+Now you store the value to your component state every time the value in the input field changes. But one piece is missing.
+
+In React applications you will strictly follow an unidirectional data flow. The input field already updated the internal component state, but to finish the roundtrip you have to update the value of the input field with the internal state too.
+
+You have to retrieve the query property from the internal component state and set it as value in the input field.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+# leanpub-start-insert
+    const query = this.state.query;
+# leanpub-end-insert
+    return (
+      <div className="App">
+        <form>
+# leanpub-start-insert
+          <input type="text" value={query} onChange={this.onSearchChange} />
+# leanpub-end-insert
+        </form>
+        ...
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+The unidirectional data flow roundtrip finished. Now the input field value is under your control.
+
+The whole internal state management and unidirectional data flow might be new to you. But once you are used to it, it will be your natural flow to implement things in React. So what's next? You save your input value as query, but what about searching the list?
+
+Before you map the list you can filter it.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    const query = this.state.query;
+    return (
+      <div className="App">
+        <form>
+          <input type="text" value={query} onChange={this.onSearchChange} />
+        </form>
+# leanpub-start-insert
+        { this.state.list.filter(isSearched(query)).map((item) =>
+# leanpub-end-insert
+          <div key={item.objectID}>
+            <span><a href={item.url}>{item.title}</a></span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+The `filter` function takes a function to evaluate each item in the list. If the evaluation for an item is true, the item stays in the list.
+
+But now you need to pass the query property to your evaluation process. That's why you can use a higher order function, which takes the query but returns another function. The returned function will do the evaluation for each item, but has access to the query property.
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+function isSearched(query) {
+  return function(item) {
+    return !query || item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+  }
+}
+# leanpub-end-insert
+
+class App extends Component {
+
+  ...
+
+}
+~~~~~~~~
+
+You filter the list only when a query is set. When a query is set, you match the incoming query pattern with the title of the item. Only when the pattern matches you return true. Don't forget to lower case everything, otherwise there will be mismatches between a query 'redux' and a item title 'Redux'.
+
+The search field should do its work now. Try it.
+
+### ES6 Sugar:
+
+You can even add some more ES6 syntax again. First you can destructure objects and arrays. Try it by destructuring the internal component state.
+
+{lang=javascript}
+~~~~~~~~
+  render() {
+# leanpub-start-insert
+    const { query, list } = this.state;
+# leanpub-end-insert
+    return (
+      <div className="App">
+        <form>
+          <input type="text" value={query} onChange={this.onSearchChange} />
+        </form>
+# leanpub-start-insert
+        { list.filter(isSearched(query)).map((item) =>
+# leanpub-end-insert
+          <div key={item.objectID}>
+            <span><a href={item.url}>{item.title}</a></span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+          </div>
+        )}
+      </div>
+    );
+~~~~~~~~
+
+Second you can make the function more concise in ES6 by using arrow functions again.
+
+You can refactor your higher order function:
+
+{lang=javascript}
+~~~~~~~~
+// before
+function isSearched(query) {
+  return function(item) {
+    return !query || item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+  }
+}
+
+// after
+const isSearched = (query) => (item) => !query || item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+~~~~~~~~
+
+One could argue which one is more readable. Personally I prefer the second one.
+
+The React ecosystem uses a lot of functional programming concepts. It happens quite often that you will use a function which returns a function. These are called higher order functions. In ES6 you can express these more concise with arrow functions.
+
+### Exercises:
+
+* read more about [React forms](https://facebook.github.io/react/docs/forms.html)
+* read more about [React events](https://facebook.github.io/react/docs/handling-events.html)
+* read more about [ES6 destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+* read more about [higher order functions](https://en.wikipedia.org/wiki/Higher-order_function)
+
+{pagebreak}
+
+## Composable Components
+
+So far you have one large App component. Let's start to split it up into smaller composable components. You can define a component for the search input and a component for the list items.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    const { query, list } = this.state;
+    return (
+      <div className="App">
+# leanpub-start-insert
+        <Search value={query} onChange={this.onSearchChange} />
+        <Table list={list} pattern={query} />
+# leanpub-end-insert
+      </div>
+    );
+  }
+}
+
+# leanpub-start-insert
+class Search extends Component {
+
+  render() {
+    const { value, onChange } = this.props;
+    return (
+      <form>
+        <input type="text" value={value} onChange={onChange} />
+      </form>
+    );
+  }
+
+}
+# leanpub-end-insert
+
+# leanpub-start-insert
+class Table extends Component {
+
+  render() {
+    const { list, pattern } = this.props;
+    return (
+      <div>
+      { list.filter(isSearched(pattern)).map((item) =>
+        <div key={item.objectID}>
+          <span><a href={item.url}>{item.title}</a></span>
+          <span>{item.author}</span>
+          <span>{item.num_comments}</span>
+          <span>{item.points}</span>
+        </div>
+      )}
+      </div>
+    );
+  }
+}
+# leanpub-end-insert
+~~~~~~~~
+
+Properties, they are called props in React, can be passed to components. The components themselves have every property accessible in the `props` object.
+
+Now you have three ES6 class components.
+
+Still you can't compose components into each other. That's why there exists the React children property. You can try the following to see the children property in action.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    const { query, list } = this.state;
+    return (
+      <div className="App">
+# leanpub-start-insert
+        <Search value={query} onChange={this.onSearchChange}>
+          Search
+        </Search>
+# leanpub-end-insert
+        <Table list={list} pattern={query} />
+      </div>
+    );
+  }
+}
+
+class Search extends Component {
+
+  render() {
+# leanpub-start-insert
+    const { value, onChange, children } = this.props;
+# leanpub-end-insert
+    return (
+      <form>
+# leanpub-start-insert
+        {children} <input type="text" value={value} onChange={onChange} />
+# leanpub-end-insert
+      </form>
+    );
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+The children property should get rendered in the Search component now.
+
+By using the children property you can compose components into each other. You can pass whole components and component hierarchies as children.
+
+### Exercises:
+
+* read more about [the composition model of React](https://facebook.github.io/react/docs/composition-vs-inheritance.html)
+
+{pagebreak}
+
+## Different Component Declarations
+
+Now you have three ES6 class components. But you can do better by using functional stateless components. Before you will refactor your components to functional stateless components, let me explain the different types of component declarations.
+
+Functional stateless components are functions which get an input and return an output. The output is a component instance. There are no side effects (functional) and they have no internal state (stateless). You cannot access the state with `this.state` because there is no `this` object. Additionally they have no lifecycle methods. You didn't learn about lifecycle methods yet, but you already used two: `constructor()` and `render()`. Keep this in mind, when you arrive at the lifecycle methods chapter later on.
+
+Besides of the functional stateless component, you already know the ES6 class component with the `this` object and two lifecycle methods.
+
+Additionally there is a third type of component declaration: React.createClass. It was used in older versions of React, but is declared as deprecated now. I still wanted to mention it, in case you come across these declarations in older React material.
+
+But when to use functional stateless components and ES6 class components? A good rule of thumb is to use functional stateless components when you don't need internal component state nor component lifecycle methods. Usually you start to implement your components as functional stateless components. Once you need access to the state or lifecycle methods, you will refactor it to an ES6 class component.
+
+The App component uses internal state. That's why it has to stay as ES6 class component. But both of your new components are stateless without lifecycle methods. Let's refactor the Search component together to a stateless functional component. The Table component refactoring will remain as your exercise.
+
+{lang=javascript}
+~~~~~~~~
+function Search(props) {
+  const { value, onChange, children } = props;
+  return (
+    <form>
+      {children} <input type="text" value={value} onChange={onChange} />
+    </form>
+  );
+}
+~~~~~~~~
+
+You already know and can apply the props destructuring. The best practice is use it in the function signature in the first place.
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+function Search({ value, onChange, children }) {
+# leanpub-end-insert
+  return (
+    <form>
+      {children} <input type="text" value={value} onChange={onChange} />
+    </form>
+  );
+}
+~~~~~~~~
+
+But it can get better. You know that arrow functions allow you to keep your functions concise. Since your functional stateless component is a function, you can keep it concise as well.
+
+{lang=javascript}
+~~~~~~~~
+const Search = ({ value, onChange, children }) =>
+  <form>
+    {children} <input type="text" value={value} onChange={onChange} />
+  </form>
+~~~~~~~~
+
+The last step is especially useful to enforce only to have props as input and an element as output. Nothing in between. Still you could do something in between by using a block body.
+
+{lang=javascript}
+~~~~~~~~
+const Search = ({ value, onChange, children }) => {
+
+  // do something
+
+  return (
+    <form>
+      {children} <input type="text" value={value} onChange={onChange} />
+    </form>
+  );
+}
+~~~~~~~~
+
+Now you have one lightweight functional stateless component. Once you would need access to its internal component state or lifecycle methods you would refactor it to an ES6 class component.
+
+### Exercises:
+
+* refactor the Table component to a stateless functional component
+* read more about [ES6 class components and functional stateless components](https://facebook.github.io/react/docs/components-and-props.html)
+
+{pagebreak}
+
+## Styling Components
+
+Let's add some basic styling to your app and components. You can reuse the *src/App.css* and *src/index.css* files. I prepared some CSS, but feel free to use your own style. If you don't come up with your own style, copy and paste the following styles.
+
+*src/index.css*
+
+{lang=css}
+~~~~~~~~
+body {
+  color: #222;
+  background: #f4f4f4;
+  font: 400 14px CoreSans, Arial,sans-serif;
+}
+
+a {
+  color: #222;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  margin-right: 10px;
+  border: 1px solid #dddddd;
+}
+
+button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
+  background: transparent;
+  color: #808080;
+  cursor: pointer;
+}
+
+button:hover {
+  color: #222;
+}
+
+*:focus {
+  outline: none;
+}
+~~~~~~~~
+
+*src/App.css*
+
+{lang=css}
+~~~~~~~~
+.page {
+  margin: 20px;
+}
+
+.interactions {
+  text-align: center;
+}
+
+.table {
+  margin: 20px 0;
+}
+
+.table-header {
+  display: flex;
+  line-height: 24px;
+  font-size: 16px;
+  padding: 0 10px;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.table-empty {
+  margin: 200px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.table-row {
+  display: flex;
+  line-height: 24px;
+  white-space: nowrap;
+  margin: 10px 0;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+}
+
+.table-header > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+}
+
+.table-row > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+}
+
+.button-inline {
+  border-width: 0;
+  background: transparent;
+  color: inherit;
+  text-align: inherit;
+  -webkit-font-smoothing: inherit;
+  padding: 0;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.button-active {
+  border-radius: 0;
+  border-bottom: 1px solid #38BB6C;
+}
+~~~~~~~~
+
+Now you can use the style in your components. Don't forget to use React className.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    const { query, list } = this.state;
+    return (
+# leanpub-start-insert
+      <div className="page">
+        <div className="interactions">
+# leanpub-end-insert
+          <Search value={query} onChange={this.onSearchChange}>
+            Search
+          </Search>
+# leanpub-start-insert
+        </div>
+# leanpub-end-insert
+        <Table list={list} pattern={query} />
+# leanpub-start-insert
+      </div>
+# leanpub-end-insert
+    );
+  }
+}
+
+const Search = ({ value, onChange, children }) =>
+  <form>
+    {children} <input type="text" value={value} onChange={onChange} />
+  </form>
+
+const Table = ({ list, pattern }) =>
+# leanpub-start-insert
+  <div className="table">
+# leanpub-end-insert
+    { list.filter(isSearched(pattern)).map((item) =>
+# leanpub-start-insert
+      <div key={item.objectID} className="table-row">
+# leanpub-end-insert
+        <span><a href={item.url}>{item.title}</a></span>
+        <span>{item.author}</span>
+        <span>{item.num_comments}</span>
+        <span>{item.points}</span>
+# leanpub-start-insert
+      </div>
+# leanpub-end-insert
+    )}
+# leanpub-start-insert
+  </div>
+# leanpub-end-insert
+~~~~~~~~
+
+Another technique in React to style components is inline style. You can pass style objects to your components. Let's keep the Table column width flexible by using inline style.
+
+{lang=javascript}
+~~~~~~~~
+const Table = ({ list, pattern }) =>
+  <div className="table">
+    { list.filter(isSearched(pattern)).map((item) =>
+      <div key={item.objectID} className="table-row">
+# leanpub-start-insert
+        <span style={{ width: '40%' }}>
+          <a href={item.url}>{item.title}</a>
+        </span>
+        <span style={{ width: '30%' }}>
+          {item.author}
+        </span>
+        <span style={{ width: '15%' }}>
+          {item.num_comments}
+        </span>
+        <span style={{ width: '15%' }}>
+          {item.points}
+        </span>
+# leanpub-end-insert
+      </div>
+    )}
+  </div>
+~~~~~~~~
+
+It's really inlined now. You could define the style objects outside as well.
+
+{lang=javascript}
+~~~~~~~~
+const largeColumn = {
+  width: '40%',
+};
+
+const midColumn = {
+  width: '30%',
+};
+
+const smallColumn = {
+  width: '15%',
+};
+~~~~~~~~
+
+After that you could use it in your columns `<span style={smallColumn}>`.
+
+In general you will find different opinions and solutions for style in React. I don't want to be opinionated here, but I leave you some options to read about it. I'm open to your thoughts about other options as well.
+
+* React Inline Style
+* [CSS Modules](https://github.com/css-modules/css-modules)
+* [styled-components](https://github.com/styled-components/styled-components)
+
+The chapter might get overhauled in the future to give you an opinionated approach.
+
+{pagebreak}
+
+Your *src/App.js* should look like the following by now:
+
+{lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+import './App.css';
+
+const list = [
+  {
+    title: 'React',
+    url: 'https://facebook.github.io/react/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: 'Redux',
+    url: 'https://github.com/reactjs/redux',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+];
+
+const isSearched = (query) => (item) => !query || item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      list,
+      query: '',
+    };
+
+    this.onSearchChange = this.onSearchChange.bind(this);
+  }
+
+  onSearchChange(event) {
+    this.setState({ query: event.target.value });
+  }
+
+  render() {
+    const { query, list } = this.state;
+    return (
+      <div className="page">
+        <div className="interactions">
+          <Search value={query} onChange={this.onSearchChange}>
+            Search
+          </Search>
+        </div>
+        <Table list={list} pattern={query} />
+      </div>
+    );
+  }
+}
+
+const Search = ({ value, onChange, children }) =>
+  <form>
+    {children} <input type="text" value={value} onChange={onChange} />
+  </form>
+
+const Table = ({ list, pattern }) =>
+  <div className="table">
+    { list.filter(isSearched(pattern)).map((item) =>
+      <div key={item.objectID} className="table-row">
+        <span style={{ width: '40%' }}>
+          <a href={item.url}>{item.title}</a>
+        </span>
+        <span style={{ width: '30%' }}>
+          {item.author}
+        </span>
+        <span style={{ width: '15%' }}>
+          {item.num_comments}
+        </span>
+        <span style={{ width: '15%' }}>
+          {item.points}
+        </span>
+      </div>
+    )}
+  </div>
+
+export default App;
+~~~~~~~~
+
+You have learned the basics to write your own React app! Let's recap the last chapters:
+
+* React
+  * this.state and setState to manage your internal component state
+  * forms and events in React
+  * compose components with children
+  * usage and implementation of ES6 class components and functional stateless components
+  * approaches to style your components
+* ES6
+  * destructuring of objects and arrays
+  * arrow functions with concise and block body
+* General
+  * higher order functions
+
+Again it makes sense to make a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. Additionally you could read more in the official [documentation](https://facebook.github.io/react/docs/installation.html).

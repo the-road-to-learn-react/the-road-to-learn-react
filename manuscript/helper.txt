@@ -30,11 +30,12 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
+headers:
+#
+##
 
-<hr class="section-divider">
-TO
-{pagebreak}
+divider to {pagebreak}
 
-headers
+{pagebreak} after each header
 
 a_blank
