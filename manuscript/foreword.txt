@@ -2,7 +2,7 @@
 
 I love to teach, even though I am no expert. I learn every day and I have the fortune to have great mentors. After all not everyone has the opportunity to learn from mentors and peers. The book is my attempt to give something back which might help people to get started and advance in React.
 
-The following article includes the first chapters of an eBook to learn React. It highly depends on your feedback and contribution. I try my best to teach in the best way possible, but I can only improve with your help. Since I am no native speaker, I will even more need your improvements. You can have a direct impact on [GitHub](https://github.com/rwieruch/blog_robinwieruch_content/blob/master/the-road-to-learn-react.md). Additionally I am keen to hear your honest thoughts on [Twitter](https://twitter.com/rwieruch).
+The following article includes the first chapters of an eBook to learn React. It highly depends on your feedback and contribution. I try my best to teach in the best way possible, but I can only improve with your help. Since I am no native speaker, I will even more need your improvements. You can have a direct impact on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). Additionally I am keen to hear your honest thoughts on [Twitter](https://twitter.com/rwieruch).
 
 But why me? In the past I have written a larger tutorial to implement a [SoundCloud Client in React + Redux](http://www.robinwieruch.de/the-soundcloud-client-in-react-redux). I never expected the overwhelming reaction. I learned a lot during the process of writing. But even more by getting your honest feedback. It was my first attempt to teach people in programming.
 
@@ -20,9 +20,9 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 **But why is the book for free?** I have put a lot of effort into this and will do so in the future. My desire is to reach as many people as possible to learn React. Once you have your version of the book, you will automatically get all the updates even though the book might not be for free at some point. I would appreciate each of your social shares for the book.
 
-**Does the article cover all book chapters?** No. At this time the blog post covers 2 of 4 chapters. Grab your free book on [Leanpub](https://leanpub.com/the-road-to-learn-react) to get all chapters. It has over 60 pages of learning material.
+**Does the article cover all book chapters?** No. At this time the blog post covers 2 of 4 chapters. Grab your free book on [Leanpub](https://leanpub.com/the-road-to-learn-react) to get all chapters. It has over 90 pages of learning material.
 
-**Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/blog_robinwieruch_content/blob/master/the-road-to-learn-react.md). I don't claim to be an expert nor to write in the best way possible. I would appreciate your help very much.
+**Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in the best way possible. I would appreciate your help very much.
 
 {pagebreak}
 
@@ -66,7 +66,7 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 ## How to read it?
 
-Are you new to React? That's perfect. I will need your feedback to improve the material to enable everyone to learn React. You can have a direct impact on [GitHub](https://github.com/rwieruch/blog_robinwieruch_content/blob/master/the-road-to-learn-react.md) or give me feedback on [Twitter](https://twitter.com/rwieruch).
+Are you new to React? That's perfect. I will need your feedback to improve the material to enable everyone to learn React. You can have a direct impact on [GitHub](https://github.com/rwieruch/the-road-to-learn-react) or give me feedback on [Twitter](https://twitter.com/rwieruch).
 
 In general each chapter will build up on the previous. Each of them will dive into a new learning. Don't rush through the book. You should internalize each step. You could apply your own implementations and read more about the topic. Make yourself comfortable with the learnings before you continue.
 
