@@ -18,15 +18,13 @@ Second all building blocks are interchangeable. It makes the ecosystem around Re
 
 The first generation SPA frameworks arrived at an enterprise level. React stays innovative and gets adapted by multiple tech thought leader companies like [Airbnb, Netflix and of course Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). React is probably one of the best choices for building UI nowadays. It has a good design, an amazing ecosystem and a great community. Everyone is keen to experience where it will lead us in 2017.
 
-{pagebreak}
-
 ## Requirements
 
 Before you start to read the book, you should be quite familiar with HTML, CSS and JavaScript (ES5). Additionally you will need a working [editor and terminal](http://www.robinwieruch.de/developer-setup/). Last but not least you will need an installation of [node and npm](https://nodejs.org/en/).
 
 These are my versions of node and npm at the time of writing the book.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 node --version
 *v5.0.0
@@ -34,22 +32,20 @@ npm --version
 *v3.3.6
 ~~~~~~~~
 
-{pagebreak}
-
 ## create-react-app
 
 You will use [create-react-app](https://github.com/facebookincubator/create-react-app) to bootstrap your app. It's an opinionated but zero-configuration starter kit for React introduced by Facebook. People like and would [recommend it to starters by 96%](https://twitter.com/dan_abramov/status/806985854099062785). In create-react-app the tools evolve in the background while the focus is on the application implementation.
 
 To get started you will have to install the package to your global packages on your command line. You should already have npm installed to install the package.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 npm install -g create-react-app
 ~~~~~~~~
 
 Now you can bootstrap your first app and navigate into the directory:
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 create-react-app hackernews
 cd hackernews
@@ -57,7 +53,7 @@ cd hackernews
 
 When you open the app in your editor, you will find the following folder structure:
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 hackernews/
   README.md
@@ -80,7 +76,7 @@ In the beginning everything you need is located in the *src* folder. The main fo
 
 Additionally create-react-app comes with the following npm scripts for your command line:
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 // Runs the app in http://localhost:3000
 npm start
@@ -100,13 +96,11 @@ You can read more about [the scripts and create-react-app](https://github.com/fa
 * run the interactive `npm test` script
 * make yourself familiar with the folder structure
 
-{pagebreak}
-
 ## Introduction to JSX
 
 Now you will get to know JSX. Let's dive into the source code provided by create-react-app. The only file you will touch in the beginning will be the *src/App.js*.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
 import logo from './logo.svg';
@@ -139,7 +133,7 @@ The content in the render block looks pretty similar to HTML, but it's JSX. JSX 
 
 Try it. Define a property and use it in JSX.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
 import logo from './logo.svg';
@@ -183,13 +177,11 @@ In ES5 you declare variables with var. In ES6 there are two more variable declar
 * read more about ES6 [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) and [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) variable declarations
 * define more variables to render them in your JSX
 
-{pagebreak}
-
 ## ReactDOM.render
 
 Before you continue with the App component, you might want to see where it's used. It's located in your entry point to the React world *src/index.js*.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -215,15 +207,13 @@ The second argument specifies the place where the React application hooks into y
 * open your *public/index.html* file to find the `id="root"`
 * read more about [React rendering element](https://facebook.github.io/react/docs/rendering-elements.html)
 
-{pagebreak}
-
 ## Map in JSX
 
 Let's get back to your App component. So far your rendered some random properties in your JSX. Now you will start to render a list of items. The list will be some mock data in the beginning, but later you will fetch the data from an external API. That will be far more exciting.
 
 Since you can use JavaSript in JSX, it's possible to map over your data to display each item.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';
@@ -276,7 +266,7 @@ export default App;
 
 Additionally you have to assign a key property to each list element. Only that way React is able to identify added, changed and removed items.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 { list.map(function(item) {
   return (
@@ -294,7 +284,7 @@ Additionally you have to assign a key property to each list element. Only that w
 
 Give your elements a stable id. Don't make the mistake to use the array key which isn't stable. React will have a hard time to identify the items properly when the order of them changes.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 // bad example
 # leanpub-start-insert
@@ -318,7 +308,7 @@ Let's have a look again at the map function. It takes a function itself, which y
 
 First you can use the arrow function.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 { list.map((item) => {
@@ -336,7 +326,7 @@ First you can use the arrow function.
 
 Second you can remove the block body and thus remove the return statement. In a concise body an implicit return is attached.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 { list.map((item) =>
@@ -365,7 +355,7 @@ Now your JSX looks more readable again.
 
 Your *src/App.js* should look like the following by now:
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';

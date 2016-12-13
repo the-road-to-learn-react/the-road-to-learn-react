@@ -20,9 +20,7 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 **But why is the book for free?** I have put a lot of effort into this and will do so in the future. My desire is to reach as many people as possible. Everyone should be enabled to learn React. Still you can decide to pay something when you can effort it. It's pay as you want. Once you have your version of the book, you will automatically get all the updates. I would appreciate each of your social shares for the book.
 
-**Does the article cover all book chapters?** No. At this time the blog post covers 2 of 5 chapters. Grab your book on [Leanpub](https://leanpub.com/the-road-to-learn-react) to get all chapters. It has over 100 pages of learning material.
-
-**Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in perfect english. I would appreciate your help very much.
+**Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in native english. I would appreciate your help very much.
 
 **Will you add more chapters in the future?** It depends on the community. If there is an acceptance for the book, I will deliver more chapters. Additionally I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
 
