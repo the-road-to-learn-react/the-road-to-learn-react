@@ -1,0 +1,9 @@
+# Final Words
+
+That was the last chapter of the book. I hope you liked it so far! If I get positive feedback, I will continue to write on it.
+
+But where can you continue? Before you dive into another book or tutorial, you should do your own hands on React project. Do it for one week, publish it somewhere and reach out to me on [Twitter](https://twitter.com/rwieruch). I am curious what you will build after you have read the book. You can also find me on [GitHub](https://github.com/rwieruch) to share your repository.
+
+After you have build your own React application, you may want to checkout Redux. Build your own [SoundCloud Client in React + Redux](http://www.robinwieruch.de/the-soundcloud-client-in-react-redux)! In general I invite you to visit my website [www.robinwieruch.de](http://www.robinwieruch.de/) to find more topics in web development.
+
+If you liked the book, I hope to see you on social media to share it with you friends. I would really appreciate it.
