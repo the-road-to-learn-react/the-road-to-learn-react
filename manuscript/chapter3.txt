@@ -42,15 +42,13 @@ You only used the constructor and render method by now. These are the common use
 * read more about [lifecycle methods in React](https://facebook.github.io/react/docs/react-component.html)
 * read more about [the state and lifecycle in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 
-{pagebreak}
-
 ## Fetch Data
 
 Now you are prepared to fetch data from the Hacker News API. I mentioned one lifecycle method which can be used to fetch data.
 
 Let's setup the path constants and default parameters to break the API request into smaller pieces.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';
@@ -70,7 +68,7 @@ const PARAM_SEARCH = 'query=';
 
 By using [ES6 template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) you can concatenate the url.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`
 
@@ -81,7 +79,7 @@ That will keep your url composition flexible in the future.
 
 But let's get to the API fetch where we use the url. The whole data fetch process will be presented at once, but each step will get explained afterwards.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 ...
 
@@ -140,7 +138,7 @@ Third the native fetch API is used. ES6 string template strings allow it to comp
 Now you can use the fetched data instead of the hard coded list of items. But be careful. The result is not only a list of data. [It's a complex object with meta information and a list of hits.](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` to visualize it.
 
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -172,7 +170,7 @@ Let's recap what happens during the component lifecycle. Your component gets ini
 
 Let's get back to the conditional rendering. There is another approach when you return null for one of the blocks.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 { result && <Table list={result.hits} pattern={query} /> }
 ~~~~~~~~
@@ -186,15 +184,13 @@ At the end it's a personal preference. But after all you should be able to see t
 * read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
 * experiment with the [Hacker News API](https://hn.algolia.com/api)
 
-{pagebreak}
-
 ## Client- or Server-side Interaction: Search
 
 When you use the search now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default query parameter.
 
 You can define an `onSubmit` function in your ES6 class component, which fetches results from the Hacker News API like in your `componentDidMount()` lifecycle method. But it fetches it with the modified query. Don't forget to bind the function.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -227,7 +223,7 @@ class App extends Component {
 
 The Search component gets extended by a button element. The button will explicit trigger the search. Otherwise you would hit the Hacker News API every time your input changes. As alternative you could debounce (delay) the `onChange` callback and spare the button, but it would add more complexity at this time. Let's keep it without debounce.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -263,7 +259,7 @@ Additionally the Search component gets the `onSubmit` callback. The form uses th
 
 In the Table you can remove the filter functionality, because there will be no client-side filter anymore. The result comes directly from the API.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -300,7 +296,7 @@ const Table = ({ list }) =>
 
 When you try to search now, you will experience that the browser reloads. That's a native browser behaviour on submit in a form. In React you will often come across the `preventDefault()` event function to suppress native browser behaviour.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 onSearchSubmit(event) {
@@ -319,15 +315,13 @@ Now you should be able to search different Hacker News stories. There should be 
 
 * read more about [synthetic events in React](https://facebook.github.io/react/docs/events.html)
 
-{pagebreak}
-
 ## Paginated Fetch
 
 Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. The page property, which is 0 in the first response, can be used to fetch more paginated data. You only need to pass the next page with the same query to the API.
 
 Let's place a button below of the Table component to fetch more data. First you can define a very abstract and reusable Button component.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 const Button = ({ onClick, children }) =>
   <button onClick={onClick} type="button">
@@ -339,7 +333,7 @@ It might seem redundant to declare such a component. You have a `Button` instead
 
 Before you will use the Button, you have to declare more composable API constants to use the page parameter.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 const DEFAULT_QUERY = 'redux';
 # leanpub-start-insert
@@ -356,7 +350,7 @@ const PARAM_PAGE = 'page=';
 
 Now you can use these constants to add the page parameter to your API request.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}&${PARAM_PAGE}`
 
@@ -365,7 +359,7 @@ Now you can use these constants to add the page parameter to your API request.
 
 The method `fetchSearchTopstories` will take the page as second argument. The `componentDidMount` and `onSearchSubmit` methods take the `DEFAULT_PAGE` for the initial and changed query API calls. They should fetch the first page whereas every fetch more should fetch the next page.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -401,7 +395,7 @@ class App extends Component {
 
 Now you can use the current page from the API response and the `fetchSearchTopstories` method in your button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick` function which takes the current search query and the current page + 1. The result will be the next page.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -437,7 +431,7 @@ Make sure to default to page 0 when there is no result.
 
 There is one step missing. You fetch the next page of data, but it will overwrite the your old data. Instead of concatenating the old and new results, you replace it now. Let's adjust the functionality to add the new results rather than to overwrite it.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 setSearchTopstories(result) {
 # leanpub-start-insert
@@ -467,7 +461,7 @@ Last you set the merged hits and page in the internal component state. Make sure
 
 You can make one last adjustment. When you try the More button it only fetches few items. The API path can be extended to fetch more data with each request. Again you can add more composable path constants.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 const DEFAULT_QUERY = 'redux';
 const DEFAULT_PAGE = 0;
@@ -486,7 +480,7 @@ const PARAM_HPP = 'hitsPerPage=';
 
 Now you can use the constants to extend the API path.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 fetchSearchTopstories(query, page) {
 # leanpub-start-insert
@@ -505,8 +499,6 @@ Afterwards the request to the Hacker News API fetches more data than before.
 * read more about the [ES6 spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 * experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
 
-{pagebreak}
-
 ## Client Cache
 
 Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. Since you already searched for "redux", you could spare the request and use a cached result from a previous request.
@@ -515,7 +507,7 @@ To implement that behaviour you have to store multiple `results` rather than one
 
 Currently your result in the component state looks similar to the following:
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 result: {
   hits: [ ... ],
@@ -525,7 +517,7 @@ result: {
 
 Now you want to change it to:
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 results: {
   redux: {
@@ -544,7 +536,7 @@ Let's implement a client-side caching with React setState.
 
 First rename the result object to results in the initial component state.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -569,7 +561,7 @@ class App extends Component {
 
 Now you have to adjust the functionality where the result is stored to the internal component state. It should store multiple results.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -604,7 +596,7 @@ Therefore you have to retrieve the search query from the component state. The ol
 
 At the end a new result can be set in the results map in the internal component state. Let's examine the results object in setState.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 results: { ...this.state.results, [query]: { hits: updatedHits, page } }
 ~~~~~~~~
@@ -617,7 +609,7 @@ Now you cache all results by search query.
 
 In the next step you can retrieve the result depending on the search query from your map of results.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -656,7 +648,7 @@ The search functionality should work again. It caches all results from the Hacke
 
 It makes more sense to trigger search explicitly on submit without a client-side search. The issue is that the result depends on the search query. But the search query changes every time when you type something in the Search component. The query is a temporary property which changes all the time. On the other hand you want to have a fixed search key once you hit the submit button to keep a fixed search result. Let's introduce a search key.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -700,7 +692,7 @@ The search key will be the fixed search query. It gets assigned before you make 
 
 Now instead of the query property which is fluctuant, you will use the search key to get and set the result.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -731,7 +723,7 @@ class App extends Component {
 
 In the render lifecycle method you will use the search key as well. But make sure to keep the query property for the input field in the Search component which stays fluctuant.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -768,7 +760,7 @@ Now try it again. The search should only happen once you click the submit button
 
 Still no one holds the API request back when you hit the submit button and there is already a cached result. What is a cached result when you don't use it? The last step would be to prevent the call when a result is available in the state.
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -815,7 +807,7 @@ Now your client hits the API only once although you search for a query twice. Ev
 
 Your *src/App.js* should look like the following by now:
 
-{lang=javascript,linenos=off}
+{lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';
