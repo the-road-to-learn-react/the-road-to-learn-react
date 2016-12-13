@@ -12,7 +12,7 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 {pagebreak}
 
-## FAQ
+# FAQ
 
 **How do I get updates?** You can [subscribe](http://eepurl.com/caLPjr) or follow me on [Twitter](https://twitter.com/rwieruch) for updates. It keeps me motivated to work on the book as well. Once you have a copy of the book from [Leanpub](https://leanpub.com/the-road-to-learn-react), the book will stay updated.
 
@@ -20,7 +20,7 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 **But why is the book for free?** I have put a lot of effort into this and will do so in the future. My desire is to reach as many people as possible. Everyone should be enabled to learn React. Still you can decide to pay something when you can effort it. It's pay as you want. Once you have your version of the book, you will automatically get all the updates. I would appreciate each of your social shares for the book.
 
-**Does the article cover all book chapters?** No. At this time the blog post covers 2 of 4 chapters. Grab your book on [Leanpub](https://leanpub.com/the-road-to-learn-react) to get all chapters. It has over 90 pages of learning material.
+**Does the article cover all book chapters?** No. At this time the blog post covers 2 of 5 chapters. Grab your book on [Leanpub](https://leanpub.com/the-road-to-learn-react) to get all chapters. It has over 100 pages of learning material.
 
 **Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in perfect english. I would appreciate your help very much.
 
@@ -28,7 +28,7 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 {pagebreak}
 
-## What you can expect (so far...)
+# What you can expect (so far...)
 
 * well rounded real world [Hacker News client in React](https://intense-refuge-78753.herokuapp.com/)
 * no complicated configurations
@@ -51,7 +51,7 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 * internalize and reinforce your learnings
 * deploy your app to production
 
-## What you could expect (in the future...)
+# What you could expect (in the future...)
 
 * advanced components and interactions to build a powerful dashboard
 * give your app a structure in terms of files/folders
@@ -66,7 +66,7 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 {pagebreak}
 
-## How to read it?
+# How to read it?
 
 Are you new to React? That's perfect. I will need your feedback to improve the material to enable everyone to learn React. You can have a direct impact on [GitHub](https://github.com/rwieruch/the-road-to-learn-react) or give me feedback on [Twitter](https://twitter.com/rwieruch).
 
