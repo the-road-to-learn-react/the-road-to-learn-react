@@ -14,7 +14,7 @@ In React you can focus on your view before you introduce more aspects to your ap
 
 First you can learn them step by step without worrying to understand everything at once. It's different in comparison to a framework which gives you every building block from the start.
 
-Second all building blocks are interchangeable. It makes the ecosystem around React such an innovative place. Multiple solutions are competing witch each other. You can pick the most appealing solution for you and your use case.
+Second all building blocks are interchangeable. It makes the ecosystem around React such an innovative place. Multiple solutions are competing with each other. You can pick the most appealing solution for you and your use case.
 
 The first generation SPA frameworks arrived at an enterprise level. React stays innovative and gets adapted by multiple tech thought leader companies like [Airbnb, Netflix and of course Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). React is probably one of the best choices for building UI nowadays. It has a good design, an amazing ecosystem and a great community. Everyone is keen to experience where it will lead us in 2017.
 
