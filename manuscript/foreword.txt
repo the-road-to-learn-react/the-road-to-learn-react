@@ -12,13 +12,13 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 # FAQ
 
-**How do I get updates?** You can [subscribe](http://eepurl.com/caLPjr) or follow me on [Twitter](https://twitter.com/rwieruch) for updates. It keeps me motivated to work on the book as well. Once you have a copy of the book from [Leanpub](https://leanpub.com/the-road-to-learn-react), the book will stay updated.
+**How do I get updates?** You can [subscribe](http://eepurl.com/caLPjr) or follow me on [Twitter](https://twitter.com/rwieruch) for updates. It keeps me motivated to work on the book as well. Once you have a copy of the book from Leanpub, the book will stay updated.
 
 **Does it cover Redux?** So far it doesn't. The book should give you a solid foundation before you dive into advanced topics like Redux. Still the implementation in the book will show you that you don't need Redux to build a presentable application.
 
-**But why is the book for free?** I have put a lot of effort into this and will do so in the future. My desire is to reach as many people as possible. Everyone should be enabled to learn React. Still you can decide to pay something when you can effort it. It's pay as you want. Once you have your version of the book, you will automatically get all the updates. I would appreciate each of your social shares for the book.
-
 **Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in native english. I would appreciate your help very much.
+
+**What are the reading formats?** Besides of the .pdf, .epub and .mobi format, you could read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general I recommend to read it on a larger format, otherwise the code snippets will have ugly line breaks.
 
 **Will you add more chapters in the future?** It depends on the community. If there is an acceptance for the book, I will deliver more chapters. Additionally I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
 
