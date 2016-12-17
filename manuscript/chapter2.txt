@@ -65,12 +65,12 @@ You can use a shorthand syntax to initialize properties in an object. In your ca
 ~~~~~~~~
 // instead of
 this.state = {
-  list: list
+  list: list,
 };
 
 // you can use
 this.state = {
-  list
+  list,
 };
 ~~~~~~~~
 
@@ -112,7 +112,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the following scenario you will type into the field and filter the list by the search term. To be able to filter the list, you need the value of the input field. But where to access the value? Naturally in React the value goes into the internal component state to be accessible und updatable.
+In the following scenario you will type into the field and filter the list by the search term. To be able to filter the list, you need the value of the input field. But where to access the value? Naturally in React the value goes into the internal component state to be accessible and updatable.
 
 Let's define a callback function for the input field which manipulates the internal component state.
 
@@ -488,7 +488,7 @@ function Search(props) {
 }
 ~~~~~~~~
 
-You already know and can apply the props destructuring. The best practice is use it in the function signature in the first place.
+You already know and can apply the props destructuring. The best practice is to use it in the function signature in the first place.
 
 {lang=javascript}
 ~~~~~~~~
