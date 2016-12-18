@@ -405,7 +405,7 @@ You have learned to bootstrap your own React app! Let's recap the last chapters:
   * create-react-app bootstraps a React app
   * JSX mixes up HTML and JavaScript to express React components
   * ReactDOM.render() is an entry point for a React app
-  * built-in JavaScript functionalities like map can be used render a list of items
+  * built-in JavaScript functionalities like map can be used to render a list of items
 * ES6
   * more variable declarations with const and let
   * arrow functions with block and concise bodies to shorten your function declarations

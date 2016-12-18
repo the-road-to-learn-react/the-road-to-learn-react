@@ -455,7 +455,7 @@ Second you have to evaluate whether there are already old hits.
 
 When the page is 0, it's a new search request from `componentDidMount` or `onSearchSubmit`. The hits are empty. But when you click the More button to fetch paginated data the page isn't 0. It's the next page. The old hits are already stored in your state and thus can be used.
 
-Third once you have the old hits, which you don't want to overwrite, you can merge them with the hits from the recent API request. The merge of both lists might look foreign to you. It uses the [ES6 spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator) to spread every value in both lists into a new list.
+Third once you have the old hits, which you don't want to overwrite, you can merge them with the hits from the recent API request. The merge of both lists might look foreign to you. It uses the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator) to spread every value in both lists into a new list.
 
 Last you set the merged hits and page in the internal component state. Make sure to understand what's happening here before you continue.
 
@@ -496,7 +496,7 @@ Afterwards the request to the Hacker News API fetches more data than before.
 ### Exercises:
 
 * make sure to understand what you are doing in setSearchTopstories
-* read more about the [ES6 spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+* read more about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 * experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
 
 ## Client Cache
@@ -603,7 +603,7 @@ results: { ...this.state.results, [query]: { hits: updatedHits, page } }
 
 The right hand side makes sure to store the updated result by search query in the results map. The value is an object with a hits and page property. The key is the search query. The `[query]` notation might be new to you. It uses an [ES6 dynamic key](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer) to allocate values in an object.
 
-The left hand side needs to spread all other results by search key in the state. Otherwise you would loose all results you stored before. That's what enables your cache.
+The left hand side needs to spread all other results by search key in the state. Otherwise you would loose all results you stored before. That's what enables your cache. Before you have only used the ES6 array spread operator. This time it's an [ES6 object spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator).
 
 Now you cache all results by search query.
 
@@ -801,6 +801,7 @@ Now your client hits the API only once although you search for a query twice. Ev
 
 ### Exercises:
 
+* read more about the [ES6 object spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 * read more about [ES6 computed property names](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
 {pagebreak}
