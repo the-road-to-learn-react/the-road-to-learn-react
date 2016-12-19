@@ -282,7 +282,7 @@ Additionally you have to assign a key property to each list element. Only that w
 })}
 ~~~~~~~~
 
-Give your elements a stable id. Don't make the mistake to use the array key which isn't stable. React will have a hard time to identify the items properly when the order of them changes.
+Give your elements a stable id. Don't make the mistake of using the array key, which isn't stable. React will have a hard time identifying the items properly when their order changes.
 
 {lang=javascript}
 ~~~~~~~~
