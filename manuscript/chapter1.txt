@@ -209,7 +209,7 @@ The second argument specifies the place where the React application hooks into y
 
 ## Map in JSX
 
-Let's get back to your App component. So far your rendered some random properties in your JSX. Now you will start to render a list of items. The list will be some mock data in the beginning, but later you will fetch the data from an external API. That will be far more exciting.
+Let's get back to your App component. So far you rendered some random properties in your JSX. Now you will start to render a list of items. The list will be some mock data in the beginning, but later you will fetch the data from an external API. That will be far more exciting.
 
 Since you can use JavaScript in JSX, it's possible to map over your data to display each item.
 
