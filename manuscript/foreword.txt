@@ -18,7 +18,7 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 **Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in native english. I would appreciate your help very much.
 
-**What are the reading formats?** Besides of the .pdf, .epub and .mobi format, you could read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general I recommend to read it on a larger format, otherwise the code snippets will have ugly line breaks.
+**What are the reading formats?** In addition to the .pdf, .epub, and .mobi formats, you can read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general, I recommend reading it on a larger format, otherwise the code snippets will have ugly line breaks.
 
 **Will you add more chapters in the future?** It depends on the community. If there is an acceptance for the book, I will deliver more chapters. Additionally I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
 
@@ -47,7 +47,7 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 * internalize and reinforce your learnings
 * deploy your app to production
 
-# What you could expect (in the future...)
+# What you can expect (in the future...)
 
 * advanced components and interactions to build a powerful dashboard
 * give your app a structure in terms of files/folders
