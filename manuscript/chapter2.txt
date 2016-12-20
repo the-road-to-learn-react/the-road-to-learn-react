@@ -80,7 +80,7 @@ this.state = {
 
 ## Interactions in Components
 
-Now you have some static internal state in your component. But you don't manipulate the internal state so far. The best to experience state manipulation is by implementing a component interaction. It could be a search field. The input of the search field should be used to filter your list.
+Now you have some static internal state in your component, but you haven't manipulated the internal state so far. The best way to experience state manipulation is by implementing a component interaction. One example is a search field. The input of the search field should be used to filter your list.
 
 First you define your input field in your JSX.
 
