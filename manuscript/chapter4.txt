@@ -393,14 +393,14 @@ Now let's enhance the output component. The output component should show the Loa
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const withLoading = (Component) => ({ isLoading, ...props }) =>
-  isLoading ? <Loading /> : <Component { ...props } />;
+const withLoading = (Component) => ({ isLoading, ...rest }) =>
+  isLoading ? <Loading /> : <Component { ...rest } />;
 # leanpub-end-insert
 ~~~~~~~~
 
 You use a conditional rendering based on the loading property. It will return the Loading component or input component.
 
-Additionally you may have noticed the `{ isLoading, ...props }` ES6 rest destructuring. It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+Additionally you may have noticed the `{ isLoading, ...rest }` ES6 rest destructuring. It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment). If no properties are removed from an object, spreading on `...props` would lead to better code clarity (e.g. `{...props, isLoading, ...rest}`).
 
 Now you can use the HOC. In your use case you want to show either the More Button or Loading component. The HOC can take the Button component as input. The output is a ButtonWithLoading component.
 
