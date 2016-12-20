@@ -112,9 +112,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the following scenario you will type into the field and filter the list by the search term. To be able to filter the list, you need the value of the input field. But where to access the value? Naturally in React the value goes into the internal component state to be accessible and updatable.
+In the following scenario you will type into the field and filter the list by the search term. To be able to filter the list, you need the value of the input field. But how do you access the value? Naturally in React the value is accessible and updatable through the internal component state.
 
-Let's define a callback function for the input field which manipulates the internal component state.
+Let's define a callback function for the input field that manipulates the internal component state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -137,7 +137,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The callback function is bound to the component and thus a component method. You have to bind and define the method.
+The callback function is bound to the component and thus is a component method. You have to bind and define this method.
 
 {lang=javascript}
 ~~~~~~~~
