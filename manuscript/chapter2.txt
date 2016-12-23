@@ -468,7 +468,7 @@ Now you have three ES6 class components. But you can do better by using function
 
 Functional stateless components are functions which get an input and return an output. The output is a component instance. There are no side effects (functional) and they have no internal state (stateless). You cannot access the state with `this.state` because there is no `this` object. Additionally they have no lifecycle methods. You didn't learn about lifecycle methods yet, but you already used two: `constructor()` and `render()`. Keep this in mind, when you arrive at the lifecycle methods chapter later on.
 
-Besides of the functional stateless component, you already know the ES6 class component with the `this` object and two lifecycle methods.
+Besides the functional stateless component, you already know the ES6 class component with the `this` object and two lifecycle methods.
 
 Additionally there is a third type of component declaration: React.createClass. It was used in older versions of React, but is declared as deprecated now. I still wanted to mention it, in case you come across these declarations in older React material.
 
