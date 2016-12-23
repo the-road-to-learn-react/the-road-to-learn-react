@@ -873,4 +873,4 @@ You have learned the basics to write your own React app! Let's recap the last ch
 * General
   * higher order functions
 
-Again it makes sense to make a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. Additionally you could read more in the official [documentation](https://facebook.github.io/react/docs/installation.html).
+Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. Additionally you can read more in the official [documentation](https://facebook.github.io/react/docs/installation.html).
