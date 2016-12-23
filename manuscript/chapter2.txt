@@ -468,11 +468,11 @@ Now you have three ES6 class components. But you can do better by using function
 
 Functional stateless components are functions which get an input and return an output. The output is a component instance. There are no side effects (functional) and they have no internal state (stateless). You cannot access the state with `this.state` because there is no `this` object. Additionally they have no lifecycle methods. You didn't learn about lifecycle methods yet, but you already used two: `constructor()` and `render()`. Keep this in mind, when you arrive at the lifecycle methods chapter later on.
 
-Besides of the functional stateless component, you already know the ES6 class component with the `this` object and two lifecycle methods.
+Besides the functional stateless component, you already know the ES6 class component with the `this` object and two lifecycle methods.
 
 Additionally there is a third type of component declaration: React.createClass. It was used in older versions of React, but is declared as deprecated now. I still wanted to mention it, in case you come across these declarations in older React material.
 
-But when to use functional stateless components and ES6 class components? A good rule of thumb is to use functional stateless components when you don't need internal component state nor component lifecycle methods. Usually you start to implement your components as functional stateless components. Once you need access to the state or lifecycle methods, you will refactor it to an ES6 class component.
+But when to use functional stateless components and ES6 class components? A good rule of thumb is to use functional stateless components when you don't need internal component state or component lifecycle methods. Usually you start to implement your components as functional stateless components. Once you need access to the state or lifecycle methods, you will refactor it to an ES6 class component.
 
 The App component uses internal state. That's why it has to stay as ES6 class component. But both of your new components are stateless without lifecycle methods. Let's refactor the Search component together to a stateless functional component. The Table component refactoring will remain as your exercise.
 
@@ -873,4 +873,4 @@ You have learned the basics to write your own React app! Let's recap the last ch
 * General
   * higher order functions
 
-Again it makes sense to make a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. Additionally you could read more in the official [documentation](https://facebook.github.io/react/docs/installation.html).
+Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. Additionally you can read more in the official [documentation](https://facebook.github.io/react/docs/installation.html).
