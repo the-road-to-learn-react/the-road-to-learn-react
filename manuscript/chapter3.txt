@@ -1,6 +1,6 @@
 # Getting Real with an API
 
-Now it's time to get real with an API. Do you know [Hacker News](https://news.ycombinator.com/)? It's a great news aggregator. You will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API. The latter one makes sense in your case to search stories on Hacker News. You could visit the [API specification](https://hn.algolia.com/api) to get a glimpse on the data structure.
+Now it's time to get real with an API. Do you know [Hacker News](https://news.ycombinator.com/)? It's a great news aggregator. You will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API. The latter one makes sense in your case to search stories on Hacker News. You could visit the [API specification](https://hn.algolia.com/api) to get a glimpse of the data structure.
 
 ## Lifecycle Methods
 
