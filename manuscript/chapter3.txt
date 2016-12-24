@@ -12,9 +12,9 @@ The constructor is only called when an instance of the component is created and 
 
 The render method is called during the mount process too, but also when the component updates. Each time when props or state of a component change the render method is called.
 
-Now you know two lifecycle methods and when they are called. But there are more.
+Now you know two lifecycle methods and when they are called, but there is more.
 
-The mounting of a component has two more lifecycle methods: componentWillMount and componentDidMount. While the constructor is called first, componentWillMount gets called before the render method and componentDidMount after the render method.
+The mounting of a component has two more lifecycle methods: componentWillMount and componentDidMount. The constructor is called first, componentWillMount gets called before the render method, and componentDidMount is called after the render method.
 
 The mounting process has 4 lifecycle methods.
 
@@ -31,11 +31,11 @@ The componentDidMount method is usually used to get data from an API endpoint. B
 * render()
 * componentDidUpdate()
 
-You don't need to know all of them from the beginning. But still it's good to know that each lifecycle method can be used for a specific use case. For instance shouldComponentUpdate() is mostly used in a mature React app to prevent a component to update for performance optimizations.
+You don't need to know all of them from the beginning. But still it's good to know that each lifecycle method can be used for a specific use case. For instance shouldComponentUpdate() is mostly used in a mature React app to prevent a component from updating for performance optimizations.
 
 So far you know that there is a mounting and updating lifecycle. But every lifecycle ends at some time. The third lifecycle is the unmounting which has only one lifecycle method called componentWillUnmount. It's used to cleanup when you are about to destroy your component.
 
-You only used the constructor and render method by now. These are the common used lifecycle methods for ES6 class components. Every other lifecycle method is used for more advanced use cases.
+So far you have only used the constructor and render methods. These are the commonly used lifecycle methods for ES6 class components. Every other lifecycle method is used for more advanced use cases.
 
 ### Exercises:
 
