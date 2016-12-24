@@ -166,7 +166,7 @@ class App extends Component {
 
 Have you noticed the conditional rendering? Before you fetch the data from the Hacker News API, the result in your internal component state is null. Thus you can't render the Table. After that you fetch the data to fill your table with items.
 
-Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders the first time. Only after the the component rendered after the initialization, the componentDidMount lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs again the render method, but this time with populated data in your internal component state. The Table gets rendered.
+Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. Only after the the component is rendered after the initialization, the componentDidMount lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the render method again, but this time with populated data in your internal component state. The Table gets rendered.
 
 Let's get back to the conditional rendering. There is another approach when you return null for one of the blocks.
 
@@ -175,7 +175,7 @@ Let's get back to the conditional rendering. There is another approach when you 
 { result && <Table list={result.hits} pattern={query} /> }
 ~~~~~~~~
 
-At the end it's a personal preference. But after all you should be able to see the fetched data in your list.
+In the end it's a personal preference. But after all you should be able to see the fetched data in your list.
 
 ### Exercises:
 
