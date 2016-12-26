@@ -563,7 +563,7 @@ Now you have one lightweight functional stateless component. Once you would need
 
 ## Styling Components
 
-Let's add some basic styling to your app and components. You can reuse the *src/App.css* and *src/index.css* files. I prepared some CSS, but feel free to use your own style. If you don't come up with your own style, copy and paste the following styles.
+Let's add some basic styling to your app and components. You can reuse the *src/App.css* and *src/index.css* files. I prepared some CSS to copy and paste, but feel free to use your own style.
 
 *src/index.css*
 
@@ -740,7 +740,9 @@ const Table = ({ list, pattern }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-Another technique in React to style components is inline style. You can pass style objects to your components. Let's keep the Table column width flexible by using inline style.
+Now you have styled your app and components with basic CSS. As you know JSX is mixed up HTML and JavaScript. One could argue to add CSS in the mixup as well. That's called inline style. You can define JavaScript objects and pass them to the style attribute of an element.
+
+Let's keep the Table column width flexible by using inline style.
 
 {lang=javascript}
 ~~~~~~~~
@@ -767,7 +769,7 @@ const Table = ({ list, pattern }) =>
   </div>
 ~~~~~~~~
 
-It's really inlined now. You could define the style objects outside as well.
+It is really inlined now. You could define the style objects outside of your elements to make it cleaner.
 
 {lang=javascript}
 ~~~~~~~~
@@ -784,13 +786,17 @@ const smallColumn = {
 };
 ~~~~~~~~
 
-After that you could use it in your columns `<span style={smallColumn}>`.
+After that you could use it in your columns: `<span style={smallColumn}>`.
 
-In general you will find different opinions and solutions for style in React. I don't want to be opinionated here, but I leave you some options to read about it. I'm open to your thoughts about other options as well.
+In general you will find different opinions and solutions for style in React. You already used pure CSS and Inline Style. It's enough to get started.
 
-* React Inline Style
-* [CSS Modules](https://github.com/css-modules/css-modules)
+I don't want to be opinionated here, but I want to leave you some more options. You can read about them and apply them on your own. I'm open to your thoughts about more options as well.
+
+* Inline Style
+* [radium](https://github.com/FormidableLabs/radium)
+* [aphrodite](https://github.com/khan/aphrodite)
 * [styled-components](https://github.com/styled-components/styled-components)
+* [CSS Modules](https://github.com/css-modules/css-modules)
 
 The chapter might get overhauled in the future to give you an opinionated approach.
 
