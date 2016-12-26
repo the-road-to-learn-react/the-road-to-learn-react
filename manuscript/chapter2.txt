@@ -274,7 +274,7 @@ But now you need to pass the query property to your evaluation process. That's w
 # leanpub-start-insert
 function isSearched(query) {
   return function(item) {
-    return !query || item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    return !query || item.title.toLowerCase().includes(query.toLowerCase());
   }
 }
 # leanpub-end-insert
@@ -292,7 +292,7 @@ The search field should do its work now. Try it.
 
 ### ES6 Sugar:
 
-You can even add some more ES6 syntax again. First you can destructure objects and arrays. Try it by destructuring the internal component state.
+**Destructuring:** You can destructure objects and arrays. Try it by destructuring the internal component state object.
 
 {lang=javascript}
 ~~~~~~~~
@@ -319,26 +319,51 @@ You can even add some more ES6 syntax again. First you can destructure objects a
     );
 ~~~~~~~~
 
-Second you can make the function more concise in ES6 by using arrow functions again.
+The difference between the ES5 and ES6 way:
 
-You can refactor your higher order function:
+{lang=javascript}
+~~~~~~~~
+// ES5
+const query = this.state.query;
+const list = this.state.list;
+
+// ES6
+const { query, list } = this.state;
+~~~~~~~~
+
+**Arrow Functions:** Another ES6 feature is to make your function more concise by using an arrow function again.
 
 {lang=javascript}
 ~~~~~~~~
 // before
 function isSearched(query) {
   return function(item) {
-    return !query || item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    return !query || item.title.toLowerCase().includes(query.toLowerCase());
   }
 }
 
 // after
-const isSearched = (query) => (item) => !query || item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+const isSearched = (query) => (item) =>
+  !query || item.title.toLowerCase().includes(query.toLowerCase());
 ~~~~~~~~
 
 One could argue which one is more readable. Personally I prefer the second one.
 
 The React ecosystem uses a lot of functional programming concepts. It happens quite often that you will use a function which returns a function. These are called higher order functions. In ES6 you can express these more concise with arrow functions.
+
+**[].includes():** Last but not least the method `includes()` is ES6 already. In ES5 you would have used `indexOf()` to determine if something is included in the array.
+
+{lang=javascript}
+~~~~~~~~
+// ES5
+const isSearched = (query) => (item) =>
+  !query || item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+
+// ES6
+
+const isSearched = (query) => (item) =>
+  !query || item.title.toLowerCase().includes(query.toLowerCase());
+~~~~~~~~
 
 ### Exercises:
 
@@ -797,7 +822,8 @@ const list = [
   },
 ];
 
-const isSearched = (query) => (item) => !query || item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+const isSearched = (query) => (item) =>
+  !query || item.title.toLowerCase().includes(query.toLowerCase());
 
 class App extends Component {
 
