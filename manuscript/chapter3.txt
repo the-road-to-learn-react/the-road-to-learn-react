@@ -957,4 +957,4 @@ You have learned to interact with an API in React! Let's recap the last chapters
   * pagination of data
   * client-side caching
 
-Again it makes sense to make a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
+Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
