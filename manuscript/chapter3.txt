@@ -457,14 +457,10 @@ There is one step missing. You fetch the next page of data, but it will overwrit
 setSearchTopstories(result) {
 # leanpub-start-insert
   const { hits, page } = result;
-# leanpub-end-insert
 
-# leanpub-start-insert
   const oldHits = page === 0 ? [] : this.state.result.hits;
   const updatedHits = [ ...oldHits, ...hits ];
-# leanpub-end-insert
 
-# leanpub-start-insert
   this.setState({ result: { hits: updatedHits, page } });
 # leanpub-end-insert
 }

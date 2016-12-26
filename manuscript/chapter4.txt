@@ -648,16 +648,36 @@ const Table = ({ list, sortKey, onSort }) =>
 # leanpub-start-insert
     <div className="table-header">
       <span style={{ width: '40%' }}>
-        <Sort sortKey={'TITLE'} onSort={onSort}>Title</Sort>
+        <Sort
+          sortKey={'TITLE'}
+          onSort={onSort}
+        >
+          Title
+        </Sort>
       </span>
       <span style={{ width: '30%' }}>
-        <Sort sortKey={'AUTHOR'} onSort={onSort}>Author</Sort>
+        <Sort
+          sortKey={'AUTHOR'}
+          onSort={onSort}
+        >
+          Author
+        </Sort>
       </span>
       <span style={{ width: '15%' }}>
-        <Sort sortKey={'COMMENTS'} onSort={onSort}>Comments</Sort>
+        <Sort
+          sortKey={'COMMENTS'}
+          onSort={onSort}
+        >
+          Comments
+        </Sort>
       </span>
       <span style={{ width: '15%' }}>
-        <Sort sortKey={'POINTS'} onSort={onSort}>Points</Sort>
+        <Sort
+          sortKey={'POINTS'}
+          onSort={onSort}
+        >
+          Points
+        </Sort>
       </span>
     </div>
 # leanpub-end-insert
