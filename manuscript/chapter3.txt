@@ -357,7 +357,7 @@ Now you can use these constants to add the page parameter to your API request.
 // https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-The method `fetchSearchTopstories` will take the page as second argument. The `componentDidMount` and `onSearchSubmit` methods take the `DEFAULT_PAGE` for the initial and changed query API calls. They should fetch the first page whereas every fetch more should fetch the next page.
+The method `fetchSearchTopstories` will take the page as second argument. The `componentDidMount` and `onSearchSubmit` methods take the `DEFAULT_PAGE` for the initial and changed query API calls. They should fetch the first page on the first load, and every additional fetch should fetch the next page.
 
 {lang=javascript}
 ~~~~~~~~
@@ -603,7 +603,7 @@ results: { ...this.state.results, [query]: { hits: updatedHits, page } }
 
 The right hand side makes sure to store the updated result by search query in the results map. The value is an object with a hits and page property. The key is the search query. The `[query]` notation might be new to you. It uses an [ES6 dynamic key](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer) to allocate values in an object.
 
-The left hand side needs to spread all other results by search key in the state. Otherwise you would loose all results you stored before. That's what enables your cache. Before you have only used the ES6 array spread operator. This time it's an [ES6 object spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator).
+The left hand side needs to spread all other results by search key in the state. Otherwise you would lose all results you stored before. That's what enables your cache. Before you have only used the ES6 array spread operator. This time it's an [ES6 object spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator).
 
 Now you cache all results by search query.
 
@@ -644,9 +644,9 @@ class App extends Component {
 
 Since you default to an empty list when there is no result by search query, you can spare the conditional check for the Table component.
 
-The search functionality should work again. It caches all results from the Hacker News API. But something feels wrong when you test it on your own. The search component works a bit unexpected. On submit you make a server-side search request, but still the Table content adjusts by changing the search query in the input field without hitting the submit button.
+The search functionality should work again. It caches all results from the Hacker News API. But something feels wrong when you test it on your own. The search component works a bit unexpected. On submit, a server-side search request is made, as expected, but when you change the search query in the input field without hitting the submit button, the Table content changes  without hitting the submit button.
 
-It makes more sense to trigger search explicitly on submit without a client-side search. The issue is that the result depends on the search query. But the search query changes every time when you type something in the Search component. The query is a temporary property which changes all the time. On the other hand you want to have a fixed search key once you hit the submit button to keep a fixed search result. Let's introduce a search key.
+It makes more sense to trigger search explicitly on submit without a client-side search. The issue is that the result depends on the search query. But the search query changes every time you type something into the Search component. The query is a temporary property that changes all the time. On the other hand, you want to set a fixed search key once you hit the submit button to keep a fixed search result. Let's introduce a search key.
 
 {lang=javascript}
 ~~~~~~~~
@@ -690,7 +690,7 @@ class App extends Component {
 
 The search key will be the fixed search query. It gets assigned before you make the Hacker News API request.
 
-Now instead of the query property which is fluctuant, you will use the search key to get and set the result.
+Now instead of the query property, which is fluctuant, you will use the search key to get and set the result.
 
 {lang=javascript}
 ~~~~~~~~
@@ -721,7 +721,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the render lifecycle method you will use the search key as well. But make sure to keep the query property for the input field in the Search component which stays fluctuant.
+In the render lifecycle method you will use the search key as well. But make sure to keep the query property for the input field in the Search component, which stays fluctuant.
 
 {lang=javascript}
 ~~~~~~~~
@@ -758,7 +758,7 @@ class App extends Component {
 
 Now try it again. The search should only happen once you click the submit button. Additionally each result will be cached.
 
-Still no one holds the API request back when you hit the submit button and there is already a cached result. What is a cached result when you don't use it? The last step would be to prevent the call when a result is available in the state.
+However, nothing stops the app from sending an API request when you hit the submit button and there is already a cached result. What is a cached result when you don't use it? The last step would be to prevent the call when a result is available in the state.
 
 {lang=javascript}
 ~~~~~~~~
