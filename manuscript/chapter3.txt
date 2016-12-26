@@ -151,7 +151,10 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+          >
             Search
           </Search>
         </div>
@@ -235,7 +238,11 @@ class App extends Component {
       <div className="page">
         <div className="interactions">
 # leanpub-start-insert
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
 # leanpub-end-insert
             Search
           </Search>
@@ -249,10 +256,16 @@ class App extends Component {
 # leanpub-start-insert
 const Search = ({ value, onChange, onSubmit, children }) =>
   <form onSubmit={onSubmit}>
-    <input type="text" value={value} onChange={onChange} />
-    <button type="submit">{children}</button>
-# leanpub-end-insert
+    <input
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
+    <button type="submit">
+      {children}
+    </button>
   </form>
+# leanpub-end-insert
 ~~~~~~~~
 
 Additionally the Search component gets the `onSubmit` callback. The form uses the callback, but the button has to define itself as type of submit.
@@ -270,7 +283,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -409,7 +426,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -626,7 +647,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -740,7 +765,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -891,7 +920,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -908,8 +941,14 @@ class App extends Component {
 
 const Search = ({ value, onChange, onSubmit, children }) =>
   <form onSubmit={onSubmit}>
-    <input type="text" value={value} onChange={onChange} />
-    <button type="submit">{children}</button>
+    <input
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
+    <button type="submit">
+      {children}
+    </button>
   </form>
 
 const Table = ({ list }) =>

@@ -63,12 +63,12 @@ You can use a shorthand syntax to initialize properties in an object. In your ca
 
 {lang=javascript}
 ~~~~~~~~
-// instead of
+// ES5
 this.state = {
   list: list,
 };
 
-// you can use
+// ES6
 this.state = {
   list,
 };
@@ -130,6 +130,32 @@ class App extends Component {
           <input type="text" onChange={this.onSearchChange} />
         </form>
 # leanpub-end-insert
+        ...
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+Elements and components with multiple attributes get messy as one liner at some point. You can use multilines and indenting to keep them readable. But it is not mandatory. It is only a code style recommendation.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    return (
+      <div className="App">
+        <form>
+# leanpub-start-insert
+          <input
+            type="text"
+            onChange={this.onSearchChange}
+          />
+# leanpub-end-insert
+        </form>
         ...
       </div>
     );
@@ -220,7 +246,11 @@ class App extends Component {
       <div className="App">
         <form>
 # leanpub-start-insert
-          <input type="text" value={query} onChange={this.onSearchChange} />
+          <input
+            type="text"
+            value={query}
+            onChange={this.onSearchChange}
+          />
 # leanpub-end-insert
         </form>
         ...
@@ -247,7 +277,11 @@ class App extends Component {
     return (
       <div className="App">
         <form>
-          <input type="text" value={query} onChange={this.onSearchChange} />
+          <input
+            type="text"
+            value={query}
+            onChange={this.onSearchChange}
+          />
         </form>
 # leanpub-start-insert
         { this.state.list.filter(isSearched(query)).map((item) =>
@@ -303,7 +337,11 @@ The search field should do its work now. Try it.
     return (
       <div className="App">
         <form>
-          <input type="text" value={query} onChange={this.onSearchChange} />
+          <input
+            type="text"
+            value={query}
+            onChange={this.onSearchChange}
+          />
         </form>
 # leanpub-start-insert
         { list.filter(isSearched(query)).map((item) =>
@@ -387,8 +425,14 @@ class App extends Component {
     return (
       <div className="App">
 # leanpub-start-insert
-        <Search value={query} onChange={this.onSearchChange} />
-        <Table list={list} pattern={query} />
+        <Search
+          value={query}
+          onChange={this.onSearchChange}
+        />
+        <Table
+          list={list}
+          pattern={query}
+        />
 # leanpub-end-insert
       </div>
     );
@@ -402,7 +446,11 @@ class Search extends Component {
     const { value, onChange } = this.props;
     return (
       <form>
-        <input type="text" value={value} onChange={onChange} />
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+        />
       </form>
     );
   }
@@ -449,11 +497,17 @@ class App extends Component {
     return (
       <div className="App">
 # leanpub-start-insert
-        <Search value={query} onChange={this.onSearchChange}>
+        <Search
+          value={query}
+          onChange={this.onSearchChange}
+        >
           Search
         </Search>
 # leanpub-end-insert
-        <Table list={list} pattern={query} />
+        <Table
+          list={list}
+          pattern={query}
+        />
       </div>
     );
   }
@@ -468,8 +522,12 @@ class Search extends Component {
     return (
       <form>
 # leanpub-start-insert
-        {children} <input type="text" value={value} onChange={onChange} />
+        {children} <input
 # leanpub-end-insert
+          type="text"
+          value={value}
+          onChange={onChange}
+        />
       </form>
     );
   }
@@ -507,7 +565,11 @@ function Search(props) {
   const { value, onChange, children } = props;
   return (
     <form>
-      {children} <input type="text" value={value} onChange={onChange} />
+      {children} <input
+        type="text"
+        value={value}
+        onChange={onChange}
+      />
     </form>
   );
 }
@@ -522,7 +584,11 @@ function Search({ value, onChange, children }) {
 # leanpub-end-insert
   return (
     <form>
-      {children} <input type="text" value={value} onChange={onChange} />
+      {children} <input
+        type="text"
+        value={value}
+        onChange={onChange}
+      />
     </form>
   );
 }
@@ -534,7 +600,11 @@ But it can get better. You know that arrow functions allow you to keep your func
 ~~~~~~~~
 const Search = ({ value, onChange, children }) =>
   <form>
-    {children} <input type="text" value={value} onChange={onChange} />
+    {children} <input
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
   </form>
 ~~~~~~~~
 
@@ -548,7 +618,11 @@ const Search = ({ value, onChange, children }) => {
 
   return (
     <form>
-      {children} <input type="text" value={value} onChange={onChange} />
+      {children} <input
+        type="text"
+        value={value}
+        onChange={onChange}
+      />
     </form>
   );
 }
@@ -700,13 +774,19 @@ class App extends Component {
       <div className="page">
         <div className="interactions">
 # leanpub-end-insert
-          <Search value={query} onChange={this.onSearchChange}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+          >
             Search
           </Search>
 # leanpub-start-insert
         </div>
 # leanpub-end-insert
-        <Table list={list} pattern={query} />
+        <Table
+          list={list}
+          pattern={query}
+        />
 # leanpub-start-insert
       </div>
 # leanpub-end-insert
@@ -716,7 +796,11 @@ class App extends Component {
 
 const Search = ({ value, onChange, children }) =>
   <form>
-    {children} <input type="text" value={value} onChange={onChange} />
+    {children} <input
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
   </form>
 
 const Table = ({ list, pattern }) =>
@@ -853,11 +937,17 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+          >
             Search
           </Search>
         </div>
-        <Table list={list} pattern={query} />
+        <Table
+          list={list}
+          pattern={query}
+        />
       </div>
     );
   }
@@ -865,7 +955,11 @@ class App extends Component {
 
 const Search = ({ value, onChange, children }) =>
   <form>
-    {children} <input type="text" value={value} onChange={onChange} />
+    {children} <input
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
   </form>
 
 const Table = ({ list, pattern }) =>
