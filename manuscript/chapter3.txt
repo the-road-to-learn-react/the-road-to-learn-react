@@ -461,7 +461,9 @@ setSearchTopstories(result) {
   const oldHits = page === 0 ? [] : this.state.result.hits;
   const updatedHits = [ ...oldHits, ...hits ];
 
-  this.setState({ result: { hits: updatedHits, page } });
+  this.setState({
+    result: { hits: updatedHits, page }
+  });
 # leanpub-end-insert
 }
 ~~~~~~~~
@@ -597,7 +599,10 @@ class App extends Component {
 
     this.setState({
 # leanpub-start-insert
-      results: { ...this.state.results, [query]: { hits: updatedHits, page } }
+      results: {
+        ...this.state.results,
+        [query]: { hits: updatedHits, page }
+      }
 # leanpub-end-insert
     });
   }
@@ -615,12 +620,15 @@ At the end a new result can be set in the results map in the internal component 
 
 {lang=javascript}
 ~~~~~~~~
-results: { ...this.state.results, [query]: { hits: updatedHits, page } }
+results: {
+  ...this.state.results,
+  [query]: { hits: updatedHits, page }
+}
 ~~~~~~~~
 
-The right hand side makes sure to store the updated result by search query in the results map. The value is an object with a hits and page property. The key is the search query. The `[query]` notation might be new to you. It uses an [ES6 dynamic key](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer) to allocate values in an object.
+The bottom part makes sure to store the updated result by search query in the results map. The value is an object with a hits and page property. The key is the search query. The `[query]` notation might be new to you. It uses an [ES6 dynamic key](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer) to allocate values in an object.
 
-The left hand side needs to spread all other results by search key in the state. Otherwise you would lose all results you stored before. That's what enables the cache.
+The upper part needs to spread all other results by search key in the state. Otherwise you would lose all results you stored before. That's what enables the cache.
 
 Before you have only used the ES6 array spread operator. This time it's an [object spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator). In ES6 the spread operator can be applied only to iterable objects like an array. The [object spread operator is a proposal](https://github.com/sebmarkbage/ecmascript-rest-spread) for a future ES version. But create-react-app incorporated the feature already, because it's widely used in the ecosystem.
 
@@ -734,7 +742,10 @@ class App extends Component {
 
     this.setState({
 # leanpub-start-insert
-      results: { ...this.state.results, [searchKey]: { hits: updatedHits, page } }
+      results: {
+        ...this.state.results,
+        [searchKey]: { hits: updatedHits, page }
+      }
 # leanpub-end-insert
     });
   }
@@ -876,7 +887,10 @@ class App extends Component {
     const updatedHits = [ ...oldHits, ...hits ];
 
     this.setState({
-      results: { ...this.state.results, [searchKey]: { hits: updatedHits, page } }
+      results: {
+        ...this.state.results,
+        [searchKey]: { hits: updatedHits, page }
+      }
     });
   }
 

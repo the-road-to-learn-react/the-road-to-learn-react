@@ -306,7 +306,10 @@ class App extends Component {
     const updatedHits = [ ...oldHits, ...hits ];
 
     this.setState({
-      results: { ...this.state.results, [searchKey]: { hits: updatedHits, page } },
+      results: {
+        ...this.state.results,
+        [searchKey]: { hits: updatedHits, page }
+      },
 # leanpub-start-insert
       isLoading: false
 # leanpub-end-insert
@@ -1034,7 +1037,10 @@ class App extends Component {
     const updatedHits = [ ...oldHits, ...hits ];
 
     this.setState({
-      results: { ...this.state.results, [searchKey]: { hits: updatedHits, page } },
+      results: {
+        ...this.state.results,
+        [searchKey]: { hits: updatedHits, page }
+      },
       isLoading: false
     });
   }
