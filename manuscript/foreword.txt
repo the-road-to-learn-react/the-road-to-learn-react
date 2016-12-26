@@ -12,9 +12,9 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 
 # FAQ
 
-**How do I get updates?** You can [subscribe](http://eepurl.com/caLPjr) or follow me on [Twitter](https://twitter.com/rwieruch) for updates. It keeps me motivated to work on the book as well. Once you have a copy of the book from Leanpub, the book will stay updated.
+**How do I get updates?** You can [subscribe](http://eepurl.com/caLPjr) or follow me on [Twitter](https://twitter.com/rwieruch). It will keep me motivated to work on the book as well. Once you have a copy of the book, it will stay updated. But you have to download the copy again once its updated.
 
-**Does it cover Redux?** So far it doesn't. The book should give you a solid foundation before you dive into advanced topics like Redux. Still the implementation in the book will show you that you don't need Redux to build a presentable application.
+**Does it cover Redux?** It doesn't. The book should give you a solid foundation before you dive into advanced topics like Redux. Still the implementation in the book will show you that you don't need Redux to build a presentable application.
 
 **Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in native english. I would appreciate your help very much.
 
