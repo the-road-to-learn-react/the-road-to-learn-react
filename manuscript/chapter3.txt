@@ -151,7 +151,10 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+          >
             Search
           </Search>
         </div>
@@ -235,7 +238,11 @@ class App extends Component {
       <div className="page">
         <div className="interactions">
 # leanpub-start-insert
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
 # leanpub-end-insert
             Search
           </Search>
@@ -249,10 +256,16 @@ class App extends Component {
 # leanpub-start-insert
 const Search = ({ value, onChange, onSubmit, children }) =>
   <form onSubmit={onSubmit}>
-    <input type="text" value={value} onChange={onChange} />
-    <button type="submit">{children}</button>
-# leanpub-end-insert
+    <input
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
+    <button type="submit">
+      {children}
+    </button>
   </form>
+# leanpub-end-insert
 ~~~~~~~~
 
 Additionally the Search component gets the `onSubmit` callback. The form uses the callback, but the button has to define itself as type of submit.
@@ -270,7 +283,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -409,7 +426,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -436,15 +457,13 @@ There is one step missing. You fetch the next page of data, but it will overwrit
 setSearchTopstories(result) {
 # leanpub-start-insert
   const { hits, page } = result;
-# leanpub-end-insert
 
-# leanpub-start-insert
   const oldHits = page === 0 ? [] : this.state.result.hits;
   const updatedHits = [ ...oldHits, ...hits ];
-# leanpub-end-insert
 
-# leanpub-start-insert
-  this.setState({ result: { hits: updatedHits, page } });
+  this.setState({
+    result: { hits: updatedHits, page }
+  });
 # leanpub-end-insert
 }
 ~~~~~~~~
@@ -580,7 +599,10 @@ class App extends Component {
 
     this.setState({
 # leanpub-start-insert
-      results: { ...this.state.results, [query]: { hits: updatedHits, page } }
+      results: {
+        ...this.state.results,
+        [query]: { hits: updatedHits, page }
+      }
 # leanpub-end-insert
     });
   }
@@ -598,12 +620,15 @@ At the end a new result can be set in the results map in the internal component 
 
 {lang=javascript}
 ~~~~~~~~
-results: { ...this.state.results, [query]: { hits: updatedHits, page } }
+results: {
+  ...this.state.results,
+  [query]: { hits: updatedHits, page }
+}
 ~~~~~~~~
 
-The right hand side makes sure to store the updated result by search query in the results map. The value is an object with a hits and page property. The key is the search query. The `[query]` notation might be new to you. It uses an [ES6 dynamic key](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer) to allocate values in an object.
+The bottom part makes sure to store the updated result by search query in the results map. The value is an object with a hits and page property. The key is the search query. The `[query]` notation might be new to you. It uses an [ES6 dynamic key](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer) to allocate values in an object.
 
-The left hand side needs to spread all other results by search key in the state. Otherwise you would lose all results you stored before. That's what enables the cache.
+The upper part needs to spread all other results by search key in the state. Otherwise you would lose all results you stored before. That's what enables the cache.
 
 Before you have only used the ES6 array spread operator. This time it's an [object spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator). In ES6 the spread operator can be applied only to iterable objects like an array. The [object spread operator is a proposal](https://github.com/sebmarkbage/ecmascript-rest-spread) for a future ES version. But create-react-app incorporated the feature already, because it's widely used in the ecosystem.
 
@@ -626,7 +651,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -713,7 +742,10 @@ class App extends Component {
 
     this.setState({
 # leanpub-start-insert
-      results: { ...this.state.results, [searchKey]: { hits: updatedHits, page } }
+      results: {
+        ...this.state.results,
+        [searchKey]: { hits: updatedHits, page }
+      }
 # leanpub-end-insert
     });
   }
@@ -740,7 +772,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -851,7 +887,10 @@ class App extends Component {
     const updatedHits = [ ...oldHits, ...hits ];
 
     this.setState({
-      results: { ...this.state.results, [searchKey]: { hits: updatedHits, page } }
+      results: {
+        ...this.state.results,
+        [searchKey]: { hits: updatedHits, page }
+      }
     });
   }
 
@@ -891,7 +930,11 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search value={query} onChange={this.onSearchChange} onSubmit={this.onSearchSubmit}>
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+            onSubmit={this.onSearchSubmit}
+          >
             Search
           </Search>
         </div>
@@ -908,8 +951,14 @@ class App extends Component {
 
 const Search = ({ value, onChange, onSubmit, children }) =>
   <form onSubmit={onSubmit}>
-    <input type="text" value={value} onChange={onChange} />
-    <button type="submit">{children}</button>
+    <input
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
+    <button type="submit">
+      {children}
+    </button>
   </form>
 
 const Table = ({ list }) =>
