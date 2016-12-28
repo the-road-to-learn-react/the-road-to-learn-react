@@ -385,11 +385,11 @@ ReactDOM.render(
 
 * read more about [React rendering element](https://facebook.github.io/react/docs/rendering-elements.html)
 
-## Map in JSX
+## Complex JavaScript in JSX
 
-Let's get back to your App component. So far you rendered some random properties in your JSX. Now you will start to render a list of items. The list will be some mock data in the beginning, but later you will fetch the data from an external API. That will be far more exciting.
+Let's get back to your App component. So far you rendered some primitive variables in your JSX. Now you will start to render a list of items. The list will be artificial data in the beginning, but later you will fetch the data from an external API. That might be far more exciting.
 
-Since you can use JavaScript in JSX, it's possible to map over your data to display each item.
+First you define the list of items.
 
 {lang=javascript}
 ~~~~~~~~
@@ -418,6 +418,15 @@ const list = [
 # leanpub-end-insert
 
 class App extends Component {
+  ...
+}
+~~~~~~~~
+
+Second you can use the built-in map functionality in your JSX. It enables you to iterate over your list of items to finally to display them. As mentioned you use curly braces to encapsulate the JavaScript in your JSX.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
 
   render() {
     return (
@@ -442,7 +451,9 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Additionally you have to assign a key property to each list element. Only that way React is able to identify added, changed and removed items.
+You can see how the map functionality is simply inlined. Each item property is display in a span. Moreover the url property of the item is used in the href attribute of the anchor tag.
+
+React will do all the work for you and display each item. But you should add one helper for React to embrace its full potential. You have to assign a key property to each list element. Only that way React is able to identify added, changed and removed items when the list changes.
 
 {lang=javascript}
 ~~~~~~~~
@@ -460,7 +471,7 @@ Additionally you have to assign a key property to each list element. Only that w
 })}
 ~~~~~~~~
 
-Give your elements a stable id. Don't make the mistake of using the array index, which isn't stable. React will have a hard time identifying the items properly when their order changes.
+Make the key property a stable identifier. Don't make the mistake of using the array index, which isn't stable. React will have a hard time identifying the items properly when their order changes.
 
 {lang=javascript}
 ~~~~~~~~
@@ -478,13 +489,30 @@ Give your elements a stable id. Don't make the mistake of using the array index,
 })}
 ~~~~~~~~
 
-Now when you open your app in a browser both list items should get rendered and be visible.
+Start your app, open your browser and see both items of the list displayed.
 
-### ES6 Sugar:
+### Exercises:
 
-Let's have a look again at the map function. It takes a function itself, which you can write more concise in ES6.
+* read more about [React lists and keys](https://facebook.github.io/react/docs/lists-and-keys.html)
+* make yourself comfortable with [standard built-in functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+* use more JavaScript expression on your own in JSX (e.g. [ternary](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator))
 
-First you can use the arrow function.
+## ES6 Arrow Functions
+
+JavaScript ES6 introduced arrow functions. An arrow function expression is shorter than a function expression.
+
+{lang=javascript}
+~~~~~~~~
+// function expression
+function () { ... }
+
+// arrow function expression
+() => { ... }
+~~~~~~~~
+
+But you have to be aware of different functionalities. One of them is a different behaviour with the `this` object. A function expression always defines its own `this` object. Arrow function expressions still have the `this` object of the enclosing context.
+
+However let's have a look at the map function. You can write it more concise with an ES6 arrow function.
 
 {lang=javascript}
 ~~~~~~~~
@@ -502,7 +530,7 @@ First you can use the arrow function.
 })}
 ~~~~~~~~
 
-Second you can remove the block body and thus remove the return statement. In a concise body an implicit return is attached.
+Additionally you can remove the block body. In a concise body an implicit return is attached thus you can remove the return statement.
 
 {lang=javascript}
 ~~~~~~~~
@@ -520,14 +548,11 @@ Second you can remove the block body and thus remove the return statement. In a 
 # leanpub-end-insert
 ~~~~~~~~
 
-Now your JSX looks more readable again.
+Your JSX looks more readable again. It omits the function and return statements.
 
 ### Exercises:
 
-* read more about [React lists and keys](https://facebook.github.io/react/docs/lists-and-keys.html)
 * read more about [ES6 arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
-* make yourself comfortable with [standard built-in functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-* use more JavaScript expression on your own in JSX (e.g. [ternary](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator))
 
 {pagebreak}
 
