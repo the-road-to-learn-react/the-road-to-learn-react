@@ -58,6 +58,8 @@ Local packages are used in your application. For instance React will be a local 
 npm install <package>
 ~~~~~~~~
 
+The installed package folder will automatically appear in a folder called *node_modules/*.
+
 But be careful! Whenever you install a local package you shouldn't forget the neat `--save` configuration:
 
 {lang=javascript}
@@ -115,16 +117,23 @@ Unfortunately that's not everything to add React to an existing application. You
 
 ## create-react-app
 
-You will use [create-react-app](https://github.com/facebookincubator/create-react-app) to bootstrap your app. It's an opinionated but zero-configuration starter kit for React introduced by Facebook. People like and would [recommend it to starters by 96%](https://twitter.com/dan_abramov/status/806985854099062785). In create-react-app the tools evolve in the background while the focus is on the application implementation.
+You will use [create-react-app](https://github.com/facebookincubator/create-react-app) to bootstrap your app. It's an opinionated yet zero-configuration starter kit for React introduced by Facebook. People like and would [recommend it to beginners by 96%](https://twitter.com/dan_abramov/status/806985854099062785). In create-react-app the tools and configuration evolve in the background while the focus is on the application implementation.
 
-To get started you will have to install the package to your global packages on your command line. You should already have npm installed to install the package. The `-g` signalizes npm to install it only once in your global package repository. Afterwards you can use it whenever you want.
+To get started you will have to install the package to your global packages:
 
 {lang=javascript}
 ~~~~~~~~
 npm install -g create-react-app
 ~~~~~~~~
 
-Now you can bootstrap your first app and navigate into the directory:
+You can check version of create-react-app to verify the installation in your command line:
+
+{lang=javascript}
+~~~~~~~~
+create-react-app --version
+~~~~~~~~
+
+Now you can bootstrap your first React application. We call it *hackernews*, but you can choose a different name. Afterwards simply navigate into the folder:
 
 {lang=javascript}
 ~~~~~~~~
@@ -132,7 +141,7 @@ create-react-app hackernews
 cd hackernews
 ~~~~~~~~
 
-When you open the app in your editor, you will find the following folder structure:
+Now you can open the app in your editor. The following folder structure will be presented to you:
 
 {lang=javascript}
 ~~~~~~~~
@@ -153,7 +162,13 @@ hackernews/
     logo.svg
 ~~~~~~~~
 
-In the beginning everything you need is located in the *src* folder. The main focus lies on the *App.js* file to implement React components. But there is also the *App.test.js* for tests and the *index.js* as entry point to the React world. We will get to know them in a later chapter.
+In the beginning everything you need is located in the *src* folder.
+
+The main focus lies on the *App.js* file to implement React components. It will be used alone, but later you want to split up your components into multiple files.
+
+Additionally you will find a *App.test.js* file for tests and a *index.js* as entry point to the React world. You will get to know both files in a later chapter. Moreover there is a *App.css* and *index.css* file to style your application. They all come with default implementations when you open them.
+
+Next to to the *src* folder you will find the *package.json* file and *node_modules/* folder to manage your node packages.
 
 Additionally create-react-app comes with the following npm scripts for your command line:
 
@@ -169,13 +184,14 @@ npm test
 npm run build
 ~~~~~~~~
 
-You can read more about [the scripts and create-react-app](https://github.com/facebookincubator/create-react-app) in general.
+The scripts are defined in your *package.json* too. You can read more about [the scripts and create-react-app](https://github.com/facebookincubator/create-react-app) in general.
 
 ### Exercises:
 
 * `npm start` your app and visit the page in your browser
 * run the interactive `npm test` script
 * make yourself familiar with the folder structure
+* make yourself familiar with the content of the files
 
 ## Introduction to JSX
 
