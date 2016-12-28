@@ -224,7 +224,7 @@ export default App;
 
 Don't let yourself confuse by the import and export statements. We will revisit those later.
 
-In the file you have an *ES6 class component* with the name App. Basically you can use the <App /> *component* everywhere in your application now. Once you use it, it will produce an *instance* of your component. The *element* it returns is specified in the `render()` function. It is valuable to understand the differences between component, instance and element.
+In the file you have an **ES6 class component** with the name App. Basically you can use the <App /> **component** everywhere in your application now. Once you use it, it will produce an *instance* of your component. The **element** it returns is specified in the `render()` function. Elements are what components are made of. It is valuable to understand the differences between component, instance and element.
 
 Pretty soon you will see where the App component is used. Otherwise you wouldn't see the rendered output in the browser, would you? The App component is only the declaration, but not the usage. You would use the component somewhere else with `<App />`.
 
@@ -250,7 +250,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Now you only return HTML without JavaScript. Let's make the *Welcome to React* a variable which is used in your JSX.
+Now you only return HTML without JavaScript. Let's make the "Welcome to React" a variable which is used in your JSX.
 
 {lang=javascript}
 ~~~~~~~~
@@ -387,7 +387,7 @@ ReactDOM.render(
 
 ## Complex JavaScript in JSX
 
-Let's get back to your App component. So far you rendered some primitive variables in your JSX. Now you will start to render a list of items. The list will be artificial data in the beginning, but later you will fetch the data from an external API. That might be far more exciting.
+Let's get back to your App component. So far you rendered some primitive variables in your JSX. Now you will start to render a list of items. The lqist will be artificial data in the beginning, but later you will fetch the data from an external API. That might be far more exciting.
 
 First you define the list of items.
 
