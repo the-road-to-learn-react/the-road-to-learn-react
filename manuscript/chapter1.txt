@@ -365,17 +365,24 @@ ReactDOM.render(
 );
 ~~~~~~~~
 
-Basically ReactDOM.render uses a DOM node in your html to replace it with your React components. That's how you can easily integrate React in every app.
+Basically `ReactDOM.render` uses a DOM node in your HTML to replace it with your JSX. That's how you can easily integrate React in every foreign app. It is not forbidden to use `ReactDOM.render` only once. You can use it at multiple places in your application to bootstrap simple JSX, a React component, multiple React components or a whole application.
 
 ReactDOM.render expects two arguments.
 
-The first argument is JSX. It already takes your App component, but you don't need to pass a component. It would be sufficient to use `<div>Hello React World</div>`. After all the first argument is the content to be rendered.
+The first argument is JSX that gets rendered. The second argument specifies the place where the React application hooks into your HTML. It expects an element with an `id='root'`. Open your *public/index.html* file to find the id.
 
-The second argument specifies the place where the React application hooks into your HTML. It expects an element with an `id="root"`. Open your *public/index.html* file to find the id.
+In the implementation `ReactDOM.render` already takes your App component. However it would be fine to pass simpler JSX as long as it is JSX.
+
+{lang=javascript}
+~~~~~~~~
+ReactDOM.render(
+  <h1>Hello React World</h1>,
+  document.getElementById('root')
+);
+~~~~~~~~
 
 ### Exercises:
 
-* open your *public/index.html* file to find the `id="root"`
 * read more about [React rendering element](https://facebook.github.io/react/docs/rendering-elements.html)
 
 ## Map in JSX
