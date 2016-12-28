@@ -195,7 +195,7 @@ The scripts are defined in your *package.json* too. You can read more about [the
 
 ## Introduction to JSX
 
-Now you will get to know JSX. Let's dive into the source code provided by create-react-app. The only file you will touch in the beginning will be the *src/App.js*.
+Now you will get to know JSX - the syntax in React. As mentioned create-react-app already scaffolded a boilerplate application. All files come with default implementations. Let's dive into the source code. The only file you will touch in the beginning will be the *src/App.js*.
 
 {lang=javascript}
 ~~~~~~~~
@@ -222,18 +222,109 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-create-react-app already scaffolded a boilerplate application. In the file you have an ES6 class component with the name App. Basically you can use the `<App />` component everywhere in your application now. Once you use it, it will produce an instance of your component. The elements it returns are specified in the `render()` function.
+Don't let yourself confuse by the import and export statements. We will revisit those later.
 
-Pretty soon you will see where the App component is used. Otherwise you wouldn't see the rendered output in the browser, would you?
+In the file you have an *ES6 class component* with the name App. Basically you can use the <App /> *component* everywhere in your application now. Once you use it, it will produce an *instance* of your component. The *element* it returns is specified in the `render()` function. It is valuable to understand the differences between component, instance and element.
 
-The content in the render block looks pretty similar to HTML, but it's JSX. JSX allows you to mix HTML and JavaScript. It's powerful yet confusing in the beginning when you are used to plain HTML. That's why a good starting point is to use basic HTML in your JSX. Next you can start to embed JavaScript expressions in between by using curly braces.
+Pretty soon you will see where the App component is used. Otherwise you wouldn't see the rendered output in the browser, would you? The App component is only the declaration, but not the usage. You would use the component somewhere else with `<App />`.
 
-Try it. Define a property and use it in JSX.
+The content in the render block looks pretty similar to HTML, but it's JSX. JSX allows you to mix HTML and JavaScript. It's powerful yet confusing when you are used to plain HTML. That's why a good starting point is to use basic HTML in your JSX. Next you can start to embed JavaScript expressions in between by using curly braces.
+
+First let's remove all the clutter which is distracting.
 
 {lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import './App.css';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <h2>Welcome to React</h2>
+      </div>
+    );
+  }
+}
+
+export default App;
+~~~~~~~~
+
+Now you only return HTML without JavaScript. Let's make the *Welcome to React* a variable which is used in your JSX.
+
+{lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+  render() {
+# leanpub-start-insert
+    var helloWorld = 'Welcome to React';
+# leanpub-end-insert
+    return (
+      <div className="App">
+# leanpub-start-insert
+        <h2>{helloWorld}</h2>
+# leanpub-end-insert
+      </div>
+    );
+  }
+}
+
+export default App;
+~~~~~~~~
+
+It should work when you `npm run` your application on the command line.
+
+Additionally you might have noticed the `className` attribute. Because of technical reasons JSX had to replace some HTML attributes. You can find all of the [supported HTML attributes in the React documentation](https://facebook.github.io/react/docs/dom-elements.html).
+
+### Exercises:
+
+* read more about [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
+* read more about [React components, elements and instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
+* define more variables to render them in your JSX
+
+## ES6 const and let
+
+I guess you noticed that we declared the variable with `var`. JavaScript ES6 comes with two more options to declare your variables: const and let. In ES6 JavaScript you will rarely find var anymore.
+
+A variable declared with `const` cannot be re-assigned or redeclared. It can't get mutated (changed, modified). You embrace immutable data structures by using it.
+
+{lang=javascript}
+~~~~~~~~
+// not allowed
+const helloWorld = 'Welcome to React';
+helloWorld = 'Bye Bye React';
+~~~~~~~~
+
+A variable declared with `let` can get mutated.
+
+{lang=javascript}
+~~~~~~~~
+// allowed
+let helloWorld = 'Welcome to React';
+helloWorld = 'Bye Bye React';
+~~~~~~~~
+
+You have to be careful at one point with const. A variable declared with const cannot get modified. However when the variable is an array or object the value it holds can get altered. The value is not immutable.
+
+{lang=javascript}
+~~~~~~~~
+// allowed
+const helloWorld = {
+  text: 'Welcome to React'
+};
+helloWorld.text = 'Bye Bye React';
+~~~~~~~~
+
+But when to use each declaration? There are different opinions about the usage. I suggest to use const whenever you can. It indicates that you want to keep your data structure immutable even though values in objects and arrays can get altered. Still immutability is embraced in React and its ecosystem. When you want to modify your variable, you should use let over const.
+
+Let's use const over var in our App component.
+
+{lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
@@ -243,15 +334,7 @@ class App extends Component {
 # leanpub-end-insert
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-# leanpub-start-insert
-          <h2>{helloWorld}</h2>
-# leanpub-end-insert
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h2>{helloWorld}</h2>
       </div>
     );
   }
@@ -260,23 +343,14 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Additionally you might have noticed the `className` attribute. Because of technical reasons JSX had to replace HTML attributes like class (className) and for (htmlFor).
-
-### ES6 Sugar:
-
-In ES5 you declare variables with var. In ES6 there are two more variable declarations: const and let.
-
 ### Exercises:
 
-* read more about [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
-* read more about [React components, elements and instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
-* read more about [supported HTML attributes in React](https://facebook.github.io/react/docs/dom-elements.html)
-* read more about ES6 [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) and [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) variable declarations
-* define more variables to render them in your JSX
+* read more about ES6 [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+* read more about ES6 [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
 ## ReactDOM.render
 
-Before you continue with the App component, you might want to see where it's used. It's located in your entry point to the React world *src/index.js*.
+Before you continue with the App component, you might want to see where it's used. It is located in your entry point to the React world *src/index.js*.
 
 {lang=javascript}
 ~~~~~~~~
