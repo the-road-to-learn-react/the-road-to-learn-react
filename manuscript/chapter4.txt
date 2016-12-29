@@ -356,7 +356,7 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table list={result.hits} />
+        <Table list={result.hits} onDismiss={this.onDismiss} />
         <div className="interactions">
 # leanpub-start-insert
         { isLoading ?
@@ -462,7 +462,7 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table list={result.hits} />
+        <Table list={result.hits} onDismiss={this.onDismiss} />
         <div className="interactions">
 # leanpub-start-insert
           <ButtonWithLoading
@@ -553,6 +553,7 @@ class App extends Component {
 # leanpub-start-insert
     this.onSort = this.onSort.bind(this);
 # leanpub-end-insert
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
   ...
@@ -597,6 +598,7 @@ class App extends Component {
         <Table
           list={list}
           sortKey={sortKey}
+          onDismiss={this.onDismiss}
           onSort={this.onSort}
         />
 # leanpub-end-insert
@@ -618,7 +620,7 @@ The Table component is responsible to sort the list. It takes one of the `SORT` 
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const Table = ({ list, sortKey, onSort }) =>
+const Table = ({ list, sortKey, onDismiss, onSort }) =>
 # leanpub-end-insert
   <div className="table">
 # leanpub-start-insert
@@ -631,12 +633,21 @@ const Table = ({ list, sortKey, onSort }) =>
         <span style={{ width: '30%' }}>
           {item.author}
         </span>
-        <span style={{ width: '15%' }}>
+        <span style={{ width: '10%' }}>
           {item.num_comments}
         </span>
-        <span style={{ width: '15%' }}>
+        <span style={{ width: '10%' }}>
           {item.points}
         </span>
+        <span style={{ width: '10%' }}>
+          <Button
+            onClick={() => onDismiss(item.objectID)}
+            className="inline-button"
+          >
+            Dismiss
+          </Button>
+        </span>
+      </div>
       </div>
     )}
   </div>
@@ -646,7 +657,7 @@ In theory the list would get sorted by one of the functions. But the default sor
 
 {lang=javascript}
 ~~~~~~~~
-const Table = ({ list, sortKey, onSort }) =>
+const Table = ({ list, sortKey, onDismiss, onSort }) =>
   <div className="table">
 # leanpub-start-insert
     <div className="table-header">
@@ -666,7 +677,7 @@ const Table = ({ list, sortKey, onSort }) =>
           Author
         </Sort>
       </span>
-      <span style={{ width: '15%' }}>
+      <span style={{ width: '10%' }}>
         <Sort
           sortKey={'COMMENTS'}
           onSort={onSort}
@@ -674,13 +685,16 @@ const Table = ({ list, sortKey, onSort }) =>
           Comments
         </Sort>
       </span>
-      <span style={{ width: '15%' }}>
+      <span style={{ width: '10%' }}>
         <Sort
           sortKey={'POINTS'}
           onSort={onSort}
         >
           Points
         </Sort>
+      </span>
+      <span style={{ width: '10%' }}>
+        Archive
       </span>
     </div>
 # leanpub-end-insert
@@ -792,6 +806,7 @@ class App extends Component {
 # leanpub-start-insert
           isSortReverse={isSortReverse}
 # leanpub-end-insert
+          onDismiss={this.onDismiss}
           onSort={this.onSort}
         />
         <div className="interactions">
@@ -812,7 +827,7 @@ The Table has to have a block body to compute the data now.
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const Table = ({ list, sortKey, isSortReverse, onSort }) => {
+const Table = ({ list, sortKey, isSortReverse, onDismiss, onSort }) => {
   const sortedList = SORTS[sortKey](list);
   const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
 # leanpub-end-insert
@@ -842,7 +857,7 @@ Last but not least you have to deal with one open question for the sake of a goo
 
 {lang=javascript}
 ~~~~~~~~
-const Table = ({ list, sortKey, isSortReverse, onSort }) => {
+const Table = ({ list, sortKey, isSortReverse, onDismiss, onSort }) => {
   const sortedList = SORTS[sortKey](list);
   const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
 
@@ -871,7 +886,7 @@ const Table = ({ list, sortKey, isSortReverse, onSort }) => {
           </Sort>
 # leanpub-end-insert
         </span>
-        <span style={{ width: '15%' }}>
+        <span style={{ width: '10%' }}>
 # leanpub-start-insert
           <Sort
             sortKey={'COMMENTS'}
@@ -882,7 +897,7 @@ const Table = ({ list, sortKey, isSortReverse, onSort }) => {
           </Sort>
 # leanpub-end-insert
         </span>
-        <span style={{ width: '15%' }}>
+        <span style={{ width: '10%' }}>
 # leanpub-start-insert
           <Sort
             sortKey={'POINTS'}
@@ -892,6 +907,9 @@ const Table = ({ list, sortKey, isSortReverse, onSort }) => {
             Points
           </Sort>
 # leanpub-end-insert
+          <span style={{ width: '10%' }}>
+            Archive
+          </span>
         </span>
       </div>
       { reverseSortedList.map((item) =>
@@ -1027,6 +1045,7 @@ class App extends Component {
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onSort = this.onSort.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
   setSearchTopstories(result) {
@@ -1100,6 +1119,7 @@ class App extends Component {
           list={list}
           sortKey={sortKey}
           isSortReverse={isSortReverse}
+          onDismiss={this.onDismiss}
           onSort={this.onSort}
         />
         <div className="interactions">
@@ -1126,7 +1146,7 @@ const Search = ({ value, onChange, onSubmit, children }) =>
     </button>
   </form>
 
-const Table = ({ list, sortKey, isSortReverse, onSort }) => {
+const Table = ({ list, sortKey, isSortReverse, onDismiss, onSort }) => {
   const sortedList = SORTS[sortKey](list);
   const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
 
@@ -1151,7 +1171,7 @@ const Table = ({ list, sortKey, isSortReverse, onSort }) => {
             Author
           </Sort>
         </span>
-        <span style={{ width: '15%' }}>
+        <span style={{ width: '10%' }}>
           <Sort
             sortKey={'COMMENTS'}
             onSort={onSort}
@@ -1160,7 +1180,7 @@ const Table = ({ list, sortKey, isSortReverse, onSort }) => {
             Comments
           </Sort>
         </span>
-        <span style={{ width: '15%' }}>
+        <span style={{ width: '10%' }}>
           <Sort
             sortKey={'POINTS'}
             onSort={onSort}
@@ -1168,6 +1188,9 @@ const Table = ({ list, sortKey, isSortReverse, onSort }) => {
           >
             Points
           </Sort>
+        </span>
+        <span style={{ width: '10%' }}>
+          Archive
         </span>
       </div>
       { reverseSortedList.map((item) =>
@@ -1178,12 +1201,21 @@ const Table = ({ list, sortKey, isSortReverse, onSort }) => {
           <span style={{ width: '30%' }}>
             {item.author}
           </span>
-          <span style={{ width: '15%' }}>
+          <span style={{ width: '10%' }}>
             {item.num_comments}
           </span>
-          <span style={{ width: '15%' }}>
+          <span style={{ width: '10%' }}>
             {item.points}
           </span>
+          <span style={{ width: '10%' }}>
+            <Button
+              onClick={() => onDismiss(item.objectID)}
+              className="inline-button"
+            >
+              Dismiss
+            </Button>
+          </span>
+      </div>
         </div>
       )}
     </div>

@@ -100,6 +100,7 @@ class App extends Component {
     this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
 # leanpub-end-insert
     this.onSearchChange = this.onSearchChange.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
 # leanpub-start-insert
@@ -159,7 +160,14 @@ class App extends Component {
           </Search>
         </div>
 # leanpub-start-insert
-        { result ? <Table list={result.hits} pattern={query} /> : null }
+        { result
+          ? <Table
+            list={result.hits}
+            pattern={query}
+            onDismiss={this.onDismiss}
+          />
+          : null
+        }
 # leanpub-end-insert
       </div>
     );
@@ -175,7 +183,13 @@ Let's get back to the conditional rendering. There is another approach when you 
 
 {lang=javascript}
 ~~~~~~~~
-{ result && <Table list={result.hits} pattern={query} /> }
+{ result &&
+  <Table
+    list={result.hits}
+    pattern={query}
+    onDismiss={this.onDismiss}
+  />
+}
 ~~~~~~~~
 
 In the end it's a personal preference. But after all you should be able to see the fetched data in your list.
@@ -211,6 +225,7 @@ class App extends Component {
 # leanpub-start-insert
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
 # leanpub-end-insert
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
 # leanpub-start-insert
@@ -247,7 +262,13 @@ class App extends Component {
             Search
           </Search>
         </div>
-        { result && <Table list={result.hits} pattern={query} /> }
+        { result &&
+          <Table
+            list={result.hits}
+            pattern={query}
+            onDismiss={this.onDismiss}
+          />
+        }
       </div>
     );
   }
@@ -292,7 +313,12 @@ class App extends Component {
           </Search>
         </div>
 # leanpub-start-insert
-        { result && <Table list={result.hits} /> }
+        { result &&
+          <Table
+            list={result.hits}
+            onDismiss={this.onDismiss}
+          />
+        }
 # leanpub-end-insert
       </div>
     );
@@ -300,7 +326,7 @@ class App extends Component {
 }
 
 # leanpub-start-insert
-const Table = ({ list }) =>
+const Table = ({ list, onDismiss }) =>
 # leanpub-end-insert
   <div className="table">
 # leanpub-start-insert
@@ -336,17 +362,9 @@ Now you should be able to search different Hacker News stories. There should be 
 
 Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. The page property, which is 0 in the first response, can be used to fetch more paginated data. You only need to pass the next page with the same query to the API.
 
-Let's place a button below of the Table component to fetch more data. First you can define a very abstract and reusable Button component.
+Let's place a button below of the Table component to fetch more data.
 
-{lang=javascript}
-~~~~~~~~
-const Button = ({ onClick, children }) =>
-  <button onClick={onClick} type="button">
-    {children}
-  </button>
-~~~~~~~~
-
-It might seem redundant to declare such a component. You have a `Button` instead of a `button` and only spare the `type="button"`. Except for the type attribute you have to define everything else when you want to use the Button component. But you have to think about the long term investment here. Imagine you have several buttons in your app, but want to change an attribute, style or behaviour for the button. Without the component you would have to refactor every button. Instead the Button component ensures to have one single source of truth. One Button to refactor all buttons at once.
+TODO (Button removed)
 
 Before you will use the Button, you have to declare more composable API constants to use the page parameter.
 
@@ -434,7 +452,12 @@ class App extends Component {
             Search
           </Search>
         </div>
-        { result && <Table list={result.hits} /> }
+        { result &&
+          <Table
+            list={result.hits}
+            onDismiss={this.onDismiss}
+          />
+        }
 # leanpub-start-insert
         <div className="interactions">
           <Button onClick={() => this.fetchSearchTopstories(query, page + 1)}>
@@ -660,7 +683,7 @@ class App extends Component {
           </Search>
         </div>
 # leanpub-start-insert
-        <Table list={list} />
+        <Table list={list} onDismiss={this.onDismiss} />
 # leanpub-end-insert
         <div className="interactions">
           <Button onClick={() => this.fetchSearchTopstories(query, page + 1)}>
@@ -780,7 +803,7 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table list={list} />
+        <Table list={list} onDismiss={this.onDismiss} />
         <div className="interactions">
 # leanpub-start-insert
           <Button onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
@@ -876,6 +899,7 @@ class App extends Component {
     this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
   setSearchTopstories(result) {
@@ -937,7 +961,7 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table list={list} />
+        <Table list={list} onDismiss={this.onDismiss} />
         <div className="interactions">
           <Button onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
             More
@@ -960,7 +984,7 @@ const Search = ({ value, onChange, onSubmit, children }) =>
     </button>
   </form>
 
-const Table = ({ list }) =>
+const Table = ({ list, onDismiss }) =>
   <div className="table">
     { list.map((item) =>
       <div key={item.objectID} className="table-row">
@@ -970,11 +994,19 @@ const Table = ({ list }) =>
         <span style={{ width: '30%' }}>
           {item.author}
         </span>
-        <span style={{ width: '15%' }}>
+        <span style={{ width: '10%' }}>
           {item.num_comments}
         </span>
-        <span style={{ width: '15%' }}>
+        <span style={{ width: '10%' }}>
           {item.points}
+        </span>
+        <span style={{ width: '10%' }}>
+          <Button
+            onClick={() => onDismiss(item.objectID)}
+            className="inline-button"
+          >
+            Dismiss
+          </Button>
         </span>
       </div>
     )}
