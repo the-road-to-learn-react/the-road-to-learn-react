@@ -1,10 +1,12 @@
 # Basics in React
 
-The chapter will focus on the basics in React. You will learn to manage internal component state, to implement component interactions and to compose components. Moreover it will show you to declare components in different ways.
+The chapter will guide you through the basics of React. It covers state and interactions in components - static components are a bit dull, aren't they? Additionally you will learn about the options to declare your components and how to keep those components composeable. Be prepared to breath life into your components.
 
 ## Internal Component State
 
-Internal component state allows you to store, modify and delete properties of your components. Let's introduce a class constructor where you can set the initial internal component state.
+Internal component state allows you to store, modify and delete properties of your component. The ES6 class component can use a contructor to initialize internal component state. The constructor is called only once when the component initializes. Don't worry about the constructor and ES6 class itself, we will cover these in later chapters.
+
+Let's introduce a class constructor where you can set the initial internal component state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -26,9 +28,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In your case the initial state is the list of items.
+In your case the initial state is the list of items. Note that you have to call `super(props);` to call the constructor of the parent class. It's mandatory.
 
-Notice that you have to call `super(props);` to call the constructor of the parent class. It's mandatory.
+The state is bound to the class with the `this` object. You can access the state everywhere in your component - also in the render function. Before you have mapped a static list of items. Now you are about to use the list of items in your internal component state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -55,11 +57,37 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the render function you have access to the component internal state by using `this`. As before you can map over the list of items.
+The list is part of the component now. Since it resides in the internal component state, you coudl add items, change items or remove items in your list. Every time you change your component state, the `render()` function of your component will run again. But be careful! Don't mutate your state directly, you have to use a helper function called `setState` to modify your state. You will get to know it in a following chapter.
 
-### ES6 Sugar:
+### Exercises:
 
-You can use a shorthand syntax to initialize properties in an object. In your case it makes sense because the property and variable share the same name.
+* read more about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
+
+## ES6 Object Initializer
+
+In JavaScript ES6 you can use a shorthand property syntax to initialize your objects more concise. Imagine the following object initialization:
+
+{lang=javascript}
+~~~~~~~~
+const name = 'Dan';
+
+const user = {
+  name: name,
+};
+~~~~~~~~
+
+When the property key in your object can be the same as your variable name, you can do the following:
+
+{lang=javascript}
+~~~~~~~~
+const name = 'Dan';
+
+const user = {
+  name,
+};
+~~~~~~~~
+
+In your application you can do the same. The static list variable name and the state property key share the same name.
 
 {lang=javascript}
 ~~~~~~~~
@@ -74,9 +102,46 @@ this.state = {
 };
 ~~~~~~~~
 
+Another neat helper are shorthand method names. In ES6 you can initialize methods in an object more concise.
+
+{lang=javascript}
+~~~~~~~~
+// ES5
+var userService = {
+  getUserName: function (user) {
+    return user.firstname + ' ' + user.lastname;
+  },
+};
+
+// ES6
+var userService = {
+  getUserName(user) {
+    return user.firstname + ' ' + user.lastname;
+  },
+};
+~~~~~~~~
+
+Last but not least you are allowed to use computed property keys in ES6.
+
+{lang=javascript}
+~~~~~~~~
+// ES5
+var user = {
+  name: 'Dan',
+};
+
+// ES6
+var key = 'name';
+var user = {
+  [key]: 'Dan',
+};
+~~~~~~~~
+
+It might not make sense yet. Why should you need a computed property key? But you come to a point where you want to use it eventually.
+
 ### Exercises:
 
-* read more about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
+* read more about [ES6 object initiliazer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
 ## Interactions in Components
 
