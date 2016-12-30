@@ -783,24 +783,24 @@ class Table extends Component {
     const { list, pattern, onDismiss } = this.props;
     return (
       <div>
-      { list.filter(isSearched(pattern)).map((item) =>
-        <div key={item.objectID}>
-          <span>
-            <a href={item.url}>{item.title}</a>
-          </span>
-          <span>{item.author}</span>
-          <span>{item.num_comments}</span>
-          <span>{item.points}</span>
-          <span>
-            <button
-              onClick={() => onDismiss(item.objectID)}
-              type="button"
-            >
-              Dismiss
-            </button>
-          </span>
-        </div>
-      )}
+        { list.filter(isSearched(pattern)).map((item) =>
+          <div key={item.objectID}>
+            <span>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+            <span>
+              <button
+                onClick={() => onDismiss(item.objectID)}
+                type="button"
+              >
+                Dismiss
+              </button>
+            </span>
+          </div>
+        )}
       </div>
     );
   }
@@ -918,23 +918,23 @@ class Table extends Component {
     const { list, pattern, onDismiss } = this.props;
     return (
       <div>
-      { list.filter(isSearched(pattern)).map((item) =>
-        <div key={item.objectID}>
-          <span>
-            <a href={item.url}>{item.title}</a>
-          </span>
-          <span>{item.author}</span>
-          <span>{item.num_comments}</span>
-          <span>{item.points}</span>
-          <span>
+        { list.filter(isSearched(pattern)).map((item) =>
+          <div key={item.objectID}>
+            <span>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+            <span>
 # leanpub-start-insert
-            <Button onClick={() => onDismiss(item.objectID)}>
-              Dismiss
-            </Button>
+              <Button onClick={() => onDismiss(item.objectID)}>
+                Dismiss
+              </Button>
 # leanpub-end-insert
-          </span>
-        </div>
-      )}
+            </span>
+          </div>
+        )}
       </div>
     );
   }
@@ -1244,7 +1244,7 @@ const Table = ({ list, pattern, onDismiss }) =>
             <Button
               onClick={() => onDismiss(item.objectID)}
 # leanpub-start-insert
-              className="inline-button"
+              className="button-inline"
 # leanpub-end-insert
             >
               Dismiss
@@ -1285,7 +1285,7 @@ const Table = ({ list, pattern, onDismiss }) =>
         <span style={{ width: '10%' }}>
             <Button
               onClick={() => onDismiss(item.objectID)}
-              className="inline-button"
+              className="button-inline"
             >
               Dismiss
             </Button>
@@ -1367,18 +1367,18 @@ class App extends Component {
       query: '',
     };
 
-    this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
-  }
-
-  onSearchChange(event) {
-    this.setState({ query: event.target.value });
+    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   onDismiss(id) {
     const isNotId = item => item.objectID !== id;
     const updatedList = this.state.list.filter(isNotId);
     this.setState({ list: updatedList });
+  }
+
+  onSearchChange(event) {
+    this.setState({ query: event.target.value });
   }
 
   render() {
@@ -1431,7 +1431,7 @@ const Table = ({ list, pattern, onDismiss }) =>
         <span style={{ width: '10%' }}>
             <Button
               onClick={() => onDismiss(item.objectID)}
-              className="inline-button"
+              className="button-inline"
             >
               Dismiss
             </Button>
