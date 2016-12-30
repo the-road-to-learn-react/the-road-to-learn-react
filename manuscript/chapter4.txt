@@ -1,6 +1,6 @@
 # Advanced React Components
 
-The chapter will focus on the implementation of advanced React components. Before you jump into this, you will need to know how to test your components. Afterwards you are ready to implement your own higher order components and advanced interactions in React.
+The chapter will focus on the implementation of advanced React components. Before you jump into this, you will need to know how to test your components. Afterwards you are prepared to implement your own higher order components and advanced interactions in React.
 
 ## Snapshot Tests with Jest
 

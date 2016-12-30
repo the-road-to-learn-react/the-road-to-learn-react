@@ -130,7 +130,7 @@ class App extends Component {
 
 A lot of things happened. I thought about it to break it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain it in detail.
 
-First you can remove the artifical list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default query. The same default query is used in the search field and in your first request.
+First you can remove the artificial list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default query. The same default query is used in the search field and in your first request.
 
 Second you use the `componentDidMount()` lifecycle method to fetch the data after the component mounted. In the very first fetch the default query from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
 
@@ -138,7 +138,7 @@ Third the native fetch API is used. ES6 string template strings allow it to comp
 
 Don't forget to bind your new component methods.
 
-Now you can use the fetched data instead of the artifical list of items. However you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your render method to visualize it.
+Now you can use the fetched data instead of the artificial list of items. However you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your render method to visualize it.
 
 Let's use the result and render it. We will prevent to render anything - return null - when there is no result. Once the request to the API succeeded, the result is saved to the state, the App component will render the instance.
 
@@ -265,7 +265,7 @@ console.log(allUsers);
 // ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-Now let's have a look at the object spread operator. It is not ES6! It is a [proposal for a future ES version](https://github.com/sebmarkbage/ecmascript-rest-spread) yet already used by the React community. That's why create-react-app incoperated the feature in the configuration.
+Now let's have a look at the object spread operator. It is not ES6! It is a [proposal for a future ES version](https://github.com/sebmarkbage/ecmascript-rest-spread) yet already used by the React community. That's why create-react-app incorporated the feature in the configuration.
 
 Basically it is the same as the ES6 array spread operator but with objects. It copies each key value pair into a new object.
 
@@ -279,7 +279,7 @@ console.log(user);
 // { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
 ~~~~~~~~
 
-Multiple objects can be spreaded like in the array spread example.
+Multiple objects can be spread like in the array spread example.
 
 {lang=javascript}
 ~~~~~~~~
@@ -316,7 +316,7 @@ The dismiss functionality should work again.
 
 ## Conditional Rendering
 
-The conditionaly rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all a conditional rendering can be expressed by a if-else condition in JSX.
+The conditionally rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all a conditional rendering can be expressed by a if-else condition in JSX.
 
 The result in the internal component state is null in the beginning. So far the App component returned no component instance when the result hasn't arrived from the API. That's already a conditional rendering! But it makes more sense to wrap the Table component - which depends on the result - in an independent conditional rendering. Everything else should be displayed even though there is no result yet. You can simply use a ternary expression in your JSX.
 
@@ -468,7 +468,7 @@ const Search = ({ value, onChange, onSubmit, children }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-In the Table you can remove the filter functionality, because there will be no client-side filter anymore. The result comes directly from the Hacker News API agzer you have clicked the Search button.
+In the Table you can remove the filter functionality, because there will be no client-side filter anymore. The result comes directly from the Hacker News API after you have clicked the Search button.
 
 {lang=javascript}
 ~~~~~~~~
@@ -531,7 +531,7 @@ Now you should be able to search different Hacker News stories. You interact wit
 
 Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. The page property - which is 0 in the first response - can be used to fetch more paginated data. You only need to pass the next page with the same query to the API.
 
-First let's extend the composable API constants that it can deal with pages of data.
+First let's extend the composeable API constants that it can deal with pages of data.
 
 {lang=javascript}
 ~~~~~~~~
@@ -666,7 +666,7 @@ Third you don't want to overwrite the old hits. You can merge old and new hits f
 
 In the last step you set the merged hits and page in the internal component state.
 
-You can make one last adjustment. When you try the More button it only fetches a few items. The API url can be extended to fetch more data with each request. Again you can add more composable path constants.
+You can make one last adjustment. When you try the More button it only fetches a few items. The API url can be extended to fetch more data with each request. Again you can add more composeable path constants.
 
 {lang=javascript}
 ~~~~~~~~
@@ -850,7 +850,7 @@ class App extends Component {
 
 Since you default to an empty list when there is no result by search query, you can spare the conditional rendering for the Table component.
 
-The search functionality should work again. It stores all results from the Hacker News API. But something feels wrong when you test it on your own. The search component works a bit unexpected. On submit, a server-side search request is made. But when you change the search query in the input field without clicking the submit button, the Table content adjusts iteself.
+The search functionality should work again. It stores all results from the Hacker News API. But something feels wrong when you test it on your own. The search component works a bit unexpected. On submit, a server-side search request is made. But when you change the search query in the input field without clicking the submit button, the Table content adjusts itself.
 
 ### Server-Side Search
 
