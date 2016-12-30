@@ -1073,10 +1073,23 @@ class App extends Component {
 
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
     this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
-    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
+    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+  }
+
+  needsToSearchTopstories(query) {
+    return !this.state.results[query];
+  }
+
+  onSearchSubmit(event) {
+    const { query } = this.state;
+    this.setState({ searchKey: query });
+    if (this.needsToSearchTopstories(query)) {
+      this.fetchSearchTopstories(query, DEFAULT_PAGE);
+    }
+    event.preventDefault();
   }
 
   setSearchTopstories(result) {
@@ -1106,21 +1119,23 @@ class App extends Component {
     this.fetchSearchTopstories(query, DEFAULT_PAGE);
   }
 
-  needsToSearchTopstories(query) {
-    return !this.state.results[query];
+  onDismiss(id) {
+    const { results, searchKey } = this.state;
+    const { hits, page } = results[searchKey];
+
+    const isNotId = item => item.objectID !== id;
+    const updatedHits = hits.filter(isNotId);
+
+    this.setState({
+      results: {
+        ...results,
+        [searchKey]: { hits: updatedHits, page }
+      }
+    });
   }
 
   onSearchChange(event) {
     this.setState({ query: event.target.value });
-  }
-
-  onSearchSubmit(event) {
-    const { query } = this.state;
-    this.setState({ searchKey: query });
-    if (this.needsToSearchTopstories(query)) {
-      this.fetchSearchTopstories(query, DEFAULT_PAGE);
-    }
-    event.preventDefault();
   }
 
   render() {
@@ -1183,7 +1198,7 @@ const Table = ({ list, onDismiss }) =>
         <span style={{ width: '10%' }}>
           <Button
             onClick={() => onDismiss(item.objectID)}
-            className="inline-button"
+            className="button-inline"
           >
             Dismiss
           </Button>
@@ -1192,8 +1207,12 @@ const Table = ({ list, onDismiss }) =>
     )}
   </div>
 
-const Button = ({ onClick, children }) =>
-  <button onClick={onClick} type="button">
+const Button = ({ onClick, className = '', children }) =>
+  <button
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
     {children}
   </button>
 

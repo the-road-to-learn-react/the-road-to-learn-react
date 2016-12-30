@@ -1241,14 +1241,14 @@ const Table = ({ list, pattern, onDismiss }) =>
         <span>{item.num_comments}</span>
         <span>{item.points}</span>
         <span>
-            <Button
-              onClick={() => onDismiss(item.objectID)}
+          <Button
+            onClick={() => onDismiss(item.objectID)}
 # leanpub-start-insert
-              className="button-inline"
+            className="button-inline"
 # leanpub-end-insert
-            >
-              Dismiss
-            </Button>
+          >
+            Dismiss
+          </Button>
         </span>
 # leanpub-start-insert
       </div>
@@ -1283,12 +1283,12 @@ const Table = ({ list, pattern, onDismiss }) =>
           {item.points}
         </span>
         <span style={{ width: '10%' }}>
-            <Button
-              onClick={() => onDismiss(item.objectID)}
-              className="button-inline"
-            >
-              Dismiss
-            </Button>
+          <Button
+            onClick={() => onDismiss(item.objectID)}
+            className="button-inline"
+          >
+            Dismiss
+          </Button>
         </span>
 # leanpub-end-insert
       </div>
@@ -1429,12 +1429,12 @@ const Table = ({ list, pattern, onDismiss }) =>
           {item.points}
         </span>
         <span style={{ width: '10%' }}>
-            <Button
-              onClick={() => onDismiss(item.objectID)}
-              className="button-inline"
-            >
-              Dismiss
-            </Button>
+          <Button
+            onClick={() => onDismiss(item.objectID)}
+            className="button-inline"
+          >
+            Dismiss
+          </Button>
         </span>
       </div>
     )}
