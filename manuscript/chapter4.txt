@@ -356,7 +356,10 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table list={result.hits} onDismiss={this.onDismiss} />
+        <Table
+          list={list}
+          onDismiss={this.onDismiss}
+        />
         <div className="interactions">
 # leanpub-start-insert
         { isLoading ?
@@ -462,7 +465,10 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table list={result.hits} onDismiss={this.onDismiss} />
+        <Table
+          list={list}
+          onDismiss={this.onDismiss}
+        />
         <div className="interactions">
 # leanpub-start-insert
           <ButtonWithLoading

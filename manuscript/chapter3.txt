@@ -1,29 +1,29 @@
 # Getting Real with an API
 
-Now it's time to get real with an API. Do you know [Hacker News](https://news.ycombinator.com/)? It's a great news aggregator. You will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API. The latter one makes sense in your case to search stories on Hacker News. You could visit the [API specification](https://hn.algolia.com/api) to get a glimpse of the data structure.
+Now it's time to get real with an API. In the end it can get boring to deal with artificial data. Do you know [Hacker News](https://news.ycombinator.com/)? It's a great news aggregator. You will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API. The latter one makes sense in your case to search stories on Hacker News. You can visit the [API specification](https://hn.algolia.com/api) to get a glimpse of the data structure.
 
 ## Lifecycle Methods
 
-But the basics come first. You will need the knowledge about React lifecycle methods before you can start. These methods are a hook into the lifecycle of a React component which you can overwrite. There are only a few to learn.
+But the basics first. You will need the knowledge about React lifecycle methods before you can start. These methods are a hook into the lifecycle of a React component which you can overwrite. There are only a few to learn.
 
-You already know two lifecycle methods in your ES6 class component: constructor and render.
+You already know two lifecycle methods in your ES6 class component: `constructor()` and `render()`.
 
 The constructor is only called when an instance of the component is created and inserted in the DOM. That process is called mounting of the component.
 
-The render method is called during the mount process too, but also when the component updates. Each time when props or state of a component change the render method is called.
+The render method is called during the mount process too, but also when the component updates. Each time when the state of a component changes the render method is called. It also renders when there are incoming props from the component above.
 
-Now you know two lifecycle methods and when they are called, but there is more.
+Now you know two lifecycle methods and when they are called. You already used them as well. But there are more of them.
 
-The mounting of a component has two more lifecycle methods: componentWillMount and componentDidMount. The constructor is called first, componentWillMount gets called before the render method, and componentDidMount is called after the render method.
+The mounting of a component has two more lifecycle methods: `componentWillMount()` and `componentDidMount()`. The constructor is called first, componentWillMount gets called before the render method, and componentDidMount is called after the render method.
 
-The mounting process has 4 lifecycle methods.
+Overall the mounting process has 4 lifecycle methods. They are invoked in the following order:
 
 * constructor()
 * componentWillMount()
 * render()
 * componentDidMount()
 
-The componentDidMount method is usually used to get data from an API endpoint. But what about the update lifecycle of a component? Overall it has five lifecycle methods.
+But what about the update lifecycle of a component? Overall it has 5 lifecycle methods.
 
 * componentWillReceiveProps()
 * shouldComponentUpdate()
@@ -31,22 +31,24 @@ The componentDidMount method is usually used to get data from an API endpoint. B
 * render()
 * componentDidUpdate()
 
-You don't need to know all of them from the beginning. But still it's good to know that each lifecycle method can be used for a specific use case. For instance shouldComponentUpdate() is mostly used in a mature React app to prevent a component from updating for performance optimizations.
+You don't need to know all of them from the beginning. But still it's good to know that each lifecycle method can be used for a specific use case:
 
-So far you know that there is a mounting and updating lifecycle. But every lifecycle ends at some time. The third lifecycle is the unmounting which has only one lifecycle method called componentWillUnmount. It's used to cleanup when you are about to destroy your component.
+* componentDidMount() method is used to get data from an API when the component mounts
+* shouldComponentUpdate() is mostly used in a mature React app to prevent a component from updating for performance optimizations
+...
 
-So far you have only used the constructor and render methods. These are the commonly used lifecycle methods for ES6 class components. Every other lifecycle method is used for more advanced use cases.
+So far you know that there is a mounting and updating lifecycle. But every lifecycle ends at some time. The third lifecycle is the unmounting lifecycle. It has only one lifecycle method: `componentWillUnmount()`. It is used to cleanup stuff when you are about to destroy your component.
+
+So far you have only used the constructor and render methods. These are the commonly used lifecycle methods for ES6 class components. Actually the render method is required - otherwise you wouldn't return a component instance.
 
 ### Exercises:
 
 * read more about [lifecycle methods in React](https://facebook.github.io/react/docs/react-component.html)
 * read more about [the state and lifecycle in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 
-## Fetch Data
+## Fetch Data from an API
 
-Now you are prepared to fetch data from the Hacker News API. I mentioned one lifecycle method which can be used to fetch data.
-
-Let's setup the path constants and default parameters to break the API request into smaller pieces.
+Now you are prepared to fetch data from the Hacker News API. I mentioned one lifecycle method that can be used to fetch data: componentDidMount(). Before we can use it, let's setup the url constants and default parameters to breakup the API request into chunks.
 
 {lang=javascript}
 ~~~~~~~~
@@ -55,9 +57,7 @@ import './App.css';
 
 # leanpub-start-insert
 const DEFAULT_QUERY = 'redux';
-# leanpub-end-insert
 
-# leanpub-start-insert
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
@@ -66,18 +66,22 @@ const PARAM_SEARCH = 'query=';
 ...
 ~~~~~~~~
 
-By using [ES6 template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) you can concatenate the url.
+In ES6 JavaScript you can use [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) to concatenate strings. You will use it to concatenate your url to the API endpoint.
 
 {lang=javascript}
 ~~~~~~~~
-`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`
+// ES6
+var url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`;
 
+// ES5
+var url = PATH_BASE + PATH_SEARCH + '?' + PARAM_SEARCH + DEFAULT_QUERY;
+
+// output
+console.log(url);
 // https://hn.algolia.com/api/v1/search?query=redux
 ~~~~~~~~
 
-That will keep your url composition flexible in the future.
-
-But let's get to the API fetch where we use the url. The whole data fetch process will be presented at once, but each step will get explained afterwards.
+That will keep your url composition flexible in the future. But let's get to the API fetch where we use the url. The whole data fetch process will be presented at once, but each step will get explained afterwards.
 
 {lang=javascript}
 ~~~~~~~~
@@ -107,17 +111,13 @@ class App extends Component {
   setSearchTopstories(result) {
     this.setState({ result });
   }
-# leanpub-end-insert
 
-# leanpub-start-insert
   fetchSearchTopstories(query) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}`)
       .then(response => response.json())
       .then(result => this.setSearchTopstories(result));
   }
-# leanpub-end-insert
 
-# leanpub-start-insert
   componentDidMount() {
     const { query } = this.state;
     this.fetchSearchTopstories(query);
@@ -128,16 +128,19 @@ class App extends Component {
 }
 ~~~~~~~~
 
-A lot of things happened. First I thought to break it into smaller pieces. Then again it would be difficult to grasp the relations to each other of each piece. Let me explain the last step in detail.
+A lot of things happened. I thought about it to break it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain it in detail.
 
-First you can remove the hard coded list of items, because you return a result from the Hacker News API. Now the initial state of your component has a empty result and default query. The same default query is used in the search field and in your first request.
+First you can remove the artifical list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default query. The same default query is used in the search field and in your first request.
 
-Second you use the `componentDidMount()` lifecycle method to fetch the data after the component mounted. In the very first fetch the default query from the component state is used.
+Second you use the `componentDidMount()` lifecycle method to fetch the data after the component mounted. In the very first fetch the default query from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
 
-Third the native fetch API is used. ES6 string template strings allow it to compose the path with the query. The response needs to get transformed and can finally be set in the internal component state. Be careful and don't forget to bind your new component methods.
+Third the native fetch API is used. ES6 string template strings allow it to compose the url with the query. The url is the argument for the native fetch function. The response needs to get transformed to Json and can finally be set in the internal component state.
 
-Now you can use the fetched data instead of the hard coded list of items. But be careful. The result is not only a list of data. [It's a complex object with meta information and a list of hits.](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` to visualize it.
+Don't forget to bind your new component methods.
 
+Now you can use the fetched data instead of the artifical list of items. However you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your render method to visualize it.
+
+Let's use the result and render it. We will prevent to render anything - return null - when there is no result. Once the request to the API succeeded, the result is saved to the state, the App component will render the instance.
 
 {lang=javascript}
 ~~~~~~~~
@@ -148,6 +151,9 @@ class App extends Component {
   render() {
 # leanpub-start-insert
     const { query, result } = this.state;
+
+    if (!result) { return; }
+
 # leanpub-end-insert
     return (
       <div className="page">
@@ -159,14 +165,185 @@ class App extends Component {
             Search
           </Search>
         </div>
+        <Table
 # leanpub-start-insert
-        { result
-          ? <Table
+          list={result.hits}
+# leanpub-end-insert
+          pattern={query}
+          onDismiss={this.onDismiss}
+        />
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. But we prevent to display something, because the result is empty. Then the componentDidMount lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the render method again, but this time with populated data in your internal component state. The component and thus the Table gets rendered.
+
+The list of hits should be visible now. But the "Dismiss" button is broken. We will fix that soon.
+
+### Exercises:
+
+* read more about [ES6 template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
+* read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
+* experiment with the [Hacker News API](https://hn.algolia.com/api)
+
+## ES6 spread operator
+
+The "Dismiss" button doesn't work because the `onDismiss` method is not aware of the result.
+
+{lang=javascript}
+~~~~~~~~
+onDismiss(id) {
+  const isNotId = item => item.objectID !== id;
+# leanpub-start-insert
+  const updatedHits = this.state.result.hits.filter(isNotId);
+  this.setState({
+    ...
+  });
+# leanpub-end-insert
+}
+~~~~~~~~
+
+But what's happening in `setState` now? Unfortunately the result is a complex object. The list of hits is only one of multiple properties in the object. However only the list gets updated in the result object while the other properties stay the same.
+
+One approach could be to mutate the hits in the result object. I will demonstrate it, but we won't do it!
+
+{lang=javascript}
+~~~~~~~~
+this.state.result.hits = updatedHits;
+~~~~~~~~
+
+React embraces functional programming. Thus you shouldn't mutate an object (nor mutate the state directly). A better approach is to generate a new object based on the old object and updated object. Thereby none of the objects get altered. These data structures in React are called immutable data structures.
+
+Let's do it in JavaScript ES5. `Object.assign()` takes as first argument a target object. All following arguments are source objects. These objects are merged into the target object. The target object can be an empty object - it embraces immutability, because no source objects get mutated. It would look similar to the following:
+
+{lang=javascript}
+~~~~~~~~
+const updatedHits = { hits: updatedHits };
+const updatedResult = Object.assign({}, this.state.result, updatedHits);
+~~~~~~~~
+
+Now let's do it in the `onDismiss` method:
+
+{lang=javascript}
+~~~~~~~~
+onDismiss(id) {
+  const isNotId = item => item.objectID !== id;
+  const updatedHits = this.state.result.hits.filter(isNotId);
+  this.setState({
+# leanpub-start-insert
+    result: Object.assign({}, this.state.result, { hits: updatedHits })
+# leanpub-end-insert
+  });
+}
+~~~~~~~~
+
+That's it in ES5. There is a simpler solution in JavaScript future ES releases. May I introduce the spread operator to you? It only consists of three dots: ... When it is used, every value from an array or object gets copied to another array or object.
+
+Let's examine the ES6 **array** spread operator even though you don't need it yet.
+
+{lang=javascript}
+~~~~~~~~
+const userList = ['Robin', 'Andrew', 'Dan'];
+const additionalUser = 'Jordan';
+const allUsers = [ ...userList, additionalUser ];
+
+console.log(allUsers);
+// ['Robin', 'Andrew', 'Dan', 'Jordan']
+~~~~~~~~
+
+The allUsers variable is a completly new array. The other variables userList and additionalUser are the same. You can even merge two arrays that way into a new array.
+
+{lang=javascript}
+~~~~~~~~
+const oldUsers = ['Robin', 'Andrew'];
+const newUsers = ['Dan', 'Jordan'];
+const allUsers = [ ...oldUsers, ...newUsers ];
+
+console.log(allUsers);
+// ['Robin', 'Andrew', 'Dan', 'Jordan']
+~~~~~~~~
+
+Now let's have a look at the object spread operator. It is not ES6! It is a [proposal for a future ES version](https://github.com/sebmarkbage/ecmascript-rest-spread) yet already used by the React community. That's why create-react-app incoperated the feature in the configuration.
+
+Basically it is the same as the ES6 array spread operator but with objects. It copies each key value pair into a new object.
+
+{lang=javascript}
+~~~~~~~~
+const userNames = { firstname: 'Robin', lastname: 'Wieruch' };
+const age = 28;
+const user = { ...userNames, age };
+
+console.log(user);
+// { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
+~~~~~~~~
+
+Multiple objects can be spreaded like in the array spread example.
+
+{lang=javascript}
+~~~~~~~~
+const userNames = { firstname: 'Robin', lastname: 'Wieruch' };
+const userAge = { age: 28 };
+const user = { ...userNames, ...userAge };
+
+console.log(user);
+// { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
+~~~~~~~~
+
+After all it can be used to replace ES5 `Object.assign()`.
+
+{lang=javascript}
+~~~~~~~~
+onDismiss(id) {
+  const isNotId = item => item.objectID !== id;
+  const updatedHits = this.state.result.hits.filter(isNotId);
+  this.setState({
+# leanpub-start-insert
+    result: { ...this.state.result, hits: updatedHits }
+# leanpub-end-insert
+  });
+}
+~~~~~~~~
+
+The dismiss functionality should work again.
+
+### Exercises:
+
+* read more about [Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+* read more about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+  * the object spread operator is briefly mentioned
+
+## Conditional Rendering
+
+The conditionaly rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all a conditional rendering can be expressed by a if-else condition in JSX.
+
+The result in the internal component state is null in the beginning. So far the App component returned no component instance when the result hasn't arrived from the API. That's already a conditional rendering! But it makes more sense to wrap the Table component - which depends on the result - in an independent conditional rendering. Everything else should be displayed even though there is no result yet. You can simply use a ternary expression in your JSX.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    const { query, result } = this.state;
+    return (
+      <div className="page">
+        <div className="interactions">
+          <Search
+            value={query}
+            onChange={this.onSearchChange}
+          >
+            Search
+          </Search>
+        </div>
+# leanpub-start-insert
+        { result ? <Table
             list={result.hits}
             pattern={query}
             onDismiss={this.onDismiss}
-          />
-          : null
+          /> : null
         }
 # leanpub-end-insert
       </div>
@@ -175,11 +352,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Have you noticed the conditional rendering? Before you fetch the data from the Hacker News API, the result in your internal component state is null. Thus you can't render the Table. After that you fetch the data to fill your table with items.
+That's only one option to express a conditional rendering. Another one is the logical `&&` operator. In JavaScript a true && 'Hello World' always evaluates to 'Hello World'. A false && 'Hello World' always evaluates to false.
 
-Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. Only after the the component is rendered after the initialization, the componentDidMount lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the render method again, but this time with populated data in your internal component state. The Table gets rendered.
-
-Let's get back to the conditional rendering. There is another approach when you return null for one of the blocks.
+In React if the condition is true, the expression right after && will be the output. If the condition is false, React ignores and skips the expression. It is applicable in the Table conditional rendering case, because it should return a Table or nothing.
 
 {lang=javascript}
 ~~~~~~~~
@@ -192,20 +367,17 @@ Let's get back to the conditional rendering. There is another approach when you 
 }
 ~~~~~~~~
 
-In the end it's a personal preference. But after all you should be able to see the fetched data in your list.
+These were 3 approaches to use conditional rendering in React. After all you should be able to see the fetched data in your list. Everything except the Table is displayed when the data fetching is pending.
 
 ### Exercises:
 
-* read more about [ES6 template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
 * read more about [React conditional rendering](https://facebook.github.io/react/docs/conditional-rendering.html)
-* read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
-* experiment with the [Hacker News API](https://hn.algolia.com/api)
 
 ## Client- or Server-side Interaction: Search
 
 When you use the search now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default query parameter.
 
-You can define an `onSubmit` function in your ES6 class component, which fetches results from the Hacker News API like in your `componentDidMount()` lifecycle method. But it fetches it with the modified query. Don't forget to bind the function.
+You can define an `onSubmit` method in your ES6 class component, which fetches results from the Hacker News API. It will be the same fetch like in your `componentDidMount()` lifecycle method. But it fetches it with the modified query from the submit input.
 
 {lang=javascript}
 ~~~~~~~~
@@ -239,7 +411,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Search component gets extended by a button element. The button will explicit trigger the search. Otherwise you would hit the Hacker News API every time your input changes. As alternative you could debounce (delay) the `onChange` callback and spare the button, but it would add more complexity at this time. Let's keep it without debounce.
+The Search component gets extended with a button. The button has to explicitly trigger the search. Otherwise you would fetch data every time from the Hacker News API when your input changes. As alternative you could debounce (delay) the `onChange()` function and spare the button, but it would add more complexity at this time. Let's keep it without debounce.
+
+First pass the `onSearchSubmit` method to your Search component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -252,13 +426,13 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-# leanpub-start-insert
           <Search
             value={query}
             onChange={this.onSearchChange}
+# leanpub-start-insert
             onSubmit={this.onSearchSubmit}
-          >
 # leanpub-end-insert
+          >
             Search
           </Search>
         </div>
@@ -273,7 +447,12 @@ class App extends Component {
     );
   }
 }
+~~~~~~~~
 
+Second introduce a button in your Search component. The button has the `type="submit"` and the form uses its `onSubmit` attribute to pass the `onSubmit` method. You can reuse the children property, but this time in the button.
+
+{lang=javascript}
+~~~~~~~~
 # leanpub-start-insert
 const Search = ({ value, onChange, onSubmit, children }) =>
   <form onSubmit={onSubmit}>
@@ -289,9 +468,7 @@ const Search = ({ value, onChange, onSubmit, children }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-Additionally the Search component gets the `onSubmit` callback. The form uses the callback, but the button has to define itself as type of submit.
-
-In the Table you can remove the filter functionality, because there will be no client-side filter anymore. The result comes directly from the API.
+In the Table you can remove the filter functionality, because there will be no client-side filter anymore. The result comes directly from the Hacker News API agzer you have clicked the Search button.
 
 {lang=javascript}
 ~~~~~~~~
@@ -303,15 +480,7 @@ class App extends Component {
     const { query, result } = this.state;
     return (
       <div className="page">
-        <div className="interactions">
-          <Search
-            value={query}
-            onChange={this.onSearchChange}
-            onSubmit={this.onSearchSubmit}
-          >
-            Search
-          </Search>
-        </div>
+        ...
 # leanpub-start-insert
         { result &&
           <Table
@@ -337,7 +506,7 @@ const Table = ({ list, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-When you try to search now, you will experience that the browser reloads. That's a native browser behaviour on submit in a form. In React you will often come across the `preventDefault()` event function to suppress native browser behaviour.
+When you try to search now, you will experience that the browser reloads. That's a native browser behavior of submit in a form. In React you will often come across the `preventDefault()` event function to suppress the native browser behavior.
 
 {lang=javascript}
 ~~~~~~~~
@@ -352,7 +521,7 @@ onSearchSubmit(event) {
 }
 ~~~~~~~~
 
-Now you should be able to search different Hacker News stories. There should be no client-sided search anymore.
+Now you should be able to search different Hacker News stories. You interact with a real world API. There should be no client-sided search anymore.
 
 ### Exercises:
 
@@ -360,13 +529,9 @@ Now you should be able to search different Hacker News stories. There should be 
 
 ## Paginated Fetch
 
-Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. The page property, which is 0 in the first response, can be used to fetch more paginated data. You only need to pass the next page with the same query to the API.
+Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. The page property - which is 0 in the first response - can be used to fetch more paginated data. You only need to pass the next page with the same query to the API.
 
-Let's place a button below of the Table component to fetch more data.
-
-TODO (Button removed)
-
-Before you will use the Button, you have to declare more composable API constants to use the page parameter.
+First let's extend the composable API constants that it can deal with pages of data.
 
 {lang=javascript}
 ~~~~~~~~
@@ -387,12 +552,14 @@ Now you can use these constants to add the page parameter to your API request.
 
 {lang=javascript}
 ~~~~~~~~
-`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}&${PARAM_PAGE}`
+var url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}&${PARAM_PAGE}`;
 
+// output
+console.log(url);
 // https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-The method `fetchSearchTopstories` will take the page as second argument. The `componentDidMount` and `onSearchSubmit` methods take the `DEFAULT_PAGE` for the initial and changed query API calls. They should fetch the first page on the first load, and every additional fetch should fetch the next page.
+The `fetchSearchTopstories` method will take the page as second argument. The `componentDidMount` and `onSearchSubmit` methods take the `DEFAULT_PAGE` for the initial and changed query API calls. They should fetch the first page on the first load. Every additional fetch should fetch the next page.
 
 {lang=javascript}
 ~~~~~~~~
@@ -428,7 +595,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can use the current page from the API response and the `fetchSearchTopstories` method in your button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick` function which takes the current search query and the current page + 1. The result will be the next page.
+Now you can use the current page from the API response. Next you want to use `fetchSearchTopstories` method in a button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick` function which takes the current search query and the current page + 1. The result will be the next page.
 
 {lang=javascript}
 ~~~~~~~~
@@ -473,7 +640,7 @@ class App extends Component {
 
 Make sure to default to page 0 when there is no result.
 
-There is one step missing. You fetch the next page of data, but it will overwrite the your old data. Instead of concatenating the old and new results, you replace it now. Let's adjust the functionality to add the new results rather than to overwrite it.
+There is one step missing. You fetch the next page of data, but it will overwrite your old data. You want to concatenate the old and new results. Let's adjust the functionality to add the new results rather than to overwrite it.
 
 {lang=javascript}
 ~~~~~~~~
@@ -493,15 +660,13 @@ setSearchTopstories(result) {
 
 First you get the hits and page from the result.
 
-Second you have to evaluate whether there are already old hits.
+Second you have to evaluate whether there are already old hits. When the page is 0, it's a new search request from `componentDidMount` or `onSearchSubmit`. The hits are empty. But when you click the More button to fetch paginated data the page isn't 0. It's the next page. The old hits are already stored in your state and thus can be used.
 
-When the page is 0, it's a new search request from `componentDidMount` or `onSearchSubmit`. The hits are empty. But when you click the More button to fetch paginated data the page isn't 0. It's the next page. The old hits are already stored in your state and thus can be used.
+Third you don't want to overwrite the old hits. You can merge old and new hits from the recent API request. The merge of both lists can be done with the ES6 array spread operator.
 
-Third once you have the old hits, which you don't want to overwrite, you can merge them with the hits from the recent API request. The merge of both lists might look foreign to you. It uses the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator) to spread every value in both lists into a new list.
+In the last step you set the merged hits and page in the internal component state.
 
-Last you set the merged hits and page in the internal component state. Make sure to understand what's happening here before you continue.
-
-You can make one last adjustment. When you try the More button it only fetches few items. The API path can be extended to fetch more data with each request. Again you can add more composable path constants.
+You can make one last adjustment. When you try the More button it only fetches a few items. The API url can be extended to fetch more data with each request. Again you can add more composable path constants.
 
 {lang=javascript}
 ~~~~~~~~
@@ -520,7 +685,7 @@ const PARAM_HPP = 'hitsPerPage=';
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can use the constants to extend the API path.
+Now you can use the constants to extend the API url.
 
 {lang=javascript}
 ~~~~~~~~
@@ -537,17 +702,17 @@ Afterwards the request to the Hacker News API fetches more data than before.
 
 ### Exercises:
 
-* make sure to understand what you are doing in setSearchTopstories
-* read more about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 * experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
 
 ## Client Cache
 
-Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. Since you already searched for "redux", you could spare the request and use a cached result from a previous request.
+Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. But you searched for "redux" twice and both times it took a whole asynchronous request to fetch the data. In a client sided cache you would store each result. When a request to the API is made, it checks if a result is already there.
 
-To implement that behaviour you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search query as key and result as value. Each result from the API will be saved by search query key.
+### Store Results, Not One Result
 
-Currently your result in the component state looks similar to the following:
+In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search query as key and result as value. Each result from the API will be saved by search term (key).
+
+At the moment your result in the component state looks similar to the following:
 
 {lang=javascript}
 ~~~~~~~~
@@ -557,7 +722,7 @@ result: {
 }
 ~~~~~~~~
 
-Now you want to change it to:
+Imagine you have made two API requests. One for the search term "redux" and another one for "react". The results map should look like the following:
 
 {lang=javascript}
 ~~~~~~~~
@@ -574,9 +739,7 @@ results: {
 }
 ~~~~~~~~
 
-Let's implement a client-side caching with React setState.
-
-First rename the result object to results in the initial component state.
+Let's implement a client-side caching with React setState. First rename the result object to results in the initial component state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -601,7 +764,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you have to adjust the functionality where the result is stored to the internal component state. It should store multiple results.
+Second you have to adjust the functionality where the result is stored to the internal component state. It should store multiple results.
 
 {lang=javascript}
 ~~~~~~~~
@@ -613,9 +776,7 @@ class App extends Component {
     const { hits, page } = result;
 # leanpub-start-insert
     const { query } = this.state;
-# leanpub-end-insert
 
-# leanpub-start-insert
     const oldHits = page === 0 ? [] : this.state.results[query].hits;
 # leanpub-end-insert
     const updatedHits = [ ...oldHits, ...hits ];
@@ -651,13 +812,9 @@ results: {
 
 The bottom part makes sure to store the updated result by search query in the results map. The value is an object with a hits and page property. The key is the search query. You already learned about the `[query]` syntax. It is an ES6 computed property key. It helps you to allocate values dynamically in an object.
 
-The upper part needs to spread all other results by search key in the state. Otherwise you would lose all results you stored before. That's what enables the cache.
+The upper part needs to object spread all other results by search key in the state. Otherwise you would lose all results you stored before.
 
-Before you have only used the ES6 array spread operator. This time it's an [object spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator). In ES6 the spread operator can be applied only to iterable objects like an array. The [object spread operator is a proposal](https://github.com/sebmarkbage/ecmascript-rest-spread) for a future ES version. But create-react-app incorporated the feature already, because it's widely used in the ecosystem.
-
-Now you cache all results by search query.
-
-In the next step you can retrieve the result depending on the search query from your map of results.
+Now you store all results by search query. That's the first step to enable your cache. In the next step you can retrieve the result depending on the search query from your map of results.
 
 {lang=javascript}
 ~~~~~~~~
@@ -673,17 +830,12 @@ class App extends Component {
 # leanpub-end-insert
     return (
       <div className="page">
-        <div className="interactions">
-          <Search
-            value={query}
-            onChange={this.onSearchChange}
-            onSubmit={this.onSearchSubmit}
-          >
-            Search
-          </Search>
-        </div>
+        ...
 # leanpub-start-insert
-        <Table list={list} onDismiss={this.onDismiss} />
+        <Table
+          list={list}
+          onDismiss={this.onDismiss}
+        />
 # leanpub-end-insert
         <div className="interactions">
           <Button onClick={() => this.fetchSearchTopstories(query, page + 1)}>
@@ -696,11 +848,13 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Since you default to an empty list when there is no result by search query, you can spare the conditional check for the Table component.
+Since you default to an empty list when there is no result by search query, you can spare the conditional rendering for the Table component.
 
-The search functionality should work again. It caches all results from the Hacker News API. But something feels wrong when you test it on your own. The search component works a bit unexpected. On submit, a server-side search request is made, as expected, but when you change the search query in the input field without hitting the submit button, the Table content changes  without hitting the submit button.
+The search functionality should work again. It stores all results from the Hacker News API. But something feels wrong when you test it on your own. The search component works a bit unexpected. On submit, a server-side search request is made. But when you change the search query in the input field without clicking the submit button, the Table content adjusts iteself.
 
-It makes more sense to trigger search explicitly on submit without a client-side search. The issue is that the result depends on the search query. But the search query changes every time you type something into the Search component. The query is a temporary property that changes all the time. On the other hand, you want to set a fixed search key once you hit the submit button to keep a fixed search result. Let's introduce a search key.
+### Server-Side Search
+
+It makes more sense to trigger the search explicitly on submit without a client-side search. The issue is that the displayed list of hits depends on the search query in the render method. But the search query changes every time you type something into the Search component. The query is a temporary property that changes all the time. On the other hand, you want to set a fixed search key once you click the submit button to keep a fixed search result. Let's introduce a search key.
 
 {lang=javascript}
 ~~~~~~~~
@@ -742,9 +896,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The search key will be the fixed search query. It gets assigned before you make the Hacker News API request.
+The search key will be the constant search query. It gets assigned before you make the Hacker News API request.
 
-Now instead of the query property, which is fluctuant, you will use the search key to get and set the result.
+Now instead of the query property, because it is fluctuant, you will use the search key to get and set the result.
 
 {lang=javascript}
 ~~~~~~~~
@@ -756,9 +910,7 @@ class App extends Component {
     const { hits, page } = result;
 # leanpub-start-insert
     const { searchKey } = this.state;
-# leanpub-end-insert
 
-# leanpub-start-insert
     const oldHits = page === 0 ? [] : this.state.results[searchKey].hits;
 # leanpub-end-insert
     const updatedHits = [ ...oldHits, ...hits ];
@@ -803,7 +955,10 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table list={list} onDismiss={this.onDismiss} />
+        <Table
+          list={list}
+          onDismiss={this.onDismiss}
+        />
         <div className="interactions">
 # leanpub-start-insert
           <Button onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
@@ -817,9 +972,37 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now try it again. The search should only happen once you click the submit button. Additionally each result will be cached.
+Now try it again. The search should only happen once you click the submit button. Additionally each result will be stored.
 
-However, nothing stops the app from sending an API request when you hit the submit button and there is already a cached result. What is a cached result when you don't use it? The last step would be to prevent the call when a result is available in the state.
+Additionally the onDismiss methods needs to get improved. It still deals with the result object. Now it has to deal with multiple results.
+
+{lang=javascript}
+~~~~~~~~
+  onDismiss(id) {
+# leanpub-start-insert
+    const { results, searchKey } = this.state;
+    const { hits, page } = results[searchKey];
+# leanpub-end-insert
+
+    const isNotId = item => item.objectID !== id;
+# leanpub-start-insert
+    const updatedHits = hits.filter(isNotId);
+
+    this.setState({
+      results: {
+        ...results,
+        [searchKey]: { hits: updatedHits, page }
+      }
+    });
+# leanpub-end-insert
+  }
+~~~~~~~~
+
+The dismiss functionality should work again.
+
+### Finalize Cache
+
+However, nothing stops the app from sending an API request on each submit. Even though there might be already a result, there is no check that prevents the API request. The cache functionality is not complete yet. The last step would be to prevent the call when a result is available in the state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -845,9 +1028,7 @@ class App extends Component {
     this.setState({ searchKey: query });
 # leanpub-start-insert
     if (this.needsToSearchTopstories(query)) {
-# leanpub-end-insert
       this.fetchSearchTopstories(query, DEFAULT_PAGE);
-# leanpub-start-insert
     }
 # leanpub-end-insert
     event.preventDefault();
@@ -858,11 +1039,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now your client hits the API only once although you search for a query twice. Even paginated data with several pages gets cached that way, because you always save the page for each result in the results map.
-
-### Exercises:
-
-* read more about the [ES6 object spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+Now your client makes a request to the API only once although you search for a query twice. Even paginated data with several pages gets cached that way, because you always save the page for each result in the results map.
 
 {pagebreak}
 
@@ -961,7 +1138,10 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table list={list} onDismiss={this.onDismiss} />
+        <Table
+          list={list}
+          onDismiss={this.onDismiss}
+        />
         <div className="interactions">
           <Button onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
             More
