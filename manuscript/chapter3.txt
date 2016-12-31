@@ -642,8 +642,14 @@ setSearchTopstories(result) {
 # leanpub-start-insert
   const { hits, page } = result;
 
-  const oldHits = page === 0 ? [] : this.state.result.hits;
-  const updatedHits = [ ...oldHits, ...hits ];
+  const oldHits = page !== 0
+    ? this.state.result.hits
+    : [];
+
+  const updatedHits = [
+    ...oldHits,
+    ...hits
+  ];
 
   this.setState({
     result: { hits: updatedHits, page }
@@ -654,11 +660,11 @@ setSearchTopstories(result) {
 
 First you get the hits and page from the result.
 
-Second you have to evaluate whether there are already old hits. When the page is 0, it's a new search request from `componentDidMount` or `onSearchSubmit`. The hits are empty. But when you click the More button to fetch paginated data the page isn't 0. It's the next page. The old hits are already stored in your state and thus can be used.
+Second you have to check if there are already old hits. When the page is 0, it is a new search request from `componentDidMount` or `onSearchSubmit`. The hits are empty. But when you click the "More" button to fetch paginated data the page isn't 0. It is the next page. The old hits are already stored in your state and thus can be used.
 
 Third you don't want to overwrite the old hits. You can merge old and new hits from the recent API request. The merge of both lists can be done with the ES6 array spread operator.
 
-In the last step you set the merged hits and page in the internal component state.
+Fourth you set the merged hits and page in the internal component state.
 
 You can make one last adjustment. When you try the More button it only fetches a few items. The API url can be extended to fetch more data with each request. Again you can add more composeable path constants.
 
