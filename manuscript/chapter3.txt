@@ -152,19 +152,12 @@ class App extends Component {
 # leanpub-start-insert
     const { query, result } = this.state;
 
-    if (!result) { return; }
+    if (!result) { return null; }
 
 # leanpub-end-insert
     return (
       <div className="page">
-        <div className="interactions">
-          <Search
-            value={query}
-            onChange={this.onSearchChange}
-          >
-            Search
-          </Search>
-        </div>
+        ...
         <Table
 # leanpub-start-insert
           list={result.hits}
@@ -306,7 +299,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-The dismiss functionality should work again.
+The "Dismiss" button should work again.
 
 ### Exercises:
 
@@ -327,7 +320,9 @@ class App extends Component {
   ...
 
   render() {
+# leanpub-start-insert
     const { query, result } = this.state;
+# leanpub-end-insert
     return (
       <div className="page">
         <div className="interactions">
@@ -339,11 +334,13 @@ class App extends Component {
           </Search>
         </div>
 # leanpub-start-insert
-        { result ? <Table
+        { result
+          ? <Table
             list={result.hits}
             pattern={query}
             onDismiss={this.onDismiss}
-          /> : null
+          />
+          : null
         }
 # leanpub-end-insert
       </div>
@@ -352,7 +349,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's only one option to express a conditional rendering. Another one is the logical `&&` operator. In JavaScript a true && 'Hello World' always evaluates to 'Hello World'. A false && 'Hello World' always evaluates to false.
+That's only one option to express a conditional rendering. Another option is the logical `&&` operator. In JavaScript a true && 'Hello World' always evaluates to 'Hello World'. A false && 'Hello World' always evaluates to false.
 
 In React if the condition is true, the expression right after && will be the output. If the condition is false, React ignores and skips the expression. It is applicable in the Table conditional rendering case, because it should return a Table or nothing.
 
@@ -375,7 +372,7 @@ These were 3 approaches to use conditional rendering in React. After all you sho
 
 ## Client- or Server-side Interaction: Search
 
-When you use the search now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default query parameter.
+When you use the search input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default query parameter.
 
 You can define an `onSubmit` method in your ES6 class component, which fetches results from the Hacker News API. It will be the same fetch like in your `componentDidMount()` lifecycle method. But it fetches it with the modified query from the submit input.
 
@@ -481,18 +478,20 @@ class App extends Component {
     return (
       <div className="page">
         ...
-# leanpub-start-insert
         { result &&
           <Table
+# leanpub-start-insert
             list={result.hits}
             onDismiss={this.onDismiss}
+# leanpub-end-insert
           />
         }
-# leanpub-end-insert
       </div>
     );
   }
 }
+
+...
 
 # leanpub-start-insert
 const Table = ({ list, onDismiss }) =>
@@ -595,7 +594,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can use the current page from the API response. Next you want to use `fetchSearchTopstories` method in a button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick` function which takes the current search query and the current page + 1. The result will be the next page.
+Now you can use the current page from the API response.
+
+Next you want to use `fetchSearchTopstories` method in a button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick` function which takes the current search query and the current page + 1. The result will be the next page.
 
 {lang=javascript}
 ~~~~~~~~
@@ -611,14 +612,7 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search
-            value={query}
-            onChange={this.onSearchChange}
-            onSubmit={this.onSearchSubmit}
-          >
-            Search
-          </Search>
-        </div>
+        ...
         { result &&
           <Table
             list={result.hits}
