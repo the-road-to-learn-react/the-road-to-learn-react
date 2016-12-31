@@ -306,7 +306,7 @@ But now you need to pass the query property to your evaluation process. That's w
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-function isSearched(query) {
+isSearched(query) {
   return function(item) {
     return !query || item.title.toLowerCase().includes(query.toLowerCase());
   }
