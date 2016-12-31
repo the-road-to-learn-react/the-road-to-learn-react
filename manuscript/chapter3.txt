@@ -1151,9 +1151,8 @@ You have learned to interact with an API in React! Let's recap the last chapters
 * React
   * ES6 class component lifecycle methods for different use cases
   * componentDidMount() for API interactions
-  * conditional rendering approaches
+  * conditional renderings
   * synthetic events on forms
-  * reusable components like a Button
 * ES6
   * template strings
   * spread operator

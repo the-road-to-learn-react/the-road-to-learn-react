@@ -58,7 +58,7 @@ Now Jest enables you to write Snapshot tests. These tests make a snapshot of you
 
 Jest stores the snapshots in a folder. Only that way it can show the diff to future snapshots. Additionally the snapshots can be shared across teams.
 
-Before you can write your first Snapshot test you have to install an utility library.
+You have to install an utility library before you can write your first Snapshot test.
 
 {lang=javascript}
 ~~~~~~~~
@@ -102,16 +102,20 @@ describe('App', () => {
 
 Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the Snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component render function.
 
-Let's add more tests for our independent components.
+Let's add more tests for our independent components. First the Search component.
 
 {lang=javascript}
 ~~~~~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
+# leanpub-start-insert
+import App, { Search } from './App'
+# leanpub-end-insert
+
 ...
 
-import { Search, Button } from './App'
-
-...
-
+# leanpub-start-insert
 describe('Search', () => {
 
   it('renders', () => {
@@ -128,7 +132,21 @@ describe('Search', () => {
   });
 
 });
+# leanpub-end-insert
+~~~~~~~~
 
+Second the Button component.
+
+{lang=javascript}
+~~~~~~~~
+...
+# leanpub-start-insert
+import App, { Search, Button } from './App'
+# leanpub-end-insert
+
+...
+
+# leanpub-start-insert
 describe('Button', () => {
 
   it('renders', () => {
@@ -145,18 +163,21 @@ describe('Button', () => {
   });
 
 });
+# leanpub-end-insert
 ~~~~~~~~
 
-Moreover you can add tests for the Table.
+Last but not least for the Table component.
 
 {lang=javascript}
 ~~~~~~~~
 ...
-
-import { Search, Button, Table } from './App'
+# leanpub-start-insert
+import App, { Search, Button, Table } from './App'
+# leanpub-end-insert
 
 ...
 
+# leanpub-start-insert
 describe('Table', () => {
 
   const props = {
@@ -180,6 +201,7 @@ describe('Table', () => {
   });
 
 });
+# leanpub-end-insert
 ~~~~~~~~
 
 Snapshot tests usually stay pretty basic. You only want to cover that the component doesn't change its output.
@@ -207,10 +229,13 @@ Now you can write your first unit test in the Table describe block. You will use
 
 {lang=javascript}
 ~~~~~~~~
-...
+import React from 'react';
+import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 # leanpub-start-insert
 import { shallow } from 'enzyme';
 # leanpub-end-insert
+import App, { Search, Button, Table } from './App'
 
 describe('Table', () => {
 
@@ -254,7 +279,7 @@ You could continue to unit test your components. But make sure to keep the tests
 
 ## Loading ...
 
-Now let's get back to your application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component.
+Now let's get back to your application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component in your *App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
@@ -273,8 +298,8 @@ class App extends Component {
 
     this.state = {
       results: null,
-      query: DEFAULT_QUERY,
       searchKey: '',
+      query: DEFAULT_QUERY,
 # leanpub-start-insert
       isLoading: false,
 # leanpub-end-insert
@@ -300,19 +325,25 @@ class App extends Component {
 
   setSearchTopstories(result) {
     const { hits, page } = result;
-    const { searchKey } = this.state;
+    const { searchKey, results } = this.state;
 
-    const oldHits = page === 0 ? [] : this.state.results[searchKey].hits;
-    const updatedHits = [ ...oldHits, ...hits ];
+    const oldHits = results && results[searchKey]
+      ? results[searchKey].hits
+      : [];
+
+    const updatedHits = [
+      ...oldHits,
+      ...hits
+    ];
 
     this.setState({
       results: {
-        ...this.state.results,
+        ...results,
         [searchKey]: { hits: updatedHits, page }
       },
-# leanpub-start-insert
+      # leanpub-start-insert
       isLoading: false
-# leanpub-end-insert
+      # leanpub-end-insert
     });
   }
 
@@ -362,14 +393,13 @@ class App extends Component {
         />
         <div className="interactions">
 # leanpub-start-insert
-        { isLoading ?
-          <Loading /> :
-# leanpub-end-insert
-          <Button onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
-            More
-          </Button>
-# leanpub-start-insert
-        }
+          { isLoading
+            ? <Loading />
+            : <Button
+              onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
+              More
+            </Button>
+          }
 # leanpub-end-insert
         </div>
       </div>
@@ -384,16 +414,16 @@ Initially the Loading component will show up when you start your app, because yo
 
 * use a library like [Font Awesome](http://fontawesome.io/) to show a loading icon instead of text
 
-## Higher Order Component
+## Higher Order Components
 
 Higher order components (HOC) are equivalent to higher order functions. They take any input, mostly a component, and return a component as output. The component gets modified on the way.
 
-Let's do a simple HOC which takes a component as input and returns a component.
+Let's do a simple HOC which takes a component as input and returns a component. You can place it in your *App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
 const withSomething = (Component) => (props) =>
-  <Component { ...props } />;
+  <Component { ...props } />
 ~~~~~~~~
 
 In the example the input component would be the same as the output component. It renders the same component instance and passes all of the props to the output component.
@@ -404,7 +434,7 @@ Now let's enhance the output component. The output component should show the Loa
 ~~~~~~~~
 # leanpub-start-insert
 const withLoading = (Component) => ({ isLoading, ...rest }) =>
-  isLoading ? <Loading /> : <Component { ...rest } />;
+  isLoading ? <Loading /> : <Component { ...rest } />
 # leanpub-end-insert
 ~~~~~~~~
 
@@ -416,16 +446,15 @@ In general it can be very efficient to spread an object as input for a component
 
 {lang=javascript}
 ~~~~~~~~
-// before you had to destructure the props before passing them
+// before you would have to destructure the props before passing them
 const { foo, bar } = props;
+<SomeComponent foo={foo} bar={bar} />
 
-<SomeComponent foo={foo} bar={bar} />;
-
-// but you can use the ES6 object spread operator to pass all object properties
-<SomeComponent { ...props } />;
+// but you can use the object spread operator to pass all object properties
+<SomeComponent { ...props } />
 ~~~~~~~~
 
-Now you can use the HOC. In your use case you want to show either the More Button or Loading component. The HOC can take the Button component as input. The output is a ButtonWithLoading component.
+Now you can use the HOC. In your use case you want to show either the "More" button or Loading component. The HOC can take the Button component as input. The output is a ButtonWithLoading component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -437,12 +466,15 @@ const Button = ({ onClick, children }) =>
 const Loading = () =>
   <div>Loading ...</div>
 
+const withLoading = (Component) => ({ isLoading, ...rest }) =>
+  isLoading ? <Loading /> : <Component { ...rest } />
+
 # leanpub-start-insert
 const ButtonWithLoading = withLoading(Button);
 # leanpub-end-insert
 ~~~~~~~~
 
-As last step you have to use the ButtonWithLoading component which receives the loading state as additionally property. While the HOC consumes the loading property, the `onClick property gets passed to the Button component.
+Everything is set up. As last step you have to use the ButtonWithLoading component which receives the loading state as additionally property. While the HOC consumes the loading property, the `onClick property gets passed to the Button component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -473,10 +505,8 @@ class App extends Component {
 # leanpub-start-insert
           <ButtonWithLoading
             isLoading={isLoading}
-# leanpub-end-insert
             onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
             More
-# leanpub-start-insert
           </ButtonWithLoading>
 # leanpub-end-insert
         </div>
