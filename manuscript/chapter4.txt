@@ -372,25 +372,19 @@ class App extends Component {
 
   render() {
 # leanpub-start-insert
-    const { query, results, searchKey, isLoading } = this.state;
+    const {
+      query,
+      results,
+      searchKey,
+      isLoading
+    } = this.state;
+
 # leanpub-end-insert
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
     return (
       <div className="page">
-        <div className="interactions">
-          <Search
-            value={query}
-            onChange={this.onSearchChange}
-            onSubmit={this.onSearchSubmit}
-          >
-            Search
-          </Search>
-        </div>
-        <Table
-          list={list}
-          onDismiss={this.onDismiss}
-        />
+        ...
         <div className="interactions">
 # leanpub-start-insert
           { isLoading
@@ -483,24 +477,10 @@ class App extends Component {
   ...
 
   render() {
-    const { query, results, searchKey, isLoading } = this.state;
-    const page = (results && results[searchKey] && results[searchKey].page) || 0;
-    const list = (results && results[searchKey] && results[searchKey].hits) || [];
+    ...
     return (
       <div className="page">
-        <div className="interactions">
-          <Search
-            value={query}
-            onChange={this.onSearchChange}
-            onSubmit={this.onSearchSubmit}
-          >
-            Search
-          </Search>
-        </div>
-        <Table
-          list={list}
-          onDismiss={this.onDismiss}
-        />
+        ...
         <div className="interactions">
 # leanpub-start-insert
           <ButtonWithLoading
@@ -525,9 +505,9 @@ Higher order components are an advanced technique in React. They enable multi-pu
 
 ## Advanced Sorting
 
-You already have implemented a client- and server-sided search functionality. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about enabling to sort the Table columns?
+You already have implemented a client- and server-sided search interaction. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about enabling to sort the Table columns?
 
-It would be possible to write an own sort function, but personally I prefer to use utility libraries for such cases. [Lodash](https://lodash.com/) is one of these utility libraries. Let's install and use it for the sort functionality.
+It would be possible to write an own sort function, but personally I prefer to use an utility library for such cases. [Lodash](https://lodash.com/) is one of these utility libraries. Let's install and use it for the sort functionality.
 
 {lang=javascript}
 ~~~~~~~~
@@ -538,13 +518,20 @@ Now you can import the sort functionality of lodash in your *App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
+import React, { Component } from 'react';
+# leanpub-start-insert
 import { sortBy } from 'lodash';
+# leanpub-end-insert
+import './App.css';
 ~~~~~~~~
 
 You have four columns in your Table: title, author, comments and points. For each of them you can define a sort function where each function takes a list and returns a list of items sorted by property. Additionally you will need one default sort function which doesn't sort but only returns the unsorted list.
 
 {lang=javascript}
 ~~~~~~~~
+...
+
+# leanpub-start-insert
 const SORTS = {
   NONE: list => list,
   TITLE: list => sortBy(list, 'title'),
@@ -552,6 +539,12 @@ const SORTS = {
   COMMENTS: list => sortBy(list, 'num_comments').reverse(),
   POINTS: list => sortBy(list, 'points').reverse(),
 };
+# leanpub-end-insert
+
+class App extends Component {
+  ...
+}
+...
 ~~~~~~~~
 
 You can see that two of the sort functions are reverse. That's because you want to see the items with the highest comments and points rather than to see the items with the lowest. The `SORTS` object allows you to reference any sort function now.
@@ -562,16 +555,18 @@ Again your App component is responsible to store the state of the sort. The init
 ~~~~~~~~
 this.state = {
   results: null,
-  query: DEFAULT_QUERY,
   searchKey: '',
+  query: DEFAULT_QUERY,
   isLoading: false,
+# leanpub-start-insert
   sortKey: 'NONE',
+# leanpub-end-insert
 };
 ~~~~~~~~
 
 Once you choose a different `sortKey`, let's say `AUTHOR`, you will sort the list by the author property.
 
-Now you can define a new sort method in your App component which simply sets a sort key to your internal component state.
+Now you can define a new sort method in your App component which simply sets a `sortKey` to your internal component state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -581,18 +576,17 @@ class App extends Component {
 
     ...
 
+
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
     this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
-    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
     this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
 # leanpub-start-insert
     this.onSort = this.onSort.bind(this);
 # leanpub-end-insert
-    this.onDismiss = this.onDismiss.bind(this);
   }
-
-  ...
 
 # leanpub-start-insert
   onSort(sortKey) {
@@ -615,7 +609,14 @@ class App extends Component {
 
   render() {
 # leanpub-start-insert
-    const { query, results, searchKey, isLoading, sortKey } = this.state;
+    const {
+      query,
+      results,
+      searchKey,
+      isLoading,
+      sortKey
+    } = this.state;
+
 # leanpub-end-insert
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
@@ -630,14 +631,14 @@ class App extends Component {
             Search
           </Search>
         </div>
-# leanpub-start-insert
         <Table
           list={list}
+# leanpub-start-insert
           sortKey={sortKey}
-          onDismiss={this.onDismiss}
           onSort={this.onSort}
-        />
 # leanpub-end-insert
+          onDismiss={this.onDismiss}
+        />
         <div className="interactions">
           <ButtonWithLoading
             isLoading={isLoading}
@@ -656,7 +657,7 @@ The Table component is responsible to sort the list. It takes one of the `SORT` 
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const Table = ({ list, sortKey, onDismiss, onSort }) =>
+const Table = ({ list, sortKey, onSort, onDismiss }) =>
 # leanpub-end-insert
   <div className="table">
 # leanpub-start-insert
@@ -693,7 +694,7 @@ In theory the list would get sorted by one of the functions. But the default sor
 
 {lang=javascript}
 ~~~~~~~~
-const Table = ({ list, sortKey, onDismiss, onSort }) =>
+const Table = ({ list, sortKey, onSort, onDismiss }) =>
   <div className="table">
 # leanpub-start-insert
     <div className="table-header">
@@ -752,7 +753,7 @@ const Sort = ({ sortKey, onSort, children }) =>
 
 As you can see the Sort component reuses your common Button component. On click each individual passed `sortKey` will get set by the `onSort` method. Now you should be able to sort the list by clicking on the column headers.
 
-But a button as column header looks a bit stupid. Let's give the Sort a proper className.
+But a button as column header looks a bit silly. Let's give the Sort a proper className.
 
 {lang=javascript}
 ~~~~~~~~
@@ -767,30 +768,14 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-Since a className doesn't get applied to a component, your abstract Button component needs to take care of it.
-
-{lang=javascript}
-~~~~~~~~
-# leanpub-start-insert
-const Button = ({ onClick, className, children }) =>
-  <button
-    onClick={onClick}
-    className={className}
-    type="button"
-  >
-# leanpub-end-insert
-    {children}
-  </button>
-~~~~~~~~
-
 It should look nice now. The next goal would be to implement reverse sort as well. The list should get reverse sorted once you click a Sort component twice. First you need to define the reverse state.
 
 {lang=javascript}
 ~~~~~~~~
 this.state = {
   results: null,
-  query: DEFAULT_QUERY,
   searchKey: '',
+  query: DEFAULT_QUERY,
   isLoading: false,
   sortKey: 'NONE',
 # leanpub-start-insert
@@ -821,21 +806,21 @@ class App extends Component {
 
   render() {
 # leanpub-start-insert
-    const { query, results, searchKey, isLoading, sortKey, isSortReverse } = this.state;
+    const {
+      query,
+      results,
+      searchKey,
+      isLoading,
+      sortKey,
+      isSortReverse
+    } = this.state;
+
 # leanpub-end-insert
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
     return (
       <div className="page">
-        <div className="interactions">
-          <Search
-            value={query}
-            onChange={this.onSearchChange}
-            onSubmit={this.onSearchSubmit}
-          >
-            Search
-          </Search>
-        </div>
+        ...
         <Table
           list={list}
           sortKey={sortKey}
@@ -845,13 +830,7 @@ class App extends Component {
           onDismiss={this.onDismiss}
           onSort={this.onSort}
         />
-        <div className="interactions">
-          <ButtonWithLoading
-            isLoading={isLoading}
-            onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
-            More
-          </ButtonWithLoading>
-        </div>
+        ...
       </div>
     );
   }
@@ -863,12 +842,18 @@ The Table has to have a block body to compute the data now.
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const Table = ({ list, sortKey, isSortReverse, onDismiss, onSort }) => {
+const Table = ({
+  list,
+  sortKey,
+  isSortReverse,
+  onSort,
+  onDismiss
+}) => {
   const sortedList = SORTS[sortKey](list);
-  const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
-# leanpub-end-insert
+  const reverseSortedList = isSortReverse
+    ? sortedList.reverse()
+    : sortedList;
 
-# leanpub-start-insert
   return(
 # leanpub-end-insert
     <div className="table">
@@ -893,56 +878,64 @@ Last but not least you have to deal with one open question for the sake of a goo
 
 {lang=javascript}
 ~~~~~~~~
-const Table = ({ list, sortKey, isSortReverse, onDismiss, onSort }) => {
+const Table = ({
+  list,
+  sortKey,
+  isSortReverse,
+  onSort,
+  onDismiss
+}) => {
   const sortedList = SORTS[sortKey](list);
-  const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
+  const reverseSortedList = isSortReverse
+    ? sortedList.reverse()
+    : sortedList;
 
   return(
     <div className="table">
       <div className="table-header">
         <span style={{ width: '40%' }}>
-# leanpub-start-insert
           <Sort
             sortKey={'TITLE'}
             onSort={onSort}
+# leanpub-start-insert
             activeSortKey={sortKey}
+# leanpub-end-insert
           >
             Title
           </Sort>
-# leanpub-end-insert
         </span>
         <span style={{ width: '30%' }}>
-# leanpub-start-insert
           <Sort
             sortKey={'AUTHOR'}
             onSort={onSort}
+# leanpub-start-insert
             activeSortKey={sortKey}
+# leanpub-end-insert
           >
             Author
           </Sort>
-# leanpub-end-insert
         </span>
         <span style={{ width: '10%' }}>
-# leanpub-start-insert
           <Sort
             sortKey={'COMMENTS'}
             onSort={onSort}
+# leanpub-start-insert
             activeSortKey={sortKey}
+# leanpub-end-insert
           >
             Comments
           </Sort>
-# leanpub-end-insert
         </span>
         <span style={{ width: '10%' }}>
-# leanpub-start-insert
           <Sort
             sortKey={'POINTS'}
             onSort={onSort}
+# leanpub-start-insert
             activeSortKey={sortKey}
+# leanpub-end-insert
           >
             Points
           </Sort>
-# leanpub-end-insert
           <span style={{ width: '10%' }}>
             Archive
           </span>
@@ -969,15 +962,12 @@ const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
   }
 
   return (
-    <button
+    <Button
       onClick={() => onSort(sortKey)}
       className={sortClass.join(' ')}
-      type="button"
     >
-# leanpub-end-insert
       {children}
-    </button>
-# leanpub-start-insert
+    </Button>
   );
 }
 # leanpub-end-insert
@@ -994,7 +984,12 @@ And second you have to import it on top of your *App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
+import React, { Component } from 'react';
+import { sortBy } from 'lodash';
+# leanpub-start-insert
 import classNames from 'classnames';
+# leanpub-end-insert
+import './App.css';
 ~~~~~~~~
 
 Now you can use it to define your component `className` with conditional classes.
@@ -1011,14 +1006,13 @@ const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
 
   return (
 # leanpub-start-insert
-    <button
+    <Button
       onClick={() => onSort(sortKey)}
       className={sortClass}
-      type="button"
     >
 # leanpub-end-insert
       {children}
-    </button>
+    </Button>
   );
 }
 ~~~~~~~~
@@ -1030,7 +1024,6 @@ Your advanced sort interaction is complete now. Enjoy to sort the list!
 * use a library like [Font Awesome](http://fontawesome.io/) to indicate the (reverse) sort
   * it could be an arrow up/down icon next to each Sort header
 * read more about [classnames library](https://github.com/JedWatson/classnames)
-* implement another interaction
 
 {pagebreak}
 
@@ -1068,8 +1061,8 @@ class App extends Component {
 
     this.state = {
       results: null,
-      query: DEFAULT_QUERY,
       searchKey: '',
+      query: DEFAULT_QUERY,
       isLoading: false,
       sortKey: 'NONE',
       isSortReverse: false,
@@ -1077,23 +1070,49 @@ class App extends Component {
 
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
     this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
-    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
-    this.onSearchChange = this.onSearchChange.bind(this);
-    this.onSearchSubmit = this.onSearchSubmit.bind(this);
-    this.onSort = this.onSort.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+    this.onSort = this.onSort.bind(this);
+  }
+
+  onSort(sortKey) {
+    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
+    this.setState({ sortKey, isSortReverse });
+  }
+
+  needsToSearchTopstories(query) {
+    return !this.state.results[query];
+  }
+
+  onSearchSubmit(event) {
+    const { query } = this.state;
+    this.setState({ searchKey: query });
+
+    if (this.needsToSearchTopstories(query)) {
+      this.fetchSearchTopstories(query, DEFAULT_PAGE);
+    }
+
+    event.preventDefault();
   }
 
   setSearchTopstories(result) {
     const { hits, page } = result;
-    const { searchKey } = this.state;
+    const { searchKey, results } = this.state;
 
-    const oldHits = page === 0 ? [] : this.state.results[searchKey].hits;
-    const updatedHits = [ ...oldHits, ...hits ];
+    const oldHits = results && results[searchKey]
+      ? results[searchKey].hits
+      : [];
+
+    const updatedHits = [
+      ...oldHits,
+      ...hits
+    ];
 
     this.setState({
       results: {
-        ...this.state.results,
+        ...results,
         [searchKey]: { hits: updatedHits, page }
       },
       isLoading: false
@@ -1114,30 +1133,34 @@ class App extends Component {
     this.fetchSearchTopstories(query, DEFAULT_PAGE);
   }
 
-  needsToSearchTopstories(query) {
-    return !this.state.results[query];
+  onDismiss(id) {
+    const { searchKey, results } = this.state;
+    const { hits, page } = results[searchKey];
+
+    const isNotId = item => item.objectID !== id;
+    const updatedHits = hits.filter(isNotId);
+
+    this.setState({
+      results: {
+        ...results,
+        [searchKey]: { hits: updatedHits, page }
+      }
+    });
   }
 
   onSearchChange(event) {
     this.setState({ query: event.target.value });
   }
 
-  onSearchSubmit(event) {
-    const { query } = this.state;
-    this.setState({ searchKey: query });
-    if (this.needsToSearchTopstories(query)) {
-      this.fetchSearchTopstories(query, DEFAULT_PAGE);
-    }
-    event.preventDefault();
-  }
-
-  onSort(sortKey) {
-    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
-    this.setState({ sortKey, isSortReverse });
-  }
-
   render() {
-    const { query, results, searchKey, isLoading, sortKey, isSortReverse } = this.state;
+    const {
+      query,
+      results,
+      searchKey,
+      isLoading,
+      sortKey,
+      isSortReverse
+    } = this.state;
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
     return (
@@ -1155,8 +1178,8 @@ class App extends Component {
           list={list}
           sortKey={sortKey}
           isSortReverse={isSortReverse}
-          onDismiss={this.onDismiss}
           onSort={this.onSort}
+          onDismiss={this.onDismiss}
         />
         <div className="interactions">
           <ButtonWithLoading
@@ -1182,9 +1205,17 @@ const Search = ({ value, onChange, onSubmit, children }) =>
     </button>
   </form>
 
-const Table = ({ list, sortKey, isSortReverse, onDismiss, onSort }) => {
+const Table = ({
+  list,
+  sortKey,
+  isSortReverse,
+  onSort,
+  onDismiss
+}) => {
   const sortedList = SORTS[sortKey](list);
-  const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
+  const reverseSortedList = isSortReverse
+    ? sortedList.reverse()
+    : sortedList;
 
   return(
     <div className="table">
@@ -1246,36 +1277,18 @@ const Table = ({ list, sortKey, isSortReverse, onDismiss, onSort }) => {
           <span style={{ width: '10%' }}>
             <Button
               onClick={() => onDismiss(item.objectID)}
-              className="inline-button"
+              className="button-inline"
             >
               Dismiss
             </Button>
           </span>
-      </div>
         </div>
       )}
     </div>
   );
 }
 
-const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
-  const sortClass = classNames(
-    'button-inline',
-    { 'button-active': sortKey === activeSortKey }
-  );
-
-  return (
-    <button
-      onClick={() => onSort(sortKey)}
-      className={sortClass}
-      type="button"
-    >
-      {children}
-    </button>
-  );
-}
-
-const Button = ({ onClick, className, children }) =>
+const Button = ({ onClick, className = '', children }) =>
   <button
     onClick={onClick}
     className={className}
@@ -1288,9 +1301,25 @@ const Loading = () =>
   <div>Loading ...</div>
 
 const withLoading = (Component) => ({ isLoading, ...rest }) =>
-  isLoading ? <Loading /> : <Component { ...rest } />;
+  isLoading ? <Loading /> : <Component { ...rest } />
 
 const ButtonWithLoading = withLoading(Button);
+
+const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
+  const sortClass = classNames(
+    'button-inline',
+    { 'button-active': sortKey === activeSortKey }
+  );
+
+  return (
+    <Button
+      onClick={() => onSort(sortKey)}
+      className={sortClass}
+    >
+      {children}
+    </Button>
+  );
+}
 
 export default App;
 
