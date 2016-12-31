@@ -706,11 +706,11 @@ Afterwards the request to the Hacker News API fetches more data than before.
 
 ## Client Cache
 
-Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. But you searched for "redux" twice and both times it took a whole asynchronous request to fetch the data. In a client sided cache you would store each result. When a request to the API is made, it checks if a result is already there.
+Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. But you searched for "redux" twice and both times it took a whole asynchronous request to fetch the data. In a client-sided cache you would store each result. When a request to the API is made, it checks if a result is already there. If it is there, the cache is used. Otherwise an API request is made to fetch the data.
 
 ### Store Results, Not One Result
 
-In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search query as key and result as value. Each result from the API will be saved by search term (key).
+In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search query as key and the result as value. Each result from the API will be saved by search term (key).
 
 At the moment your result in the component state looks similar to the following:
 
@@ -739,7 +739,7 @@ results: {
 }
 ~~~~~~~~
 
-Let's implement a client-side caching with React setState. First rename the result object to results in the initial component state.
+Let's implement a client-side cache with React setState. First rename the result object to results in the initial component state. Second define a temporary searchKey which is used to store each result.
 
 {lang=javascript}
 ~~~~~~~~
@@ -751,144 +751,13 @@ class App extends Component {
     this.state = {
 # leanpub-start-insert
       results: null,
-# leanpub-end-insert
-      query: DEFAULT_QUERY,
-    };
-
-    ...
-
-  }
-
-  ...
-
-}
-~~~~~~~~
-
-Second you have to adjust the functionality where the result is stored to the internal component state. It should store multiple results.
-
-{lang=javascript}
-~~~~~~~~
-class App extends Component {
-
-  ...
-
-  setSearchTopstories(result) {
-    const { hits, page } = result;
-# leanpub-start-insert
-    const { query } = this.state;
-
-    const oldHits = page === 0 ? [] : this.state.results[query].hits;
-# leanpub-end-insert
-    const updatedHits = [ ...oldHits, ...hits ];
-
-    this.setState({
-# leanpub-start-insert
-      results: {
-        ...this.state.results,
-        [query]: { hits: updatedHits, page }
-      }
-# leanpub-end-insert
-    });
-  }
-
-  ...
-
-}
-~~~~~~~~
-
-In general the search query will be used as key to save the updated hits and page in a results map.
-
-Therefore you have to retrieve the search query from the component state. The old hits have to get merged with the new hits as before. But this time the old hits get retrieved from the results map with the search query as key.
-
-At the end a new result can be set in the results map in the internal component state. Let's examine the results object in setState.
-
-{lang=javascript}
-~~~~~~~~
-results: {
-  ...this.state.results,
-  [query]: { hits: updatedHits, page }
-}
-~~~~~~~~
-
-The bottom part makes sure to store the updated result by search query in the results map. The value is an object with a hits and page property. The key is the search query. You already learned about the `[query]` syntax. It is an ES6 computed property key. It helps you to allocate values dynamically in an object.
-
-The upper part needs to object spread all other results by search key in the state. Otherwise you would lose all results you stored before.
-
-Now you store all results by search query. That's the first step to enable your cache. In the next step you can retrieve the result depending on the search query from your map of results.
-
-{lang=javascript}
-~~~~~~~~
-class App extends Component {
-
-  ...
-
-  render() {
-# leanpub-start-insert
-    const { query, results } = this.state;
-    const page = (results && results[query] && results[query].page) || 0;
-    const list = (results && results[query] && results[query].hits) || [];
-# leanpub-end-insert
-    return (
-      <div className="page">
-        ...
-# leanpub-start-insert
-        <Table
-          list={list}
-          onDismiss={this.onDismiss}
-        />
-# leanpub-end-insert
-        <div className="interactions">
-          <Button onClick={() => this.fetchSearchTopstories(query, page + 1)}>
-            More
-          </Button>
-        </div>
-      </div>
-    );
-  }
-}
-~~~~~~~~
-
-Since you default to an empty list when there is no result by search query, you can spare the conditional rendering for the Table component.
-
-The search functionality should work again. It stores all results from the Hacker News API. But something feels wrong when you test it on your own. The search component works a bit unexpected. On submit, a server-side search request is made. But when you change the search query in the input field without clicking the submit button, the Table content adjusts itself.
-
-### Server-Side Search
-
-It makes more sense to trigger the search explicitly on submit without a client-side search. The issue is that the displayed list of hits depends on the search query in the render method. But the search query changes every time you type something into the Search component. The query is a temporary property that changes all the time. On the other hand, you want to set a fixed search key once you click the submit button to keep a fixed search result. Let's introduce a search key.
-
-{lang=javascript}
-~~~~~~~~
-class App extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      results: null,
-      query: DEFAULT_QUERY,
-# leanpub-start-insert
       searchKey: '',
 # leanpub-end-insert
+      query: DEFAULT_QUERY,
     };
 
     ...
-  }
 
-  onSearchSubmit(event) {
-    const { query } = this.state;
-# leanpub-start-insert
-    this.setState({ searchKey: query });
-# leanpub-end-insert
-    this.fetchSearchTopstories(query, DEFAULT_PAGE);
-    event.preventDefault();
-  }
-
-  componentDidMount() {
-    const { query } = this.state;
-# leanpub-start-insert
-    this.setState({ searchKey: query });
-# leanpub-end-insert
-    this.fetchSearchTopstories(query, DEFAULT_PAGE);
   }
 
   ...
@@ -896,9 +765,29 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The search key will be the constant search query. It gets assigned before you make the Hacker News API request.
+The searchKey has to be set before each request is made. It reflects the query. But why don't we use the query instead? The query is a fluctuant variable, because it get changed every time you type into the Search input field. However in the end you will need a non fluctuant variable to determine the recent submitted search term to the API.
 
-Now instead of the query property, because it is fluctuant, you will use the search key to get and set the result.
+{lang=javascript}
+~~~~~~~~
+onSearchSubmit(event) {
+  const { query } = this.state;
+# leanpub-start-insert
+  this.setState({ searchKey: query });
+# leanpub-end-insert
+  this.fetchSearchTopstories(query, DEFAULT_PAGE);
+  event.preventDefault();
+}
+
+componentDidMount() {
+  const { query } = this.state;
+# leanpub-start-insert
+  this.setState({ searchKey: query });
+# leanpub-end-insert
+  this.fetchSearchTopstories(query, DEFAULT_PAGE);
+}
+~~~~~~~~
+
+Now you have to adjust the functionality where the result is stored to the internal component state. It should store each result by searchKey.
 
 {lang=javascript}
 ~~~~~~~~
@@ -909,16 +798,22 @@ class App extends Component {
   setSearchTopstories(result) {
     const { hits, page } = result;
 # leanpub-start-insert
-    const { searchKey } = this.state;
+    const { searchKey, results } = this.state;
 
-    const oldHits = page === 0 ? [] : this.state.results[searchKey].hits;
+    const oldHits = results && results[searchKey]
+      ? results[searchKey].hits
+      : [];
 # leanpub-end-insert
-    const updatedHits = [ ...oldHits, ...hits ];
+
+    const updatedHits = [
+      ...oldHits,
+      ...hits
+    ];
 
     this.setState({
 # leanpub-start-insert
       results: {
-        ...this.state.results,
+        ...results,
         [searchKey]: { hits: updatedHits, page }
       }
 # leanpub-end-insert
@@ -930,7 +825,27 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the render lifecycle method you will use the search key as well. But make sure to keep the query property for the input field in the Search component, which stays fluctuant.
+In general the search term will be used as key to save the updated hits and page in a results map.
+
+First you have to retrieve the searchKey from the component state. Remember that the searchKey gets set on `componentDidMount` and `onSearchSubmit`.
+
+Second the old hits have to get merged with the new hits as before. But this time the old hits get retrieved from the results map with the search term as key.
+
+Third a new result can be set in the results map in the state. Let's examine the results object in setState.
+
+{lang=javascript}
+~~~~~~~~
+results: {
+  ...results,
+  [searchKey]: { hits: updatedHits, page }
+}
+~~~~~~~~
+
+The bottom part makes sure to store the updated result by searchKey in the results map. The value is an object with a hits and page property. The searchKey is the search term. You already learned about the `[searchKey]` syntax. It is an ES6 computed property key. It helps you to allocate values dynamically in an object.
+
+The upper part needs to object spread all other results by search key in the state. Otherwise you would lose all results you stored before.
+
+Now you store all results by search term. That's the first step to enable your cache. In the next step you can retrieve the result depending on the search query from your map of results.
 
 {lang=javascript}
 ~~~~~~~~
@@ -955,10 +870,12 @@ class App extends Component {
             Search
           </Search>
         </div>
+# leanpub-start-insert
         <Table
           list={list}
           onDismiss={this.onDismiss}
         />
+# leanpub-end-insert
         <div className="interactions">
 # leanpub-start-insert
           <Button onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
@@ -972,7 +889,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now try it again. The search should only happen once you click the submit button. Additionally each result will be stored.
+Since you default to an empty list when there is no result by search query, you can spare the conditional rendering for the Table component. Additionally you will need to pass the searchKey rather than the query to the "More" button. Otherwise your paginated fetch depends on the query input value that is fluctuant. Moreover make sure to keep the fluctuant query property for the input field in the "Search" component,.
+
+The search functionality should work again. It stores all results from the Hacker News API.
 
 Additionally the onDismiss methods needs to get improved. It still deals with the result object. Now it has to deal with multiple results.
 
@@ -980,7 +899,7 @@ Additionally the onDismiss methods needs to get improved. It still deals with th
 ~~~~~~~~
   onDismiss(id) {
 # leanpub-start-insert
-    const { results, searchKey } = this.state;
+    const { searchKey, results } = this.state;
     const { hits, page } = results[searchKey];
 # leanpub-end-insert
 
@@ -998,9 +917,7 @@ Additionally the onDismiss methods needs to get improved. It still deals with th
   }
 ~~~~~~~~
 
-The dismiss functionality should work again.
-
-### Finalize Cache
+The "Dismiss" button should work again.
 
 However, nothing stops the app from sending an API request on each submit. Even though there might be already a result, there is no check that prevents the API request. The cache functionality is not complete yet. The last step would be to prevent the call when a result is available in the state.
 
@@ -1027,9 +944,11 @@ class App extends Component {
     const { query } = this.state;
     this.setState({ searchKey: query });
 # leanpub-start-insert
+
     if (this.needsToSearchTopstories(query)) {
       this.fetchSearchTopstories(query, DEFAULT_PAGE);
     }
+
 # leanpub-end-insert
     event.preventDefault();
   }
@@ -1067,15 +986,15 @@ class App extends Component {
 
     this.state = {
       results: null,
-      query: DEFAULT_QUERY,
       searchKey: '',
+      query: DEFAULT_QUERY,
     };
 
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
     this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
-    this.onSearchChange = this.onSearchChange.bind(this);
-    this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
     this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
   }
 
@@ -1086,22 +1005,30 @@ class App extends Component {
   onSearchSubmit(event) {
     const { query } = this.state;
     this.setState({ searchKey: query });
+
     if (this.needsToSearchTopstories(query)) {
       this.fetchSearchTopstories(query, DEFAULT_PAGE);
     }
+
     event.preventDefault();
   }
 
   setSearchTopstories(result) {
     const { hits, page } = result;
-    const { searchKey } = this.state;
+    const { searchKey, results } = this.state;
 
-    const oldHits = page === 0 ? [] : this.state.results[searchKey].hits;
-    const updatedHits = [ ...oldHits, ...hits ];
+    const oldHits = results && results[searchKey]
+      ? results[searchKey].hits
+      : [];
+
+    const updatedHits = [
+      ...oldHits,
+      ...hits
+    ];
 
     this.setState({
       results: {
-        ...this.state.results,
+        ...results,
         [searchKey]: { hits: updatedHits, page }
       }
     });
@@ -1120,7 +1047,7 @@ class App extends Component {
   }
 
   onDismiss(id) {
-    const { results, searchKey } = this.state;
+    const { searchKey, results } = this.state;
     const { hits, page } = results[searchKey];
 
     const isNotId = item => item.objectID !== id;
