@@ -451,7 +451,12 @@ Second introduce a button in your Search component. The button has the `type="su
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const Search = ({ value, onChange, onSubmit, children }) =>
+const Search = ({
+  value,
+  onChange,
+  onSubmit,
+  children
+}) =>
   <form onSubmit={onSubmit}>
     <input
       type="text"
@@ -1106,7 +1111,12 @@ class App extends Component {
   }
 }
 
-const Search = ({ value, onChange, onSubmit, children }) =>
+const Search = ({
+  value,
+  onChange,
+  onSubmit,
+  children
+}) =>
   <form onSubmit={onSubmit}>
     <input
       type="text"

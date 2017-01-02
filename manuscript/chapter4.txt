@@ -659,7 +659,12 @@ The Table component is responsible to sort the list. It takes one of the `SORT` 
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const Table = ({ list, sortKey, onSort, onDismiss }) =>
+const Table = ({
+  list,
+  sortKey,
+  onSort,
+  onDismiss
+}) =>
 # leanpub-end-insert
   <div className="table">
 # leanpub-start-insert
@@ -696,7 +701,12 @@ In theory the list would get sorted by one of the functions. But the default sor
 
 {lang=javascript}
 ~~~~~~~~
-const Table = ({ list, sortKey, onSort, onDismiss }) =>
+const Table = ({
+  list,
+  sortKey,
+  onSort,
+  onDismiss
+}) =>
   <div className="table">
 # leanpub-start-insert
     <div className="table-header">
@@ -957,7 +967,12 @@ Now in your Sort component you know based on the `sortKey` and `activeSortKey` i
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
+const Sort = ({
+  sortKey,
+  activeSortKey,
+  onSort,
+  children
+}) => {
   const sortClass = ['button-inline'];
 
   if (sortKey === activeSortKey) {
@@ -999,7 +1014,12 @@ Now you can use it to define your component `className` with conditional classes
 
 {lang=javascript}
 ~~~~~~~~
-const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
+const Sort = ({
+  sortKey,
+  activeSortKey,
+  onSort,
+  children
+}) => {
 # leanpub-start-insert
   const sortClass = classNames(
     'button-inline',
@@ -1198,7 +1218,12 @@ class App extends Component {
   }
 }
 
-const Search = ({ value, onChange, onSubmit, children }) =>
+const Search = ({
+  value,
+  onChange,
+  onSubmit,
+  children
+}) =>
   <form onSubmit={onSubmit}>
     <input
       type="text"
@@ -1310,7 +1335,12 @@ const withLoading = (Component) => ({ isLoading, ...rest }) =>
 
 const ButtonWithLoading = withLoading(Button);
 
-const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
+const Sort = ({
+  sortKey,
+  activeSortKey,
+  onSort,
+  children
+}) => {
   const sortClass = classNames(
     'button-inline',
     { 'button-active': sortKey === activeSortKey }
