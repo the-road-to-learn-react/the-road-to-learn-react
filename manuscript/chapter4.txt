@@ -400,7 +400,7 @@ const withLoading = (Component) => ({ isLoading, ...props }) =>
 
 You use a conditional rendering based on the loading property. It will return the Loading component or input component.
 
-Additionally you may have noticed the `{ isLoading, ...props }` ES6 rest destructuring. It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+Additionally you may have noticed the `{ isLoading, ...props }` ES6 rest destructuring. It takes one property out of the object, but keeps the object with the remaining properties. It works with multiple properties as well. You might have already read about it in [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
 
 Now you can use the HOC. In your use case you want to show either the More Button or Loading component. The HOC can take the Button component as input. The output is a ButtonWithLoading component.
 
@@ -419,7 +419,7 @@ const ButtonWithLoading = withLoading(Button);
 # leanpub-end-insert
 ~~~~~~~~
 
-As last step you have to use the ButtonWithLoading component which receives the loading state as additionally property. While the HOC consumes the loading property, the `onClick property gets passed to the Button component.
+As the last step, you have to use the ButtonWithLoading component, which receives the loading state as an additional property. While the HOC consumes the loading property, the `onClick` property gets passed to the Button component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -456,7 +456,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Higher order components are an advanced technique in React. They enable multi-purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view.
+Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view.
 
 ### Exercises:
 
