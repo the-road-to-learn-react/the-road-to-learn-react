@@ -95,7 +95,7 @@ class App extends Component {
     this.state = {
 # leanpub-start-insert
       result: null,
-      query: DEFAULT_QUERY,
+      searchTerm: DEFAULT_QUERY,
 # leanpub-end-insert
     };
 
@@ -112,15 +112,15 @@ class App extends Component {
     this.setState({ result });
   }
 
-  fetchSearchTopstories(query) {
-    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}`)
+  fetchSearchTopstories(searchTerm) {
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setSearchTopstories(result));
   }
 
   componentDidMount() {
-    const { query } = this.state;
-    this.fetchSearchTopstories(query);
+    const { searchTerm } = this.state;
+    this.fetchSearchTopstories(searchTerm);
   }
 # leanpub-end-insert
 
@@ -130,11 +130,11 @@ class App extends Component {
 
 A lot of things happened. I thought about it to break it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain it in detail.
 
-First you can remove the artificial list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default query. The same default query is used in the search field and in your first request.
+First you can remove the artificial list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default search term. The same default search term is used in the search field and in your first request.
 
-Second you use the `componentDidMount()` lifecycle method to fetch the data after the component mounted. In the very first fetch the default query from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
+Second you use the `componentDidMount()` lifecycle method to fetch the data after the component mounted. In the very first fetch the default search term from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
 
-Third the native fetch API is used. ES6 string template strings allow it to compose the url with the query. The url is the argument for the native fetch function. The response needs to get transformed to Json and can finally be set in the internal component state.
+Third the native fetch API is used. ES6 string template strings allow it to compose the url with the `searchTerm`. The url is the argument for the native fetch function. The response needs to get transformed to Json and can finally be set in the internal component state.
 
 Don't forget to bind your new component methods.
 
@@ -150,7 +150,7 @@ class App extends Component {
 
   render() {
 # leanpub-start-insert
-    const { query, result } = this.state;
+    const { searchTerm, result } = this.state;
 
     if (!result) { return null; }
 
@@ -162,7 +162,7 @@ class App extends Component {
 # leanpub-start-insert
           list={result.hits}
 # leanpub-end-insert
-          pattern={query}
+          pattern={searchTerm}
           onDismiss={this.onDismiss}
         />
       </div>
@@ -321,13 +321,13 @@ class App extends Component {
 
   render() {
 # leanpub-start-insert
-    const { query, result } = this.state;
+    const { searchTerm, result } = this.state;
 # leanpub-end-insert
     return (
       <div className="page">
         <div className="interactions">
           <Search
-            value={query}
+            value={searchTerm}
             onChange={this.onSearchChange}
           >
             Search
@@ -337,7 +337,7 @@ class App extends Component {
         { result
           ? <Table
             list={result.hits}
-            pattern={query}
+            pattern={searchTerm}
             onDismiss={this.onDismiss}
           />
           : null
@@ -358,7 +358,7 @@ In React if the condition is true, the expression right after && will be the out
 { result &&
   <Table
     list={result.hits}
-    pattern={query}
+    pattern={searchTerm}
     onDismiss={this.onDismiss}
   />
 }
@@ -372,9 +372,9 @@ These were 3 approaches to use conditional rendering in React. After all you sho
 
 ## Client- or Server-side Interaction: Search
 
-When you use the search input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default query parameter.
+When you use the search input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
 
-You can define an `onSubmit` method in your ES6 class component, which fetches results from the Hacker News API. It will be the same fetch like in your `componentDidMount()` lifecycle method. But it fetches it with the modified query from the submit input.
+You can define an `onSubmit` method in your ES6 class component, which fetches results from the Hacker News API. It will be the same fetch like in your `componentDidMount()` lifecycle method. But it fetches it with the modified search term from the submit input.
 
 {lang=javascript}
 ~~~~~~~~
@@ -385,7 +385,7 @@ class App extends Component {
 
     this.state = {
       result: null,
-      query: DEFAULT_QUERY,
+      searchTerm: DEFAULT_QUERY,
     };
 
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
@@ -399,8 +399,8 @@ class App extends Component {
 
 # leanpub-start-insert
   onSearchSubmit() {
-    const { query } = this.state;
-    this.fetchSearchTopstories(query);
+    const { searchTerm } = this.state;
+    this.fetchSearchTopstories(searchTerm);
   }
 # leanpub-end-insert
 
@@ -419,12 +419,12 @@ class App extends Component {
   ...
 
   render() {
-    const { query, result } = this.state;
+    const { searchTerm, result } = this.state;
     return (
       <div className="page">
         <div className="interactions">
           <Search
-            value={query}
+            value={searchTerm}
             onChange={this.onSearchChange}
 # leanpub-start-insert
             onSubmit={this.onSearchSubmit}
@@ -436,7 +436,7 @@ class App extends Component {
         { result &&
           <Table
             list={result.hits}
-            pattern={query}
+            pattern={searchTerm}
             onDismiss={this.onDismiss}
           />
         }
@@ -474,7 +474,7 @@ class App extends Component {
   ...
 
   render() {
-    const { query, result } = this.state;
+    const { searchTerm, result } = this.state;
     return (
       <div className="page">
         ...
@@ -512,8 +512,8 @@ When you try to search now, you will experience that the browser reloads. That's
 # leanpub-start-insert
 onSearchSubmit(event) {
 # leanpub-end-insert
-  const { query } = this.state;
-  this.fetchSearchTopstories(query);
+  const { searchTerm } = this.state;
+  this.fetchSearchTopstories(searchTerm);
 # leanpub-start-insert
   event.preventDefault();
 # leanpub-end-insert
@@ -528,7 +528,7 @@ Now you should be able to search different Hacker News stories. You interact wit
 
 ## Paginated Fetch
 
-Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. The page property - which is 0 in the first response - can be used to fetch more paginated data. You only need to pass the next page with the same query to the API.
+Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. The page property - which is 0 in the first response - can be used to fetch more paginated data. You only need to pass the next page with the same search term to the API.
 
 First let's extend the composeable API constants that it can deal with pages of data.
 
@@ -551,14 +551,14 @@ Now you can use these constants to add the page parameter to your API request.
 
 {lang=javascript}
 ~~~~~~~~
-var url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}&${PARAM_PAGE}`;
+var url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}`;
 
 // output
 console.log(url);
 // https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-The `fetchSearchTopstories` method will take the page as second argument. The `componentDidMount` and `onSearchSubmit` methods take the `DEFAULT_PAGE` for the initial and changed query API calls. They should fetch the first page on the first load. Every additional fetch should fetch the next page.
+The `fetchSearchTopstories` method will take the page as second argument. The `componentDidMount` and `onSearchSubmit` methods take the `DEFAULT_PAGE` for the initial API calls. They should fetch the first page on the first load. Every additional fetch should fetch the next page.
 
 {lang=javascript}
 ~~~~~~~~
@@ -567,25 +567,25 @@ class App extends Component {
   ...
 
   onSearchSubmit(event) {
-    const { query } = this.state;
+    const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchSearchTopstories(query, DEFAULT_PAGE);
+    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
 # leanpub-end-insert
     event.preventDefault();
   }
 
 # leanpub-start-insert
-  fetchSearchTopstories(query, page) {
-    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}&${PARAM_PAGE}${page}`)
+  fetchSearchTopstories(searchTerm, page) {
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
 # leanpub-end-insert
       .then(response => response.json())
       .then(result => this.setSearchTopstories(result));
   }
 
   componentDidMount() {
-    const { query } = this.state;
+    const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchSearchTopstories(query, DEFAULT_PAGE);
+    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
 # leanpub-end-insert
   }
 
@@ -596,7 +596,7 @@ class App extends Component {
 
 Now you can use the current page from the API response.
 
-Next you want to use `fetchSearchTopstories` method in a button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick` function which takes the current search query and the current page + 1. The result will be the next page.
+Next you want to use `fetchSearchTopstories` method in a button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick` function which takes the current search term and the current page + 1. The result will be the next page.
 
 {lang=javascript}
 ~~~~~~~~
@@ -605,7 +605,7 @@ class App extends Component {
   ...
 
   render() {
-    const { query, result } = this.state;
+    const { searchTerm, result } = this.state;
 # leanpub-start-insert
     const page = (result && result.page) || 0;
 # leanpub-end-insert
@@ -621,7 +621,7 @@ class App extends Component {
         }
 # leanpub-start-insert
         <div className="interactions">
-          <Button onClick={() => this.fetchSearchTopstories(query, page + 1)}>
+          <Button onClick={() => this.fetchSearchTopstories(searchTerm, page + 1)}>
             More
           </Button>
         </div>
@@ -689,9 +689,9 @@ Now you can use the constants to extend the API url.
 
 {lang=javascript}
 ~~~~~~~~
-fetchSearchTopstories(query, page) {
+fetchSearchTopstories(searchTerm, page) {
 # leanpub-start-insert
-  fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+  fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
 # leanpub-end-insert
     .then(response => response.json())
     .then(result => this.setSearchTopstories(result));
@@ -710,7 +710,7 @@ Each search submit makes a request to the Hacker News API. You might search for 
 
 ### Store Results, Not One Result
 
-In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search query as key and the result as value. Each result from the API will be saved by search term (key).
+In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search term as key and the result as value. Each result from the API will be saved by search term (key).
 
 At the moment your result in the component state looks similar to the following:
 
@@ -753,7 +753,7 @@ class App extends Component {
       results: null,
       searchKey: '',
 # leanpub-end-insert
-      query: DEFAULT_QUERY,
+      searchTerm: DEFAULT_QUERY,
     };
 
     ...
@@ -765,25 +765,25 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The searchKey has to be set before each request is made. It reflects the query. But why don't we use the query instead? The query is a fluctuant variable, because it get changed every time you type into the Search input field. However in the end you will need a non fluctuant variable to determine the recent submitted search term to the API.
+The searchKey has to be set before each request is made. It reflects the `searchTerm`. But why don't we use the search term instead? The `searchTerm` is a fluctuant variable, because it get changed every time you type into the Search input field. However in the end you will need a non fluctuant variable to determine the recent submitted search term to the API.
 
 {lang=javascript}
 ~~~~~~~~
 onSearchSubmit(event) {
-  const { query } = this.state;
+  const { searchTerm } = this.state;
 # leanpub-start-insert
-  this.setState({ searchKey: query });
+  this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchSearchTopstories(query, DEFAULT_PAGE);
+  this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
   event.preventDefault();
 }
 
 componentDidMount() {
-  const { query } = this.state;
+  const { searchTerm } = this.state;
 # leanpub-start-insert
-  this.setState({ searchKey: query });
+  this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchSearchTopstories(query, DEFAULT_PAGE);
+  this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
 }
 ~~~~~~~~
 
@@ -845,7 +845,7 @@ The bottom part makes sure to store the updated result by searchKey in the resul
 
 The upper part needs to object spread all other results by search key in the state. Otherwise you would lose all results you stored before.
 
-Now you store all results by search term. That's the first step to enable your cache. In the next step you can retrieve the result depending on the search query from your map of results.
+Now you store all results by search term. That's the first step to enable your cache. In the next step you can retrieve the result depending on the search term from your map of results.
 
 {lang=javascript}
 ~~~~~~~~
@@ -855,15 +855,21 @@ class App extends Component {
 
   render() {
 # leanpub-start-insert
-    const { query, results, searchKey } = this.state;
+    const {
+      searchTerm,
+      results,
+      searchKey
+    } = this.state;
+
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
+
 # leanpub-end-insert
     return (
       <div className="page">
         <div className="interactions">
           <Search
-            value={query}
+            value={searchTerm}
             onChange={this.onSearchChange}
             onSubmit={this.onSearchSubmit}
           >
@@ -889,7 +895,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Since you default to an empty list when there is no result by search query, you can spare the conditional rendering for the Table component. Additionally you will need to pass the searchKey rather than the query to the "More" button. Otherwise your paginated fetch depends on the query input value that is fluctuant. Moreover make sure to keep the fluctuant query property for the input field in the "Search" component,.
+Since you default to an empty list when there is no result by search term, you can spare the conditional rendering for the Table component. Additionally you will need to pass the `searchKey` rather than the `searchTerm` to the "More" button. Otherwise your paginated fetch depends on the search term value that is fluctuant. Moreover make sure to keep the fluctuant `searchTerm` property for the input field in the "Search" component.
 
 The search functionality should work again. It stores all results from the Hacker News API.
 
@@ -935,18 +941,18 @@ class App extends Component {
   }
 
 # leanpub-start-insert
-  needsToSearchTopstories(query) {
-    return !this.state.results[query];
+  needsToSearchTopstories(searchTerm) {
+    return !this.state.results[searchTerm];
   }
 # leanpub-end-insert
 
   onSearchSubmit(event) {
-    const { query } = this.state;
-    this.setState({ searchKey: query });
+    const { searchTerm } = this.state;
+    this.setState({ searchKey: searchTerm });
 # leanpub-start-insert
 
-    if (this.needsToSearchTopstories(query)) {
-      this.fetchSearchTopstories(query, DEFAULT_PAGE);
+    if (this.needsToSearchTopstories(searchTerm)) {
+      this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
     }
 
 # leanpub-end-insert
@@ -958,7 +964,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now your client makes a request to the API only once although you search for a query twice. Even paginated data with several pages gets cached that way, because you always save the page for each result in the results map.
+Now your client makes a request to the API only once although you search for a search term twice. Even paginated data with several pages gets cached that way, because you always save the page for each result in the results map.
 
 {pagebreak}
 
@@ -987,7 +993,7 @@ class App extends Component {
     this.state = {
       results: null,
       searchKey: '',
-      query: DEFAULT_QUERY,
+      searchTerm: DEFAULT_QUERY,
     };
 
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
@@ -998,16 +1004,16 @@ class App extends Component {
     this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
   }
 
-  needsToSearchTopstories(query) {
-    return !this.state.results[query];
+  needsToSearchTopstories(searchTerm) {
+    return !this.state.results[searchTerm];
   }
 
   onSearchSubmit(event) {
-    const { query } = this.state;
-    this.setState({ searchKey: query });
+    const { searchTerm } = this.state;
+    this.setState({ searchKey: searchTerm });
 
-    if (this.needsToSearchTopstories(query)) {
-      this.fetchSearchTopstories(query, DEFAULT_PAGE);
+    if (this.needsToSearchTopstories(searchTerm)) {
+      this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
     }
 
     event.preventDefault();
@@ -1034,16 +1040,16 @@ class App extends Component {
     });
   }
 
-  fetchSearchTopstories(query, page) {
-    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${query}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+  fetchSearchTopstories(searchTerm, page) {
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(response => response.json())
       .then(result => this.setSearchTopstories(result));
   }
 
   componentDidMount() {
-    const { query } = this.state;
-    this.setState({ searchKey: query });
-    this.fetchSearchTopstories(query, DEFAULT_PAGE);
+    const { searchTerm } = this.state;
+    this.setState({ searchKey: searchTerm });
+    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
   }
 
   onDismiss(id) {
@@ -1062,18 +1068,24 @@ class App extends Component {
   }
 
   onSearchChange(event) {
-    this.setState({ query: event.target.value });
+    this.setState({ searchTerm: event.target.value });
   }
 
   render() {
-    const { query, results, searchKey } = this.state;
+    const {
+      searchTerm,
+      results,
+      searchKey
+    } = this.state;
+
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
     const list = (results && results[searchKey] && results[searchKey].hits) || [];
+
     return (
       <div className="page">
         <div className="interactions">
           <Search
-            value={query}
+            value={searchTerm}
             onChange={this.onSearchChange}
             onSubmit={this.onSearchSubmit}
           >

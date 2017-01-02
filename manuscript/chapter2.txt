@@ -379,7 +379,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The method gives you access to the synthetic React event. The event has the value of the input field in its target object. Now you can manipulate the state for the search term. Let's name it *query*:
+The method gives you access to the synthetic React event. The event has the value of the input field in its target object. Now you can manipulate the state for the search term:
 
 {lang=javascript}
 ~~~~~~~~
@@ -389,7 +389,7 @@ class App extends Component {
 
 # leanpub-start-insert
   onSearchChange(event) {
-    this.setState({ query: event.target.value });
+    this.setState({ searchTerm: event.target.value });
   }
 # leanpub-end-insert
 
@@ -397,7 +397,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Additionally you have to define the initial state for the query in the constructor.
+Additionally you have to define the initial state for the `searchTerm in the constructor.
 
 {lang=javascript}
 ~~~~~~~~
@@ -409,7 +409,7 @@ class App extends Component {
     this.state = {
       list,
 # leanpub-start-insert
-      query: '',
+      searchTerm: '',
 # leanpub-end-insert
     };
 
@@ -421,7 +421,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you store the input value to your internal component state every time the value in the input field changes. However the list doesn't update yet. You have to filter the list temporary based on the query. That's fairly simple. Before you map the list you can apply a filter on it. You have already used the filter built-in functionality.
+Now you store the input value to your internal component state every time the value in the input field changes. However the list doesn't update yet. You have to filter the list temporary based on the `searchTerm`. That's fairly simple. Before you map the list you can apply a filter on it. You have already used the filter built-in functionality.
 
 {lang=javascript}
 ~~~~~~~~
@@ -449,7 +449,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Let's approach the filter function in a different way now. We want to define the filter argument - the function - outside of our ES6 class component. There we don't have access to the state of the component - thus we have no access to the query property to evaluate the filter condition based on the search term. We have to pass the query to the filter function and have to return a new function to evaluate the condition. That's called a higher order function.
+Let's approach the filter function in a different way now. We want to define the filter argument - the function - outside of our ES6 class component. There we don't have access to the state of the component - thus we have no access to the `searchTerm` property to evaluate the filter condition. We have to pass the `searchTerm` to the filter function and have to return a new function to evaluate the condition. That's called a higher order function.
 
 Normally I wouldn't mention higher order functions, but in a React book it makes totally sense. It makes sense to know about higher order functions, because React deals with a pattern called higher order components. You will get to know the pattern later. Now again let's focus on the filter functionality.
 
@@ -458,7 +458,7 @@ First you have to define the higher order function outside of your class.
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-function isSearched(query) {
+function isSearched(searchTerm) {
   return function(item) {
     // some condition which returns true or false
   }
@@ -472,16 +472,16 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The function takes the query and returns another function which takes an item. The returned function will be used to filter the list based on the condition defined in the function.
+The function takes the `searchTerm` and returns another function which takes an item. The returned function will be used to filter the list based on the condition defined in the function.
 
 Let's define the condition.
 
 {lang=javascript}
 ~~~~~~~~
-function isSearched(query) {
+function isSearched(searchTerm) {
   return function(item) {
 # leanpub-start-insert
-    return !query || item.title.toLowerCase().includes(query.toLowerCase());
+    return !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
 # leanpub-end-insert
   }
 }
@@ -493,7 +493,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The condition says multiple things. You filter the list only when a query is set. When a query is set, you match the incoming query pattern with the title of the item. You can do that with the built-in functionality includes. Only when the pattern matches you return true and the item stays in the list. Be careful with pattern matching: You shouldn't forget to lower case both strings. Otherwise there will be mismatches between a query 'redux' and an item title 'Redux'.
+The condition says multiple things. You filter the list only when a `searchTerm` is set. When a `searchTerm` is set, you match the incoming `searchTerm` pattern with the title of the item. You can do that with the built-in functionality includes. Only when the pattern matches you return true and the item stays in the list. Be careful with pattern matching: You shouldn't forget to lower case both strings. Otherwise there will be mismatches between a search term 'redux' and an item title 'Redux'.
 
 One thing is left to mention: We cheated a bit by using the built-in includes functionality. It is already an ES6 feature. How would that look like in ES5?
 
@@ -511,15 +511,15 @@ Another neat refactoring can be done with an arrow function again.
 {lang=javascript}
 ~~~~~~~~
 // ES5
-function isSearched(query) {
+function isSearched(searchTerm) {
   return function(item) {
-    return !query || item.title.toLowerCase().includes(query.toLowerCase());
+    return !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
   }
 }
 
 // ES6
-const isSearched = (query) => (item) =>
-  !query || item.title.toLowerCase().includes(query.toLowerCase());
+const isSearched = (searchTerm) => (item) =>
+  !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
 ~~~~~~~~
 
 One could argue which one is more readable. Personally I prefer the second one. The React ecosystem uses a lot of functional programming concepts. It happens often that you will use a function which returns a function (higher order functions). In ES6 you can express these more concise with arrow functions.
@@ -542,7 +542,7 @@ class App extends Component {
           />
         </form>
 # leanpub-start-insert
-        { this.state.list.filter(isSearched(this.state.query)).map((item) =>
+        { this.state.list.filter(isSearched(this.state.searchTerm)).map((item) =>
 # leanpub-end-insert
           ...
         )}
@@ -612,13 +612,13 @@ Perhaps you have noticed that the state in the App component can be destructure 
 ~~~~~~~~
   render() {
 # leanpub-start-insert
-    const { query, list } = this.state;
+    const { searchTerm, list } = this.state;
 # leanpub-end-insert
     return (
       <div className="App">
         ...
 # leanpub-start-insert
-        { list.filter(isSearched(query)).map((item) =>
+        { list.filter(isSearched(searchTerm)).map((item) =>
 # leanpub-end-insert
           ...
         )}
@@ -631,11 +631,11 @@ Again you could do it the ES5 or ES6 way:
 {lang=javascript}
 ~~~~~~~~
 // ES5
-var query = this.state.query;
+var searchTerm = this.state.searchTerm;
 var list = this.state.list;
 
 // ES6
-var { query, list } = this.state;
+var { searchTerm, list } = this.state;
 ~~~~~~~~
 
 But since the book uses ES6 most of the time, you should stick to ES6.
@@ -646,13 +646,13 @@ But since the book uses ES6 most of the time, you should stick to ES6.
 
 ## Controlled Components
 
-You already learned about the unidirectional data flow. The same law applies for the input field, which updates the state which in turn filters the list. The state was changed, the render function runs again and uses the recent query state to apply the filter condition.
+You already learned about the unidirectional data flow. The same law applies for the input field, which updates the state which in turn filters the list. The state was changed, the render function runs again and uses the recent `searchTerm` state to apply the filter condition.
 
-But didn't we forget something in the input element? A HTML input tag comes with a `value attribute. The value attribute usually has the value that is shown in the input field - in our case the query property. However it seems like we don't need that in React.
+But didn't we forget something in the input element? A HTML input tag comes with a `value attribute. The value attribute usually has the value that is shown in the input field - in our case the `searchTerm` property. However it seems like we don't need that in React.
 
 That's wrong. Form elements such as <input>, <textarea> and <select> hold their own state. They modify the value internally once someone changes it from the outside. In React that's called an **uncontrolled component**, because it handles its own state. In React you should make sure to make those elements **controlled components**.
 
-How to do that? You only have to set the value attribute of the input field. The value is already saved in the query state property.
+How to do that? You only have to set the value attribute of the input field. The value is already saved in the `searchTerm` state property.
 
 {lang=javascript}
 ~~~~~~~~
@@ -661,14 +661,14 @@ class App extends Component {
   ...
 
   render() {
-    const { query, list } = this.state;
+    const { searchTerm, list } = this.state;
     return (
       <div className="App">
         <form>
           <input
             type="text"
 # leanpub-start-insert
-            value={query}
+            value={searchTerm}
 # leanpub-end-insert
             onChange={this.onSearchChange}
           />
@@ -701,7 +701,7 @@ class App extends Component {
   ...
 
   render() {
-    const { query, list } = this.state;
+    const { searchTerm, list } = this.state;
     return (
       <div className="App">
 # leanpub-start-insert
@@ -723,17 +723,17 @@ class App extends Component {
   ...
 
   render() {
-    const { query, list } = this.state;
+    const { searchTerm, list } = this.state;
     return (
       <div className="App">
 # leanpub-start-insert
         <Search
-          value={query}
+          value={searchTerm}
           onChange={this.onSearchChange}
         />
         <Table
           list={list}
-          pattern={query}
+          pattern={searchTerm}
           onDismiss={this.onDismiss}
         />
 # leanpub-end-insert
@@ -826,12 +826,12 @@ class App extends Component {
   ...
 
   render() {
-    const { query, list } = this.state;
+    const { searchTerm, list } = this.state;
     return (
       <div className="App">
 # leanpub-start-insert
         <Search
-          value={query}
+          value={searchTerm}
           onChange={this.onSearchChange}
         >
           Search
@@ -839,7 +839,7 @@ class App extends Component {
 # leanpub-end-insert
         <Table
           list={list}
-          pattern={query}
+          pattern={searchTerm}
           onDismiss={this.onDismiss}
         />
       </div>
@@ -1194,14 +1194,14 @@ class App extends Component {
   ...
 
   render() {
-    const { query, list } = this.state;
+    const { searchTerm, list } = this.state;
     return (
 # leanpub-start-insert
       <div className="page">
         <div className="interactions">
 # leanpub-end-insert
           <Search
-            value={query}
+            value={searchTerm}
             onChange={this.onSearchChange}
           >
             Search
@@ -1211,7 +1211,7 @@ class App extends Component {
 # leanpub-end-insert
         <Table
           list={list}
-          pattern={query}
+          pattern={searchTerm}
           onDismiss={this.onDismiss}
         />
 # leanpub-start-insert
@@ -1354,8 +1354,8 @@ const list = [
   },
 ];
 
-const isSearched = (query) => (item) =>
-  !query || item.title.toLowerCase().includes(query.toLowerCase());
+const isSearched = (searchTerm) => (item) =>
+  !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
 
 class App extends Component {
 
@@ -1364,7 +1364,7 @@ class App extends Component {
 
     this.state = {
       list,
-      query: '',
+      searchTerm: '',
     };
 
     this.onDismiss = this.onDismiss.bind(this);
@@ -1378,16 +1378,16 @@ class App extends Component {
   }
 
   onSearchChange(event) {
-    this.setState({ query: event.target.value });
+    this.setState({ searchTerm: event.target.value });
   }
 
   render() {
-    const { query, list } = this.state;
+    const { searchTerm, list } = this.state;
     return (
       <div className="page">
         <div className="interactions">
           <Search
-            value={query}
+            value={searchTerm}
             onChange={this.onSearchChange}
           >
             Search
@@ -1395,7 +1395,7 @@ class App extends Component {
         </div>
         <Table
           list={list}
-          pattern={query}
+          pattern={searchTerm}
           onDismiss={this.onDismiss}
         />
       </div>
