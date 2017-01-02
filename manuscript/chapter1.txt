@@ -4,7 +4,7 @@ The chapter gives you an introduction to React. You may ask yourself: Why should
 
 ## Hi, my name is React.
 
-Why should you bother to learn React? In the recent years single page applications (SPA) got popular. Frameworks like Angular, Ember and Backbone helped JavaScript people to build modern web applications beyond jQuery. The list is not exhaustive. There exists a wide range of SPA frameworks. When you consider the release dates, most of them are among the first generation of SPAs: Angular 2010, Backbone 2010, Ember 2011.
+**Why should you bother to learn React?** In the recent years single page applications (SPA) got popular. Frameworks like Angular, Ember and Backbone helped JavaScript people to build modern web applications beyond jQuery. The list is not exhaustive. There exists a wide range of SPA frameworks. When you consider the release dates, most of them are among the first generation of SPAs: Angular 2010, Backbone 2010, Ember 2011.
 
 The initial React release was 2013 by Facebook. React is no SPA framework but a view library. It only enables you to render components as view in a browser. But the whole ecosystem around React makes it possible to build single page applications.
 
@@ -12,23 +12,23 @@ But why should you consider to use React over the first generation of SPA framew
 
 In React you can focus on your view before you introduce more aspects to your application. Every other aspect is another building block for your SPA. These building blocks are essential to build a mature application. They come with two advantages.
 
-First you can learn the building blocks step by step. You don't have to worry to understand them altogether. It is different to a framework that gives you every building block from the start.
+First you can learn the building blocks step by step. You don't have to worry to understand them altogether. It is different to a framework that gives you every building block from the start. The book focuses on React as first building block. More building blocks follow eventually.
 
 Second all building blocks are interchangeable. It makes the ecosystem around React such an innovative place. Multiple solutions are competing with each other. You can pick the most appealing solution for you and your use case.
 
-The first generation of SPA frameworks arrived at an enterprise level. React stays innovative and gets adopted by multiple tech thought leader companies like [Airbnb, Netflix and of course Facebook](https://github.com/facebook/react/wiki/Sites-Using-React).
+The first generation of SPA frameworks arrived at an enterprise level. React stays innovative and gets adopted by multiple tech thought leader companies like [Airbnb, Netflix and of course Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). All of them invest in the future of React and are content with React and the ecosystem itself.
 
-React is probably one of the best choices for building UIs nowadays. It has a slim API, an amazing ecosystem and a great community. Everyone is keen to experience where it will lead us in 2017.
+React is probably one of the best choices for building SPAs nowadays. It only delivers the view layer, but the ecosystem is a whole flexible and interchangeable framework. React has a slim API, an amazing ecosystem and a great community. Everyone is keen to experience where it will lead us in 2017.
 
 ## Requirements
 
-Before you start to read the book, you should be familiar with HTML, CSS and JavaScript (ES5). The book will teach ES6 and beyond. When you come from a different SPA framework or library, you should be familiar with the basics. When you just started in web development, you should feel comfortable with HTML, CSS and JavaScript to learn React.
+Before you start to read the book, you should be familiar with HTML, CSS and JavaScript (ES5). The book will teach ES6 and beyond. When you come from a different SPA framework or library, you should be familiar with the basics. When you just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React.
 
-The next requirements are an [editor and terminal/command line tool](http://www.robinwieruch.de/developer-setup/). The editor is used to organize and write your code. The terminal is used to execute commands. A command can be to start your application, run tests or install other libraries for your project.
+Every developer needs tools to build applications. You will need an edior and terminial (command line) tool. You can read my developer setup to organize your tools: [Developer Setup](http://www.robinwieruch.de/developer-setup/). The editor is used to organize and write your code. The terminal is used to execute commands. A command can be to start your application, to run tests or to install other libraries for your project.
 
-Last but not least you will need an installation of [node and npm](https://nodejs.org/en/). Along the way you will install external node packages via npm (node package manager). These packages can be libraries or whole frameworks.
+Last but not least you will need an installation of [node and npm](https://nodejs.org/en/). Both are used to manage libraries you will need along the way. You will install external node packages via npm (node package manager). These node packages can be libraries or whole frameworks.
 
-You can verify your versions of node and npm on the command line. These are my versions:
+You can verify your versions of node and npm on the command line. If you don't get any output in the terminal, you need to install node or npm first. These are my versions:
 
 {lang=javascript}
 ~~~~~~~~
@@ -58,6 +58,13 @@ Local packages are used in your application. For instance React will be a local 
 npm install <package>
 ~~~~~~~~
 
+In the case of React it would be:
+
+{lang=javascript}
+~~~~~~~~
+npm install react
+~~~~~~~~
+
 The installed package folder will automatically appear in a folder called *node_modules/*.
 
 But be careful! Whenever you install a local package you shouldn't forget the neat `--save` configuration:
@@ -67,9 +74,9 @@ But be careful! Whenever you install a local package you shouldn't forget the ne
 npm install --save <package>
 ~~~~~~~~
 
-The save indicates npm to store the package requirement to a file called *package.json*. The file can be found in your project folder.
+The `--save` indicates npm to store the package requirement to a file called *package.json*. The file can be found in your project folder.
 
-Not every project folder has a *package.json* from the beginning. There is a npm command to initialize a *package.json*. Only when you have that file, you can install new local packages via npm.
+Not every project folder comes with a *package.json* though. There is a npm command to initialize a *package.json*. Only when you have that file, you can install new local packages via npm.
 
 {lang=javascript}
 ~~~~~~~~
@@ -79,6 +86,15 @@ npm init -y
 The `-y` is a shortcut to initialize all the defaults in your *package.json*. If you do it without it, you have to interactively decide how to configure the file.
 
 One more word about the *package.json*. The file enables you to share your project with other developers without sharing all the packages. The file has all the references of node packages used in your project. These packages are called dependencies. Everyone can copy your project without the dependencies. The dependencies are references in the *package.json*. Someone who copies your project can install all packages via `npm install` on the command line.
+
+I want to cover one more npm command to prevent confusion:
+
+{lang=javascript}
+~~~~~~~~
+npm install --save-dev <package>
+~~~~~~~~
+
+The `--save-dev` indicates that the node package is only used in the dev environment. It will not be used in production. What kind of node package could that be? Imagine you want to test your application with an external library. You need to install that library via npm, but want to exclude it from your production environemt. There you don't want to test your application anymore. It should be tested already and work out of the box for users.
 
 You will encounter more npm commands on your way. But these will be sufficient for now.
 
