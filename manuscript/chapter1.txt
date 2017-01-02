@@ -496,13 +496,9 @@ Make the key attribute a stable identifier. Don't make the mistake of using the 
 {lang=javascript}
 ~~~~~~~~
 // bad example
-# leanpub-start-insert
 { list.map(function(item, key) {
-# leanpub-end-insert
   return (
-# leanpub-start-insert
     <div key={key}>
-# leanpub-end-insert
       ...
     </div>
   );

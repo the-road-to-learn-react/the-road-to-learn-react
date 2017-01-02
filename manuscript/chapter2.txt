@@ -168,15 +168,17 @@ class App extends Component {
             <span>{item.author}</span>
             <span>{item.num_comments}</span>
             <span>{item.points}</span>
+# leanpub-start-insert
+            <span>
+              <button
+                onClick={() => this.onDismiss(item.objectID)}
+                type="button"
+              >
+                Dismiss
+              </button>
+            </span>
+# leanpub-end-insert
           </div>
-          # leanpub-start-insert
-            <button
-              onClick={() => this.onDismiss(item.objectID)}
-              type="button"
-            >
-              Dismiss
-            </button>
-          # leanpub-end-insert
         )}
       </div>
     );
@@ -299,22 +301,7 @@ class App extends Component {
         </form>
 # leanpub-end-insert
         { this.state.list.map(item =>
-          <div key={item.objectID}>
-            <span>
-              <a href={item.url}>{item.title}</a>
-            </span>
-            <span>{item.author}</span>
-            <span>{item.num_comments}</span>
-            <span>{item.points}</span>
-            <span>
-              <button
-                onClick={() => this.onDismiss(item.objectID)}
-                type="button"
-              >
-                Dismiss
-              </button>
-            </span>
-          </div>
+          ...
         )}
       </div>
     );
@@ -1367,18 +1354,18 @@ class App extends Component {
       searchTerm: '',
     };
 
-    this.onDismiss = this.onDismiss.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onSearchChange(event) {
+    this.setState({ searchTerm: event.target.value });
   }
 
   onDismiss(id) {
     const isNotId = item => item.objectID !== id;
     const updatedList = this.state.list.filter(isNotId);
     this.setState({ list: updatedList });
-  }
-
-  onSearchChange(event) {
-    this.setState({ searchTerm: event.target.value });
   }
 
   render() {
@@ -1402,6 +1389,7 @@ class App extends Component {
     );
   }
 }
+
 
 const Search = ({ value, onChange, children }) =>
   <form>
