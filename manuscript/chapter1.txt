@@ -240,7 +240,7 @@ export default App;
 
 Don't let yourself confuse by the import and export statements. We will revisit those later.
 
-In the file you have an **ES6 class component** with the name App. Basically you can use the <App /> **component** everywhere in your application now. Once you use it, it will produce an *instance* of your component. The **element** it returns is specified in the `render()` method. Elements are what components are made of. It is valuable to understand the differences between component, instance and element.
+In the file you have an **ES6 class component** with the name App. Basically you can use the <App /> JSX everywhere in your application now. Once you use it, it will produce an *instance* of your **component**. The **element** it returns is specified in the `render()` method. Elements are what components are made of. It is valuable to understand the differences between component, instance and element.
 
 Pretty soon you will see where the App component is used. Otherwise you wouldn't see the rendered output in the browser, would you? The App component is only the declaration, but not the usage. You would use the component somewhere else with `<App />`.
 

@@ -186,7 +186,7 @@ class App extends Component {
 
 As you can see the `onDismiss()` method gets enclosed by another function. Only that way you can sneak in the `objectID`. Otherwise you would have to define the function outside of the elements. However by using an arrow function you can inline it.
 
-Note that elements and components with multiple attributes get messy as one liner at some point. That's why the button is already used with multilines and indentation to keep it readable. But it is not mandatory. It is only a code style recommendation.
+Note that elements with multiple attributes get messy as one liner at some point. That's why the button is already used with multilines and indentation to keep it readable. But it is not mandatory. It is only a code style recommendation.
 
 Now you have to implement the `onDismiss()` functionality. It takes an item id to identify the item to dismiss. The function is bound to the class and thus becomes a class method. You have to bind class methods in the constructor. Additionally you have to define its functionality in your class.
 
@@ -872,7 +872,7 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The "Search" text should be visible next to your input field now. When you use the Search component somewhere else, you can choose a different text if you like. After all it is not only text that you can pass as children. You can pass an element, element trees, a component or component trees as children. The children property makes it possible to weave components into each other.
+The "Search" text should be visible next to your input field now. When you use the Search component somewhere else, you can choose a different text if you like. After all it is not only text that you can pass as children. You can pass an element and element trees (which can be encapsulated by components again) as children. The children property makes it possible to weave components into each other.
 
 ### Exercises:
 
