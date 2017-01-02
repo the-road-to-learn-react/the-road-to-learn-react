@@ -398,6 +398,8 @@ class App extends Component {
     this.onDismiss = this.onDismiss.bind(this);
   }
 
+  ...
+
 # leanpub-start-insert
   onSearchSubmit() {
     const { searchTerm } = this.state;
@@ -572,15 +574,14 @@ class App extends Component {
 
   ...
 
-  onSearchSubmit(event) {
+  componentDidMount() {
     const { searchTerm } = this.state;
 # leanpub-start-insert
     this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
 # leanpub-end-insert
-    event.preventDefault();
   }
 
-# leanpub-start-insert
+  # leanpub-start-insert
   fetchSearchTopstories(searchTerm, page) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
 # leanpub-end-insert
@@ -588,11 +589,12 @@ class App extends Component {
       .then(result => this.setSearchTopstories(result));
   }
 
-  componentDidMount() {
+  onSearchSubmit(event) {
     const { searchTerm } = this.state;
 # leanpub-start-insert
     this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
 # leanpub-end-insert
+    event.preventDefault();
   }
 
   ...
@@ -773,6 +775,14 @@ The `searchKey` has to be set before each request is made. It reflects the `sear
 
 {lang=javascript}
 ~~~~~~~~
+componentDidMount() {
+  const { searchTerm } = this.state;
+# leanpub-start-insert
+  this.setState({ searchKey: searchTerm });
+# leanpub-end-insert
+  this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+}
+
 onSearchSubmit(event) {
   const { searchTerm } = this.state;
 # leanpub-start-insert
@@ -780,14 +790,6 @@ onSearchSubmit(event) {
 # leanpub-end-insert
   this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
   event.preventDefault();
-}
-
-componentDidMount() {
-  const { searchTerm } = this.state;
-# leanpub-start-insert
-  this.setState({ searchKey: searchTerm });
-# leanpub-end-insert
-  this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
 }
 ~~~~~~~~
 
@@ -942,6 +944,11 @@ class App extends Component {
 # leanpub-start-insert
     this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
 # leanpub-end-insert
+    this.setSearchTopstories = this.setSearchTopstories.bind(this);
+    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
 # leanpub-start-insert
@@ -1000,27 +1007,18 @@ class App extends Component {
       searchTerm: DEFAULT_QUERY,
     };
 
+    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
     this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
-    this.onDismiss = this.onDismiss.bind(this);
-    this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
-    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
-  needsToSearchTopstories(searchTerm) {
-    return !this.state.results[searchTerm];
-  }
-
-  onSearchSubmit(event) {
+  componentDidMount() {
     const { searchTerm } = this.state;
     this.setState({ searchKey: searchTerm });
-
-    if (this.needsToSearchTopstories(searchTerm)) {
-      this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
-    }
-
-    event.preventDefault();
+    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
   }
 
   setSearchTopstories(result) {
@@ -1050,10 +1048,23 @@ class App extends Component {
       .then(result => this.setSearchTopstories(result));
   }
 
-  componentDidMount() {
+  needsToSearchTopstories(searchTerm) {
+    return !this.state.results[searchTerm];
+  }
+
+  onSearchChange(event) {
+    this.setState({ searchTerm: event.target.value });
+  }
+
+  onSearchSubmit(event) {
     const { searchTerm } = this.state;
     this.setState({ searchKey: searchTerm });
-    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+
+    if (this.needsToSearchTopstories(searchTerm)) {
+      this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+    }
+
+    event.preventDefault();
   }
 
   onDismiss(id) {
@@ -1069,10 +1080,6 @@ class App extends Component {
         [searchKey]: { hits: updatedHits, page }
       }
     });
-  }
-
-  onSearchChange(event) {
-    this.setState({ searchTerm: event.target.value });
   }
 
   render() {
@@ -1109,6 +1116,7 @@ class App extends Component {
     );
   }
 }
+
 
 const Search = ({
   value,
