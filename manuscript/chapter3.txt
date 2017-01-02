@@ -10,11 +10,11 @@ You already know two lifecycle methods in your ES6 class component: `constructor
 
 The constructor is only called when an instance of the component is created and inserted in the DOM. That process is called mounting of the component.
 
-The render method is called during the mount process too, but also when the component updates. Each time when the state of a component changes the render method is called. It also renders when there are incoming props from the component above.
+The `render()` method is called during the mount process too, but also when the component updates. Each time when the state of a component changes the `render()` method is called. It also renders when there are incoming props from the component above.
 
 Now you know two lifecycle methods and when they are called. You already used them as well. But there are more of them.
 
-The mounting of a component has two more lifecycle methods: `componentWillMount()` and `componentDidMount()`. The constructor is called first, componentWillMount gets called before the render method, and componentDidMount is called after the render method.
+The mounting of a component has two more lifecycle methods: `componentWillMount()` and `componentDidMount()`. The constructor is called first, componentWillMount gets called before the `render()` method, and componentDidMount is called after the `render()` method.
 
 Overall the mounting process has 4 lifecycle methods. They are invoked in the following order:
 
@@ -39,7 +39,7 @@ You don't need to know all of them from the beginning. But still it's good to kn
 
 So far you know that there is a mounting and updating lifecycle. But every lifecycle ends at some time. The third lifecycle is the unmounting lifecycle. It has only one lifecycle method: `componentWillUnmount()`. It is used to cleanup stuff when you are about to destroy your component.
 
-So far you have only used the constructor and render methods. These are the commonly used lifecycle methods for ES6 class components. Actually the render method is required - otherwise you wouldn't return a component instance.
+So far you have only used the `constructor()` and `render()` methods. These are the commonly used lifecycle methods for ES6 class components. Actually the `render()` method is required - otherwise you wouldn't return a component instance.
 
 ### Exercises:
 
@@ -138,7 +138,7 @@ Third the native fetch API is used. ES6 string template strings allow it to comp
 
 Don't forget to bind your new component methods.
 
-Now you can use the fetched data instead of the artificial list of items. However you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your render method to visualize it.
+Now you can use the fetched data instead of the artificial list of items. However you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
 
 Let's use the result and render it. We will prevent to render anything - return null - when there is no result. Once the request to the API succeeded, the result is saved to the state, the App component will render the instance.
 
@@ -171,7 +171,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. But we prevent to display something, because the result is empty. Then the componentDidMount lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the render method again, but this time with populated data in your internal component state. The component and thus the Table gets rendered.
+Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. But we prevent to display something, because the result is empty. Then the `componentDidMount()` lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the `render()` method again, but this time with populated data in your internal component state. The component and thus the Table gets rendered.
 
 The list of hits should be visible now. But the "Dismiss" button is broken. We will fix that soon.
 

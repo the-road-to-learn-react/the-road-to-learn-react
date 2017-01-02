@@ -30,7 +30,7 @@ class App extends Component {
 
 In your case the initial state is the list of items. Note that you have to call `super(props);` to call the constructor of the parent class. It's mandatory.
 
-The state is bound to the class with the `this` object. You can access the state everywhere in your component - also in the render function. Before you have mapped a static list of items. Now you are about to use the list of your internal component state.
+The state is bound to the class with the `this` object. You can access the state everywhere in your component - also in the `render()` method. Before you have mapped a static list of items. Now you are about to use the list of your internal component state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -59,7 +59,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The list is part of the component now. It resides in the internal component state. You could add items, change items or remove items in your and from your list. Every time you change your component state, the `render()` function of your component will run again. But be careful! Don't mutate the state directly, you have to use a method called `setState()` to modify your state. You will get to know it in a following chapter.
+The list is part of the component now. It resides in the internal component state. You could add items, change items or remove items in your and from your list. Every time you change your component state, the `render()` method of your component will run again. But be careful! Don't mutate the state directly, you have to use a method called `setState()` to modify your state. You will get to know it in a following chapter.
 
 ### Exercises:
 
@@ -188,7 +188,7 @@ As you can see the `onDismiss()` method gets enclosed by another function. Only 
 
 Note that elements and components with multiple attributes get messy as one liner at some point. That's why the button is already used with multilines and indentation to keep it readable. But it is not mandatory. It is only a code style recommendation.
 
-Now you have to implement the `onDismiss()` functionality. It takes an item id to identify the item to dismiss. The function is bound to the class and thus a class method. You have to bind class methods in the constructor. Additionally you have to define its functionality in your class.
+Now you have to implement the `onDismiss()` functionality. It takes an item id to identify the item to dismiss. The function is bound to the class and thus becomes a class method. You have to bind class methods in the constructor. Additionally you have to define its functionality in your class.
 
 {lang=javascript}
 ~~~~~~~~
@@ -270,7 +270,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-Now run again your app and try the "Dismiss" button. It should work. What you experience now is the **unidirectional data flow** in React. You trigger an action in your view (onClick), a function or class method modifies the internal component state and the `render()` method of the component runs again to update the view.
+Now run again your app and try the "Dismiss" button. It should work. What you experience now is the **unidirectional data flow** in React. You trigger an action in your view - with `onClick()` - a function or class method modifies the internal component state and the `render()` method of the component runs again to update the view.
 
 ![Internal state update with unidirectional data flow](images/set-state-to-render-unidirectional.png)
 
@@ -646,7 +646,7 @@ But since the book uses ES6 most of the time, you should stick to ES6.
 
 ## Controlled Components
 
-You already learned about the unidirectional data flow. The same law applies for the input field, which updates the state which in turn filters the list. The state was changed, the render function runs again and uses the recent `searchTerm` state to apply the filter condition.
+You already learned about the unidirectional data flow. The same law applies for the input field, which updates the state which in turn filters the list. The state was changed, the `render()` method runs again and uses the recent `searchTerm` state to apply the filter condition.
 
 But didn't we forget something in the input element? A HTML input tag comes with a `value` attribute. The value attribute usually has the value that is shown in the input field - in our case the `searchTerm` property. However it seems like we don't need that in React.
 
@@ -1462,6 +1462,7 @@ You have learned the basics to write your own React app! Let's recap the last ch
   * usage and implementation of ES6 class components and functional stateless components
   * approaches to style your components
 * ES6
+  * functions that are bound to a class are class methods
   * destructuring of objects and arrays
   * default parameters
 * General

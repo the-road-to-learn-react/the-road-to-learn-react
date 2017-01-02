@@ -100,7 +100,7 @@ describe('App', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the Snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component render function.
+Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the Snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component.
 
 Let's add more tests for our independent components. First the Search component.
 
@@ -266,9 +266,9 @@ Shallow renders the component without children. You can make the test very dedic
 Enzyme has overall three rendering mechanisms in its API. You already know `shallow()`, but there also exist `mount()` and `render()`. They instantiate instances of the parent component and all child components. Additionally `mount()` gives you more access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
 
 * Always begin with a shallow test
-* If componentDidMount or componentDidUpdate should be tested, use mount
-* If you want to test component lifecycle and children behavior, use mount
-* If you want to test children rendering with less overhead than mount and you are not interested in lifecycle methods, use render
+* If `componentDidMount()` or `componentDidUpdate()` should be tested, use `mount()`
+* If you want to test component lifecycle and children behavior, use `mount()`
+* If you want to test children rendering with less overhead than `mount()` and you are not interested in lifecycle methods, use `render()`
 
 You could continue to unit test your components. But make sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. That's why Facebook introduced Snapshot tests with Jest in the first place.
 
@@ -753,7 +753,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-Each Sort component gets a specific `sortKey` and the general `onSort()` method. Internally it calls the method with the `sortKey` to set the specific key.
+Each Sort component gets a specific `sortKey` and the general `onSort()` function. Internally it calls the method with the `sortKey` to set the specific key.
 
 {lang=javascript}
 ~~~~~~~~
