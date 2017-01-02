@@ -42,7 +42,7 @@ class App extends Component {
     return (
       <div className="App">
 # leanpub-start-insert
-        { this.state.list.map((item) =>
+        { this.state.list.map(item =>
 # leanpub-end-insert
           <div key={item.objectID}>
             <span>
@@ -160,7 +160,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { this.state.list.map((item) =>
+        { this.state.list.map(item =>
           <div key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
@@ -298,7 +298,7 @@ class App extends Component {
           <input type="text" />
         </form>
 # leanpub-end-insert
-        { this.state.list.map((item) =>
+        { this.state.list.map(item =>
           <div key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
@@ -439,7 +439,7 @@ class App extends Component {
           />
         </form>
 # leanpub-start-insert
-        { this.state.list.filter(...).map((item) =>
+        { this.state.list.filter(...).map(item =>
 # leanpub-end-insert
           ...
         )}
@@ -542,7 +542,7 @@ class App extends Component {
           />
         </form>
 # leanpub-start-insert
-        { this.state.list.filter(isSearched(this.state.searchTerm)).map((item) =>
+        { this.state.list.filter(isSearched(this.state.searchTerm)).map(item =>
 # leanpub-end-insert
           ...
         )}
@@ -618,7 +618,7 @@ Perhaps you have noticed that the state in the App component can be destructure 
       <div className="App">
         ...
 # leanpub-start-insert
-        { list.filter(isSearched(searchTerm)).map((item) =>
+        { list.filter(isSearched(searchTerm)).map(item =>
 # leanpub-end-insert
           ...
         )}
@@ -783,7 +783,7 @@ class Table extends Component {
     const { list, pattern, onDismiss } = this.props;
     return (
       <div>
-        { list.filter(isSearched(pattern)).map((item) =>
+        { list.filter(isSearched(pattern)).map(item =>
           <div key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
@@ -918,7 +918,7 @@ class Table extends Component {
     const { list, pattern, onDismiss } = this.props;
     return (
       <div>
-        { list.filter(isSearched(pattern)).map((item) =>
+        { list.filter(isSearched(pattern)).map(item =>
           <div key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
@@ -1230,7 +1230,7 @@ const Table = ({ list, pattern, onDismiss }) =>
 # leanpub-start-insert
   <div className="table">
 # leanpub-end-insert
-    { list.filter(isSearched(pattern)).map((item) =>
+    { list.filter(isSearched(pattern)).map(item =>
 # leanpub-start-insert
       <div key={item.objectID} className="table-row">
 # leanpub-end-insert
@@ -1267,7 +1267,7 @@ Let's keep the Table column width flexible by using inline style.
 ~~~~~~~~
 const Table = ({ list, pattern, onDismiss }) =>
   <div className="table">
-    { list.filter(isSearched(pattern)).map((item) =>
+    { list.filter(isSearched(pattern)).map(item =>
       <div key={item.objectID} className="table-row">
 # leanpub-start-insert
         <span style={{ width: '40%' }}>
@@ -1414,7 +1414,7 @@ const Search = ({ value, onChange, children }) =>
 
 const Table = ({ list, pattern, onDismiss }) =>
   <div className="table">
-    { list.filter(isSearched(pattern)).map((item) =>
+    { list.filter(isSearched(pattern)).map(item =>
       <div key={item.objectID} className="table-row">
         <span style={{ width: '40%' }}>
           <a href={item.url}>{item.title}</a>

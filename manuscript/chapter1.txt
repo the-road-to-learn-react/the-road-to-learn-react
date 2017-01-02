@@ -548,7 +548,7 @@ However let's have a look at the map function. You can write it more concise wit
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-{ list.map((item) => {
+{ list.map(item => {
 # leanpub-end-insert
   return (
     <div key={item.objectID}>
@@ -568,7 +568,7 @@ Additionally you can remove the block body. In a concise body an implicit return
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-{ list.map((item) =>
+{ list.map(item =>
 # leanpub-end-insert
   <div key={item.objectID}>
     <span>
@@ -621,7 +621,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { list.map((item) =>
+        { list.map(item =>
           <div key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
