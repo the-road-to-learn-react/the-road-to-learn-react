@@ -471,7 +471,7 @@ export default App;
 
 You can see how the map functionality is simply inlined. Each item property is display in a span. Moreover the url property of the item is used in the href attribute of the anchor tag.
 
-React will do all the work for you and display each item. But you should add one helper for React to embrace its full potential. You have to assign a key property to each list element. Only that way React is able to identify added, changed and removed items when the list changes.
+React will do all the work for you and display each item. But you should add one helper for React to embrace its full potential. You have to assign a key attribute to each list element. Only that way React is able to identify added, changed and removed items when the list changes.
 
 {lang=javascript}
 ~~~~~~~~
@@ -491,7 +491,7 @@ React will do all the work for you and display each item. But you should add one
 })}
 ~~~~~~~~
 
-Make the key property a stable identifier. Don't make the mistake of using the array index, which isn't stable. React will have a hard time identifying the items properly when their order changes.
+Make the key attribute a stable identifier. Don't make the mistake of using the array index, which isn't stable. React will have a hard time identifying the items properly when their order changes.
 
 {lang=javascript}
 ~~~~~~~~

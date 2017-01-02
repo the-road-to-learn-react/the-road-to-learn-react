@@ -78,7 +78,7 @@ const user = {
 };
 ~~~~~~~~
 
-When the property key in your object can be the same as your variable name, you can do the following:
+When the property name in your object can be the same as your variable name, you can do the following:
 
 {lang=javascript}
 ~~~~~~~~
@@ -89,7 +89,7 @@ const user = {
 };
 ~~~~~~~~
 
-In your application you can do the same. The list variable name and the state property key share the same name.
+In your application you can do the same. The list variable name and the state property name share the same name.
 
 {lang=javascript}
 ~~~~~~~~
@@ -123,7 +123,7 @@ var userService = {
 };
 ~~~~~~~~
 
-Last but not least you are allowed to use computed property keys in ES6.
+Last but not least you are allowed to use computed property names in ES6.
 
 {lang=javascript}
 ~~~~~~~~
@@ -139,7 +139,7 @@ var user = {
 };
 ~~~~~~~~
 
-Computed property keys might make no sense yet. Why should you need a computed property key? But you come to a point where you will use it eventually.
+Computed property names might make no sense yet. Why should you need a computed property name? But you come to a point where you will use it eventually.
 
 ### Exercises:
 

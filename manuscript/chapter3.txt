@@ -841,9 +841,9 @@ results: {
 }
 ~~~~~~~~
 
-The bottom part makes sure to store the updated result by searchKey in the results map. The value is an object with a hits and page property. The searchKey is the search term. You already learned about the `[searchKey]` syntax. It is an ES6 computed property key. It helps you to allocate values dynamically in an object.
+The bottom part makes sure to store the updated result by searchKey in the results map. The value is an object with a hits and page property. The searchKey is the search term. You already learned the `[searchKey]` syntax. It is an ES6 computed property name. It helps you to allocate values dynamically in an object.
 
-The upper part needs to object spread all other results by search key in the state. Otherwise you would lose all results you stored before.
+The upper part needs to object spread all other results by `searchKey` in the state. Otherwise you would lose all results you stored before.
 
 Now you store all results by search term. That's the first step to enable your cache. In the next step you can retrieve the result depending on the search term from your map of results.
 
@@ -1168,7 +1168,7 @@ You have learned to interact with an API in React! Let's recap the last chapters
 * ES6
   * template strings
   * spread operator
-  * computed property keys
+  * computed property names
 * General
   * Hacker News API interaction
   * native fetch browser API
