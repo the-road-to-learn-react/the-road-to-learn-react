@@ -4,7 +4,7 @@ Now it's time to get real with an API. In the end it can get boring to deal with
 
 ## Lifecycle Methods
 
-But the basics first. You will need the knowledge about React lifecycle methods before you can start. These methods are a hook into the lifecycle of a React component which you can overwrite. There are only a few to learn.
+You will need the knowledge about React lifecycle methods before you can start to fetch data. These methods are a hook into the lifecycle of a React component which you can overwrite. There are a few to learn.
 
 You already know two lifecycle methods in your ES6 class component: `constructor()` and `render()`.
 
@@ -14,7 +14,7 @@ The `render()` method is called during the mount process too, but also when the 
 
 Now you know two lifecycle methods and when they are called. You already used them as well. But there are more of them.
 
-The mounting of a component has two more lifecycle methods: `componentWillMount()` and `componentDidMount()`. The constructor is called first, componentWillMount gets called before the `render()` method, and componentDidMount is called after the `render()` method.
+The mounting of a component has two more lifecycle methods: `componentWillMount()` and `componentDidMount()`. The constructor is called first, `componentWillMount()` gets called before the `render()` method, and `componentDidMount()` is called after the `render()` method.
 
 Overall the mounting process has 4 lifecycle methods. They are invoked in the following order:
 
@@ -23,7 +23,7 @@ Overall the mounting process has 4 lifecycle methods. They are invoked in the fo
 * render()
 * componentDidMount()
 
-But what about the update lifecycle of a component? Overall it has 5 lifecycle methods.
+But what about the update lifecycle of a component? Overall it has 5 lifecycle methods in the following order:
 
 * componentWillReceiveProps()
 * shouldComponentUpdate()
@@ -31,15 +31,14 @@ But what about the update lifecycle of a component? Overall it has 5 lifecycle m
 * render()
 * componentDidUpdate()
 
-You don't need to know all of them from the beginning. But still it's good to know that each lifecycle method can be used for a specific use case:
+You don't need to know all of them from the beginning. But still it is good to know that each lifecycle method can be used for specific use cases:
 
-* componentDidMount() method is used to get data from an API when the component mounts
-* shouldComponentUpdate() is mostly used in a mature React app to prevent a component from updating for performance optimizations
-...
+* componentDidMount() method can be used to get data from an API when the component mounts
+* shouldComponentUpdate() can be used in a mature React app to prevent a component from updating for performance optimizations
 
 So far you know that there is a mounting and updating lifecycle. But every lifecycle ends at some time. The third lifecycle is the unmounting lifecycle. It has only one lifecycle method: `componentWillUnmount()`. It is used to cleanup stuff when you are about to destroy your component.
 
-So far you have only used the `constructor()` and `render()` methods. These are the commonly used lifecycle methods for ES6 class components. Actually the `render()` method is required - otherwise you wouldn't return a component instance.
+The `constructor()` and `render()` lifecycle methods are already used by you. These are the commonly used lifecycle methods for ES6 class components. Actually the `render()` method is required - otherwise you wouldn't return a component instance.
 
 ### Exercises:
 
@@ -48,7 +47,7 @@ So far you have only used the `constructor()` and `render()` methods. These are 
 
 ## Fetch Data from an API
 
-Now you are prepared to fetch data from the Hacker News API. I mentioned one lifecycle method that can be used to fetch data: componentDidMount(). Before we can use it, let's setup the url constants and default parameters to breakup the API request into chunks.
+Now you are prepared to fetch data from the Hacker News API. I mentioned one lifecycle method that can be used to fetch data: componentDidMount(). Before we can use it, let's set up the url constants and default parameters to breakup the API request into chunks.
 
 {lang=javascript}
 ~~~~~~~~
@@ -66,7 +65,7 @@ const PARAM_SEARCH = 'query=';
 ...
 ~~~~~~~~
 
-In ES6 JavaScript you can use [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) to concatenate strings. You will use it to concatenate your url to the API endpoint.
+In ES6 JavaScript you can use [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) to concatenate strings. You will use it to concatenate your url for the API endpoint.
 
 {lang=javascript}
 ~~~~~~~~
@@ -81,7 +80,9 @@ console.log(url);
 // https://hn.algolia.com/api/v1/search?query=redux
 ~~~~~~~~
 
-That will keep your url composition flexible in the future. But let's get to the API fetch where we use the url. The whole data fetch process will be presented at once, but each step will get explained afterwards.
+That will keep your url composition flexible in the future.
+
+But let's get to the API fetch where we use the url. The whole data fetch process will be presented at once, but each step will get explained afterwards.
 
 {lang=javascript}
 ~~~~~~~~
@@ -128,19 +129,19 @@ class App extends Component {
 }
 ~~~~~~~~
 
-A lot of things happened. I thought about it to break it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain it in detail.
+A lot of things happened. I thought about it to break it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain each step in detail.
 
 First you can remove the artificial list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default search term. The same default search term is used in the search field and in your first request.
 
-Second you use the `componentDidMount()` lifecycle method to fetch the data after the component mounted. In the very first fetch the default search term from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
+Second you use the `componentDidMount()` lifecycle method to fetch the data after the component did mount. In the very first fetch the default search term from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
 
-Third the native fetch API is used. ES6 string template strings allow it to compose the url with the `searchTerm`. The url is the argument for the native fetch function. The response needs to get transformed to Json and can finally be set in the internal component state.
+Third the native fetch is used. ES6 string template strings allow it to compose the url with the `searchTerm`. The url is the argument for the native fetch API function. The response needs to get transformed to Json and can finally be set in the internal component state.
 
 Don't forget to bind your new component methods.
 
 Now you can use the fetched data instead of the artificial list of items. However you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
 
-Let's use the result and render it. We will prevent to render anything - return null - when there is no result. Once the request to the API succeeded, the result is saved to the state, the App component will render the instance.
+Let's use the result and render it. But we will prevent to render anything - return null - when there is no result. Once the request to the API succeeded, the result is saved to the state, the App component will render the component instance.
 
 {lang=javascript}
 ~~~~~~~~
@@ -171,7 +172,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. But we prevent to display something, because the result is empty. Then the `componentDidMount()` lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the `render()` method again, but this time with populated data in your internal component state. The component and thus the Table gets rendered.
+Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. But we prevent to display it, because the result is empty. Then the `componentDidMount()` lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the `render()` method again, but this time with populated data in your internal component state. The component and thus the Table gets rendered.
 
 The list of hits should be visible now. But the "Dismiss" button is broken. We will fix that soon.
 
@@ -183,7 +184,7 @@ The list of hits should be visible now. But the "Dismiss" button is broken. We w
 
 ## ES6 spread operator
 
-The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the result.
+The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the result. Let's change that:
 
 {lang=javascript}
 ~~~~~~~~
@@ -198,16 +199,16 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-But what's happening in `setState()` now? Unfortunately the result is a complex object. The list of hits is only one of multiple properties in the object. However only the list gets updated in the result object while the other properties stay the same.
+But what happens in `setState()` now? Unfortunately the result is a complex object. The list of hits is only one of multiple properties in the object. However only the list gets updated - when an item gets removed - in the result object while the other properties stay the same.
 
-One approach could be to mutate the hits in the result object. I will demonstrate it, but we won't do it!
+One approach could be to mutate the hits in the result object. I will demonstrate it, but we won't do it that way.
 
 {lang=javascript}
 ~~~~~~~~
 this.state.result.hits = updatedHits;
 ~~~~~~~~
 
-React embraces functional programming. Thus you shouldn't mutate an object (nor mutate the state directly). A better approach is to generate a new object based on the old object and updated object. Thereby none of the objects get altered. These data structures in React are called immutable data structures.
+React embraces functional programming. Thus you shouldn't mutate an object (or mutate the state directly). A better approach is to generate a new object based on the old object and updated object. Thereby none of the objects get altered. These data structures in React are called immutable data structures. They always return a new object and never alter an object.
 
 Let's do it in JavaScript ES5. `Object.assign()` takes as first argument a target object. All following arguments are source objects. These objects are merged into the target object. The target object can be an empty object - it embraces immutability, because no source objects get mutated. It would look similar to the following:
 
@@ -232,7 +233,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-That's it in ES5. There is a simpler solution in JavaScript future ES releases. May I introduce the spread operator to you? It only consists of three dots: ... When it is used, every value from an array or object gets copied to another array or object.
+That's it in ES5. There is a simpler solution in ES6 and future JavaScript releases. May I introduce the spread operator to you? It only consists of three dots: ... When it is used, every value from an array or object gets copied to another array or object.
 
 Let's examine the ES6 **array** spread operator even though you don't need it yet.
 
@@ -246,7 +247,7 @@ console.log(allUsers);
 // ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-The allUsers variable is a completly new array. The other variables userList and additionalUser are the same. You can even merge two arrays that way into a new array.
+The `allUsers` variable is a completly new array. The other variables `userList` and `additionalUser` are the same. You can even merge two arrays that way into a new array.
 
 {lang=javascript}
 ~~~~~~~~
@@ -311,7 +312,7 @@ The "Dismiss" button should work again.
 
 The conditionally rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all a conditional rendering can be expressed by a if-else condition in JSX.
 
-The result in the internal component state is null in the beginning. So far the App component returned no component instance when the result hasn't arrived from the API. That's already a conditional rendering! But it makes more sense to wrap the Table component - which depends on the result - in an independent conditional rendering. Everything else should be displayed even though there is no result yet. You can simply use a ternary expression in your JSX.
+The result in the internal component state is null in the beginning. So far the App component returned no component instance when the result hasn't arrived from the API. That's already a conditional rendering! But it makes more sense to wrap the Table component - which depends solely on the result - in an independent conditional rendering. Everything else should be displayed even though there is no result yet. You can simply use a ternary expression in your JSX.
 
 {lang=javascript}
 ~~~~~~~~
@@ -351,7 +352,7 @@ class App extends Component {
 
 That's only one option to express a conditional rendering. Another option is the logical `&&` operator. In JavaScript a true && 'Hello World' always evaluates to 'Hello World'. A false && 'Hello World' always evaluates to false.
 
-In React if the condition is true, the expression right after && will be the output. If the condition is false, React ignores and skips the expression. It is applicable in the Table conditional rendering case, because it should return a Table or nothing.
+In React you can see it similar. If the condition is true, the expression right after && will be the output. If the condition is false, React ignores and skips the expression. It is applicable in the Table conditional rendering case, because it should return a Table or nothing.
 
 {lang=javascript}
 ~~~~~~~~
@@ -364,7 +365,7 @@ In React if the condition is true, the expression right after && will be the out
 }
 ~~~~~~~~
 
-These were 3 approaches to use conditional rendering in React. After all you should be able to see the fetched data in your list. Everything except the Table is displayed when the data fetching is pending.
+These were a few approaches to use conditional rendering in React. After all you should be able to see the fetched data in your list. Everything except the Table is displayed when the data fetching is pending.
 
 ### Exercises:
 
@@ -374,7 +375,7 @@ These were 3 approaches to use conditional rendering in React. After all you sho
 
 When you use the search input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
 
-You can define an `onSubmit()` method in your ES6 class component, which fetches results from the Hacker News API. It will be the same fetch like in your `componentDidMount()` lifecycle method. But it fetches it with the modified search term from the submit input.
+You can define an `onSubmit()` method in your ES6 class component, which fetches results from the Hacker News API. It will be the same fetch like in your `componentDidMount()` lifecycle method. But it fetches it with the modified search term from the search field input.
 
 {lang=javascript}
 ~~~~~~~~
@@ -510,7 +511,7 @@ const Table = ({ list, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-When you try to search now, you will experience that the browser reloads. That's a native browser behavior of submit in a form. In React you will often come across the `preventDefault()` event function to suppress the native browser behavior.
+When you try to search now, you will experience that the browser reloads. That's a native browser behavior of submit in a form. In React you will often come across the `preventDefault()` event method to suppress the native browser behavior.
 
 {lang=javascript}
 ~~~~~~~~
@@ -599,9 +600,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can use the current page from the API response.
-
-Next you want to use `fetchSearchTopstories()` method in a button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` function which takes the current search term and the current page + 1. The result will be the next page.
+Now you can use the current page from the API response in `fetchSearchTopstories()`. You want to this method in a button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` function which takes the current search term and the current page + 1. The result will be the next page.
 
 {lang=javascript}
 ~~~~~~~~
@@ -639,7 +638,7 @@ class App extends Component {
 
 Make sure to default to page 0 when there is no result.
 
-There is one step missing. You fetch the next page of data, but it will overwrite your old data. You want to concatenate the old and new results. Let's adjust the functionality to add the new results rather than to overwrite it.
+There is one step missing. You fetch the next page of data, but it will overwrite your old data. You want to concatenate the old and new data. Let's adjust the functionality to add the new data rather than to overwrite it.
 
 {lang=javascript}
 ~~~~~~~~
@@ -711,7 +710,7 @@ Afterwards the request to the Hacker News API fetches more data than before.
 
 ## Client Cache
 
-Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. But you searched for "redux" twice and both times it took a whole asynchronous request to fetch the data. In a client-sided cache you would store each result. When a request to the API is made, it checks if a result is already there. If it is there, the cache is used. Otherwise an API request is made to fetch the data.
+Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. But you searched for "redux" twice and both times it took a whole asynchronous roundtrip to fetch the data. In a client-sided cache you would store each result. When a request to the API is made, it checks if a result is already there. If it is there, the cache is used. Otherwise an API request is made to fetch the data.
 
 ### Store Results, Not One Result
 
@@ -744,7 +743,7 @@ results: {
 }
 ~~~~~~~~
 
-Let's implement a client-side cache with React setState. First rename the result object to results in the initial component state. Second define a temporary searchKey which is used to store each result.
+Let's implement a client-side cache with React `setState()`. First rename the result object to results in the initial component state. Second define a temporary `searchKey` which is used to store each result.
 
 {lang=javascript}
 ~~~~~~~~
@@ -770,7 +769,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The searchKey has to be set before each request is made. It reflects the `searchTerm`. But why don't we use the search term instead? The `searchTerm` is a fluctuant variable, because it get changed every time you type into the Search input field. However in the end you will need a non fluctuant variable to determine the recent submitted search term to the API.
+The `searchKey` has to be set before each request is made. It reflects the `searchTerm`. But why don't we use the `searchTerm` in the first place? The `searchTerm` is a fluctuant variable, because it get changed every time you type into the Search input field. However in the end you will need a non fluctuant variable. It determines the recent submitted search term to the API and can be used to retrieve the correct result from the map of results.
 
 {lang=javascript}
 ~~~~~~~~
@@ -792,7 +791,7 @@ componentDidMount() {
 }
 ~~~~~~~~
 
-Now you have to adjust the functionality where the result is stored to the internal component state. It should store each result by searchKey.
+Now you have to adjust the functionality where the result is stored to the internal component state. It should store each result by `searchKey`.
 
 {lang=javascript}
 ~~~~~~~~
@@ -830,13 +829,13 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In general the search term will be used as key to save the updated hits and page in a results map.
+The `searchKey` will be used as key to save the updated hits and page in a results map.
 
-First you have to retrieve the searchKey from the component state. Remember that the searchKey gets set on `componentDidMount()` and `onSearchSubmit()`.
+First you have to retrieve the `searchKey` from the component state. Remember that the `searchKey` gets set on `componentDidMount()` and `onSearchSubmit()`.
 
-Second the old hits have to get merged with the new hits as before. But this time the old hits get retrieved from the results map with the search term as key.
+Second the old hits have to get merged with the new hits as before. But this time the old hits get retrieved from the results map with the `searchKey` as key.
 
-Third a new result can be set in the results map in the state. Let's examine the results object in setState.
+Third a new result can be set in the results map in the state. Let's examine the results object in `setState()`.
 
 {lang=javascript}
 ~~~~~~~~
@@ -846,7 +845,7 @@ results: {
 }
 ~~~~~~~~
 
-The bottom part makes sure to store the updated result by searchKey in the results map. The value is an object with a hits and page property. The searchKey is the search term. You already learned the `[searchKey]` syntax. It is an ES6 computed property name. It helps you to allocate values dynamically in an object.
+The bottom part makes sure to store the updated result by `searchKey` in the results map. The value is an object with a hits and page property. The `searchKey` is the search term. You already learned the `[searchKey]` syntax. It is an ES6 computed property name. It helps you to allocate values dynamically in an object.
 
 The upper part needs to object spread all other results by `searchKey` in the state. Otherwise you would lose all results you stored before.
 
@@ -900,7 +899,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Since you default to an empty list when there is no result by search term, you can spare the conditional rendering for the Table component. Additionally you will need to pass the `searchKey` rather than the `searchTerm` to the "More" button. Otherwise your paginated fetch depends on the search term value that is fluctuant. Moreover make sure to keep the fluctuant `searchTerm` property for the input field in the "Search" component.
+Since you default to an empty list when there is no result by `searchKey`, you can spare the conditional rendering for the Table component. Additionally you will need to pass the `searchKey` rather than the `searchTerm` to the "More" button. Otherwise your paginated fetch depends on the `searchTerm` value that is fluctuant. Moreover make sure to keep the fluctuant `searchTerm` property for the input field in the "Search" component.
 
 The search functionality should work again. It stores all results from the Hacker News API.
 
@@ -930,7 +929,7 @@ Additionally the `onDismiss()` method needs to get improved. It still deals with
 
 The "Dismiss" button should work again.
 
-However, nothing stops the app from sending an API request on each submit. Even though there might be already a result, there is no check that prevents the API request. The cache functionality is not complete yet. The last step would be to prevent the call when a result is available in the state.
+However, nothing stops the app from sending an API request on each submit. Even though there might be already a result, there is no check that prevents the request. The cache functionality is not complete yet. The last step would be to prevent the call when a result is available in the state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -969,7 +968,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now your client makes a request to the API only once although you search for a search term twice. Even paginated data with several pages gets cached that way, because you always save the page for each result in the results map.
+Now your client makes a request to the API only once although you search for a search term twice. Even paginated data with several pages gets cached that way, because you always save the last page for each result in the results map.
 
 {pagebreak}
 

@@ -4,11 +4,9 @@ The chapter will focus on the implementation of advanced React components. Befor
 
 ## Snapshot Tests with Jest
 
-[Jest](https://facebook.github.io/jest/) is a JavaScript testing framework. At Facebook it's used to validate the JavaScript code. In the React community it's used for React components test coverage. Fortunately create-react-app already comes with Jest.
+[Jest](https://facebook.github.io/jest/) is a JavaScript testing framework. At Facebook it is used to validate the JavaScript code. In the React community it is used for React components test coverage. Fortunately create-react-app already comes with Jest.
 
-Let's start to test your first components. Before you can do that, you have to export the components you want to test during the chapter.
-
-*src/App.js*
+Let's start to test your first components. Before you can do that, you have to export the components from your *App.js* file to test them during the chapter.
 
 {lang=javascript}
 ~~~~~~~~
@@ -31,9 +29,7 @@ export {
 # leanpub-end-insert
 ~~~~~~~~
 
-In your *App.test.js* file you will find a first test. It verifies that the component renders without any errors.
-
-*src/App.test.js*
+In your *App.test.js* file you will find a first test. It verifies that the App component renders without any errors.
 
 {lang=javascript}
 ~~~~~~~~
@@ -47,7 +43,7 @@ it('renders without crashing', () => {
 });
 ~~~~~~~~
 
-You can run it by using the interactive create-react-app scripts.
+You can run it by using the interactive create-react-app scripts on the command line.
 
 {lang=javascript}
 ~~~~~~~~
@@ -210,13 +206,13 @@ Snapshot tests usually stay pretty basic. You only want to cover that the compon
 
 * see how the Snapshot tests fail once you change your component implementation
   * either accept or deny the snapshot change
-* keep your snapshots tests up to date during the following chapters
+* keep your snapshots tests up to date when the implementation changes in future chapters
 * read more about [Jest in React](https://facebook.github.io/jest/docs/tutorial-react.html)
 * read more about ES6 [export](https://developer.mozilla.org/en/docs/web/javascript/reference/statements/export) and [import](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/import)
 
 ## Unit Tests with Enzyme
 
-[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests beside of your snapshot tests.
+[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests to complement your snapshot tests.
 
 Let's see how you can use enzyme. First you have to install it since it doesn't come with create-react-app.
 
@@ -261,9 +257,9 @@ describe('Table', () => {
 });
 ~~~~~~~~
 
-Shallow renders the component without children. You can make the test very dedicated to one component.
+Shallow renders the component without child components. You can make the test very dedicated to one component.
 
-Enzyme has overall three rendering mechanisms in its API. You already know `shallow()`, but there also exist `mount()` and `render()`. They instantiate instances of the parent component and all child components. Additionally `mount()` gives you more access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
+Enzyme has overall three rendering mechanisms in its API. You already know `shallow()`, but there also exist `mount()` and `render()`. Both instantiate instances of the parent component and all child components. Additionally `mount()` gives you more access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
 
 * Always begin with a shallow test
 * If `componentDidMount()` or `componentDidUpdate()` should be tested, use `mount()`
@@ -279,7 +275,7 @@ You could continue to unit test your components. But make sure to keep the tests
 
 ## Loading ...
 
-Now let's get back to your application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component in your *App.js* file.
+Now let's get back to the application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component in your *App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
@@ -315,7 +311,7 @@ class App extends Component {
 
 The initial value of that property is false. You don't load anything before the App component is mounted.
 
-When you make the request, you set a loading state. Eventually the request will succeed and you can remove the loading state.
+When you make the request, you set a loading state to true. Eventually the request will succeed and you can set the loading state to false.
 
 {lang=javascript}
 ~~~~~~~~
@@ -403,7 +399,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Initially the Loading component will show up when you start your app, because you make a request on `componentDidMount()`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false and the Loading component disappears. The button to fetch more data appears. Once you fetch more data, the button will disappear and instead the Loading component will show up.
+Initially the Loading component will show up when you start your app, because you make a request on `componentDidMount()`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false and the Loading component disappears. The "More" button to fetch more data appears. Once you fetch more data, the button will disappear. Instead the Loading component will show up.
 
 ### Exercises:
 
@@ -411,7 +407,7 @@ Initially the Loading component will show up when you start your app, because yo
 
 ## Higher Order Components
 
-Higher order components (HOC) are equivalent to higher order functions. They take any input, mostly a component, and return a component as output. The component gets modified on the way.
+Higher order components (HOC) are an advanced concept in React. HOCs are equivalent to higher order functions. They take any input - most of the time a component - and return a component as output. The returned component is an enhanced version.
 
 Let's do a simple HOC which takes a component as input and returns a component. You can place it in your *App.js* file.
 
@@ -421,7 +417,7 @@ const withSomething = (Component) => (props) =>
   <Component { ...props } />
 ~~~~~~~~
 
-In the example the input component would be the same as the output component. It renders the same component instance and passes all of the props to the output component.
+In the example the input component would stay the same as the output component. It renders the same component instance and passes all of the props to the output component.
 
 Now let's enhance the output component. The output component should show the Loading component, when the loading state is true, otherwise it should show the input component.
 
@@ -449,7 +445,7 @@ const { foo, bar } = props;
 <SomeComponent { ...props } />
 ~~~~~~~~
 
-Now you can use the HOC. In your use case you want to show either the "More" button or Loading component. The HOC can take the Button component as input. The output is a ButtonWithLoading component.
+Now you can use the HOC. In your use case you want to show either the "More" button or Loading component. The HOC can take the Button component as input. The enhanced output component is a ButtonWithLoading component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -469,7 +465,7 @@ const ButtonWithLoading = withLoading(Button);
 # leanpub-end-insert
 ~~~~~~~~
 
-Everything is set up. As last step you have to use the ButtonWithLoading component which receives the loading state as additionally property. While the HOC consumes the loading property, the `onClick()` property gets passed to the Button component.
+Everything is declared. As last step you have to use the ButtonWithLoading component which receives the loading state as additionally property. While the HOC consumes the loading property, all other props get passed to the Button component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -502,11 +498,11 @@ Higher order components are an advanced technique in React. They enable multi-pu
 ### Exercises:
 
 * experiment with the HOC you have created
-* implement another HOC
+* optionally implement another HOC
 
 ## Advanced Sorting
 
-You already have implemented a client- and server-sided search interaction. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about enabling to sort the Table columns?
+You have already implemented a client- and server-sided search interaction. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about enabling to sort the Table columns?
 
 It would be possible to write an own sort function, but personally I prefer to use an utility library for such cases. [Lodash](https://lodash.com/) is one of these utility libraries. Let's install and use it for the sort functionality.
 
@@ -526,7 +522,7 @@ import { sortBy } from 'lodash';
 import './App.css';
 ~~~~~~~~
 
-You have four columns in your Table: title, author, comments and points. For each of them you can define a sort function where each function takes a list and returns a list of items sorted by property. Additionally you will need one default sort function which doesn't sort but only returns the unsorted list.
+You have several columns in your Table. Among these you have title, author, comments and points columns. You can define sort functions where each function takes a list and returns a list of items sorted by property. Additionally you will need one default sort function which doesn't sort but only returns the unsorted list.
 
 {lang=javascript}
 ~~~~~~~~
@@ -548,7 +544,9 @@ class App extends Component {
 ...
 ~~~~~~~~
 
-You can see that two of the sort functions are reverse. That's because you want to see the items with the highest comments and points rather than to see the items with the lowest. The `SORTS` object allows you to reference any sort function now.
+You can see that two of the sort functions return a reversed list. That's because you want to see the items with the highest comments and points rather than to see the items with the lowest.
+
+The `SORTS` object allows you to reference any sort function now.
 
 Again your App component is responsible to store the state of the sort. The initial state will be the initial default sort function, which doesn't sort at all and returns the input list as output.
 
@@ -600,7 +598,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The next step is to pass the method and sortKey to your Table component.
+The next step is to pass the method and `sortKey` to your Table component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -697,7 +695,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`. So far no one executes the `onSort()` method to change the `sortKey`. Let's extend the Table with a header row which uses Sort components to sort each column.
+In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`. So far no one executes the `onSort()` method to change the `sortKey`. Let's extend the Table with a header row that uses Sort components in columns to sort each column.
 
 {lang=javascript}
 ~~~~~~~~
@@ -763,9 +761,9 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-As you can see the Sort component reuses your common Button component. On click each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list by clicking on the column headers.
+As you can see the Sort component reuses your common Button component. On click each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list when you click on the column headers.
 
-But a button as column header looks a bit silly. Let's give the Sort a proper className.
+But a button in a column header looks a bit silly. Let's give the Sort a proper `className`.
 
 {lang=javascript}
 ~~~~~~~~
@@ -796,7 +794,7 @@ this.state = {
 };
 ~~~~~~~~
 
-Now in your sort method you can evaluate if the list is reverse sorted. It's when `sortKey` in the state is the same as the incoming `sortKey` and the reverse state is not already set to true.
+Now in your sort method you can evaluate if the list is reverse sorted. It is when `sortKey` in the state is the same as the incoming `sortKey` and the reverse state is not already set to true.
 
 {lang=javascript}
 ~~~~~~~~
@@ -850,7 +848,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table has to have a block body to compute the data now.
+The Table has to have an arrown function block body to compute the data now.
 
 {lang=javascript}
 ~~~~~~~~
@@ -885,9 +883,9 @@ const Table = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-The reverse sort should work by now.
+The reverse sort should work now.
 
-Last but not least you have to deal with one open question for the sake of a good UX. Can an user distinguish which column is actively sorted? So far not. Let's give the user a visual feedback. Each Sort component gets its specific `sortKey` already. It could be used to identify the active sort. You can pass the `sortKey` from the internal component state as active sort key to your Sort component.
+Last but not least you have to deal with one open question for the sake of an improved user experience. Can an user distinguish which column is actively sorted? So far it is not possible. Let's give the user a visual feedback. Each Sort component gets its specific `sortKey` already. It could be used to identify the activated sort. You can pass the `sortKey` from the internal component state as active sort key to your Sort component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -962,7 +960,7 @@ const Table = ({
 }
 ~~~~~~~~
 
-Now in your Sort component you know based on the `sortKey` and `activeSortKey` if the sort is active. Give your Sort component an extra class when it's sorted to give the user a visual feedback.
+Now in your Sort component you know based on the `sortKey` and `activeSortKey` if the sort is active. Give your Sort component an extra `class` attribute, when it is sorted, to give the user a visual feedback.
 
 {lang=javascript}
 ~~~~~~~~
@@ -991,7 +989,7 @@ const Sort = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-The way to define the class is a bit clumsy, isn't it? There is a neat little library to get rid of this. First you have to install it.
+The way to define the `class` is a bit clumsy, isn't it? There is a neat little library to get rid of this. First you have to install it.
 
 {lang=javascript}
 ~~~~~~~~
@@ -1040,21 +1038,21 @@ const Sort = ({
 }
 ~~~~~~~~
 
-Your advanced sort interaction is complete now. Enjoy to sort the list!
+Your advanced sort interaction is complete now.
 
 ### Exercises:
 
 * use a library like [Font Awesome](http://fontawesome.io/) to indicate the (reverse) sort
-  * it could be an arrow up/down icon next to each Sort header
-* read more about [classnames library](https://github.com/JedWatson/classnames)
+  * it could be an arrow up or down icon next to each Sort header
+* read more about the [classnames library](https://github.com/JedWatson/classnames)
 
 ## Lift State
 
-Only the App component is a stateful ES6 component in your application. It handles a lot of application state and logic (methods). Maybe you have noticed that you pass a lot of properties to your Table component. Most of the props are only important for the Table component. It makes no sense that the App component knows about it.
+Only the App component is a stateful ES6 component in your application. It handles a lot of application state and logic (methods). Maybe you have noticed that you pass a lot of properties to your Table component. Most of the props are only uses in the component. It makes no sense that the App component knows about them.
 
-Let's get more specific: The sort functionality is only handled in the Table component. It could get moved closer to this component. The App component doesn't need to know about it at all. The process to refactor substate from one to another component is called to *lift state*. In your case we want to move state which isn't used in the App component closer to the Table component. The state moves from parent to child component.
+The sort functionality is only handled in the Table component. You could move it closer to the Table component. The App component doesn't need to know about it at all. The process to refactor substate from one to another component is called to *lift state*. In your case you want to move state that isn't used in the App component closer to the Table component. The state moves down from parent to child component.
 
-In order to deal with state and methods in the Table component, it has to become a ES6 class component. The refactoring from functional stateless component to ES6 class component is straight forward.
+In order to deal with state and methods in the Table component, it has to become an ES6 class component. The refactoring from functional stateless component to ES6 class component is straight forward.
 
 Your Table component as functional stateless component:
 
@@ -1107,7 +1105,7 @@ class Table extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-Since you want to deal with state and methods in your component, you have to add a constructor and initial empty state.
+Since you want to deal with state and methods in your component, you have to add a constructor and initial state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -1188,7 +1186,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Additionally you can make the Table component API more lightweight. Remove the props which are handled internally in the Table component now.
+Additionally you can make the Table component API more lightweight. Remove the props which are handled internally in the Table component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -1311,9 +1309,9 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-Your application should still work. But you made a crucial refactoring. You moved functionality and state closer to a component. Other components get more lightweight again. Additionally the component API of the Table got more lightweight because it deals internally with the sort functionality.
+Your application should still work. But you made a crucial refactoring. You moved functionality and state closer to a component. Other components got more lightweight again. Additionally the component API of the Table got more lightweight because it deals internally with the sort functionality.
 
-I want to mention one additional point in the end. The process to lift state can go the other way as well: from child to parent component. Imagine you would deal with internal state in a child component. Now you want to fulfil a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component. But it goes even further. Imagine you want to show the state in a sibling component of your child component. Again you would have to lift up the state to your parent component. The parent component deals with the internal state, but distributes it to both child components.
+The process to lift state can go the other way as well: from child to parent component - lift state up. Imagine you would deal with internal state in a child component. Now you want to fulfil a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component. But it goes even further. Imagine you want to show the state in a sibling component of your child component. Again you would have to lift up the state to your parent component. The parent component deals with the internal state, but exposes it to both child components.
 
 ### Exercises:
 
@@ -1654,5 +1652,6 @@ You have learned advanced component techniques in React! Let's recap the last ch
   * higher order components are a common way to build advanced component
   * implementation of advanced interactions In React
   * conditional classNames with a neat helper library
+  * lift state up and down
 * ES6
   * rest destructuring
