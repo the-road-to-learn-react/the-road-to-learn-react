@@ -671,7 +671,7 @@ Third you don't want to overwrite the old hits. You can merge old and new hits f
 
 Fourth you set the merged hits and page in the internal component state.
 
-You can make one last adjustment. When you try the More button it only fetches a few items. The API url can be extended to fetch more data with each request. Again you can add more composeable path constants.
+You can make one last adjustment. When you try the "More" button it only fetches a few items. The API url can be extended to fetch more data with each request. Again you can add more composeable path constants.
 
 {lang=javascript}
 ~~~~~~~~
@@ -904,7 +904,7 @@ Since you default to an empty list when there is no result by search term, you c
 
 The search functionality should work again. It stores all results from the Hacker News API.
 
-Additionally the onDismiss methods needs to get improved. It still deals with the result object. Now it has to deal with multiple results.
+Additionally the `onDismiss` method needs to get improved. It still deals with the result object. Now it has to deal with multiple results.
 
 {lang=javascript}
 ~~~~~~~~
