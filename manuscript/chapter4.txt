@@ -225,7 +225,7 @@ Let's see how you can use enzyme. First you have to install it since it doesn't 
 npm install --save-dev enzyme react-addons-test-utils
 ~~~~~~~~
 
-Now you can write your first unit test in the Table describe block. You will use `shallow` to render your component and assert that the Table has two items.
+Now you can write your first unit test in the Table describe block. You will use `shallow()` to render your component and assert that the Table has two items.
 
 {lang=javascript}
 ~~~~~~~~
@@ -263,7 +263,7 @@ describe('Table', () => {
 
 Shallow renders the component without children. You can make the test very dedicated to one component.
 
-Enzyme has overall three rendering mechanisms in its API. You already know `shallow`, but there also exist `mount` and `render`. They instantiate instances of the parent component and all child components. Additionally `mount` gives you more access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
+Enzyme has overall three rendering mechanisms in its API. You already know `shallow()`, but there also exist `mount()` and `render()`. They instantiate instances of the parent component and all child components. Additionally `mount()` gives you more access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
 
 * Always begin with a shallow test
 * If componentDidMount or componentDidUpdate should be tested, use mount
@@ -403,7 +403,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Initially the Loading component will show up when you start your app, because you make a request on `componentDidMount`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false and the Loading component disappears. The button to fetch more data appears. Once you fetch more data, the button will disappear and instead the Loading component will show up.
+Initially the Loading component will show up when you start your app, because you make a request on `componentDidMount()`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false and the Loading component disappears. The button to fetch more data appears. Once you fetch more data, the button will disappear and instead the Loading component will show up.
 
 ### Exercises:
 
@@ -469,7 +469,7 @@ const ButtonWithLoading = withLoading(Button);
 # leanpub-end-insert
 ~~~~~~~~
 
-Everything is set up. As last step you have to use the ButtonWithLoading component which receives the loading state as additionally property. While the HOC consumes the loading property, the `onClick property gets passed to the Button component.
+Everything is set up. As last step you have to use the ButtonWithLoading component which receives the loading state as additionally property. While the HOC consumes the loading property, the `onClick()` property gets passed to the Button component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -697,7 +697,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`. So far no one executes the `onSort` method to change the `sortKey`. Let's extend the Table with a header row which uses Sort components to sort each column.
+In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`. So far no one executes the `onSort()` method to change the `sortKey`. Let's extend the Table with a header row which uses Sort components to sort each column.
 
 {lang=javascript}
 ~~~~~~~~
@@ -753,7 +753,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-Each Sort component gets a specific `sortKey` and the general `onSort` method. Internally it calls the method with the `sortKey` to set the specific key.
+Each Sort component gets a specific `sortKey` and the general `onSort()` method. Internally it calls the method with the `sortKey` to set the specific key.
 
 {lang=javascript}
 ~~~~~~~~
@@ -763,7 +763,7 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-As you can see the Sort component reuses your common Button component. On click each individual passed `sortKey` will get set by the `onSort` method. Now you should be able to sort the list by clicking on the column headers.
+As you can see the Sort component reuses your common Button component. On click each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list by clicking on the column headers.
 
 But a button as column header looks a bit silly. Let's give the Sort a proper className.
 

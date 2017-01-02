@@ -183,7 +183,7 @@ The list of hits should be visible now. But the "Dismiss" button is broken. We w
 
 ## ES6 spread operator
 
-The "Dismiss" button doesn't work because the `onDismiss` method is not aware of the result.
+The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the result.
 
 {lang=javascript}
 ~~~~~~~~
@@ -198,7 +198,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-But what's happening in `setState` now? Unfortunately the result is a complex object. The list of hits is only one of multiple properties in the object. However only the list gets updated in the result object while the other properties stay the same.
+But what's happening in `setState()` now? Unfortunately the result is a complex object. The list of hits is only one of multiple properties in the object. However only the list gets updated in the result object while the other properties stay the same.
 
 One approach could be to mutate the hits in the result object. I will demonstrate it, but we won't do it!
 
@@ -217,7 +217,7 @@ const updatedHits = { hits: updatedHits };
 const updatedResult = Object.assign({}, this.state.result, updatedHits);
 ~~~~~~~~
 
-Now let's do it in the `onDismiss` method:
+Now let's do it in the `onDismiss()` method:
 
 {lang=javascript}
 ~~~~~~~~
@@ -374,7 +374,7 @@ These were 3 approaches to use conditional rendering in React. After all you sho
 
 When you use the search input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
 
-You can define an `onSubmit` method in your ES6 class component, which fetches results from the Hacker News API. It will be the same fetch like in your `componentDidMount()` lifecycle method. But it fetches it with the modified search term from the submit input.
+You can define an `onSubmit()` method in your ES6 class component, which fetches results from the Hacker News API. It will be the same fetch like in your `componentDidMount()` lifecycle method. But it fetches it with the modified search term from the submit input.
 
 {lang=javascript}
 ~~~~~~~~
@@ -410,7 +410,7 @@ class App extends Component {
 
 The Search component gets extended with a button. The button has to explicitly trigger the search. Otherwise you would fetch data every time from the Hacker News API when your input changes. As alternative you could debounce (delay) the `onChange()` function and spare the button, but it would add more complexity at this time. Let's keep it without debounce.
 
-First pass the `onSearchSubmit` method to your Search component.
+First pass the `onSearchSubmit()` method to your Search component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -446,7 +446,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Second introduce a button in your Search component. The button has the `type="submit"` and the form uses its `onSubmit` attribute to pass the `onSubmit` method. You can reuse the children property, but this time in the button.
+Second introduce a button in your Search component. The button has the `type="submit"` and the form uses its `onSubmit()` attribute to pass the `onSubmit()` method. You can reuse the children property, but this time in the button.
 
 {lang=javascript}
 ~~~~~~~~
@@ -563,7 +563,7 @@ console.log(url);
 // https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-The `fetchSearchTopstories` method will take the page as second argument. The `componentDidMount` and `onSearchSubmit` methods take the `DEFAULT_PAGE` for the initial API calls. They should fetch the first page on the first load. Every additional fetch should fetch the next page.
+The `fetchSearchTopstories()` method will take the page as second argument. The `componentDidMount()` and `onSearchSubmit()` methods take the `DEFAULT_PAGE` for the initial API calls. They should fetch the first page on the first load. Every additional fetch should fetch the next page.
 
 {lang=javascript}
 ~~~~~~~~
@@ -601,7 +601,7 @@ class App extends Component {
 
 Now you can use the current page from the API response.
 
-Next you want to use `fetchSearchTopstories` method in a button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick` function which takes the current search term and the current page + 1. The result will be the next page.
+Next you want to use `fetchSearchTopstories()` method in a button. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` function which takes the current search term and the current page + 1. The result will be the next page.
 
 {lang=javascript}
 ~~~~~~~~
@@ -665,7 +665,7 @@ setSearchTopstories(result) {
 
 First you get the hits and page from the result.
 
-Second you have to check if there are already old hits. When the page is 0, it is a new search request from `componentDidMount` or `onSearchSubmit`. The hits are empty. But when you click the "More" button to fetch paginated data the page isn't 0. It is the next page. The old hits are already stored in your state and thus can be used.
+Second you have to check if there are already old hits. When the page is 0, it is a new search request from `componentDidMount()` or `onSearchSubmit()`. The hits are empty. But when you click the "More" button to fetch paginated data the page isn't 0. It is the next page. The old hits are already stored in your state and thus can be used.
 
 Third you don't want to overwrite the old hits. You can merge old and new hits from the recent API request. The merge of both lists can be done with the ES6 array spread operator.
 
@@ -832,7 +832,7 @@ class App extends Component {
 
 In general the search term will be used as key to save the updated hits and page in a results map.
 
-First you have to retrieve the searchKey from the component state. Remember that the searchKey gets set on `componentDidMount` and `onSearchSubmit`.
+First you have to retrieve the searchKey from the component state. Remember that the searchKey gets set on `componentDidMount()` and `onSearchSubmit()`.
 
 Second the old hits have to get merged with the new hits as before. But this time the old hits get retrieved from the results map with the search term as key.
 
@@ -904,7 +904,7 @@ Since you default to an empty list when there is no result by search term, you c
 
 The search functionality should work again. It stores all results from the Hacker News API.
 
-Additionally the `onDismiss` method needs to get improved. It still deals with the result object. Now it has to deal with multiple results.
+Additionally the `onDismiss()` method needs to get improved. It still deals with the result object. Now it has to deal with multiple results.
 
 {lang=javascript}
 ~~~~~~~~
