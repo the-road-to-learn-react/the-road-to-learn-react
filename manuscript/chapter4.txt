@@ -1048,6 +1048,277 @@ Your advanced sort interaction is complete now. Enjoy to sort the list!
   * it could be an arrow up/down icon next to each Sort header
 * read more about [classnames library](https://github.com/JedWatson/classnames)
 
+## Lift State
+
+Only the App component is a stateful ES6 component in your application. It handles a lot of application state and logic (methods). Maybe you have noticed that you pass a lot of properties to your Table component. Most of the props are only important for the Table component. It makes no sense that the App component knows about it.
+
+Let's get more specific: The sort functionality is only handled in the Table component. It could get moved closer to this component. The App component doesn't need to know about it at all. The process to refactor substate from one to another component is called to *lift state*. In your case we want to move state which isn't used in the App component closer to the Table component. The state moves from parent to child component.
+
+In order to deal with state and methods in the Table component, it has to become a ES6 class component. The refactoring from functional stateless component to ES6 class component is straight forward.
+
+Your Table component as functional stateless component:
+
+{lang=javascript}
+~~~~~~~~
+const Table = ({
+  list,
+  sortKey,
+  isSortReverse,
+  onSort,
+  onDismiss
+}) => {
+  const sortedList = SORTS[sortKey](list);
+  const reverseSortedList = isSortReverse
+    ? sortedList.reverse()
+    : sortedList;
+
+  return(
+    ...
+  );
+}
+~~~~~~~~
+
+Can get refactored to an ES6 class component:
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+class Table extends Component {
+
+  render() {
+    const {
+      list,
+      sortKey,
+      isSortReverse,
+      onSort,
+      onDismiss
+    } = this.props;
+
+    const sortedList = SORTS[sortKey](list);
+    const reverseSortedList = isSortReverse
+      ? sortedList.reverse()
+      : sortedList;
+
+    return(
+      ...
+    );
+  }
+}
+# leanpub-end-insert
+~~~~~~~~
+
+Since you want to deal with state and methods in your component, you have to add a constructor and initial empty state.
+
+{lang=javascript}
+~~~~~~~~
+class Table extends Component {
+
+# leanpub-start-insert
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+# leanpub-end-insert
+
+  render() {
+    ...
+  }
+}
+~~~~~~~~
+
+Now you can move state and methods from your App component down to your Table component.
+
+{lang=javascript}
+~~~~~~~~
+class Table extends Component {
+
+  constructor(props) {
+    super(props);
+
+# leanpub-start-insert
+    this.state = {
+      sortKey: 'NONE',
+      isSortReverse: false,
+    };
+
+    this.onSort = this.onSort.bind(this);
+# leanpub-end-insert
+  }
+
+# leanpub-start-insert
+  onSort(sortKey) {
+    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
+    this.setState({ sortKey, isSortReverse });
+  }
+# leanpub-end-insert
+
+  render() {
+    ...
+  }
+}
+~~~~~~~~
+
+Don't forget to remove the moved state and `onSort()` method from your App component.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      results: null,
+      searchKey: '',
+      searchTerm: DEFAULT_QUERY,
+      isLoading: false,
+    };
+
+    this.setSearchTopstories = this.setSearchTopstories.bind(this);
+    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+Additionally you can make the Table component API more lightweight. Remove the props which are handled internally in the Table component now.
+
+{lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+# leanpub-start-insert
+    const {
+      searchTerm,
+      results,
+      searchKey,
+      isLoading
+    } = this.state;
+# leanpub-end-insert
+
+    const page = (results && results[searchKey] && results[searchKey].page) || 0;
+    const list = (results && results[searchKey] && results[searchKey].hits) || [];
+
+    return (
+      <div className="page">
+        ...
+# leanpub-start-insert
+        <Table
+          list={list}
+          onDismiss={this.onDismiss}
+        />
+# leanpub-end-insert
+        ...
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+Now in your Table component you can use the internal `onSort()` method and the internal Table state.
+
+{lang=javascript}
+~~~~~~~~
+class Table extends Component {
+
+  ...
+
+  render() {
+# leanpub-start-insert
+    const {
+      list,
+      onDismiss
+    } = this.props;
+
+    const {
+      sortKey,
+      isSortReverse,
+    } = this.state;
+# leanpub-end-insert
+
+    const sortedList = SORTS[sortKey](list);
+    const reverseSortedList = isSortReverse
+      ? sortedList.reverse()
+      : sortedList;
+
+    return(
+      <div className="table">
+        <div className="table-header">
+          <span style={{ width: '40%' }}>
+            <Sort
+              sortKey={'TITLE'}
+# leanpub-start-insert
+              onSort={this.onSort}
+# leanpub-end-insert
+              activeSortKey={sortKey}
+            >
+              Title
+            </Sort>
+          </span>
+          <span style={{ width: '30%' }}>
+            <Sort
+              sortKey={'AUTHOR'}
+# leanpub-start-insert
+              onSort={this.onSort}
+# leanpub-end-insert
+              activeSortKey={sortKey}
+            >
+              Author
+            </Sort>
+          </span>
+          <span style={{ width: '10%' }}>
+            <Sort
+              sortKey={'COMMENTS'}
+# leanpub-start-insert
+              onSort={this.onSort}
+# leanpub-end-insert
+              activeSortKey={sortKey}
+            >
+              Comments
+            </Sort>
+          </span>
+          <span style={{ width: '10%' }}>
+            <Sort
+              sortKey={'POINTS'}
+# leanpub-start-insert
+              onSort={this.onSort}
+# leanpub-end-insert
+              activeSortKey={sortKey}
+            >
+              Points
+            </Sort>
+          </span>
+          <span style={{ width: '10%' }}>
+            Archive
+          </span>
+        </div>
+        { reverseSortedList.map((item) =>
+          ...
+        )}
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+Your application should still work. But you made a crucial refactoring. You moved functionality and state closer to a component. Other components get more lightweight again. Additionally the component API of the Table got more lightweight because it deals internally with the sort functionality.
+
+I want to mention one additional point in the end. The process to lift state can go the other way as well: from child to parent component. Imagine you would deal with internal state in a child component. Now you want to fulfil a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component. But it goes even further. Imagine you want to show the state in a sibling component of your child component. Again you would have to lift up the state to your parent component. The parent component deals with the internal state, but distributes it to both child components.
+
+### Exercises:
+
+* read more about [React Lift State](https://facebook.github.io/react/docs/lifting-state-up.html)
+
 {pagebreak}
 
 Your *src/App.js* should look like the following by now:
@@ -1087,8 +1358,6 @@ class App extends Component {
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
       isLoading: false,
-      sortKey: 'NONE',
-      isSortReverse: false,
     };
 
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
@@ -1097,12 +1366,6 @@ class App extends Component {
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
     this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
-    this.onSort = this.onSort.bind(this);
-  }
-
-  onSort(sortKey) {
-    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
-    this.setState({ sortKey, isSortReverse });
   }
 
   needsToSearchTopstories(searchTerm) {
@@ -1180,9 +1443,7 @@ class App extends Component {
       searchTerm,
       results,
       searchKey,
-      isLoading,
-      sortKey,
-      isSortReverse
+      isLoading
     } = this.state;
 
     const page = (results && results[searchKey] && results[searchKey].page) || 0;
@@ -1201,9 +1462,6 @@ class App extends Component {
         </div>
         <Table
           list={list}
-          sortKey={sortKey}
-          isSortReverse={isSortReverse}
-          onSort={this.onSort}
           onDismiss={this.onDismiss}
         />
         <div className="interactions">
@@ -1235,87 +1493,110 @@ const Search = ({
     </button>
   </form>
 
-const Table = ({
-  list,
-  sortKey,
-  isSortReverse,
-  onSort,
-  onDismiss
-}) => {
-  const sortedList = SORTS[sortKey](list);
-  const reverseSortedList = isSortReverse
-    ? sortedList.reverse()
-    : sortedList;
+class Table extends Component {
 
-  return(
-    <div className="table">
-      <div className="table-header">
-        <span style={{ width: '40%' }}>
-          <Sort
-            sortKey={'TITLE'}
-            onSort={onSort}
-            activeSortKey={sortKey}
-          >
-            Title
-          </Sort>
-        </span>
-        <span style={{ width: '30%' }}>
-          <Sort
-            sortKey={'AUTHOR'}
-            onSort={onSort}
-            activeSortKey={sortKey}
-          >
-            Author
-          </Sort>
-        </span>
-        <span style={{ width: '10%' }}>
-          <Sort
-            sortKey={'COMMENTS'}
-            onSort={onSort}
-            activeSortKey={sortKey}
-          >
-            Comments
-          </Sort>
-        </span>
-        <span style={{ width: '10%' }}>
-          <Sort
-            sortKey={'POINTS'}
-            onSort={onSort}
-            activeSortKey={sortKey}
-          >
-            Points
-          </Sort>
-        </span>
-        <span style={{ width: '10%' }}>
-          Archive
-        </span>
-      </div>
-      { reverseSortedList.map(item =>
-        <div key={item.objectID} className="table-row">
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      sortKey: 'NONE',
+      isSortReverse: false,
+    };
+
+    this.onSort = this.onSort.bind(this);
+  }
+
+  onSort(sortKey) {
+    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
+    this.setState({ sortKey, isSortReverse });
+  }
+
+  render() {
+    const {
+      list,
+      onDismiss
+    } = this.props;
+
+    const {
+      sortKey,
+      isSortReverse,
+    } = this.state;
+
+    const sortedList = SORTS[sortKey](list);
+    const reverseSortedList = isSortReverse
+      ? sortedList.reverse()
+      : sortedList;
+
+    return(
+      <div className="table">
+        <div className="table-header">
           <span style={{ width: '40%' }}>
-            <a href={item.url}>{item.title}</a>
+            <Sort
+              sortKey={'TITLE'}
+              onSort={this.onSort}
+              activeSortKey={sortKey}
+            >
+              Title
+            </Sort>
           </span>
           <span style={{ width: '30%' }}>
-            {item.author}
-          </span>
-          <span style={{ width: '10%' }}>
-            {item.num_comments}
-          </span>
-          <span style={{ width: '10%' }}>
-            {item.points}
-          </span>
-          <span style={{ width: '10%' }}>
-            <Button
-              onClick={() => onDismiss(item.objectID)}
-              className="button-inline"
+            <Sort
+              sortKey={'AUTHOR'}
+              onSort={this.onSort}
+              activeSortKey={sortKey}
             >
-              Dismiss
-            </Button>
+              Author
+            </Sort>
+          </span>
+          <span style={{ width: '10%' }}>
+            <Sort
+              sortKey={'COMMENTS'}
+              onSort={this.onSort}
+              activeSortKey={sortKey}
+            >
+              Comments
+            </Sort>
+          </span>
+          <span style={{ width: '10%' }}>
+            <Sort
+              sortKey={'POINTS'}
+              onSort={this.onSort}
+              activeSortKey={sortKey}
+            >
+              Points
+            </Sort>
+          </span>
+          <span style={{ width: '10%' }}>
+            Archive
           </span>
         </div>
-      )}
-    </div>
-  );
+        { reverseSortedList.map((item) =>
+          <div key={item.objectID} className="table-row">
+            <span style={{ width: '40%' }}>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span style={{ width: '30%' }}>
+              {item.author}
+            </span>
+            <span style={{ width: '10%' }}>
+              {item.num_comments}
+            </span>
+            <span style={{ width: '10%' }}>
+              {item.points}
+            </span>
+            <span style={{ width: '10%' }}>
+              <Button
+                onClick={() => onDismiss(item.objectID)}
+                className="button-inline"
+              >
+                Dismiss
+              </Button>
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 const Button = ({ onClick, className = '', children }) =>
