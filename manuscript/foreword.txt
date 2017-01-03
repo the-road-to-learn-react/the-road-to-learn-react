@@ -27,6 +27,7 @@ In the Road to learn React I want to offer a foundation before you start to dive
 # Changelog
 
 **10. January 2017:**
+
 * [v2 Pull Request](https://github.com/rwieruch/the-road-to-learn-react/pull/18)
 * 37% more content
 * 30% of old content improved
