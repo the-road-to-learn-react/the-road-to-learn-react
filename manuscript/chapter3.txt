@@ -1117,7 +1117,6 @@ class App extends Component {
   }
 }
 
-
 const Search = ({
   value,
   onChange,

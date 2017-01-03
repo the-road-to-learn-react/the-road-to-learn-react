@@ -106,7 +106,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 # leanpub-start-insert
-import App, { Search } from './App'
+import App, { Search } from './App';
 # leanpub-end-insert
 
 ...
@@ -137,7 +137,7 @@ Second the Button component.
 ~~~~~~~~
 ...
 # leanpub-start-insert
-import App, { Search, Button } from './App'
+import App, { Search, Button } from './App';
 # leanpub-end-insert
 
 ...
@@ -168,7 +168,7 @@ Last but not least for the Table component.
 ~~~~~~~~
 ...
 # leanpub-start-insert
-import App, { Search, Button, Table } from './App'
+import App, { Search, Button, Table } from './App';
 # leanpub-end-insert
 
 ...
@@ -231,7 +231,7 @@ import renderer from 'react-test-renderer';
 # leanpub-start-insert
 import { shallow } from 'enzyme';
 # leanpub-end-insert
-import App, { Search, Button, Table } from './App'
+import App, { Search, Button, Table } from './App';
 
 describe('Table', () => {
 
@@ -576,12 +576,12 @@ class App extends Component {
     ...
 
 
+    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
     this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
-    this.onDismiss = this.onDismiss.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
-    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
 # leanpub-start-insert
     this.onSort = this.onSort.bind(this);
 # leanpub-end-insert
@@ -1358,27 +1358,18 @@ class App extends Component {
       isLoading: false,
     };
 
+    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
     this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
-    this.onDismiss = this.onDismiss.bind(this);
-    this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
-    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
-  needsToSearchTopstories(searchTerm) {
-    return !this.state.results[searchTerm];
-  }
-
-  onSearchSubmit(event) {
+  componentDidMount() {
     const { searchTerm } = this.state;
     this.setState({ searchKey: searchTerm });
-
-    if (this.needsToSearchTopstories(searchTerm)) {
-      this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
-    }
-
-    event.preventDefault();
+    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
   }
 
   setSearchTopstories(result) {
@@ -1411,10 +1402,23 @@ class App extends Component {
       .then(result => this.setSearchTopstories(result));
   }
 
-  componentDidMount() {
+  needsToSearchTopstories(searchTerm) {
+    return !this.state.results[searchTerm];
+  }
+
+  onSearchChange(event) {
+    this.setState({ searchTerm: event.target.value });
+  }
+
+  onSearchSubmit(event) {
     const { searchTerm } = this.state;
     this.setState({ searchKey: searchTerm });
-    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+
+    if (this.needsToSearchTopstories(searchTerm)) {
+      this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+    }
+
+    event.preventDefault();
   }
 
   onDismiss(id) {
@@ -1430,10 +1434,6 @@ class App extends Component {
         [searchKey]: { hits: updatedHits, page }
       }
     });
-  }
-
-  onSearchChange(event) {
-    this.setState({ searchTerm: event.target.value });
   }
 
   render() {
@@ -1568,7 +1568,7 @@ class Table extends Component {
             Archive
           </span>
         </div>
-        { reverseSortedList.map((item) =>
+        { reverseSortedList.map(item =>
           <div key={item.objectID} className="table-row">
             <span style={{ width: '40%' }}>
               <a href={item.url}>{item.title}</a>
@@ -1597,23 +1597,6 @@ class Table extends Component {
   }
 }
 
-const Button = ({ onClick, className = '', children }) =>
-  <button
-    onClick={onClick}
-    className={className}
-    type="button"
-  >
-    {children}
-  </button>
-
-const Loading = () =>
-  <div>Loading ...</div>
-
-const withLoading = (Component) => ({ isLoading, ...rest }) =>
-  isLoading ? <Loading /> : <Component { ...rest } />
-
-const ButtonWithLoading = withLoading(Button);
-
 const Sort = ({
   sortKey,
   activeSortKey,
@@ -1634,6 +1617,23 @@ const Sort = ({
     </Button>
   );
 }
+
+const Button = ({ onClick, className = '', children }) =>
+  <button
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
+    {children}
+  </button>
+
+const Loading = () =>
+  <div>Loading ...</div>
+
+const withLoading = (Component) => ({ isLoading, ...rest }) =>
+  isLoading ? <Loading /> : <Component { ...rest } />
+
+const ButtonWithLoading = withLoading(Button);
 
 export default App;
 
