@@ -20,15 +20,18 @@ In the Road to learn React I want to offer a foundation before you start to dive
 
 **What are the reading formats?** In addition to the .pdf, .epub, and .mobi formats, you can read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general, I recommend reading it on a larger format, otherwise the code snippets will have ugly line breaks.
 
-**Will you add more chapters in the future?** It depends on the community. If there is an acceptance for the book, I will deliver more chapters. Additionally I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
+**Will you add more chapters in the future?** See the Changelog chapter for updates that already happened. In general it depends on the community. If there is an acceptance for the book, I will improve and write more chapters. Additionally I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
 
-**Have there been updates of the book already?**
+{pagebreak}
 
-* 10. January 2017:
-  * even more beginner friendly
-  * 37% more content
-  * 30% of old content improved
-  * 13 improved and new chapters
+# Changelog
+
+**10. January 2017:**
+* [v2 Pull Request](https://github.com/rwieruch/the-road-to-learn-react/pull/18)
+* 37% more content
+* 30% of old content improved
+* 13 improved and new chapters
+* even more beginner friendly
 
 {pagebreak}
 
