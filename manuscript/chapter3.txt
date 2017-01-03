@@ -867,8 +867,17 @@ class App extends Component {
       searchKey
     } = this.state;
 
-    const page = (results && results[searchKey] && results[searchKey].page) || 0;
-    const list = (results && results[searchKey] && results[searchKey].hits) || [];
+    const page = (
+      results &&
+      results[searchKey] &&
+      results[searchKey].page
+    ) || 0;
+
+    const list = (
+      results &&
+      results[searchKey] &&
+      results[searchKey].hits
+    ) || [];
 
 # leanpub-end-insert
     return (
@@ -1089,8 +1098,17 @@ class App extends Component {
       searchKey
     } = this.state;
 
-    const page = (results && results[searchKey] && results[searchKey].page) || 0;
-    const list = (results && results[searchKey] && results[searchKey].hits) || [];
+    const page = (
+      results &&
+      results[searchKey] &&
+      results[searchKey].page
+    ) || 0;
+
+    const list = (
+      results &&
+      results[searchKey] &&
+      results[searchKey].hits
+    ) || [];
 
     return (
       <div className="page">

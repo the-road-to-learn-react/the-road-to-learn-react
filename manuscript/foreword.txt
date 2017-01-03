@@ -6,7 +6,7 @@ I love to teach, even though I am no expert. I learn every day and I have the fo
 
 It also taught me to do better. I realized the SoundCloud tutorial is suited for advanced developers. It uses several tools to bootstrap your application and dives pretty quickly into Redux. Still it helped a lot of people to get started. In my opinion it's a great tutorial to get a bigger picture of React + Redux. I use every free minute to improve the material, but it's time consuming. I am going to overhaul it as a whole in the future.
 
-In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want to offer a foundation before you start to dive into the more advanced React ecosystem. It has less tooling and less external state management, but more React. It explains general concepts and patterns. Additionally it links to the official documentation, because it's a great reference to learn React. After all I want to give a clear road to learn the React ecosystem. It should provide you a solid foundation before you dive into more advanced topics like Redux.
+In the Road to learn React I want to offer a foundation before you start to dive into the more advanced React ecosystem. It has less tooling and less external state management, but more React. It explains general concepts and patterns. Additionally it links to the official documentation, because it's a great reference to learn React. After all I want to give a clear road to learn the React ecosystem. It should provide you a solid foundation before you dive into more advanced topics like Redux.
 
 {pagebreak}
 
@@ -21,6 +21,14 @@ In [the Road to learn React](https://leanpub.com/the-road-to-learn-react) I want
 **What are the reading formats?** In addition to the .pdf, .epub, and .mobi formats, you can read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general, I recommend reading it on a larger format, otherwise the code snippets will have ugly line breaks.
 
 **Will you add more chapters in the future?** It depends on the community. If there is an acceptance for the book, I will deliver more chapters. Additionally I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
+
+**Have there been updates of the book already?**
+
+* 10. January 2017:
+  * even more beginner friendly
+  * 37% more content
+  * 30% of old content improved
+  * 13 improved and new chapters
 
 {pagebreak}
 
