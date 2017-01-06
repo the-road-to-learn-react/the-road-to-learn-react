@@ -310,7 +310,7 @@ The "Dismiss" button should work again.
 
 ## Conditional Rendering
 
-The conditionally rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all a conditional rendering can be expressed by a if-else condition in JSX.
+The conditional rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all a conditional rendering can be expressed by a if-else condition in JSX.
 
 The result in the internal component state is null in the beginning. So far the App component returned no component instance when the result hasn't arrived from the API. That's already a conditional rendering! But it makes more sense to wrap the Table component - which depends solely on the result - in an independent conditional rendering. Everything else should be displayed even though there is no result yet. You can simply use a ternary expression in your JSX.
 
@@ -350,7 +350,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's only one option to express a conditional rendering. Another option is the logical `&&` operator. In JavaScript a true && 'Hello World' always evaluates to 'Hello World'. A false && 'Hello World' always evaluates to false.
+That's only one option to express a conditional rendering. Another option is the logical `&&` operator. In JavaScript a `true && 'Hello World'` always evaluates to 'Hello World'. A `false && 'Hello World'` always evaluates to false.
 
 In React you can see it similar. If the condition is true, the expression right after && will be the output. If the condition is false, React ignores and skips the expression. It is applicable in the Table conditional rendering case, because it should return a Table or nothing.
 
@@ -713,8 +713,6 @@ Afterwards the request to the Hacker News API fetches more data than before.
 ## Client Cache
 
 Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. But you searched for "redux" twice and both times it took a whole asynchronous roundtrip to fetch the data. In a client-sided cache you would store each result. When a request to the API is made, it checks if a result is already there. If it is there, the cache is used. Otherwise an API request is made to fetch the data.
-
-### Store Results, Not One Result
 
 In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search term as key and the result as value. Each result from the API will be saved by search term (key).
 

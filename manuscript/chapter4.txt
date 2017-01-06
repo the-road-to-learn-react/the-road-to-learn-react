@@ -374,8 +374,8 @@ class App extends Component {
       searchKey,
       isLoading
     } = this.state;
-
 # leanpub-end-insert
+
     const page = (
       results &&
       results[searchKey] &&
@@ -583,7 +583,6 @@ class App extends Component {
   constructor(props) {
 
     ...
-
 
     this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
     this.setSearchTopstories = this.setSearchTopstories.bind(this);
