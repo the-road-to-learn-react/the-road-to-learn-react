@@ -458,8 +458,12 @@ Now you can use the HOC. In your use case you want to show either the "More" but
 
 {lang=javascript}
 ~~~~~~~~
-const Button = ({ onClick, children }) =>
-  <button onClick={onClick} type="button">
+const Button = ({ onClick, className = '', children }) =>
+  <button
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
     {children}
   </button>
 
@@ -701,12 +705,11 @@ const Table = ({
         <span style={{ width: '10%' }}>
           <Button
             onClick={() => onDismiss(item.objectID)}
-            className="inline-button"
+            className="button-inline"
           >
             Dismiss
           </Button>
         </span>
-      </div>
       </div>
     )}
   </div>
