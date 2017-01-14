@@ -194,7 +194,7 @@ Snapshot tests usually stay pretty basic. You only want to cover that the compon
 
 ## Unit Tests with Enzyme
 
-[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests beside of your snapshot tests.
+[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests alongside your snapshot tests.
 
 Let's see how you can use enzyme. First you have to install it since it doesn't come with create-react-app.
 
@@ -465,9 +465,9 @@ Higher order components are an advanced technique in React. They have multiple p
 
 ## Advanced Sorting
 
-You already have implemented a client- and server-sided search functionality. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about enabling to sort the Table columns?
+You already have implemented a client- and server-side search functionality. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about enabling sorting by the Table columns?
 
-It would be possible to write an own sort function, but personally I prefer to use utility libraries for such cases. [Lodash](https://lodash.com/) is one of these utility libraries. Let's install and use it for the sort functionality.
+It would be possible to write your own sort function, but personally I prefer to use utility libraries for such cases. [Lodash](https://lodash.com/) is one of these utility libraries. Let's install and use it for the sort functionality.
 
 {lang=javascript}
 ~~~~~~~~
@@ -496,7 +496,7 @@ const SORTS = {
 
 You can see that two of the sort functions are reverse. That's because you want to see the items with the highest comments and points rather than to see the items with the lowest. The `SORTS` object allows you to reference any sort function now.
 
-Again your App component is responsible to store the state of the sort. The initial state will be the initial default sort function, which doesn't sort at all and returns the input list as output.
+Again your App component is responsible for storing the state of the sort. The initial state will be the initial default sort function, which doesn't sort at all and returns the input list as output.
 
 {lang=javascript}
 ~~~~~~~~
@@ -511,7 +511,7 @@ this.state = {
 
 Once you choose a different `sortKey`, let's say `AUTHOR`, you will sort the list by the author property.
 
-Now you can define a new sort method in your App component which simply sets a sort key to your internal component state.
+Now you can define a new sort method in your App component that simply sets a sort key to your internal component state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -581,7 +581,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table component is responsible to sort the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterwards it still maps over the sorted list.
+The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterwards it still maps over the sorted list.
 
 {lang=javascript}
 ~~~~~~~~
@@ -648,7 +648,7 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-As you can see the Sort component reuses your common Button component. On click each individual passed `sortKey` will get set by the `onSort` method. Now you should be able to sort the list by clicking on the column headers.
+As you can see, the Sort component reuses your common Button component. On click, each individual passed `sortKey` will get set by the `onSort` method. Now you should be able to sort the list by clicking on the column headers.
 
 But a button as column header looks a bit stupid. Let's give the Sort a proper className.
 
@@ -1096,10 +1096,10 @@ export {
 You have learned advanced component techniques in React! Let's recap the last chapters:
 
 * React
-  * Jest allows to write snapshot tests for your components
-  * Enzyme allows to write unit tests for your components
-  * higher order components are a common way to build advanced component
-  * implementation of advanced interactions In React
+  * Jest allows you to write snapshot tests for your components
+  * Enzyme allows you to write unit tests for your components
+  * higher order components are a common way to build advanced components
+  * implementation of advanced interactions in React
   * conditional classNames with a neat helper library
 * ES6
   * rest destructuring
