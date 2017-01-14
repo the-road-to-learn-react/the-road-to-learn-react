@@ -1,4 +1,4 @@
-# Going Live
+# Deploy your App to Production
 
 In the end no app should stay on localhost. You want to go live! Heroku is a platform as a service where you can host your app. They offer a seamless integration with React. To be more specific: It's possible to deploy a create-react-app in minutes. It's a zero-configuration deployment which follows the philosophy of create-react-app.
 
