@@ -212,6 +212,7 @@ Snapshot tests usually stay pretty basic. You only want to cover that the compon
 
 ## Unit Tests with Enzyme
 
+
 [Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests to complement your snapshot tests.
 
 Let's see how you can use enzyme. First you have to install it since it doesn't come with create-react-app.
@@ -440,6 +441,7 @@ const withLoading = (Component) => ({ isLoading, ...rest }) =>
 
 You use a conditional rendering based on the loading property. It will return the Loading component or input component.
 
+
 Additionally you may have noticed the `{ isLoading, ...rest }` ES6 rest destructuring. It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
 
 In general it can be very efficient to spread an object as input for a component. See the difference in the following code snippet.
@@ -478,7 +480,8 @@ const ButtonWithLoading = withLoading(Button);
 # leanpub-end-insert
 ~~~~~~~~
 
-Everything is declared. As last step you have to use the ButtonWithLoading component which receives the loading state as additionally property. While the HOC consumes the loading property, all other props get passed to the Button component.
+
+Everything is declared. As the last step, you have to use the ButtonWithLoading component, which receives the loading state as an additional property. While the HOC consumes the loading property, all other props get passed to the Button component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -506,7 +509,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Higher order components are an advanced technique in React. They enable multi-purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view.
+Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view.
 
 ### Exercises:
 
@@ -515,9 +518,10 @@ Higher order components are an advanced technique in React. They enable multi-pu
 
 ## Advanced Sorting
 
-You have already implemented a client- and server-sided search interaction. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about enabling to sort the Table columns?
 
-It would be possible to write an own sort function, but personally I prefer to use an utility library for such cases. [Lodash](https://lodash.com/) is one of these utility libraries. Let's install and use it for the sort functionality.
+You have already implemented a client- and server-side search interaction. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about enabling sorting by the Table columns?
+
+It would be possible to write your own sort function, but personally I prefer to use a utility library for such cases. [Lodash](https://lodash.com/) is one of these utility libraries. Let's install and use it for the sort functionality.
 
 {lang=javascript}
 ~~~~~~~~
@@ -561,7 +565,7 @@ You can see that two of the sort functions return a reversed list. That's becaus
 
 The `SORTS` object allows you to reference any sort function now.
 
-Again your App component is responsible to store the state of the sort. The initial state will be the initial default sort function, which doesn't sort at all and returns the input list as output.
+Again your App component is responsible for storing the state of the sort. The initial state will be the initial default sort function, which doesn't sort at all and returns the input list as output.
 
 {lang=javascript}
 ~~~~~~~~
@@ -578,7 +582,8 @@ this.state = {
 
 Once you choose a different `sortKey`, let's say `AUTHOR`, you will sort the list by the author property.
 
-Now you can define a new sort method in your App component which simply sets a `sortKey` to your internal component state.
+
+Now you can define a new sort method in your App component that simply sets a `sortKey` to your internal component state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -673,7 +678,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table component is responsible to sort the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterwards it still maps over the sorted list.
+The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterwards it still maps over the sorted list.
 
 {lang=javascript}
 ~~~~~~~~
@@ -781,7 +786,8 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-As you can see the Sort component reuses your common Button component. On click each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list when you click on the column headers.
+
+As you can see, the Sort component reuses your common Button component. On click, each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list when you click on the column headers.
 
 But a button in a column header looks a bit silly. Let's give the Sort a proper `className`.
 
@@ -1694,10 +1700,10 @@ export {
 You have learned advanced component techniques in React! Let's recap the last chapters:
 
 * React
-  * Jest allows to write snapshot tests for your components
-  * Enzyme allows to write unit tests for your components
-  * higher order components are a common way to build advanced component
-  * implementation of advanced interactions In React
+  * Jest allows you to write snapshot tests for your components
+  * Enzyme allows you to write unit tests for your components
+  * higher order components are a common way to build advanced components
+  * implementation of advanced interactions in React
   * conditional classNames with a neat helper library
   * lift state up and down
 * ES6
