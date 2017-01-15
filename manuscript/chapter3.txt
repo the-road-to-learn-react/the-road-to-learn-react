@@ -247,7 +247,7 @@ console.log(allUsers);
 // ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-The `allUsers` variable is a completly new array. The other variables `userList` and `additionalUser` are the same. You can even merge two arrays that way into a new array.
+The `allUsers` variable is a completely new array. The other variables `userList` and `additionalUser` are the same. You can even merge two arrays that way into a new array.
 
 {lang=javascript}
 ~~~~~~~~

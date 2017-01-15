@@ -883,7 +883,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table has to have an arrown function block body to compute the data now.
+The Table has to have an arrow function block body to compute the data now.
 
 {lang=javascript}
 ~~~~~~~~
@@ -1355,7 +1355,7 @@ class Table extends Component {
 
 Your application should still work. But you made a crucial refactoring. You moved functionality and state closer to a component. Other components got more lightweight again. Additionally the component API of the Table got more lightweight because it deals internally with the sort functionality.
 
-The process to lift state can go the other way as well: from child to parent component - lift state up. Imagine you would deal with internal state in a child component. Now you want to fulfil a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component. But it goes even further. Imagine you want to show the state in a sibling component of your child component. Again you would have to lift up the state to your parent component. The parent component deals with the internal state, but exposes it to both child components.
+The process to lift state can go the other way as well: from child to parent component - lift state up. Imagine you would deal with internal state in a child component. Now you want to fulfill a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component. But it goes even further. Imagine you want to show the state in a sibling component of your child component. Again you would have to lift up the state to your parent component. The parent component deals with the internal state, but exposes it to both child components.
 
 ### Exercises:
 
