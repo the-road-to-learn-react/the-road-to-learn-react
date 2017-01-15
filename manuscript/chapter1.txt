@@ -24,7 +24,7 @@ React is probably one of the best choices for building SPAs nowadays. It only de
 
 Before you start to read the book, you should be familiar with HTML, CSS and JavaScript (ES5). The book will teach ES6 and beyond. When you come from a different SPA framework or library, you should be familiar with the basics. When you just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React.
 
-Every developer needs tools to build applications. You will need an edior and terminial (command line) tool. You can read my developer setup to organize your tools: [Developer Setup](http://www.robinwieruch.de/developer-setup/). The editor is used to organize and write your code. The terminal is used to execute commands. A command can be to start your application, to run tests or to install other libraries for your project.
+Every developer needs tools to build applications. You will need an editor and terminal (command line) tool. You can read my developer setup to organize your tools: [Developer Setup](http://www.robinwieruch.de/developer-setup/). The editor is used to organize and write your code. The terminal is used to execute commands. A command can be to start your application, to run tests or to install other libraries for your project.
 
 Last but not least you will need an installation of [node and npm](https://nodejs.org/en/). Both are used to manage libraries you will need along the way. You will install external node packages via npm (node package manager). These node packages can be libraries or whole frameworks.
 
@@ -94,7 +94,7 @@ I want to cover one more npm command to prevent confusion:
 npm install --save-dev <package>
 ~~~~~~~~
 
-The `--save-dev` indicates that the node package is only used in the dev environment. It will not be used in production. What kind of node package could that be? Imagine you want to test your application with an external library. You need to install that library via npm, but want to exclude it from your production environemt. There you don't want to test your application anymore. It should be tested already and work out of the box for users.
+The `--save-dev` indicates that the node package is only used in the dev environment. It will not be used in production. What kind of node package could that be? Imagine you want to test your application with an external library. You need to install that library via npm, but want to exclude it from your production environment. There you don't want to test your application anymore. It should be tested already and work out of the box for users.
 
 You will encounter more npm commands on your way. But these will be sufficient for now.
 
@@ -526,7 +526,7 @@ function () { ... }
 () => { ... }
 ~~~~~~~~
 
-But you have to be aware of its functionalities. One of them is a different behaviour with the `this` object. A function expression always defines its own `this` object. Arrow function expressions still have the `this` object of the enclosing context. Don't get confused when using `this` in an arrow function.
+But you have to be aware of its functionalities. One of them is a different behavior with the `this` object. A function expression always defines its own `this` object. Arrow function expressions still have the `this` object of the enclosing context. Don't get confused when using `this` in an arrow function.
 
 There is another valuable fact about arrow functions regarding the parenthesis. You can remove the parenthesis when the function gets only one argument, but have to keep them when it gets multiple arguments.
 
