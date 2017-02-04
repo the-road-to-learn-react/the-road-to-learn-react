@@ -1083,9 +1083,9 @@ Your advanced sort interaction is complete now.
 
 ## Lift State
 
-Only the App component is a stateful ES6 component in your application. It handles a lot of application state and logic (methods). Maybe you have noticed that you pass a lot of properties to your Table component. Most of the props are only uses in the component. It makes no sense that the App component knows about them.
+Only the App component is a stateful ES6 component in your application. It handles a lot of application state and logic (methods). Maybe you have noticed that you pass a lot of properties to your Table component. Most of the props are only used in the component. It makes no sense that the App component knows about them.
 
-The sort functionality is only handled in the Table component. You could move it closer to the Table component. The App component doesn't need to know about it at all. The process to refactor substate from one to another component is called to *lift state*. In your case you want to move state that isn't used in the App component closer to the Table component. The state moves down from parent to child component.
+The sort functionality is only handled in the Table component. You could move it closer to the Table component. The App component doesn't need to know about it at all. The process to refactor substate from one compone to another is called to *lift state*. In your case you want to move state that isn't used in the App component closer to the Table component. The state moves down from parent to child component.
 
 In order to deal with state and methods in the Table component, it has to become an ES6 class component. The refactoring from functional stateless component to ES6 class component is straight forward.
 
@@ -1355,7 +1355,7 @@ class Table extends Component {
 
 Your application should still work. But you made a crucial refactoring. You moved functionality and state closer to a component. Other components got more lightweight again. Additionally the component API of the Table got more lightweight because it deals internally with the sort functionality.
 
-The process to lift state can go the other way as well: from child to parent component - lift state up. Imagine you would deal with internal state in a child component. Now you want to fulfill a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component. But it goes even further. Imagine you want to show the state in a sibling component of your child component. Again you would have to lift up the state to your parent component. The parent component deals with the internal state, but exposes it to both child components.
+The process of lifting state can go the other way as well: from child to parent component - lift state up. Imagine you would deal with internal state in a child component. Now you want to fulfill a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component. But it goes even further. Imagine you want to show the state in a sibling component of your child component. Again you would have to lift the state up to your parent component. The parent component deals with the internal state, but exposes it to both child components.
 
 ### Exercises:
 
