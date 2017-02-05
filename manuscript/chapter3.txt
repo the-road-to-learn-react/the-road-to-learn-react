@@ -131,11 +131,11 @@ class App extends Component {
 
 A lot of things happened. I thought about it to break it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain each step in detail.
 
-First you can remove the artificial list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default search term. The same default search term is used in the search field and in your first request.
+First, you can remove the artificial list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default search term. The same default search term is used in the search field and in your first request.
 
-Second you use the `componentDidMount()` lifecycle method to fetch the data after the component did mount. In the very first fetch the default search term from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
+Second, you use the `componentDidMount()` lifecycle method to fetch the data after the component did mount. In the very first fetch the default search term from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
 
-Third the native fetch is used. ES6 string template strings allow it to compose the url with the `searchTerm`. The url is the argument for the native fetch API function. The response needs to get transformed to Json and can finally be set in the internal component state.
+Third, the native fetch is used. ES6 string template strings allow it to compose the url with the `searchTerm`. The url is the argument for the native fetch API function. The response needs to get transformed to Json and can finally be set in the internal component state.
 
 Don't forget to bind your new component methods.
 
@@ -769,7 +769,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `searchKey` has to be set before each request is made. It reflects the `searchTerm`. But why don't we use the `searchTerm` in the first place? The `searchTerm` is a fluctuant variable, because it get changed every time you type into the Search input field. However in the end you will need a non fluctuant variable. It determines the recent submitted search term to the API and can be used to retrieve the correct result from the map of results.
+The `searchKey` has to be set before each request is made. It reflects the `searchTerm`. But why don't we use the `searchTerm` in the first place? The `searchTerm` is a fluctuant variable, because it gets changed every time you type into the Search input field. However in the end you will need a non fluctuant variable. It determines the recent submitted search term to the API and can be used to retrieve the correct result from the map of results.
 
 {lang=javascript}
 ~~~~~~~~
