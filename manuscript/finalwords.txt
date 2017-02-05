@@ -11,13 +11,13 @@ If you are looking for further extensions for your app, I can recommend two path
 
 After you have built your own React application, you may want to experiment with Redux. Redux is a state management library. You can build your own [SoundCloud Client in React + Redux](https://www.robinwieruch.de/the-soundcloud-client-in-react-redux) in a tutorial. The tutorial shows you more advanced tooling around React. It has multiple [extensions to cover topics like ESLint, Flow, Normalizr, MobX and Observables](https://github.com/rwieruch/react-redux-soundcloud).
 
-More readings:
+**More Readings:**
 
 * [Reasons why I moved from Angular to React](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
 * [Tips to learn React + Redux](https://www.robinwieruch.de/tips-to-learn-react-redux/)
 * [Redux or MobX: An attempt to dissolve the Confusion](https://www.robinwieruch.de/redux-mobx-confusion/)
 
-More resources:
+**More Resources:**
 
 * A real SoundCloud Client in React + Redux: [Live](http://www.favesound.de/) & [Source](https://github.com/rwieruch/favesound-redux)
 * A real SoundCloud Client in React + MobX: [Source](https://github.com/rwieruch/favesound-mobx)
