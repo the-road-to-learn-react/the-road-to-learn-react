@@ -18,13 +18,13 @@ Second all building blocks are interchangeable. It makes the ecosystem around Re
 
 The first generation of SPA frameworks arrived at an enterprise level. React stays innovative and gets adopted by multiple tech thought leader companies like [Airbnb, Netflix and of course Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). All of them invest in the future of React and are content with React and the ecosystem itself.
 
-React is probably one of the best choices for building SPAs nowadays. It only delivers the view layer, but the ecosystem is a whole flexible and interchangeable framework. React has a slim API, an amazing ecosystem and a great community. Everyone is keen to experience where it will lead us in 2017.
+React is probably one of the best choices for building SPAs nowadays. It only delivers the view layer, but the ecosystem is a whole flexible and interchangeable framework. React has a slim API, an amazing ecosystem and a great community. You can read about my experiences [why I moved from Angular to React](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/). Everyone is keen to experience where it will lead us in 2017.
 
 ## Requirements
 
 Before you start to read the book, you should be familiar with HTML, CSS and JavaScript (ES5). The book will teach ES6 and beyond. When you come from a different SPA framework or library, you should be familiar with the basics. When you just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React.
 
-Every developer needs tools to build applications. You will need an editor and terminal (command line) tool. You can read my developer setup to organize your tools: [Developer Setup](http://www.robinwieruch.de/developer-setup/). The editor is used to organize and write your code. The terminal is used to execute commands. A command can be to start your application, to run tests or to install other libraries for your project.
+Every developer needs tools to build applications. You will need an editor and terminal (command line) tool. You can read my developer setup to organize your tools: [Developer Setup](https://www.robinwieruch.de/developer-setup/). The editor is used to organize and write your code. The terminal is used to execute commands. A command can be to start your application, to run tests or to install other libraries for your project.
 
 Last but not least you will need an installation of [node and npm](https://nodejs.org/en/). Both are used to manage libraries you will need along the way. You will install external node packages via npm (node package manager). These node packages can be libraries or whole frameworks.
 
