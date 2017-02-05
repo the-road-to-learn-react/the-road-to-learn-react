@@ -9,13 +9,18 @@ If you are looking for further extensions for your app, I can recommend two path
 * implement routing for your App with react-router
 * use a state management library (Redux or MobX) for scaling state management
 
-After you have built your own React application, you may want to experiment with Redux. Redux is a state management library. You can build your own [SoundCloud Client in React + Redux](https://www.robinwieruch.de/the-soundcloud-client-in-react-redux). The tutorial shows you more of the tooling around React. It has multiple [extensions](https://github.com/rwieruch/react-redux-soundcloud) to cover topics like ESLint, Flow, Normalizr, MobX and Observables.
+After you have built your own React application, you may want to experiment with Redux. Redux is a state management library. You can build your own [SoundCloud Client in React + Redux](https://www.robinwieruch.de/the-soundcloud-client-in-react-redux) in a tutorial. The tutorial shows you more advanced tooling around React. It has multiple [extensions to cover topics like ESLint, Flow, Normalizr, MobX and Observables](https://github.com/rwieruch/react-redux-soundcloud).
 
-Further readings:
+More readings:
 
 * [Reasons why I moved from Angular to React](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
 * [Tips to learn React + Redux](https://www.robinwieruch.de/tips-to-learn-react-redux/)
 * [Redux or MobX: An attempt to dissolve the Confusion](https://www.robinwieruch.de/redux-mobx-confusion/)
+
+More resources:
+
+* A real SoundCloud Client in React + Redux: [Live](http://www.favesound.de/) & [Source](https://github.com/rwieruch/favesound-redux)
+* A real SoundCloud Client in React + MobX: [Source](https://github.com/rwieruch/favesound-mobx)
 
 In general I invite you to visit my website [www.robinwieruch.de](https://www.robinwieruch.de/) to find more interesting topics. You can [subscribe](http://eepurl.com/caLPjr) to my Newsletter to get content updates.
 
