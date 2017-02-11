@@ -1214,36 +1214,38 @@ Second apply it in your Table functional stateless component.
 {lang=javascript}
 ~~~~~~~~
 const Table = ({ list, pattern, onDismiss }) =>
+return (
 # leanpub-start-insert
-  <div className="table">
+    <div className="table">
 # leanpub-end-insert
-    { list.filter(isSearched(pattern)).map(item =>
+      { list.filter(isSearched(pattern)).map(item =>
 # leanpub-start-insert
-      <div key={item.objectID} className="table-row">
+        <div key={item.objectID} className="table-row">
 # leanpub-end-insert
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-        <span>
-          <Button
-            onClick={() => onDismiss(item.objectID)}
+          <span>
+            <a href={item.url}>{item.title}</a>
+          </span>
+          <span>{item.author}</span>
+          <span>{item.num_comments}</span>
+          <span>{item.points}</span>
+          <span>
+            <Button
+              onClick={() => onDismiss(item.objectID)}
 # leanpub-start-insert
-            className="button-inline"
+              className="button-inline"
 # leanpub-end-insert
-          >
-            Dismiss
-          </Button>
-        </span>
+            >
+              Dismiss
+            </Button>
+          </span>
 # leanpub-start-insert
-      </div>
+        </div>
 # leanpub-end-insert
-    )}
+      )}
 # leanpub-start-insert
-  </div>
+    </div>
 # leanpub-end-insert
+)
 ~~~~~~~~
 
 Now you have styled your app and components with basic CSS. It should look decent. As you know JSX is mixed up HTML and JavaScript. One could argue to add CSS in the mixup as well. That's called inline style. You can define JavaScript objects and pass them to the style attribute of an element.
