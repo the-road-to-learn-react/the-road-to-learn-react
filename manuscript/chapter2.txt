@@ -1004,7 +1004,7 @@ function Search({ value, onChange, children }) {
 }
 ~~~~~~~~
 
-But it can get better. You know that arrow functions allow you to keep your functions concise. Since your functional stateless component is a function, you can keep it concise as well.
+But it can get better. You know already that arrow functions allow you to keep your functions concise. You can remove the block body of the function. In a concise body an implicit return is attached thus you can remove the return statement. Since your functional stateless component is a function, you can keep it concise as well.
 
 {lang=javascript}
 ~~~~~~~~
@@ -1020,7 +1020,7 @@ const Search = ({ value, onChange, children }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-The last step was especially useful to enforce only to have props as input and an element as output. Nothing in between. Still you could do something in between by using a block body in your arrow function.
+The last step was especially useful to enforce only to have props as input and an element as output. Nothing in between. Still you could *do something* in between by using a block body in your arrow function.
 
 {lang=javascript}
 ~~~~~~~~
@@ -1039,6 +1039,8 @@ const Search = ({ value, onChange, children }) => {
   );
 }
 ~~~~~~~~
+
+But you don't need it for now. That's why you can keep the previous version without the block body.
 
 Now you have one lightweight functional stateless component. Once you would need access to its internal component state or lifecycle methods, you would refactor it to an ES6 class component.
 
