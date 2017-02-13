@@ -4,15 +4,15 @@ The chapter gives you an introduction to React. You may ask yourself: Why should
 
 ## Hi, my name is React.
 
-**Why should you bother to learn React?** In the recent years single page applications (SPA) got popular. Frameworks like Angular, Ember and Backbone helped JavaScript people to build modern web applications beyond jQuery. The list is not exhaustive. There exists a wide range of SPA frameworks. When you consider the release dates, most of them are among the first generation of SPAs: Angular 2010, Backbone 2010, Ember 2011.
+**Why should you bother to learn React?** In recent years single page applications (SPA) have become popular. Frameworks like Angular, Ember and Backbone helped JavaScript people to build modern web applications beyond jQuery. The list is not exhaustive. There exists a wide range of SPA frameworks. When you consider the release dates, most of them are among the first generation of SPAs: Angular 2010, Backbone 2010, Ember 2011.
 
-The initial React release was 2013 by Facebook. React is no SPA framework but a view library. It only enables you to render components as view in a browser. But the whole ecosystem around React makes it possible to build single page applications.
+The initial React release was 2013 by Facebook. React is not an SPA framework but a view library. It only enables you to render components as views in a browser. But the whole ecosystem around React makes it possible to build single page applications.
 
-But why should you consider to use React over the first generation of SPA frameworks? While the first generation of SPAs tried to solve a lot of things at once, React only helps to build your view layer. It's a library and not a framework. The idea behind it: Your view is a hierarchy of composable components.
+But why should you consider using React over the first generation of SPA frameworks? While the first generation of SPAs tried to solve a lot of things at once, React only helps to build your view layer. It's a library and not a framework. The idea behind it: Your view is a hierarchy of composable components.
 
 In React you can focus on your view before you introduce more aspects to your application. Every other aspect is another building block for your SPA. These building blocks are essential to build a mature application. They come with two advantages.
 
-First you can learn the building blocks step by step. You don't have to worry to understand them altogether. It is different to a framework that gives you every building block from the start. The book focuses on React as first building block. More building blocks follow eventually.
+First you can learn the building blocks step by step. You don't have to worry about understanding them altogether. It is different from a framework that gives you every building block from the start. This book focuses on React as the first building block. More building blocks follow eventually.
 
 Second all building blocks are interchangeable. It makes the ecosystem around React such an innovative place. Multiple solutions are competing with each other. You can pick the most appealing solution for you and your use case.
 
@@ -22,7 +22,7 @@ React is probably one of the best choices for building SPAs nowadays. It only de
 
 ## Requirements
 
-Before you start to read the book, you should be familiar with HTML, CSS and JavaScript (ES5). The book will teach ES6 and beyond. When you come from a different SPA framework or library, you should be familiar with the basics. When you just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React.
+Before you start to read the book, you should be familiar with HTML, CSS and JavaScript (ES5). The book will teach ES6 and beyond. If you are coming from a different SPA framework or library, you should be familiar with the basics. If you have just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React.
 
 Every developer needs tools to build applications. You will need an editor and terminal (command line) tool. You can read my developer setup to organize your tools: [Developer Setup](https://www.robinwieruch.de/developer-setup/). The editor is used to organize and write your code. The terminal is used to execute commands. A command can be to start your application, to run tests or to install other libraries for your project.
 
@@ -40,7 +40,7 @@ npm --version
 
 ## node and npm
 
-The chapter gives you a little crash course in node and npm. If you are familiar with both of them, you can skip the lesson.
+This chapter gives you a little crash course in node and npm. If you are familiar with both of them, you can skip the lesson.
 
 The **node package manager** (npm) allows you to install external **node packages** from the command line. These packages can be a set of utility functions, libraries or whole frameworks. You can either install these packages to your global package repository or to your local project folder.
 
@@ -74,7 +74,7 @@ But be careful! Whenever you install a local package you shouldn't forget the ne
 npm install --save <package>
 ~~~~~~~~
 
-The `--save` indicates npm to store the package requirement to a file called *package.json*. The file can be found in your project folder.
+The `--save` tells npm to store the package requirement to a file called *package.json*. The file can be found in your project folder.
 
 Not every project folder comes with a *package.json* though. There is a npm command to initialize a *package.json*. Only when you have that file, you can install new local packages via npm.
 
@@ -125,7 +125,7 @@ npm install --save react react-dom
 
 That approach is mostly used to add React to an existing application.
 
-Unfortunately that's not everything. You would have to deal with [Babel](http://babeljs.io/) to make your application aware of JSX (React syntax) and JavaScript ES6. Babel transpiles your code that Browsers can interpret ES6 and JSX. Not all browser are capable to interpret the novel syntax. The setup includes a lot of configuration and tools. It can be overwhelming for React beginners to bother with all the configuration. That's why Facebook introduced create-react-app!
+Unfortunately that's not everything. You would have to deal with [Babel](http://babeljs.io/) to make your application aware of JSX (React syntax) and JavaScript ES6. Babel transpiles your code that browsers can interpret ES6 and JSX. Not all browsers are capable of interpreting the novel syntax. The setup includes a lot of configuration and tools. It can be overwhelming for React beginners to bother with all the configuration. That's why Facebook introduced create-react-app!
 
 ### Exercises:
 
@@ -211,7 +211,7 @@ The scripts are defined in your *package.json* too. You can read more about [the
 
 ## Introduction to JSX
 
-Now you will get to know JSX - the syntax in React. As mentioned create-react-app already scaffolded a boilerplate application. All files come with default implementations. Let's dive into the source code. The only file you will touch in the beginning will be the *src/App.js*.
+Now you will get to know JSX - the syntax in React. As mentioned create-react-app has already scaffolded a boilerplate application. All files come with default implementations. Let's dive into the source code. The only file you will touch in the beginning will be the *src/App.js*.
 
 {lang=javascript}
 ~~~~~~~~
@@ -238,7 +238,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Don't let yourself confuse by the import and export statements. We will revisit those later.
+Don't let yourself get confused by the import and export statements. We will revisit those later.
 
 In the file you have an **ES6 class component** with the name App. Basically you can use the <App /> JSX everywhere in your application to use the component. Once you use it, it will produce an **instance** of your **component**. The **element** it returns is specified in the `render()` method. Elements are what components are made of. It is valuable to understand the differences between component, instance and element.
 
@@ -399,7 +399,7 @@ ReactDOM.render(
 
 ### Exercises:
 
-* read more about [React rendering element](https://facebook.github.io/react/docs/rendering-elements.html)
+* read more about the [React rendering element](https://facebook.github.io/react/docs/rendering-elements.html)
 
 ## Complex JavaScript in JSX
 
@@ -511,7 +511,7 @@ Start your app, open your browser and see both items of the list displayed.
 
 * read more about [React lists and keys](https://facebook.github.io/react/docs/lists-and-keys.html)
 * make yourself comfortable with [standard built-in functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-* use more JavaScript expression on your own in JSX
+* use more JavaScript expressions on your own in JSX
 
 ## ES6 Arrow Functions
 
@@ -539,7 +539,7 @@ item => { ... }
 (item, key) => { ... }
 ~~~~~~~~
 
-However let's have a look at the map function. You can write it more concise with an ES6 arrow function.
+However let's have a look at the map function. You can write it more concisely with an ES6 arrow function.
 
 {lang=javascript}
 ~~~~~~~~
@@ -647,4 +647,4 @@ You have learned to bootstrap your own React app! Let's recap the last chapters:
   * variable declarations with const and let
   * arrow functions to shorten your function declarations
 
-It makes sense to make a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
+It makes sense to take a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
