@@ -116,7 +116,7 @@ var userService = {
 };
 
 // ES6
-var userService = {
+const userService = {
   getUserName(user) {
     return user.firstname + ' ' + user.lastname;
   },
@@ -133,8 +133,8 @@ var user = {
 };
 
 // ES6
-var key = 'name';
-var user = {
+const key = 'name';
+const user = {
   [key]: 'Robin',
 };
 ~~~~~~~~
@@ -562,7 +562,7 @@ var firstname = user.firstname;
 var lastname = user.lastname;
 
 // ES6
-var { firstname, lastname } = user;
+const { firstname, lastname } = user;
 
 console.log(firstname + ' ' + lastname);
 // output: Robin Wieruch
@@ -572,7 +572,7 @@ While you have to add an extra line each time you want to access an object prope
 
 {lang=javascript}
 ~~~~~~~~
-var {
+const {
   firstname,
   lastname
 } = user;
@@ -582,8 +582,8 @@ The same goes for arrays. You can destructure them too, but keep it more readabl
 
 {lang=javascript}
 ~~~~~~~~
-var users = ['Robin', 'Andrew', 'Dan'];
-var [
+const users = ['Robin', 'Andrew', 'Dan'];
+const [
   userOne,
   userTwo,
   userThree
@@ -622,7 +622,7 @@ var searchTerm = this.state.searchTerm;
 var list = this.state.list;
 
 // ES6
-var { searchTerm, list } = this.state;
+const { searchTerm, list } = this.state;
 ~~~~~~~~
 
 But since the book uses ES6 most of the time, you should stick to ES6.
