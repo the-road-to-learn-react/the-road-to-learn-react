@@ -310,7 +310,7 @@ The "Dismiss" button should work again.
 
 ## Conditional Rendering
 
-The conditional rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all a conditional rendering can be expressed by a if-else condition in JSX.
+The conditional rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all a conditional rendering can be expressed by a if-else statement in JSX.
 
 The result in the internal component state is null in the beginning. So far the App component returned no component instance when the result hasn't arrived from the API. That's already a conditional rendering! But it makes more sense to wrap the Table component - which depends solely on the result - in an independent conditional rendering. Everything else should be displayed even though there is no result yet. You can simply use a ternary expression in your JSX.
 
@@ -365,7 +365,7 @@ In React you can see it similar. If the condition is true, the expression right 
 }
 ~~~~~~~~
 
-These were a few approaches to use conditional rendering in React. After all you should be able to see the fetched data in your list. Everything except the Table is displayed when the data fetching is pending.
+These were a few approaches to use conditional rendering in React. You can read about [more alternatives on my website](https://www.robinwieruch.de/conditional-rendering-react/). After all you should be able to see the fetched data in your list. Everything except the Table is displayed when the data fetching is pending.
 
 ### Exercises:
 
