@@ -70,7 +70,7 @@ In ES6 JavaScript you can use [template strings](https://developer.mozilla.org/e
 {lang=javascript}
 ~~~~~~~~
 // ES6
-var url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`;
+const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`;
 
 // ES5
 var url = PATH_BASE + PATH_SEARCH + '?' + PARAM_SEARCH + DEFAULT_QUERY;
@@ -559,7 +559,7 @@ Now you can use these constants to add the page parameter to your API request.
 
 {lang=javascript}
 ~~~~~~~~
-var url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}`;
+const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}`;
 
 // output
 console.log(url);
