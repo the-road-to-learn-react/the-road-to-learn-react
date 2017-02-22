@@ -1172,7 +1172,7 @@ button:hover {
 }
 ~~~~~~~~
 
-Now you can use the style in your some of your components. Don't forget to use React `className` instead of `class` as attribute.
+Now you can use the style in some of your components. Don't forget to use React `className` instead of `class` as attribute.
 
 First apply it in your App ES6 class component.
 
