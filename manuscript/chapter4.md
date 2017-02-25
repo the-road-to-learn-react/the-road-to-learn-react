@@ -4,7 +4,7 @@ The chapter will focus on the implementation of advanced React components. Befor
 
 ## Snapshot Tests with Jest
 
-[Jest](https://facebook.github.io/jest/) is a JavaScript testing framework. At Facebook it is used to validate the JavaScript code. In the React community it is used for React components test coverage. Fortunately create-react-app already comes with Jest.
+[Jest](https://facebook.github.io/jest/) is a JavaScript testing framework. At Facebook it is used to validate the JavaScript code. In the React community it is used for React components test coverage. Fortunately *create-react-app* already comes with Jest.
 
 Let's start to test your first components. Before you can do that, you have to export the components from your *App.js* file to test them during the chapter.
 
@@ -43,7 +43,7 @@ it('renders without crashing', () => {
 });
 ~~~~~~~~
 
-You can run it by using the interactive create-react-app scripts on the command line.
+You can run it by using the interactive *create-react-app* scripts on the command line.
 
 {lang=javascript}
 ~~~~~~~~
@@ -212,10 +212,9 @@ Snapshot tests usually stay pretty basic. You only want to cover that the compon
 
 ## Unit Tests with Enzyme
 
-
 [Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests to complement your snapshot tests.
 
-Let's see how you can use enzyme. First you have to install it since it doesn't come with create-react-app.
+Let's see how you can use enzyme. First you have to install it since it doesn't come with *create-react-app*.
 
 {lang=javascript}
 ~~~~~~~~
@@ -273,6 +272,123 @@ You could continue to unit test your components. But make sure to keep the tests
 
 * keep your unit tests up to date during the following chapters
 * read more about [enzyme and its rendering API](https://github.com/airbnb/enzyme)
+
+## Reference a DOM Element
+
+The `ref` attribute gives you access to a DOM node in your elements. Usually that is an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. But there are certain cases where you need access to the DOM node. The official documentation mentions three use cases:
+
+* to use the DOM api (focus, media playback)
+* to invoke imperative DOM node animations
+* to integrate with third-party libraries that need the DOM node (e.g. [D3.js](https://d3js.org/))
+
+Let's do it by example with the Search component. When the application renders the first time, the input field should be focused. This chapter will show you how it works, but since it is not very useful for the application itself, we will omit the changes after the chapter.
+
+In order to use the `ref` attribute you need to refactor the Search component from a functional stateless component to an ES6 class component.
+
+{lang=javascript}
+# leanpub-start-insert
+class Search extends Component {
+
+  render() {
+    const {
+      value,
+      onChange,
+      onSubmit,
+      children
+    } = this.props;
+
+    return (
+# leanpub-end-insert
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+        />
+        <button type="submit">
+          {children}
+        </button>
+      </form>
+# leanpub-start-insert
+    );
+  }
+}
+# leanpub-end-insert
+~~~~~~~~
+
+Why did we need to refactor it to a ES6 class component? Because only that kind of component has the `this` object at its disposal. Only that way it can use the `ref` attribute to reference the node.
+
+{lang=javascript}
+class Search extends Component {
+
+  render() {
+    const {
+      value,
+      onChange,
+      onSubmit,
+      children
+    } = this.props;
+
+    return (
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+# leanpub-start-insert
+          ref={(node) => { this.input = node; }}
+# leanpub-end-insert
+        />
+        <button type="submit">
+          {children}
+        </button>
+      </form>
+    );
+  }
+}
+~~~~~~~~
+
+Now you can focus the input field when the component mounted by using the `this` object.
+
+{lang=javascript}
+class Search extends Component {
+
+# leanpub-start-insert
+  componentDidMount() {
+    this.input.focus();
+  }
+# leanpub-end-insert
+
+  render() {
+    const {
+      value,
+      onChange,
+      onSubmit,
+      children
+    } = this.props;
+
+    return (
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+          ref={(node) => { this.input = node; }}
+        />
+        <button type="submit">
+          {children}
+        </button>
+      </form>
+    );
+  }
+}
+~~~~~~~~
+
+The input field should be focused when the application is rendered. However, you should internalize when it is allowed to use the `ref` attribute. Otherwise it will be bad practice.
+
+### Exercises
+
+* read more about [the ref attribute in React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
 
 ## Loading ...
 
@@ -409,7 +525,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Initially the Loading component will show up when you start your app, because you make a request on `componentDidMount()`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false and the Loading component disappears. The "More" button to fetch more data appears. Once you fetch more data, the button will disappear. Instead the Loading component will show up.
+Initially the Loading component will show up when you start your application, because you make a request on `componentDidMount()`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false and the Loading component disappears. The "More" button to fetch more data appears. Once you fetch more data, the button will disappear. Instead the Loading component will show up.
 
 ### Exercises:
 
@@ -1697,11 +1813,14 @@ export {
 };
 ~~~~~~~~
 
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/e67239acf624c014453332236a8d5381787cde4e).
+
 You have learned advanced component techniques in React! Let's recap the last chapters:
 
 * React
   * Jest allows you to write snapshot tests for your components
   * Enzyme allows you to write unit tests for your components
+  * the ref attribute to reference DOM nodes
   * higher order components are a common way to build advanced components
   * implementation of advanced interactions in React
   * conditional classNames with a neat helper library
