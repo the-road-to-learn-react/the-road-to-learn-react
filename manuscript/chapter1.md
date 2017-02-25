@@ -617,6 +617,65 @@ Your JSX looks more concise and readable now. It omits the function and return s
 
 * read more about [ES6 arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
+## ES6 Classes
+
+JavaScript ES6 introduced classes. A class is commonly used in object-oriented programming languages. JavaScript was and is very flexible in its programming paradigms. You can do functional programming and object-oriented programming side by side. That might be not the best idea in the first place, but that's a discussion to have somewhere else.
+
+Even though React embraces functional programming, for instance with immutable data structures, classes are used to declare ES6 class components. The library mixes the good parts of both programming paradigms.
+
+Let's consider the following Developer class to examine a JavaScript ES6 class.
+
+{lang=javascript}
+~~~~~~~~
+class Developer {
+  constructor(firstname, lastname) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+  }
+
+  getName() {
+    return this.firstname + ' ' + this.lastname;
+  }
+}
+~~~~~~~~
+
+A class has a constructor to make it instantiable. The constructor can take parameters to assign it to the class instance. Additionally a class can define functions. Because the function is associated with a class, it is called method. The Developer class is only the class declaration. You can create multiple instances of the class by invoking it.
+
+Let's see how you can instantiate the class and how you can use its methods.
+
+{lang=javascript}
+~~~~~~~~
+const robin = new Developer('Robin', 'Wieruch');
+console.log(robin.getName());
+// Robin Wieruch
+~~~~~~~~
+
+React uses JavaScript ES6 classes for ES6 class components. You already used one ES6 class component.
+
+{lang=javascript}
+import React, { Component } from 'react';
+
+...
+
+class App extends Component {
+  render() {
+    ...
+  }
+}
+~~~~~~~~
+
+The App class extends from `Component`. What does that mean? In object-oriented programming you have the principle of inheritance. It is used to pass over functionalities from one class to another class. The App class extends functionality from the Component class. It inherits functionalities from the Component class.
+
+The `Component` class encapsulates all the React functionalities that a developer doesn't need to see. It enables developers to use classes as components in React.
+
+The methods a React `Component` exposes is the public interface. One of these methods has to be overwritten, the others don't need to be overwritten. You will learn about the latter ones when the book arrives at lifecycle methods in a later chapter. The one that has to be overwritten is the `render()` method. It defines the output of a React `Component`.
+
+Now you know the basics around JavaScriot ES6 classes and how they are used in React. As I said, you will learn more about the Component methods when the book describes React lifecycle methods.
+
+### Exercises:
+
+* read more about [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
+
 {pagebreak}
 
 Your *src/App.js* should look like the following by now:
@@ -679,5 +738,6 @@ You have learned to bootstrap your own React application! Let's recap the last c
 * ES6
   * variable declarations with const and let
   * arrow functions can be used to shorten your function declarations
+  * classes and how they play together with React
 
 It makes sense to take a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
