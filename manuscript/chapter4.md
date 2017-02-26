@@ -4,15 +4,15 @@ The chapter will focus on the implementation of advanced React components. Befor
 
 ## ES6 Modules: Import and Export
 
-In JavaScript ES6 you can import and export from functionalities from modules. These functionalities can be functions, classes, components, constants or primitive variables. Basically everything that you can assign to a variable. The modules can be single files or whole folders with one index file as entry point.
+In JavaScript ES6 you can import and export functionalities from modules. These functionalities can be functions, classes, components, constants etc. Basically everything that you can assign to a variable. The modules can be single files or whole folders with one index file as entry point.
 
-In the beginning of the book, after you have bootstrapped your application with *create-react-app*, you already had several `import` and `export` statements across your files. Now it is the appropriate time to explain these.
+In the beginning of the book, after you have bootstrapped your application with *create-react-app*, you already had several `import` and `export` statements across your initial files. Now it is the appropriate time to explain these.
 
 The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one stardardized way rather than having several approaches for the same thing. Now it is a native behavior in JavaScript ES6.
 
 Additionally these statements embrace code splitting. You distribute your code across multiple files to keep it reusable and maintainable. The former is true because you can import the piece of code in multiple files. The latter is true because you have one single source where you maintain the piece of code.
 
-Last but not least it helps you to think about code encapsulation. Not every functionality needs to get exported from a file. Some of these functionalities should only be used in the file where they have been defined. The exports of a file are basically the public API to the file. Only the exported functionalities are available to be reused somewhere else. It follows the best practice of encapsulation.
+Last but not least, it helps you to think about code encapsulation. Not every functionality needs to get exported from a file. Some of these functionalities should only be used in the file where they have been defined. The exports of a file are basically the public API to the file. Only the exported functionalities are available to be reused somewhere else. It follows the best practice of encapsulation.
 
 But let's get practical. How do these `import` and `export` statements work? The following examples showcase the statements by sharing one or multiple variables across two files. In the end, the approach can scale to multiple files and could share more than simple variables.
 
@@ -28,7 +28,7 @@ const lastname = 'wieruch';
 export { firstname, lastname };
 ~~~~~~~~
 
-And import them in another file with the relative path to the first file.
+And import them in another file with a relative path to the first file.
 
 *file2.js*
 
@@ -40,7 +40,7 @@ console.log(firstname);
 // output: robin
 ~~~~~~~~
 
-You can also import all exported variables at once
+You can also import all exported variables from another file at once.
 
 *file2.js*
 
@@ -52,7 +52,7 @@ console.log(person.firstname);
 // output: robin
 ~~~~~~~~
 
-Imports can have an alias as well. It can happen that you import functionalities from multiple files that have the same named export.
+Imports can have an alias. It can happen that you import functionalities from multiple files that have the same named export. That's why you can use an alias.
 
 *file2.js*
 
@@ -64,7 +64,7 @@ console.log(foo);
 // output: robin
 ~~~~~~~~
 
-Last but not least there exists the `default` statement. It can be used for a few use cases.
+Last but not least there exists the `default` statement. It can be used for a few use cases:
 
 * to export and import a single functionality
 * to highlight the main functionality of the exported API
@@ -92,7 +92,7 @@ console.log(developer);
 // output: { firstname: 'robin', lastname: 'wieruch' }
 ~~~~~~~~
 
-The import name can differ from the exported variable name. You can also use it in conjunction with the named export and import statements.
+The import name can differ from the exported default name. You can also use it in conjunction with the named export and import statements.
 
 *file1.js*
 
@@ -126,12 +126,217 @@ console.log(firstname, lastname);
 // output: robin wieruch
 ~~~~~~~~
 
-These are the main functionalities for ES6 modules. They help you to organize your code, to maintain your code and to design reusable module APIs. You can also export and import functionalities to test them. You will do that in the following chapter.
+In named exports you can spare additional lines and export the variables directly.
+
+*file1.js*
+
+{lang=javascript}
+~~~~~~~~
+export const firstname = 'robin';
+export const lastname = 'wieruch';
+~~~~~~~~
+
+These are the main functionalities for ES6 modules. They help you to organize your code, to maintain your code and to design reusable module APIs. You can also export and import functionalities to test them. You will do that in one of the following chapters.
 
 ### Exercises:
 
 * read more about [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 * read more about [ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+
+## Code Organization with ES6 Modules
+
+You might wonder: Why didn't we follow the best practices of code splitting for the *src/App.js* file? In the file we already have multiple components which could be defined in their own files/folders (modules). For the sake of learning React, it is practical to keep these things at one place. But once your React application grows, you should consider to split up these components into multiple modules. Only that way your application scales.
+
+In the following I will propose several module structures you *could* apply. You can either apply them as an exercise or at the end of the book. For the sake of the book and learning React, I will not perform the code splitting and will continue the following chapters with the *src/App.js* file.
+
+One possible module structure could be:
+
+{lang=javascript}
+~~~~~~~~
+src/
+  index.js
+  index.css
+  App.js
+  App.test.js
+  App.css
+  Button.js
+  Button.test.js
+  Button.css
+  Table.js
+  Table.test.js
+  Table.css
+  Search.js
+  Search.test.js
+  Search.css
+~~~~~~~~
+
+It doesn't look too promising. You can see a lot of naming duplications and only the file extension differs. Another module structure could be:
+
+{lang=javascript}
+~~~~~~~~
+src/
+  index.js
+  index.css
+  App/
+    index.js
+    test.js
+    index.css
+  Button/
+    index.js
+    test.js
+    index.css
+  Table/
+    index.js
+    test.js
+    index.css
+  Search/
+    index.js
+    test.js
+    index.css
+~~~~~~~~
+
+It looks cleaner than before. Another step could be extracting the constant variables from the App component. These constants were used to compose the Hacker News API url.
+
+{lang=javascript}
+~~~~~~~~
+src/
+  index.js
+  index.css
+# leanpub-start-insert
+  constants/
+    index.js
+  components/
+# leanpub-end-insert
+    App/
+      index.js
+      test.js
+      index..css
+    Button/
+      index.js
+      test.js
+      index..css
+    ...
+~~~~~~~~
+
+Naturally the modules would split up into submodules *constants/* and *components/*.
+
+Now the *constants/index.js* file could look like the following:
+
+{lang=javascript}
+~~~~~~~~
+export const DEFAULT_QUERY = 'redux';
+export const DEFAULT_PAGE = 0;
+export const DEFAULT_HPP = '100';
+
+export const PATH_BASE = 'https://hn.algolia.com/api/v1';
+export const PATH_SEARCH = '/search';
+export const PARAM_SEARCH = 'query=';
+export const PARAM_PAGE = 'page=';
+export const PARAM_HPP = 'hitsPerPage=';
+~~~~~~~~
+
+The *App/index.js* file could import the variables in order to use them.
+
+{lang=javascript}
+~~~~~~~~
+import {
+  DEFAULT_QUERY,
+  DEFAULT_PAGE,
+  DEFAULT_HPP,
+
+  PATH_BASE,
+  PATH_SEARCH,
+  PARAM_SEARCH,
+  PARAM_PAGE,
+  PARAM_HPP,
+} from '../constants/index.js';
+
+...
+~~~~~~~~
+
+When you use the *index.js* naming convention, you can omit the filename from the relative path.
+
+{lang=javascript}
+~~~~~~~~
+import {
+  DEFAULT_QUERY,
+  DEFAULT_PAGE,
+  DEFAULT_HPP,
+
+  PATH_BASE,
+  PATH_SEARCH,
+  PARAM_SEARCH,
+  PARAM_PAGE,
+  PARAM_HPP,
+# leanpub-start-insert
+} from '../constants';
+# leanpub-end-insert
+
+...
+~~~~~~~~
+
+But what's behind the *index.js* file naming? The convention was introduced in the node.js world. The index file is the entry point to a module. It describes the public API to the module. External modules are only allowed to use the *index.js* file to import shared code from the module. Consider the following made up module structure to demonstrate it:
+
+{lang=javascript}
+~~~~~~~~
+src/
+  index.js
+  App/
+    index.js
+  Buttons/
+    index.js
+    SubmitButton.js
+    SaveButton.js
+    CancelButton.js
+~~~~~~~~
+
+The *Buttons/* folder has multiple button components defined in its distinct files. Each file can `export default` the specific component making it available to *Buttons/index.js*. The *Buttons/index.js* file imports all different button represantations and exports them as public module API.
+
+*src/Buttons/index.js*
+
+{lang=javascript}
+~~~~~~~~
+import SubmitButton from './SubmitButton';
+import SaveButton from './SaveButton';
+import CancelButton from './CancelButton';
+
+export {
+  SubmitButton,
+  SaveButton,
+  CancelButton,
+};
+~~~~~~~~
+
+Now the *src/App/index.js* can import the buttons from the public module API located in the *index.js* file.
+
+*src/App/index.js*
+
+{lang=javascript}
+~~~~~~~~
+import {
+  SubmitButton,
+  SaveButton,
+  CancelButton
+} from '../Buttons';
+~~~~~~~~
+
+By going with this constraint, it would be a bad practice to reach into other files in the module. It would break the rules of encapsulation.
+
+*src/App/index.js*
+
+{lang=javascript}
+~~~~~~~~
+// bad practice, don't do it
+import SubmitButton from '../Buttons/SubmitButton';
+~~~~~~~~
+
+Now you know how you could refactor your source code in modules with the constraints of encapsulation. As I said, for the sake of keeping the tutorial simple I will not apply these changes. But you should do the refactoring eventually.
+
+### Exercises:
+
+* refactor your *src/App.js* file into multiple component modules
+  * keep in mind that the following chapters will not apply the refactoring
+  * keep in mind that you could do the final refactoring as last exercise when you finished the book
 
 ## Snapshot Tests with Jest
 
