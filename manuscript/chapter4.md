@@ -338,6 +338,153 @@ Now you know how you could refactor your source code in modules with the constra
   * keep in mind that the following chapters will not apply the refactoring
   * keep in mind that you could do the final refactoring as last exercise when you finished the book
 
+## PropTypes
+
+You may know [TypeScript](https://www.typescriptlang.org/) or [Flow](https://flowtype.org/) to introduce a type interface to JavaScript. A typed language is less error prone, because the code gets validated based on its program text. Editors and other utilities can catch these errors before the program runs. It makes your program more robust.
+
+React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props that get passed from a parent component to a child component get validated based on the PropTypes interface assigned to the child component.
+
+The chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code for the next chapters. But you should keep and update them along the way to keep your components interface type safe.
+
+Initially you can import PropTypes explicitly:
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+import React, { Component, PropTypes } from 'react';
+# leanpub-end-insert
+~~~~~~~~
+
+Let's start to assign a props interface to the components.
+
+{lang=javascript}
+~~~~~~~~
+const Button = ({ onClick, className = '', children }) =>
+  <button
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
+    {children}
+  </button>
+
+# leanpub-start-insert
+Button.propTypes = {
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
+# leanpub-end-insert
+~~~~~~~~
+
+That's it. You take every argument from the function signature and assign a PropType to it. The basic PropTypes for primitives and complex objects are:
+
+{lang=javascript}
+~~~~~~~~
+* PropTypes.array
+* PropTypes.bool
+* PropTypes.func
+* PropTypes.number
+* PropTypes.object
+* PropTypes.string
+~~~~~~~~
+
+Additionally you have two more PropTypes to define a renderable fragement (node), e.g. a string, and a React element.
+
+{lang=javascript}
+~~~~~~~~
+* PropTypes.node
+* PropTypes.element
+~~~~~~~~
+
+You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up in the official React documentation.
+
+At the moment all of the defined PropTypes for the Button are optional. The parameters can be null or undefined. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
+
+{lang=javascript}
+~~~~~~~~
+Button.propTypes = {
+# leanpub-start-insert
+  onClick: PropTypes.func.isRequired,
+# leanpub-end-insert
+  className: PropTypes.string,
+# leanpub-start-insert
+  children: PropTypes.node.isRequired,
+# leanpub-end-insert
+};
+~~~~~~~~
+
+The `className` is not required, because it can default to an empty string. Next you will define a PropType interface for the Table component:
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+Table.propTypes = {
+  list: PropTypes.array.isRequired,
+  onDismiss: PropTypes.func.isRequired,
+};
+# leanpub-end-insert
+~~~~~~~~
+
+You can define the content of an array PropType more explicit:
+
+{lang=javascript}
+~~~~~~~~
+Table.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      objectID: PropTypes.string.isRequired,
+      author: PropTypes.string,
+      url: PropTypes.string,
+      num_comments: PropTypes.number,
+      points: PropTypes.number,
+    })
+  ).isRequired,
+  onDismiss: PropTypes.func.isRequired,
+};
+~~~~~~~~
+
+Only the `objectID` is required, because you know that some of your code depends on it. The other properties are only displayed, thus they are not neccesarly required. Moreover you cannot be sure that the Hacker News API has always a defined property for each object in the array.
+
+That's it for PropTypes. But there is one more aspect. You can define default props in your component. Let's take again the Button component. The `className` property has an ES6 default parameter in the component signature.
+
+{lang=javascript}
+~~~~~~~~
+const Button = ({ onClick, className = '', children }) =>
+  ...
+~~~~~~~~
+
+You could replace it with the internal React default prop:
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+const Button = ({ onClick, className, children }) =>
+# leanpub-end-insert
+  <button
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
+    {children}
+  </button>
+
+# leanpub-start-insert
+Button.defaultProps = {
+  className: '',
+};
+# leanpub-end-insert
+~~~~~~~~
+
+Same as the ES6 default parameter, the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
+
+### Exercises:
+
+* does the App component have a PropType interface?
+* define the PropType interface for the Search component
+* add and update the PropType interfaces when you add and update components
+* read more about [React PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
+
 ## Snapshot Tests with Jest
 
 [Jest](https://facebook.github.io/jest/) is a JavaScript testing framework. At Facebook it is used to validate the JavaScript code. In the React community it is used for React components test coverage. Fortunately *create-react-app* already comes with Jest.
@@ -616,6 +763,7 @@ You can find the source code in the [official repository](https://github.com/rwi
 You have learned how to organize your code and how to test it! Let's recap the last chapters:
 
 * React
+  * PropTypes let you define type checks for components
   * Jest allows you to write snapshot tests for your components
   * Enzyme allows you to write unit tests for your components
 * ES6
