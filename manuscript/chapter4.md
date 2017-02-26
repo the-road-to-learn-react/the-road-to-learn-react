@@ -1,6 +1,137 @@
 # Advanced React Components
 
-The chapter will focus on the implementation of advanced React components. Before you jump into this, you will need to know how to test your components. Afterwards you are prepared to implement your own higher order components and advanced interactions in React.
+The chapter will focus on the implementation of advanced React components. Before you jump into this, you will need to know how to export and import and how to test your components. Afterward you are prepared to implement your own higher order components and advanced interactions in React. Along the way you will learn more advanced internal React behavior.
+
+## ES6 Modules: Import and Export
+
+In JavaScript ES6 you can import and export from functionalities from modules. These functionalities can be functions, classes, components, constants or primitive variables. Basically everything that you can assign to a variable. The modules can be single files or whole folders with one index file as entry point.
+
+In the beginning of the book, after you have bootstrapped your application with *create-react-app*, you already had several `import` and `export` statements across your files. Now it is the appropriate time to explain these.
+
+The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one stardardized way rather than having several approaches for the same thing. Now it is a native behavior in JavaScript ES6.
+
+Additionally these statements embrace code splitting. You distribute your code across multiple files to keep it reusable and maintainable. The former is true because you can import the piece of code in multiple files. The latter is true because you have one single source where you maintain the piece of code.
+
+Last but not least it helps you to think about code encapsulation. Not every functionality needs to get exported from a file. Some of these functionalities should only be used in the file where they have been defined. The exports of a file are basically the public API to the file. Only the exported functionalities are available to be reused somewhere else. It follows the best practice of encapsulation.
+
+But let's get practical. How do these `import` and `export` statements work? The following examples showcase the statements by sharing one or multiple variables across two files. In the end, the approach can scale to multiple files and could share more than simple variables.
+
+You can export one or multiple variables. It is called a named export.
+
+*file1.js*
+
+{lang=javascript}
+~~~~~~~~
+const firstname = 'robin';
+const lastname = 'wieruch';
+
+export { firstname, lastname };
+~~~~~~~~
+
+And import them in another file with the relative path to the first file.
+
+*file2.js*
+
+{lang=javascript}
+~~~~~~~~
+import { firstname, lastname } from './file1.js';
+
+console.log(firstname);
+// output: robin
+~~~~~~~~
+
+You can also import all exported variables at once
+
+*file2.js*
+
+{lang=javascript}
+~~~~~~~~
+import * as person from './file1.js';
+
+console.log(person.firstname);
+// output: robin
+~~~~~~~~
+
+Imports can have an alias as well. It can happen that you import functionalities from multiple files that have the same named export.
+
+*file2.js*
+
+{lang=javascript}
+~~~~~~~~
+import { firstname as foo } from './file1.js';
+
+console.log(foo);
+// output: robin
+~~~~~~~~
+
+Last but not least there exists the `default` statement. It can be used for a few use cases.
+
+* to export and import a single functionality
+* to highlight the main functionality of the exported API
+* to have a fallback import functionality
+
+*file1.js*
+
+{lang=javascript}
+~~~~~~~~
+const robin = {
+  firstname: 'robin',
+  lastname: 'wieruch',
+};
+
+export default robin;
+~~~~~~~~
+
+*file2.js*
+
+{lang=javascript}
+~~~~~~~~
+import developer from './file1.js';
+
+console.log(developer);
+// output: { firstname: 'robin', lastname: 'wieruch' }
+~~~~~~~~
+
+The import name can differ from the exported variable name. You can also use it in conjunction with the named export and import statements.
+
+*file1.js*
+
+{lang=javascript}
+~~~~~~~~
+const firstname = 'robin';
+const lastname = 'wieruch';
+
+const person = {
+  firstname,
+  lastname,
+};
+
+export {
+  firstname,
+  lastname,
+};
+
+export default person;
+~~~~~~~~
+
+*file2.js*
+
+{lang=javascript}
+~~~~~~~~
+import developer, { firstname, lastname } from './file1.js';
+
+console.log(developer);
+// output: { firstname: 'robin', lastname: 'wieruch' }
+console.log(firstname, lastname);
+// output: robin wieruch
+~~~~~~~~
+
+These are the main functionalities for ES6 modules. They help you to organize your code, to maintain your code and to design reusable module APIs. You can also export and import functionalities to test them. You will do that in the following chapter.
+
+### Exercises:
+
+* read more about [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+* read more about [ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 
 ## Snapshot Tests with Jest
 
@@ -826,7 +957,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterwards it still maps over the sorted list.
+The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterward it still maps over the sorted list.
 
 {lang=javascript}
 ~~~~~~~~
