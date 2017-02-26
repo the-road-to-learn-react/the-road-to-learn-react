@@ -277,13 +277,15 @@ You could continue to unit test your components. But make sure to keep the tests
 
 The `ref` attribute gives you access to a DOM node in your elements. Usually that is an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. But there are certain cases where you need access to the DOM node. The official documentation mentions three use cases:
 
-* to use the DOM api (focus, media playback)
+* to use the DOM API (focus, media playback etc.)
 * to invoke imperative DOM node animations
 * to integrate with third-party libraries that need the DOM node (e.g. [D3.js](https://d3js.org/))
 
 Let's do it by example with the Search component. When the application renders the first time, the input field should be focused. This chapter will show you how it works, but since it is not very useful for the application itself, we will omit the changes after the chapter.
 
-In order to use the `ref` attribute you need to refactor the Search component from a functional stateless component to an ES6 class component.
+In general, you can use the `ref` attribute in functional stateless components and in ES6 class components. In the example of the focus use case, you will need a lifecycle method. That's why I will first show you the approach of using the `ref` attribute with an ES6 class component.
+
+The initial step is to refactor the functional stateless component to an ES6 class component.
 
 {lang=javascript}
 # leanpub-start-insert
@@ -316,7 +318,7 @@ class Search extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-Why did we need to refactor it to a ES6 class component? Because only that kind of component has the `this` object at its disposal. Only that way it can use the `ref` attribute to reference the node.
+The `this` object of an ES6 class component helps us to reference the DOM node with the `ref` attribute.
 
 {lang=javascript}
 class Search extends Component {
@@ -348,7 +350,7 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-Now you can focus the input field when the component mounted by using the `this` object.
+Now you can focus the input field when the component mounted by using the `this` object and the appropriate lifecycle method.
 
 {lang=javascript}
 class Search extends Component {
@@ -384,7 +386,37 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The input field should be focused when the application is rendered. However, you should internalize when it is allowed to use the `ref` attribute. Otherwise it will be bad practice.
+The input field should be focused when the application is rendered. But how would you get access to the `ref` in a functional stateless component without the `this` object? The following functional stateless component demonstrates it:
+
+{lang=javascript}
+const Search = ({
+  value,
+  onChange,
+  onSubmit,
+  children
+}) => {
+# leanpub-start-insert
+  let input;
+# leanpub-end-insert
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+# leanpub-start-insert
+        ref={(node) => input = node}
+# leanpub-end-insert
+      />
+      <button type="submit">
+        {children}
+      </button>
+    </form>
+  );
+}
+~~~~~~~~
+
+In the example of the focus use case it wouldn't help you, because you have no lifecycle method to trigger the DOM API. But there are other use cases where it can make sense to use a functional stateless component with the `ref` attribute.
 
 ### Exercises
 
