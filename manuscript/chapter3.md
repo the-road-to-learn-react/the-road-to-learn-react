@@ -1,16 +1,16 @@
 # Getting Real with an API
 
-Now it's time to get real with an API. In the end it can get boring to deal with artificial data. Do you know [Hacker News](https://news.ycombinator.com/)? It's a great news aggregator. You will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API. The latter one makes sense in your case to search stories on Hacker News. You can visit the [API specification](https://hn.algolia.com/api) to get a glimpse of the data structure.
+Now it's time to get real with an API, because it can get boring to deal with artificial data. Do you know [Hacker News](https://news.ycombinator.com/)? It's a great news aggregator. You will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API to get data from the plaform. The latter one makes sense in your case to search stories on Hacker News. You can visit the [API specification](https://hn.algolia.com/api) to get a glimpse of the data structure.
 
 ## Lifecycle Methods
 
-You will need the knowledge about React lifecycle methods before you can start to fetch data. These methods are a hook into the lifecycle of a React component which you can overwrite. There are a few to learn.
+You will need the knowledge about React lifecycle methods before you can start to fetch data. These methods are a hook into the lifecycle of a React component which you can overwrite. Remember when a previous chapter taught you about JavaScript ES6 classes and how they are used in React? Apart from the `render()` method, I mentioned several methods that can be overwritten in a React ES6 class component. These are the lifecycle methods. Let's dive into them:
 
 You already know two lifecycle methods in your ES6 class component: `constructor()` and `render()`.
 
-The constructor is only called when an instance of the component is created and inserted in the DOM. That process is called mounting of the component.
+The constructor is only called when an instance of the component is created and inserted in the DOM. The component gets instantiated. That process is called mounting of the component.
 
-The `render()` method is called during the mount process too, but also when the component updates. Each time when the state of a component changes the `render()` method is called. It also renders when there are incoming props from the component above.
+The `render()` method is called during the mount process too, but also when the component updates. Each time when the state of a component changes the `render()` method is called. It also renders when there are incoming props from the parent component.
 
 Now you know two lifecycle methods and when they are called. You already used them as well. But there are more of them.
 
@@ -31,19 +31,34 @@ But what about the update lifecycle of a component? Overall it has 5 lifecycle m
 * render()
 * componentDidUpdate()
 
-You don't need to know all of them from the beginning. But still it is good to know that each lifecycle method can be used for specific use cases:
+Last but not least there is the unmounting lifecycle. It has only one lifecycle method: `componentWillUnmount()`.
 
-* componentDidMount() method can be used to get data from an API when the component mounts
-* shouldComponentUpdate() can be used in a mature React app to prevent a component from updating for performance optimizations
+After all, you don't need to know all of these lifecycle methods from the beginning. Still, it is good to know that each lifecycle method can be used for specific use cases:
 
-So far you know that there is a mounting and updating lifecycle. But every lifecycle ends at some time. The third lifecycle is the unmounting lifecycle. It has only one lifecycle method: `componentWillUnmount()`. It is used to cleanup stuff when you are about to destroy your component.
+* constructor() - It is called when the component gets initialized. You can set an initial component state and bind useful class methods during that lifecycle method.
+
+* componentWillMount() - It is called before the `render()` lifecycle method. That's why it could be used to set internal component state, because it will not trigger a second rendering of the component. Generally it is recommend to use the `constructor()` to set the initial state.
+
+* render() - The lifecycle method is mandatory and returns the elements as an ouput of the component. The method should be pure and therefore shouldn't modify the component state. It gets an input as props and state and returns an element.
+
+* componentDidMount() - It is called only once when the component mounted. That's the perfect time to do an asynchronous request to fetch data from an API. The fetched API would get stored in the internal component state to display it in the `render()` lifecycle method.
+
+* componentWillReceiveProps(nextProps) - The lifecycle method is called during an update lifecycle. As input you get the next props. You can diff the next props with the previous props in `this.props` to achieve a some use case. Additionally you can set state based on the next props.
+
+* shouldComponentUpdate() - It is always called when the component updates due to state or props changes. You will use it in mature React applications for performance optimzations. Depending on a boolean that you return from this lifecycle method, the component and all its children will render or will not render. You can prevent the render lifecycle method of a component.
+
+* componentWillUpdate(nextProps, nextState) - The lifecycle method is immediatly invoked before the `render()` method. You already have the next props and next state at your disposal. You can use the method as last opportunity to perform preparations before the render method. Note that you cannot trigger `setState()` anymore. If you want to compute state based on next props, you have to use `componentWillReceiveProps()`.
+
+* componentDidUpdate(prevProps, prevState) - The lifecycle method is immediatly invoked after the `render()` method. You can use it as opportunity to work on the DOM or perform further asynchronous requests.
+
+* componentWillUnmount() - It is called before you destroy your component. You can use the lifecycle method to perform any clean up tasks.
 
 The `constructor()` and `render()` lifecycle methods are already used by you. These are the commonly used lifecycle methods for ES6 class components. Actually the `render()` method is required - otherwise you wouldn't return a component instance.
 
 ### Exercises:
 
 * read more about [lifecycle methods in React](https://facebook.github.io/react/docs/react-component.html)
-* read more about [the state and lifecycle in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* read more about [the state related to lifecycle methods in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 
 ## Fetch Data from an API
 
@@ -259,7 +274,7 @@ console.log(allUsers);
 // ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-Now let's have a look at the object spread operator. It is not ES6! It is a [proposal for a future ES version](https://github.com/sebmarkbage/ecmascript-rest-spread) yet already used by the React community. That's why create-react-app incorporated the feature in the configuration.
+Now let's have a look at the object spread operator. It is not ES6! It is a [proposal for a future ES version](https://github.com/sebmarkbage/ecmascript-rest-spread) yet already used by the React community. That's why *create-react-app* incorporated the feature in the configuration.
 
 Basically it is the same as the ES6 array spread operator but with objects. It copies each key value pair into a new object.
 
@@ -365,7 +380,9 @@ In React you can see it similar. If the condition is true, the expression right 
 }
 ~~~~~~~~
 
-These were a few approaches to use conditional rendering in React. You can read about [more alternatives on my website](https://www.robinwieruch.de/conditional-rendering-react/). After all you should be able to see the fetched data in your list. Everything except the Table is displayed when the data fetching is pending.
+These were a few approaches to use conditional rendering in React. You can read about [more alternatives on my website](https://www.robinwieruch.de/conditional-rendering-react/) where I keep an exhaustive list of conditional renderings. Moreover you will get to know their different use cases and when to apply them.
+
+After all, you should be able to see the fetched data in your list. Everything except the Table is displayed when the data fetching is pending.
 
 ### Exercises:
 
@@ -938,7 +955,7 @@ Additionally the `onDismiss()` method needs to get improved. It still deals with
 
 The "Dismiss" button should work again.
 
-However, nothing stops the app from sending an API request on each submit. Even though there might be already a result, there is no check that prevents the request. The cache functionality is not complete yet. The last step would be to prevent the call when a result is available in the state.
+However, nothing stops the application from sending an API request on each submit. Even though there might be already a result, there is no check that prevents the request. The cache functionality is not complete yet. The last step would be to prevent the call when a result is available in the state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -1189,6 +1206,8 @@ const Button = ({ onClick, className = '', children }) =>
 
 export default App;
 ~~~~~~~~
+
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/21350d40b43eba603362812246914e39587ea649).
 
 You have learned to interact with an API in React! Let's recap the last chapters:
 
