@@ -1,6 +1,6 @@
-# Bootstrap your React App
+# Introduction to React
 
-The chapter gives you an introduction to React. You may ask yourself: Why should I learn React in the first place? You will get your answer to that question. Afterwards you will dive into the ecosystem by bootstrapping your first React application. Along the way you will get an introduction to JSX and ReactDOM. Be prepared for your first React components.
+The chapter gives you an introduction to React. You may ask yourself: Why should I learn React in the first place? You will get your answer to that question. Afterward you will dive into the ecosystem by bootstrapping your first React application. Along the way you will get an introduction to JSX and ReactDOM. Be prepared for your first React components.
 
 ## Hi, my name is React.
 
@@ -366,7 +366,7 @@ export default App;
 * read more about ES6 [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 * reasearch more about immutable data structures
 
-## ReactDOM.render
+## ReactDOM.render()
 
 Before you continue with the App component, you might want to see where it's used. It is located in your entry point to the React world: the *src/index.js* file.
 
@@ -402,6 +402,43 @@ ReactDOM.render(
 ### Exercises:
 
 * read more about [rendering elements in React](https://facebook.github.io/react/docs/rendering-elements.html)
+
+## Hot Module Reloading
+
+There is one thing that you can do in the *src/index.js* file to improve your developer experience.
+
+In *create-react-app* it is already an advantage that the browser automatically refreshes when you change your source code. Try it by changing the `helloWorld` variable in your *src/App.js* file. The browser should refresh the page. But you can do better.
+
+Hot Module Reloading (HMR) is a tool to reload your application in the browser. The browser doesn't need to perform a page refresh. You can easily activate it in *create-react-app*. In your *src/index.js* - your entry point to React - you have to add one little configuration.
+
+{lang=javascript}
+~~~~~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './index.css';
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+
+# leanpub-start-insert
+if (module.hot) {
+  module.hot.accept()
+}
+# leanpub-end-insert
+~~~~~~~~
+
+That's it. Try again to change the `hellowWorld` variable in your *src/App.js* file. The browser shouldn't refresh, but the application reloads and shows the correct output.
+
+HMR comes with multiple advantages. Imagine you are debugging your code with `console.log()` statements. These statements will stay in your developer console, because the browser doesn't refresh anymore. That can be convenient for debugging purposes. Another benefit is that in a growing application a browser refresh might delay your productivity. You have to wait until the page loads. HMR takes away disadvantage.
+
+The biggest benefit is that you can keep the application state with HMR. Imagine you have a dialog in your application with multiple steps and you are at step 3. Without HMR you would change the source code and your browser refreshes the application. You would have to open the dialog again and go to step 3. With HMR your dialog stays open at step 3. You can continue to improve your application while everything stays the same.
+
+### Exercises:
+
+* watch the first 10 minutes of [Live React: Hot Reloading with Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs) by Dan Abramov
 
 ## Complex JavaScript in JSX
 
@@ -647,7 +684,7 @@ Let's see how you can instantiate the class and how you can use its methods.
 ~~~~~~~~
 const robin = new Developer('Robin', 'Wieruch');
 console.log(robin.getName());
-// Robin Wieruch
+// output: Robin Wieruch
 ~~~~~~~~
 
 React uses JavaScript ES6 classes for ES6 class components. You already used one ES6 class component.
@@ -678,53 +715,7 @@ Now you know the basics around JavaScriot ES6 classes and how they are used in R
 
 {pagebreak}
 
-Your *src/App.js* should look like the following by now:
-
-{lang=javascript}
-~~~~~~~~
-import React, { Component } from 'react';
-import './App.css';
-
-const list = [
-  {
-    title: 'React',
-    url: 'https://facebook.github.io/react/',
-    author: 'Jordan Walke',
-    num_comments: 3,
-    points: 4,
-    objectID: 0,
-  },
-  {
-    title: 'Redux',
-    url: 'https://github.com/reactjs/redux',
-    author: 'Dan Abramov, Andrew Clark',
-    num_comments: 2,
-    points: 5,
-    objectID: 1,
-  },
-];
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        { list.map(item =>
-          <div key={item.objectID}>
-            <span>
-              <a href={item.url}>{item.title}</a>
-            </span>
-            <span>{item.author}</span>
-            <span>{item.num_comments}</span>
-            <span>{item.points}</span>
-          </div>
-        )}
-      </div>
-    );
-  }
-}
-
-export default App;
-~~~~~~~~
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4c513fcceb1ee8dfdc9dbd5ff43770bcdb456365).
 
 You have learned to bootstrap your own React application! Let's recap the last chapters:
 
