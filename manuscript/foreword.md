@@ -14,7 +14,7 @@ You will learn to build your own Hacker News application. It covers real world f
 
 # FAQ
 
-**How do I get updates?** You can [subscribe](http://eepurl.com/caLPjr) to my Newsletter or follow me on [Twitter](https://twitter.com/rwieruch) to get updates. It keeps encourages me and motivates me to continue. Once you have a copy of the book, it will stay updated. But you have to download the copy again when an update is announced. I will notify everyone by a [Newsletter](http://eepurl.com/caLPjr) and [Twitter](https://twitter.com/rwieruch).
+**How do I get updates?** You can [subscribe](https://www.getrevue.co/profile/rwieruch) to my Newsletter or follow me on [Twitter](https://twitter.com/rwieruch) to get updates. It keeps encourages me and motivates me to continue. Once you have a copy of the book, it will stay updated. But you have to download the copy again when an update is announced. I will notify everyone by a [Newsletter](https://www.getrevue.co/profile/rwieruch) and [Twitter](https://twitter.com/rwieruch).
 
 **Does it cover Redux?** It doesn't. The book should give you a solid foundation before you dive into advanced topics. Still the implementation in the book will show you that you don't need Redux to build an application. After you have read the book, you should be able to implement a solid application without Redux.
 
