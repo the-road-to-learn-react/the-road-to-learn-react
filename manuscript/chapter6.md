@@ -282,7 +282,7 @@ The process of lifting state can go the other way as well: from child to parent 
 
 * read more about [React Lift State](https://facebook.github.io/react/docs/lifting-state-up.html)
 
-## Revisited: setState()
+## setState(): function over object
 
 So far, you have used React `setState()` to manage your internal component state. You can pass an object to the function where you can update partially the internal state.
 
@@ -446,14 +446,25 @@ That's it. The function over an object approach in `setState()` fixes potential 
 
 ### Exercise:
 
+* read more about [React using state correctly](https://facebook.github.io/react/docs/state-and-lifecycle.html#using-state-correctly)
 * refactor all setState methods to use a function
   * but only when it makes sense, because it relies on props or state
 
-## State Management is Important
+## Taming the State
 
-- the problem
-- why you want to tame it
-- what kind of solutions are out there
+The previous chapters have shown you that state management can be a crucial topic in your application. In general, not only React but a lot of SPA frameworks struggle with it. Frontend applications got more complex in the recent years. One big challenge in web applications nowadays is to tame and control the state.
+
+Compared to other solutions React already made a big step forward. The unidirectional data flow and a simple API to manage state in a component are indispensable. These concepts make it easier to reason about your state and your state changes. It makes it easier to reason about it on a component level and to a certain degree on a application level.
+
+In a growing application it gets harder to reason about state changes. You can introduce bugs by operating on stale state when using an object over a function in `setState()`. You have to lift state around to share necessary or unshare unneccessary state across components. It can happen that a component needs to lift up state, because its sibling component depends on it. Perhaps the component is far away in the component tree and you have to share the state across the whole component tree. It happens that components get involved to a greater extent in state management. But after all the main responsibility of components should be representing the UI, shouldn't it?
+
+Because of all these reasons, there exist standalone solutions to take care of the state management. These solutions are not only used in React. However, that's what makes the React ecosystem such a powerful place. You can use different solutions to solve your problems. To address the problem of scaling state management, you might have heard the names [Redux](http://redux.js.org/docs/introduction/) or [MobX](https://mobx.js.org/). You can either of these solutions in a React application. They come with extensions, [react-redux](https://github.com/reactjs/react-redux) and [mobx-react](https://github.com/mobxjs/mobx-react), to integrate with React.
+
+Redux and MobX are outside of the scope of this book. When you finished the book, you will get guidance how you can continue to learn React and its ecosystem. One learning path could be to learn Redux. Before you dive into the topic of external state management, I can recommend to read this [article](https://www.robinwieruch.de/redux-mobx-confusion/). It aims to give you a better understanding of how to learn external state management.
+
+# Exercises:
+
+* read more about [external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
 
 {pagebreak}
 
@@ -464,3 +475,4 @@ You have learned advanced state management in React! Let's recap the last chapte
 * React
   * you can lift state management up and down to suitable components
   * setState can use a function to prevent stale state bugs
+  * existing external solutions that help you to tame the state
