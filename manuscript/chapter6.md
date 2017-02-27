@@ -284,6 +284,171 @@ The process of lifting state can go the other way as well: from child to parent 
 
 ## Revisited: setState()
 
+So far, you have used React `setState()` to manage your internal component state. You can pass an object to the function where you can update partially the internal state.
+
+{lang=javascript}
+~~~~~~~~
+this.setState({ foo: bar });
+~~~~~~~~
+
+But `setState()` doesn't take an object only. In its second version, you can pass a function to update the state.
+
+{lang=javascript}
+~~~~~~~~
+this.setState((prevState, props) => {
+  ...
+});
+~~~~~~~~
+
+Why should you want to do that? There is one use case where it makes sense to use a function over an object. It is when you update the state depending on the previous state or props. If you don't use a function, the internal state managament can cause bugs.
+
+But why does it cause bugs to use an object over a function when the update depends on the previous state or props? The React `setState()` method is asynchronous. React batches `setState()` calls and executes them eventually. It can happen that the previous state or props changed in between when you would rely on it.
+
+{lang=javascript}
+~~~~~~~~
+const { fooCount } = this.state;
+const { barCount } = this.props;
+this.setState({ count: fooCount + barCount });
+~~~~~~~~
+
+Imagine that `fooCount` and `barCount`, thus the state or the props, can change somewhere else in your component. In a growing application you have more often 'setState()' calls across your application. Since `setState()` executes asynchronously, you would rely in the example on likely stale values.
+
+With the function approach, the function in `setState()` is a callback that operates on the state and props at the time of executing the callback function.
+
+{lang=javascript}
+~~~~~~~~
+this.setState((prevState, props) => {
+  const { fooCount } = prevState;
+  const { barCount } = props;
+  return { count: fooCount + barCount };
+});
+~~~~~~~~
+
+Now, lets get back to your code to fix this behavior. Together we will fix it for one place where `setState()` is used and relies on the state or props. Afterward you are able to fix it everywhere in your code as an exercise. But only when it makes sense.
+
+The `setSearchTopstories()` method relies on the previous state and thus is a perfect example to use a function over an object in `setState()`. Right now it looks like the following code snippet. You extract values from the state, but update the state depending on the previous state asynchronously.
+
+{lang=javascript}
+~~~~~~~~
+setSearchTopstories(result) {
+  const { hits, page } = result;
+  const { searchKey, results } = this.state;
+
+  const oldHits = results && results[searchKey]
+    ? results[searchKey].hits
+    : [];
+
+  const updatedHits = [
+    ...oldHits,
+    ...hits
+  ];
+
+  this.setState({
+    results: {
+      ...results,
+      [searchKey]: { hits: updatedHits, page }
+    },
+    isLoading: false
+  });
+}
+~~~~~~~~
+
+Now you can use the function to prevent bugs because of a stale state.
+
+{lang=javascript}
+~~~~~~~~
+setSearchTopstories(result) {
+  const { hits, page } = result;
+
+# leanpub-start-insert
+  this.setState(prevState => {
+    ...
+  });
+# leanpub-end-insert
+}
+~~~~~~~~
+
+You can move the whole block that you already implemented into the function. You only have to exchange that you operate on the `prevState` rather than `this.state`.
+
+{lang=javascript}
+~~~~~~~~
+setSearchTopstories(result) {
+  const { hits, page } = result;
+
+  this.setState(prevState => {
+# leanpub-start-insert
+    const { searchKey, results } = prevState;
+
+    const oldHits = results && results[searchKey]
+      ? results[searchKey].hits
+      : [];
+
+    const updatedHits = [
+      ...oldHits,
+      ...hits
+    ];
+
+    return {
+      results: {
+        ...results,
+        [searchKey]: { hits: updatedHits, page }
+      },
+      isLoading: false
+    };
+# leanpub-end-insert
+  });
+}
+~~~~~~~~
+
+That will fix the issue with a stale state in between. Since it is a function, you can extract the function for an improved readability. That's one more advantage to use a function over an object. The function can live outside of the component. But you have to use a higher order function to pass the result. After all you want to update the state based on the fetched result from the API.
+
+{lang=javascript}
+~~~~~~~~
+setSearchTopstories(result) {
+  const { hits, page } = result;
+  this.setState(updateSearchTopstoriesState(hits, page));
+}
+~~~~~~~~
+
+The `updateSearchTopstoriesState()` function has to return a function. It is a higher order function. You can define this higher order function outside of your App component. Note how the function signature changes slightly because it is a higher order function now.
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+const updateSearchTopstoriesState = (hits, page) => (prevState) => {
+  const { searchKey, results } = prevState;
+
+  const oldHits = results && results[searchKey]
+    ? results[searchKey].hits
+    : [];
+
+  const updatedHits = [
+    ...oldHits,
+    ...hits
+  ];
+
+  return {
+    results: {
+      ...results,
+      [searchKey]: { hits: updatedHits, page }
+    },
+    isLoading: false
+  };
+};
+# leanpub-end-insert
+
+class App extends Component {
+  ...
+}
+~~~~~~~~
+
+That's it. The function over an object approach in `setState()` fixes potential bugs yet increases readability and maintainability of your code.
+
+### Exercise:
+
+* refactor all setState methods to use a function
+  * but only when it makes sense, because it relies on props or state
+
 ## State Management is Important
 
 - the problem
@@ -298,3 +463,4 @@ You have learned advanced state management in React! Let's recap the last chapte
 
 * React
   * you can lift state management up and down to suitable components
+  * setState can use a function to prevent stale state bugs
