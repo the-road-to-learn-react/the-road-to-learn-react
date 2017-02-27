@@ -294,33 +294,40 @@ Initially the Loading component will show up when you start your application, be
 
 ## Higher Order Components
 
-Higher order components (HOC) are an advanced concept in React. HOCs are equivalent to higher order functions. They take any input - most of the time a component - and return a component as output. The returned component is an enhanced version.
+Higher order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher order functions. They take any input - most of the time a component, but also optional parameters - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
+
+HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.
 
 Let's do a simple HOC which takes a component as input and returns a component. You can place it in your *App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
-const withSomething = (Component) => (props) =>
+function withFoo(Component) {
+  return function(props) {
+    return <Component { ...props } />;
+  }
+}
+~~~~~~~~
+
+One neat convention is to prefix the naming of a HOC with `with`. Since you are using JavaScript ES6, you can express the HOC more concise with an ES6 arrow function.
+
+{lang=javascript}
+~~~~~~~~
+const withFoo = (Component) => (props) =>
   <Component { ...props } />
 ~~~~~~~~
 
-In the example the input component would stay the same as the output component. It renders the same component instance and passes all of the props to the output component.
-
-Now let's enhance the output component. The output component should show the Loading component, when the loading state is true, otherwise it should show the input component.
+In the example the input component would stay the same as the output component. Nothing happens. It renders the same component instance and passes all of the props to the output component. But that's useless. Let's enhance the output component. The output component should show the Loading component, when the loading state is true, otherwise it should show the input component. A conditional rendering is a great use case for a HOC.
 
 {lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const withLoading = (Component) => ({ isLoading, ...rest }) =>
-  isLoading ? <Loading /> : <Component { ...rest } />
+const withLoading = (Component) => (props) =>
+  props.isLoading ? <Loading /> : <Component { ...props } />
 # leanpub-end-insert
 ~~~~~~~~
 
-You use a conditional rendering based on the loading property. It will return the Loading component or input component.
-
-Additionally you may have noticed the `{ isLoading, ...rest }` ES6 rest destructuring. It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
-
-In general it can be very efficient to spread an object as input for a component. See the difference in the following code snippet.
+Based on the loading property you can apply a conditional rendering. The function will return the Loading component or the input component. In general it can be very efficient to spread an object, life the props object, as input for a component. See the difference in the following code snippet.
 
 {lang=javascript}
 ~~~~~~~~
@@ -332,7 +339,19 @@ const { foo, bar } = props;
 <SomeComponent { ...props } />
 ~~~~~~~~
 
-Now you can use the HOC. In your use case you want to show either the "More" button or Loading component. The HOC can take the Button component as input. The enhanced output component is a ButtonWithLoading component.
+There is one little thing that you should avoid. You pass all the props including the `isLoading` property, by spreading the object, into the input component. However, the input component might doesn't care about the `isLoading` property. You can use the ES6 rest destructuring to avoid it.
+
+{lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+const withLoading = (Component) => ({ isLoading, ...rest }) =>
+  isLoading ? <Loading /> : <Component { ...rest } />
+# leanpub-end-insert
+~~~~~~~~
+
+It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+
+Now you can use the HOC in your JSX. A use case in the appliaction could be to show either the "More" button or the Loading component. The Loading component is already encapsulated in the HOC, but an input component is missing. In the use case of showing a Button component or a Loading component, the Button is the input component of the HOC. The enhanced output component is a ButtonWithLoading component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -356,8 +375,7 @@ const ButtonWithLoading = withLoading(Button);
 # leanpub-end-insert
 ~~~~~~~~
 
-
-Everything is declared. As the last step, you have to use the ButtonWithLoading component, which receives the loading state as an additional property. While the HOC consumes the loading property, all other props get passed to the Button component.
+Everything is defined now. As a last step, you have to use the ButtonWithLoading component, which receives the loading state as an additional property. While the HOC consumes the loading property, all other props get passed to the Button component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -385,12 +403,13 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view.
+Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
 
 ### Exercises:
 
 * experiment with the HOC you have created
-* optionally implement another HOC
+* think about a use case where another HOC would make sense
+  * implement the HOC, if there is a use case
 
 ## Advanced Sorting
 
