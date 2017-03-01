@@ -758,7 +758,7 @@ You could continue to unit test your components. But make sure to keep the tests
 
 {pagebreak}
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/e67239acf624c014453332236a8d5381787cde4e).
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/393ce5a350aa34b1c7ae056333f7bb7b0807caef).
 
 You have learned how to organize your code and how to test it! Let's recap the last chapters:
 

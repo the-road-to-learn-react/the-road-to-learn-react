@@ -215,9 +215,9 @@ class App extends Component {
         ...results,
         [searchKey]: { hits: updatedHits, page }
       },
-      # leanpub-start-insert
+# leanpub-start-insert
       isLoading: false
-      # leanpub-end-insert
+# leanpub-end-insert
     });
   }
 
@@ -403,6 +403,23 @@ class App extends Component {
 }
 ~~~~~~~~
 
+When you run your tests again, you will notice that your snapshot test for the App component fails. It shows the following diff on the command line.
+
+{lang=javascript}
+~~~~~~~~
+-     <button
+-       className=""
+-       onClick={[Function]}
+-       type="button">
+-       More
+-     </button>
++     <div>
++       Loading ...
++     </div>
+~~~~~~~~
+
+You can either fix the component now, when you think there is something wrong about it, or can accept the new snapshot. Because you introduced the Loading component in this chapter, you can accept the failing snapshot test with `u` on the command line.
+
 Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
 
 ### Exercises:
@@ -517,16 +534,16 @@ class App extends Component {
   ...
 
   render() {
-# leanpub-start-insert
     const {
       searchTerm,
       results,
       searchKey,
       isLoading,
+# leanpub-start-insert
       sortKey
+# leanpub-end-insert
     } = this.state;
 
-# leanpub-end-insert
     const page = (
       results &&
       results[searchKey] &&
@@ -679,7 +696,6 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-
 As you can see, the Sort component reuses your common Button component. On click, each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list when you click on the column headers.
 
 But a button in a column header looks a bit silly. Let's give the Sort a proper `className`.
@@ -734,17 +750,17 @@ class App extends Component {
   ...
 
   render() {
-# leanpub-start-insert
     const {
       searchTerm,
       results,
       searchKey,
       isLoading,
       sortKey,
+# leanpub-start-insert
       isSortReverse
+# leanpub-end-insert
     } = this.state;
 
-# leanpub-end-insert
     const page = (
       results &&
       results[searchKey] &&
@@ -966,6 +982,32 @@ const Sort = ({
 }
 ~~~~~~~~
 
+Again, when you run your tests, you should see failing snapshot tests but also failing unit tests for the Table component. Since you changed again your component representations, you can accept the snapshot tests. But you have to fix the unit test. In your *src/App.test.js* file you need to provide a `sortKey` and the `isSortReverse` boolean for the Table component.
+
+{lang=javascript}
+~~~~~~~~
+...
+
+describe('Table', () => {
+
+  const props = {
+    list: [
+      { title: '1', author: '1', num_comments: 1, points: 2, objectID: 'y' },
+      { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z' },
+    ],
+# leanpub-start-insert
+    sortKey: 'TITLE',
+    isSortReverse: false,
+# leanpub-end-insert
+  };
+
+  ...
+
+});
+~~~~~~~~
+
+Once again you might need to accept the failing snapshot tests for your Table component, because you provided props for the Table and it renders completly now.
+
 Your advanced sort interaction is complete now.
 
 ### Exercises:
@@ -976,7 +1018,7 @@ Your advanced sort interaction is complete now.
 
 {pagebreak}
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/e67239acf624c014453332236a8d5381787cde4e).
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/9456117fb67bbe98d7e3f41bbc85b4a035020e7e).
 
 You have learned advanced component techniques in React! Let's recap the last chapters:
 

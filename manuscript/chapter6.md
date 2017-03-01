@@ -468,7 +468,7 @@ Redux and MobX are outside of the scope of this book. When you finished the book
 
 {pagebreak}
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/e67239acf624c014453332236a8d5381787cde4e).
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/72a0828790f365af9d68a9f529c8ebe5db2e9c7f).
 
 You have learned advanced state management in React! Let's recap the last chapters:
 

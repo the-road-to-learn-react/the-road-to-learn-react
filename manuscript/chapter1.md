@@ -715,7 +715,7 @@ Now you know the basics around JavaScriot ES6 classes and how they are used in R
 
 {pagebreak}
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4c513fcceb1ee8dfdc9dbd5ff43770bcdb456365).
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/0c5a701170dcc72fe68bdd594df3a6522f58fbb3).
 
 You have learned to bootstrap your own React application! Let's recap the last chapters:
 
