@@ -8,7 +8,7 @@ In JavaScript ES6 you can import and export functionalities from modules. These 
 
 In the beginning of the book, after you have bootstrapped your application with *create-react-app*, you already had several `import` and `export` statements across your initial files. Now it is the appropriate time to explain these.
 
-The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one stardardized way rather than having several approaches for the same thing. Now it is a native behavior in JavaScript ES6.
+The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one standardized way rather than having several approaches for the same thing. Now it is a native behavior in JavaScript ES6.
 
 Additionally these statements embrace code splitting. You distribute your code across multiple files to keep it reusable and maintainable. The former is true because you can import the piece of code in multiple files. The latter is true because you have one single source where you maintain the piece of code.
 
@@ -40,7 +40,7 @@ console.log(firstname);
 // output: robin
 ~~~~~~~~
 
-You can also import all exported variables from another file at once.
+You can also import all exported variables from another file as one object.
 
 *file2.js*
 
@@ -67,7 +67,7 @@ console.log(foo);
 Last but not least there exists the `default` statement. It can be used for a few use cases:
 
 * to export and import a single functionality
-* to highlight the main functionality of the exported API
+* to highlight the main functionality of the exported API of a module
 * to have a fallback import functionality
 
 *file1.js*
@@ -147,7 +147,7 @@ These are the main functionalities for ES6 modules. They help you to organize yo
 
 You might wonder: Why didn't we follow the best practices of code splitting for the *src/App.js* file? In the file we already have multiple components which could be defined in their own files/folders (modules). For the sake of learning React, it is practical to keep these things at one place. But once your React application grows, you should consider to split up these components into multiple modules. Only that way your application scales.
 
-In the following I will propose several module structures you *could* apply. You can either apply them as an exercise or at the end of the book. For the sake of the book and learning React, I will not perform the code splitting and will continue the following chapters with the *src/App.js* file.
+In the following I will propose several module structures you *could* apply. I would recommend to apply them as an exercise at the end of the book. To keep the book itself simple, I will not perform the code splitting and will continue the following chapters with the *src/App.js* file.
 
 One possible module structure could be:
 
@@ -195,7 +195,9 @@ src/
     index.css
 ~~~~~~~~
 
-It looks cleaner than before. Another step could be extracting the constant variables from the App component. These constants were used to compose the Hacker News API url.
+It looks cleaner than before. A component is defined by its component declaration in the JavasScript file, but also by its style and tests.
+
+Another step could be extracting the constant variables from the App component. These constants were used to compose the Hacker News API url.
 
 {lang=javascript}
 ~~~~~~~~
@@ -218,7 +220,7 @@ src/
     ...
 ~~~~~~~~
 
-Naturally the modules would split up into submodules *constants/* and *components/*.
+Naturally the modules would split up into *constants/* and *components/*.
 
 Now the *constants/index.js* file could look like the following:
 
@@ -235,7 +237,7 @@ export const PARAM_PAGE = 'page=';
 export const PARAM_HPP = 'hitsPerPage=';
 ~~~~~~~~
 
-The *App/index.js* file could import the variables in order to use them.
+The *App/index.js* file could import these variables in order to use them.
 
 {lang=javascript}
 ~~~~~~~~
@@ -290,7 +292,7 @@ src/
     CancelButton.js
 ~~~~~~~~
 
-The *Buttons/* folder has multiple button components defined in its distinct files. Each file can `export default` the specific component making it available to *Buttons/index.js*. The *Buttons/index.js* file imports all different button represantations and exports them as public module API.
+The *Buttons/* folder has multiple button components defined in its distinct files. Each file can `export default` the specific component making it available to *Buttons/index.js*. The *Buttons/index.js* file imports all different button representations and exports them as public module API.
 
 *src/Buttons/index.js*
 
@@ -320,7 +322,7 @@ import {
 } from '../Buttons';
 ~~~~~~~~
 
-By going with this constraint, it would be a bad practice to reach into other files in the module. It would break the rules of encapsulation.
+By going with this constraint, it would be a bad practice to reach into other files than the *index.js* in the module. It would break the rules of encapsulation.
 
 *src/App/index.js*
 
@@ -330,13 +332,11 @@ By going with this constraint, it would be a bad practice to reach into other fi
 import SubmitButton from '../Buttons/SubmitButton';
 ~~~~~~~~
 
-Now you know how you could refactor your source code in modules with the constraints of encapsulation. As I said, for the sake of keeping the tutorial simple I will not apply these changes. But you should do the refactoring eventually.
+Now you know how you could refactor your source code in modules with the constraints of encapsulation. As I said, for the sake of keeping the tutorial simple I will not apply these changes. But you should do the refactoring at the end of the book.
 
 ### Exercises:
 
-* refactor your *src/App.js* file into multiple component modules
-  * keep in mind that the following chapters will not apply the refactoring
-  * keep in mind that you could do the final refactoring as last exercise when you finished the book
+* refactor your *src/App.js* file into multiple component modules when you finished the book
 
 ## PropTypes
 
@@ -344,7 +344,7 @@ You may know [TypeScript](https://www.typescriptlang.org/) or [Flow](https://flo
 
 React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props that get passed from a parent component to a child component get validated based on the PropTypes interface assigned to the child component.
 
-The chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code for the next chapters. But you should keep and update them along the way to keep your components interface type safe.
+The chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code refactorings. But you should keep and update them along the way to keep your components interface type safe.
 
 Initially you can import PropTypes explicitly:
 
@@ -355,7 +355,7 @@ import React, { Component, PropTypes } from 'react';
 # leanpub-end-insert
 ~~~~~~~~
 
-Let's start to assign a props interface to the components.
+Let's start to assign a props interface to the components:
 
 {lang=javascript}
 ~~~~~~~~
@@ -389,7 +389,7 @@ That's it. You take every argument from the function signature and assign a Prop
 * PropTypes.string
 ~~~~~~~~
 
-Additionally you have two more PropTypes to define a renderable fragement (node), e.g. a string, and a React element.
+Additionally you have two more PropTypes to define a renderable fragment (node), e.g. a string, and a React element.
 
 {lang=javascript}
 ~~~~~~~~
@@ -444,7 +444,7 @@ Table.propTypes = {
 };
 ~~~~~~~~
 
-Only the `objectID` is required, because you know that some of your code depends on it. The other properties are only displayed, thus they are not neccesarly required. Moreover you cannot be sure that the Hacker News API has always a defined property for each object in the array.
+Only the `objectID` is required, because you know that some of your code depends on it. The other properties are only displayed, thus they are not necessarily required. Moreover you cannot be sure that the Hacker News API has always a defined property for each object in the array.
 
 That's it for PropTypes. But there is one more aspect. You can define default props in your component. Let's take again the Button component. The `className` property has an ES6 default parameter in the component signature.
 
@@ -480,16 +480,17 @@ Same as the ES6 default parameter, the default prop ensures that the property is
 
 ### Exercises:
 
-* does the App component have a PropType interface?
+* answer yourself the following question
+  * does the App component have a PropType interface?
 * define the PropType interface for the Search component
-* add and update the PropType interfaces when you add and update components
+* add and update the PropType interfaces when you add and update components in the next chapters
 * read more about [React PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 ## Snapshot Tests with Jest
 
 [Jest](https://facebook.github.io/jest/) is a JavaScript testing framework. At Facebook it is used to validate the JavaScript code. In the React community it is used for React components test coverage. Fortunately *create-react-app* already comes with Jest.
 
-Let's start to test your first components. Before you can do that, you have to export the components from your *App.js* file to test them during the chapter.
+Let's start to test your first components. Before you can do that, you have to export the components from your *App.js* file to test them in a different file.
 
 {lang=javascript}
 ~~~~~~~~
@@ -689,9 +690,8 @@ Snapshot tests usually stay pretty basic. You only want to cover that the compon
 
 * see how the Snapshot tests fail once you change your component implementation
   * either accept or deny the snapshot change
-* keep your snapshots tests up to date when the implementation changes in future chapters
+* keep your snapshots tests up to date when the implementation changes in next chapters
 * read more about [Jest in React](https://facebook.github.io/jest/docs/tutorial-react.html)
-* read more about ES6 [export](https://developer.mozilla.org/en/docs/web/javascript/reference/statements/export) and [import](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/import)
 
 ## Unit Tests with Enzyme
 
@@ -758,8 +758,6 @@ You could continue to unit test your components. But make sure to keep the tests
 
 {pagebreak}
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/393ce5a350aa34b1c7ae056333f7bb7b0807caef).
-
 You have learned how to organize your code and how to test it! Let's recap the last chapters:
 
 * React
@@ -770,3 +768,5 @@ You have learned how to organize your code and how to test it! Let's recap the l
   * import and export statements help you to organize your code
 * General
   * code organization allows you to scale your application with best practices
+
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/393ce5a350aa34b1c7ae056333f7bb7b0807caef).
