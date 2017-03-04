@@ -24,11 +24,11 @@ You will learn to build your own Hacker News application. It covers real world f
 
 **What are the reading formats?** In addition to the .pdf, .epub, and .mobi formats, you can read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general I recommend reading it on a suitable format, otherwise the code snippets will have ugly line breaks.
 
-**Will you add more chapters in the future?** You can have a look at the changelog chapter for major updates that already happened. There will be unannounced improvements in between all the time. In general it depends on the community whether I continue to work on the book. If there is an acceptance for the book, I will deliver more chapters and improve the old material. I will keep the content up to date with recent best practices, concepts and patterns. I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
+**Will you add more chapters in the future?** You can have a look at the Change Log chapter for major updates that already happened. There will be unannounced improvements in between all the time. In general it depends on the community whether I continue to work on the book. If there is an acceptance for the book, I will deliver more chapters and improve the old material. I will keep the content up to date with recent best practices, concepts and patterns. I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
 
 {pagebreak}
 
-# Changelog
+# Change Log
 
 **10. January 2017:**
 
@@ -43,11 +43,13 @@ You will learn to build your own Hacker News application. It covers real world f
 
 # How to read it?
 
-The book is my attempt to teach React while you will write an application. It is not a React cookbook. It will never be a React cookbook. But it covers most of the practical things you need to know to write a React application. It is a practical guide to learn React. You will write a Hacker News application that interacts with a real world API. It covers state management, caching and interactions like sorting and searching. On the way you will learn best practices and patterns in React.
+The book is my attempt to teach React while you will write an application. It is a practical guide to learn React and not a reference work about React. You will write a Hacker News application that interacts with a real world API. Among several interesting topics, it covers state management in React, caching and interactions (sorting and searching). On the way you will learn best practices and patterns in React.
+
+In addition, the book gives you a transition from JavaScript ES5 to JavaScript ES6. React embraces a lot of JavaScript ES6 features and I want to show you how you can use them.
 
 In general each chapter of the book will build up on the previous chapter. Each chapter will teach you something new. Don't rush through the book. You should internalize each step. You could apply your own implementations and read more about the topic. After each chapter I give you some reading material and exercises. If you really want to learn React, I highly recommend to read the extra material and do some hands on exercises. After you have read a chapter, make yourself comfortable with the learnings before you continue.
 
-In the end you will have a complete React application in production. I am very keen to see your results, so please text me when you have finished the book. The last chapter of the book will give you a handful of options to continue your React journey. In general you will find a lot of React related topics on [my personal website](https://www.robinwieruch.de/).
+In the end you will have a complete React application in production. I am very keen to see your results, so please text me when you have finished the book. The final chapter of the book will give you a handful of options to continue your React journey. In general you will find a lot of React related topics on [my personal website](https://www.robinwieruch.de/).
 
 Since you are reading the book, I guess you are new to React. That's perfect. In the end I hope to get your feedback to improve the material to enable everyone to learn React. You can have a direct impact on [GitHub](https://github.com/rwieruch/the-road-to-learn-react) or text me on [Twitter](https://twitter.com/rwieruch).
 
