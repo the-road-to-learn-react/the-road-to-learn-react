@@ -1,18 +1,18 @@
 # Advanced React Components
 
-The chapter will focus on the implementation of advanced React components. You will learn about higher order components and how to implement them. Additionally you will dive into more advanced interactions in React. Along the way of the chapter you will learn more about advanced React topics.
+The chapter will focus on the implementation of advanced React components. You will learn about higher order components and how to implement them. In addition you will dive into more advanced topics in React and implement complex interactions.
 
 ## Reference a DOM Element
 
-The `ref` attribute gives you access to a DOM node in your elements. Usually that is an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. But there are certain cases where you need access to the DOM node. The official documentation mentions three use cases:
+Sometimes you need to interact with your DOM nodes in React. The `ref` attribute gives you access to a node in your elements. Usually that is an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. But there are certain cases where you need access to the DOM node. The official documentation mentions three use cases:
 
 * to use the DOM API (focus, media playback etc.)
 * to invoke imperative DOM node animations
-* to integrate with third-party libraries that need the DOM node (e.g. [D3.js](https://d3js.org/))
+* to integrate with third-party library that needs the DOM node (e.g. [D3.js](https://d3js.org/))
 
-Let's do it by example with the Search component. When the application renders the first time, the input field should be focused. This chapter will show you how it works, but since it is not very useful for the application itself, we will omit the changes after the chapter.
+Let's do it by example with the Search component. When the application renders the first time, the input field should be focused. That's one use case where you would need access to the DOM API. This chapter will show you how it works, but since it is not very useful for the application itself, we will omit the changes after the chapter. You can keep it for your own application if you want.
 
-In general, you can use the `ref` attribute in functional stateless components and in ES6 class components. In the example of the focus use case, you will need a lifecycle method. That's why I will first show you the approach of using the `ref` attribute with an ES6 class component.
+In general, you can use the `ref` attribute in both functional stateless components and ES6 class components. In the example of the focus use case, you will need a lifecycle method. That's why I will first show you the approach of using the `ref` attribute with an ES6 class component.
 
 The initial step is to refactor the functional stateless component to an ES6 class component.
 
@@ -115,7 +115,9 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The input field should be focused when the application is rendered. But how would you get access to the `ref` in a functional stateless component without the `this` object? The following functional stateless component demonstrates it:
+The input field should be focused when the application is rendered. That's it basically.
+
+But how would you get access to the `ref` in a functional stateless component without the `this` object? The following functional stateless component demonstrates it.
 
 {lang=javascript}
 const Search = ({
@@ -145,7 +147,7 @@ const Search = ({
 }
 ~~~~~~~~
 
-In the example of the focus use case it wouldn't help you, because you have no lifecycle method to trigger the DOM API. But there are other use cases where it can make sense to use a functional stateless component with the `ref` attribute.
+In the example of the focus use case it wouldn't help you, because you have no lifecycle method to trigger the focus by using the DOM API. But in the future you might come across other use cases where it can make sense to use a functional stateless component with the `ref` attribute.
 
 ### Exercises
 
@@ -236,7 +238,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the last step you will use the Loading component in your App. A conditional rendering based on the loading state will decide whether you show a Loading or Button component. The latter one is your button to fetch more data.
+In the last step you will use the Loading component in your App. A conditional rendering based on the loading state will decide whether you show a Loading component or Button component. The latter one is your button to fetch more data.
 
 {lang=javascript}
 ~~~~~~~~
@@ -290,11 +292,11 @@ Initially the Loading component will show up when you start your application, be
 
 ### Exercises:
 
-* use a library like [Font Awesome](http://fontawesome.io/) to show a loading icon instead of text
+* use a library like [Font Awesome](http://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
 
 ## Higher Order Components
 
-Higher order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher order functions. They take any input - most of the time a component, but also optional parameters - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
+Higher order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
 
 HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.
 
@@ -327,7 +329,9 @@ const withLoading = (Component) => (props) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-Based on the loading property you can apply a conditional rendering. The function will return the Loading component or the input component. In general it can be very efficient to spread an object, life the props object, as input for a component. See the difference in the following code snippet.
+Based on the loading property you can apply a conditional rendering. The function will return the Loading component or the input component.
+
+In general it can be very efficient to spread an object, life the props object, as input for a component. See the difference in the following code snippet.
 
 {lang=javascript}
 ~~~~~~~~
@@ -339,7 +343,7 @@ const { foo, bar } = props;
 <SomeComponent { ...props } />
 ~~~~~~~~
 
-There is one little thing that you should avoid. You pass all the props including the `isLoading` property, by spreading the object, into the input component. However, the input component might doesn't care about the `isLoading` property. You can use the ES6 rest destructuring to avoid it.
+There is one little thing that you should avoid. You pass all the props including the `isLoading` property, by spreading the object, into the input component. However, the input component doesn't care about the `isLoading` property. You can use the ES6 rest destructuring to avoid it.
 
 {lang=javascript}
 ~~~~~~~~
@@ -349,7 +353,7 @@ const withLoading = (Component) => ({ isLoading, ...rest }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in the [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
 
 Now you can use the HOC in your JSX. A use case in the appliaction could be to show either the "More" button or the Loading component. The Loading component is already encapsulated in the HOC, but an input component is missing. In the use case of showing a Button component or a Loading component, the Button is the input component of the HOC. The enhanced output component is a ButtonWithLoading component.
 
@@ -403,7 +407,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-When you run your tests again, you will notice that your snapshot test for the App component fails. It shows the following diff on the command line.
+When you run your tests again, you will notice that your snapshot test for the App component fails. It should show the following diff on the command line.
 
 {lang=javascript}
 ~~~~~~~~
@@ -418,9 +422,9 @@ When you run your tests again, you will notice that your snapshot test for the A
 +     </div>
 ~~~~~~~~
 
-You can either fix the component now, when you think there is something wrong about it, or can accept the new snapshot. Because you introduced the Loading component in this chapter, you can accept the failing snapshot test with `u` on the command line.
+You can either fix the component now, when you think there is something wrong about it, or can accept the new snapshot. Because you introduced the Loading component in this chapter, you can accept the failing snapshot test with `u` on the command line in the interactive test.
 
-Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
+Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composeability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
 
 ### Exercises:
 
@@ -450,7 +454,7 @@ import { sortBy } from 'lodash';
 import './App.css';
 ~~~~~~~~
 
-You have several columns in your Table. Among these you have title, author, comments and points columns. You can define sort functions where each function takes a list and returns a list of items sorted by property. Additionally you will need one default sort function which doesn't sort but only returns the unsorted list.
+You have several columns in your Table. There are title, author, comments and points columns. You can define sort functions where each function takes a list and returns a list of items sorted by property. Additionally you will need one default sort function which doesn't sort but only returns the unsorted list.
 
 {lang=javascript}
 ~~~~~~~~
@@ -491,7 +495,7 @@ this.state = {
 };
 ~~~~~~~~
 
-Once you choose a different `sortKey`, let's say `AUTHOR`, you will sort the list by the author property.
+Once you choose a different `sortKey`, let's say the `AUTHOR` key, you will sort the list with the appropriate sort function.
 
 Now you can define a new sort method in your App component that simply sets a `sortKey` to your internal component state.
 
@@ -588,7 +592,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterward it still maps over the sorted list.
+The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterward it keeps mapping over the sorted list.
 
 {lang=javascript}
 ~~~~~~~~
@@ -630,7 +634,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`. So far no one executes the `onSort()` method to change the `sortKey`. Let's extend the Table with a header row that uses Sort components in columns to sort each column.
+In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`. So far no one executes the `onSort()` method to change the `sortKey`. Let's extend the Table with a row of headers that use Sort components in columns to sort each column.
 
 {lang=javascript}
 ~~~~~~~~
@@ -696,7 +700,7 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-As you can see, the Sort component reuses your common Button component. On click, each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list when you click on the column headers.
+As you can see, the Sort component reuses your common Button component. On a button click each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list when you click on the column headers.
 
 But a button in a column header looks a bit silly. Let's give the Sort a proper `className`.
 
@@ -829,7 +833,9 @@ const Table = ({
 
 The reverse sort should work now.
 
-Last but not least you have to deal with one open question for the sake of an improved user experience. Can a user distinguish which column is actively sorted? So far it is not possible. Let's give the user a visual feedback. Each Sort component gets its specific `sortKey` already. It could be used to identify the activated sort. You can pass the `sortKey` from the internal component state as active sort key to your Sort component.
+Last but not least you have to deal with one open question for the sake of an improved user experience. Can a user distinguish which column is actively sorted? So far, it is not possible. Let's give the user a visual feedback.
+
+Each Sort component gets its specific `sortKey` already. It could be used to identify the activated sort. You can pass the `sortKey` from the internal component state as active sort key to your Sort component.
 
 {lang=javascript}
 ~~~~~~~~
@@ -1006,7 +1012,7 @@ describe('Table', () => {
 });
 ~~~~~~~~
 
-Once again you might need to accept the failing snapshot tests for your Table component, because you provided props for the Table and it renders completly now.
+Once again you might need to accept the failing snapshot tests for your Table component, because you provided props for the Table and the full component renders now.
 
 Your advanced sort interaction is complete now.
 
@@ -1018,8 +1024,6 @@ Your advanced sort interaction is complete now.
 
 {pagebreak}
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/9456117fb67bbe98d7e3f41bbc85b4a035020e7e).
-
 You have learned advanced component techniques in React! Let's recap the last chapters:
 
 * React
@@ -1027,6 +1031,7 @@ You have learned advanced component techniques in React! Let's recap the last ch
   * higher order components are a common way to build advanced components
   * implementation of advanced interactions in React
   * conditional classNames with a neat helper library
-  * lift state up and down
 * ES6
-  * rest destructuring
+  * rest destructuring to split up objects and arrays
+
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/9456117fb67bbe98d7e3f41bbc85b4a035020e7e).
