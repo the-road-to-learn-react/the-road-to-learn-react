@@ -62,7 +62,7 @@ The `constructor()` and `render()` lifecycle methods are already used by you. Th
 * read more about [lifecycle methods in React](https://facebook.github.io/react/docs/react-component.html)
 * read more about [the state related to lifecycle methods in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 
-## Fetch Data from an API
+## Fetch Data
 
 Now you are prepared to fetch data from the Hacker News API. I mentioned one lifecycle method that can be used to fetch data: `componentDidMount()`. You will use the native fetch API to perform the request.
 

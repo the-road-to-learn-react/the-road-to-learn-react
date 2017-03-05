@@ -2,7 +2,7 @@
 
 You have learned the basics of state management in React already in the previous chapters. This chapter digs a bit deeper into the topic. You will learn best practices, how to apply them and why you could consider an third party state management library.
 
-## Lift State
+## Lifting State
 
 Only the App component is a stateful ES6 component in your application. It handles a lot of application state and logic (methods). Maybe you have noticed that you pass a lot of properties to your Table component. Most of the props are only used in the component. It makes no sense that the App component knows about them.
 
@@ -282,7 +282,7 @@ The process of lifting state can go the other way as well: from child to parent 
 
 * read more about [lifting state in React](https://facebook.github.io/react/docs/lifting-state-up.html)
 
-## setState(): function over object
+## setState() revisited
 
 So far, you have used React `setState()` to manage your internal component state. You can pass an object to the function where you can update partially the internal state.
 

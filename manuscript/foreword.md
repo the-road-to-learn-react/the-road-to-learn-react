@@ -39,6 +39,14 @@ You will learn to build your own Hacker News application. It covers real world f
 * 13 improved and new chapters
 * 140 pages of learning material
 
+**07. March 2017:**
+
+* [v3 Pull Request](https://github.com/rwieruch/the-road-to-learn-react/pull/34)
+* 20% more content
+* 25% improved content
+* 9 new chapters
+* 170 pages of learning material
+
 {pagebreak}
 
 # How to read it?

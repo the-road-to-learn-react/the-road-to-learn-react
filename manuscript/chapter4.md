@@ -338,7 +338,7 @@ Now you know how you could refactor your source code in modules with the constra
 
 * refactor your *src/App.js* file into multiple component modules when you finished the book
 
-## PropTypes
+## Component Interface with PropTypes
 
 You may know [TypeScript](https://www.typescriptlang.org/) or [Flow](https://flowtype.org/) to introduce a type interface to JavaScript. A typed language is less error prone, because the code gets validated based on its program text. Editors and other utilities can catch these errors before the program runs. It makes your program more robust.
 
