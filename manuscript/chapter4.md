@@ -490,7 +490,7 @@ Same as the ES6 default parameter, the default prop ensures that the property is
 
 [Jest](https://facebook.github.io/jest/) is a JavaScript testing framework. At Facebook it is used to validate the JavaScript code. In the React community it is used for React components test coverage. Fortunately *create-react-app* already comes with Jest.
 
-Let's start to test your first components. Before you can do that, you have to export the components from your *App.js* file to test them in a different file.
+Let's start to test your first components. Before you can do that, you have to export the components from your *src/App.js* file to test them in a different file.
 
 {lang=javascript}
 ~~~~~~~~

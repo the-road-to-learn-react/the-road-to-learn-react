@@ -155,7 +155,7 @@ In the example of the focus use case it wouldn't help you, because you have no l
 
 ## Loading ...
 
-Now let's get back to the application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component in your *App.js* file.
+Now let's get back to the application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component in your *src/App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
@@ -300,7 +300,7 @@ Higher order components (HOC) are an advanced concept in React. HOCs are an equi
 
 HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.
 
-Let's do a simple HOC which takes a component as input and returns a component. You can place it in your *App.js* file.
+Let's do a simple HOC which takes a component as input and returns a component. You can place it in your *src/App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
@@ -443,7 +443,7 @@ It would be possible to write your own sort function, but personally I prefer to
 npm install --save lodash
 ~~~~~~~~
 
-Now you can import the sort functionality of lodash in your *App.js* file.
+Now you can import the sort functionality of lodash in your *src/App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
@@ -946,7 +946,7 @@ The way to define the `class` is a bit clumsy, isn't it? There is a neat little 
 npm install --save classnames
 ~~~~~~~~
 
-And second you have to import it on top of your *App.js* file.
+And second you have to import it on top of your *src/App.js* file.
 
 {lang=javascript}
 ~~~~~~~~
