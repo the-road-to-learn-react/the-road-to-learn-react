@@ -280,7 +280,7 @@ The process of lifting state can go the other way as well: from child to parent 
 
 ### Exercises:
 
-* read more about [React Lift State](https://facebook.github.io/react/docs/lifting-state-up.html)
+* read more about [lifting state in React](https://facebook.github.io/react/docs/lifting-state-up.html)
 
 ## setState(): function over object
 
@@ -291,7 +291,7 @@ So far, you have used React `setState()` to manage your internal component state
 this.setState({ foo: bar });
 ~~~~~~~~
 
-But `setState()` doesn't take an object only. In its second version, you can pass a function to update the state.
+But `setState()` doesn't take only an object. In its second version, you can pass a function to update the state.
 
 {lang=javascript}
 ~~~~~~~~
@@ -300,7 +300,7 @@ this.setState((prevState, props) => {
 });
 ~~~~~~~~
 
-Why should you want to do that? There is one use case where it makes sense to use a function over an object. It is when you update the state depending on the previous state or props. If you don't use a function, the internal state managament can cause bugs.
+Why should you want to do that? There is one crucial use case where it makes sense to use a function over an object. It is when you update the state depending on the previous state or props. If you don't use a function, the internal state management can cause bugs.
 
 But why does it cause bugs to use an object over a function when the update depends on the previous state or props? The React `setState()` method is asynchronous. React batches `setState()` calls and executes them eventually. It can happen that the previous state or props changed in between when you would rely on it.
 
@@ -311,9 +311,9 @@ const { barCount } = this.props;
 this.setState({ count: fooCount + barCount });
 ~~~~~~~~
 
-Imagine that `fooCount` and `barCount`, thus the state or the props, can change somewhere else in your component. In a growing application you have more often 'setState()' calls across your application. Since `setState()` executes asynchronously, you would rely in the example on likely stale values.
+Imagine that `fooCount` and `barCount`, thus the state or the props, can change somewhere else in your components. In a growing application you have more often 'setState()' calls across your application. Since `setState()` executes asynchronously, you would rely in the example on likely stale values.
 
-With the function approach, the function in `setState()` is a callback that operates on the state and props at the time of executing the callback function.
+With the function approach, the function in `setState()` is a callback that operates on the state and props at the time of executing the callback function. Even though `setState()` is asynchronous, with a function it takes the state and props at the time when it is executed.
 
 {lang=javascript}
 ~~~~~~~~
@@ -324,7 +324,7 @@ this.setState((prevState, props) => {
 });
 ~~~~~~~~
 
-Now, lets get back to your code to fix this behavior. Together we will fix it for one place where `setState()` is used and relies on the state or props. Afterward you are able to fix it everywhere in your code as an exercise. But only when it makes sense.
+Now, lets get back to your code to fix this behavior. Together we will fix it for one place where `setState()` is used and relies on the state or props. Afterward you are able to fix it at places where the state update relies on the previous state or props.
 
 The `setSearchTopstories()` method relies on the previous state and thus is a perfect example to use a function over an object in `setState()`. Right now it looks like the following code snippet. You extract values from the state, but update the state depending on the previous state asynchronously.
 
@@ -400,7 +400,7 @@ setSearchTopstories(result) {
 }
 ~~~~~~~~
 
-That will fix the issue with a stale state in between. Since it is a function, you can extract the function for an improved readability. That's one more advantage to use a function over an object. The function can live outside of the component. But you have to use a higher order function to pass the result. After all you want to update the state based on the fetched result from the API.
+That will fix the issue with a stale state. Since it is a function, you can extract the function for an improved readability. That's one more advantage to use a function over an object. The function can live outside of the component. But you have to use a higher order function to pass the result. After all you want to update the state based on the fetched result from the API.
 
 {lang=javascript}
 ~~~~~~~~
@@ -410,7 +410,7 @@ setSearchTopstories(result) {
 }
 ~~~~~~~~
 
-The `updateSearchTopstoriesState()` function has to return a function. It is a higher order function. You can define this higher order function outside of your App component. Note how the function signature changes slightly because it is a higher order function now.
+The `updateSearchTopstoriesState()` function has to return a function. It is a higher order function. You can define this higher order function outside of your App component. Note how the function signature changes slightly now.
 
 {lang=javascript}
 ~~~~~~~~
@@ -452,13 +452,13 @@ That's it. The function over an object approach in `setState()` fixes potential 
 
 ## Taming the State
 
-The previous chapters have shown you that state management can be a crucial topic in your application. In general, not only React but a lot of SPA frameworks struggle with it. Frontend applications got more complex in the recent years. One big challenge in web applications nowadays is to tame and control the state.
+The previous chapters have shown you that state management can be a crucial topic in your application. In general, not only React but a lot of SPA frameworks struggle with it. Applications got more complex in the recent years. One big challenge in web applications nowadays is to tame and control the state.
 
 Compared to other solutions React already made a big step forward. The unidirectional data flow and a simple API to manage state in a component are indispensable. These concepts make it easier to reason about your state and your state changes. It makes it easier to reason about it on a component level and to a certain degree on a application level.
 
-In a growing application it gets harder to reason about state changes. You can introduce bugs by operating on stale state when using an object over a function in `setState()`. You have to lift state around to share necessary or unshare unneccessary state across components. It can happen that a component needs to lift up state, because its sibling component depends on it. Perhaps the component is far away in the component tree and you have to share the state across the whole component tree. It happens that components get involved to a greater extent in state management. But after all the main responsibility of components should be representing the UI, shouldn't it?
+In a growing application it gets harder to reason about state changes. You can introduce bugs by operating on stale state when using an object over a function in `setState()`. You have to lift state around to share necessary or hide unnecessary state across components. It can happen that a component needs to lift up state, because its sibling component depends on it. Perhaps the component is far away in the component tree and you have to share the state across the whole component tree. It happens that components get involved to a greater extent in state management. But after all the main responsibility of components should be representing the UI, shouldn't it?
 
-Because of all these reasons, there exist standalone solutions to take care of the state management. These solutions are not only used in React. However, that's what makes the React ecosystem such a powerful place. You can use different solutions to solve your problems. To address the problem of scaling state management, you might have heard the names [Redux](http://redux.js.org/docs/introduction/) or [MobX](https://mobx.js.org/). You can either of these solutions in a React application. They come with extensions, [react-redux](https://github.com/reactjs/react-redux) and [mobx-react](https://github.com/mobxjs/mobx-react), to integrate with React.
+Because of all these reasons, there exist standalone solutions to take care of the state management. These solutions are not only used in React. However, that's what makes the React ecosystem such a powerful place. You can use different solutions to solve your problems. To address the problem of scaling state management, you might have heard of the libraries [Redux](http://redux.js.org/docs/introduction/) or [MobX](https://mobx.js.org/). You can use either of these solutions in a React application. They come with extensions, [react-redux](https://github.com/reactjs/react-redux) and [mobx-react](https://github.com/mobxjs/mobx-react), to integrate with React.
 
 Redux and MobX are outside of the scope of this book. When you finished the book, you will get guidance how you can continue to learn React and its ecosystem. One learning path could be to learn Redux. Before you dive into the topic of external state management, I can recommend to read this [article](https://www.robinwieruch.de/redux-mobx-confusion/). It aims to give you a better understanding of how to learn external state management.
 
@@ -468,11 +468,11 @@ Redux and MobX are outside of the scope of this book. When you finished the book
 
 {pagebreak}
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/72a0828790f365af9d68a9f529c8ebe5db2e9c7f).
-
 You have learned advanced state management in React! Let's recap the last chapters:
 
 * React
-  * you can lift state management up and down to suitable components
+  * lift state management up and down to suitable components
   * setState can use a function to prevent stale state bugs
   * existing external solutions that help you to tame the state
+
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/72a0828790f365af9d68a9f529c8ebe5db2e9c7f).
