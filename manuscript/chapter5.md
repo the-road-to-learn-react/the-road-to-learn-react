@@ -17,6 +17,7 @@ In general, you can use the `ref` attribute in both functional stateless compone
 The initial step is to refactor the functional stateless component to an ES6 class component.
 
 {lang=javascript}
+~~~~~~~~
 # leanpub-start-insert
 class Search extends Component {
 
@@ -50,6 +51,7 @@ class Search extends Component {
 The `this` object of an ES6 class component helps us to reference the DOM node with the `ref` attribute.
 
 {lang=javascript}
+~~~~~~~~
 class Search extends Component {
 
   render() {
@@ -82,6 +84,7 @@ class Search extends Component {
 Now you can focus the input field when the component mounted by using the `this` object and the appropriate lifecycle method.
 
 {lang=javascript}
+~~~~~~~~
 class Search extends Component {
 
 # leanpub-start-insert
@@ -120,6 +123,7 @@ The input field should be focused when the application is rendered. That's it ba
 But how would you get access to the `ref` in a functional stateless component without the `this` object? The following functional stateless component demonstrates it.
 
 {lang=javascript}
+~~~~~~~~
 const Search = ({
   value,
   onChange,
