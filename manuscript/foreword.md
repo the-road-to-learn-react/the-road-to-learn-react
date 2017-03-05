@@ -1,30 +1,34 @@
 # Foreword
 
-I love to teach, even though I am no expert. I learn every day and I have the fortune to have great mentors. After all not everyone has the opportunity to learn from mentors and peers. The book is my attempt to give something back which might help people to get started and advance in React.
+I love to teach, even though I am no expert. I learn every day and I have the fortune to have great mentors. After all not everyone has the opportunity to learn from mentors and peers. The book is my attempt to give something back. It might help people to get started and advance in React.
 
 **But why me?** In the past I have written a large tutorial to implement a [SoundCloud Client in React + Redux](https://www.robinwieruch.de/the-soundcloud-client-in-react-redux). I never expected the overwhelming reaction. I learned a lot during the process of writing. But even more by getting your feedback. It was my first attempt to teach people in programming.
 
 It also taught me to do better. I realized the SoundCloud tutorial is suited for advanced developers. It uses several tools to bootstrap your application and dives quickly into Redux. Still it helped a lot of people to get started. In my opinion it is a great tutorial to get a bigger picture of React + Redux. I use every free minute to improve the material, but it is time consuming.
 
-In the Road to learn React I want to offer a foundation before you start to dive into the broader React ecosystem. It has less tooling and less external state management, but more React. It explains general concepts, patterns and best practices. You will learn to build your own Hacker News application. It cover real world features like pagination, client-side caching and interactions. Additionally you will transition from JavaScript ES5 to JavaScript ES6. After all the book should give you a solid foundation in React before you dive into more advanced topics like Redux.
+In the Road to learn React I want to offer a foundation before you start to dive into the broader React ecosystem. It has less tooling and less external state management, but a lot of information around React. It explains general concepts, patterns and best practices.
+
+You will learn to build your own Hacker News application. It covers real world features like pagination, client-side caching and interactions like searching and sorting. Additionally you will transition from JavaScript ES5 to JavaScript ES6 on the way. In conclusion, the book should give you a solid foundation in React before you dive into more advanced topics like Redux. I hope this book captures my enthusiasm for React and JavaScript and helps you to get started.
 
 {pagebreak}
 
 # FAQ
 
-**How do I get updates?** You can [subscribe](http://eepurl.com/caLPjr) or follow me on [Twitter](https://twitter.com/rwieruch) to get updates. It keeps me motivated to do my work. Once you have a copy of the book, it will stay updated. But you have to download the copy again once its updated. I will notify everyone via the [Newsletter](http://eepurl.com/caLPjr) and [Twitter](https://twitter.com/rwieruch).
+**How do I get updates?** You can [subscribe](https://www.getrevue.co/profile/rwieruch) to my Newsletter or follow me on [Twitter](https://twitter.com/rwieruch) to get updates. It keeps encourages me and motivates me to continue. Once you have a copy of the book, it will stay updated. But you have to download the copy again when an update is announced. I will notify everyone by a [Newsletter](https://www.getrevue.co/profile/rwieruch) and [Twitter](https://twitter.com/rwieruch).
 
-**Does it cover Redux?** It doesn't. The book should give you a solid foundation before you dive into advanced topics like Redux. Still the implementation in the book will show you that you don't need Redux to build an application.
+**Does it cover Redux?** It doesn't. The book should give you a solid foundation before you dive into advanced topics. Still the implementation in the book will show you that you don't need Redux to build an application. After you have read the book, you should be able to implement a solid application without Redux.
 
-**Can I help to improve it?** Yes! You can have a direct impact with your thoughts and [contribution on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in native english. I would appreciate your help very much.
+**Does it use JavaScript ES6?** Yes. But don't worry. You will be fine if you are familiar with JavaScript ES5. All JavaScript ES6 features I describe on the journey to learn React will transition from ES5 to ES6 in the book. Every feature along the way will be explained. The book does not only teach React, but also all useful JavaScript ES6 features for React.
 
-**What are the reading formats?** In addition to the .pdf, .epub, and .mobi formats, you can read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general, I recommend reading it on a larger format, otherwise the code snippets will have ugly line breaks.
+**Can I help to improve it?** Yes. You can have a direct impact with your thoughts and [contributions on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in native English. I would appreciate your help very much.
 
-**Will you add more chapters in the future?** See the Changelog chapter for updates that already happened. In general it depends on the community. If there is an acceptance for the book, I will deliver more chapters and improve old material. I will keep the content up to date with recent best practices, concepts and patterns. But it has to pay me a bit of my effort. I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
+**What are the reading formats?** In addition to the .pdf, .epub, and .mobi formats, you can read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general I recommend reading it on a suitable format, otherwise the code snippets will have ugly line breaks.
+
+**Will you add more chapters in the future?** You can have a look at the Change Log chapter for major updates that already happened. There will be unannounced improvements in between all the time. In general it depends on the community whether I continue to work on the book. If there is an acceptance for the book, I will deliver more chapters and improve the old material. I will keep the content up to date with recent best practices, concepts and patterns. I would love to hear your thoughts about possible chapters to improve and enrich the learning experience.
 
 {pagebreak}
 
-# Changelog
+# Change Log
 
 **10. January 2017:**
 
@@ -36,6 +40,18 @@ In the Road to learn React I want to offer a foundation before you start to dive
 * 140 pages of learning material
 
 {pagebreak}
+
+# How to read it?
+
+The book is my attempt to teach React while you will write an application. It is a practical guide to learn React and not a reference work about React. You will write a Hacker News application that interacts with a real world API. Among several interesting topics, it covers state management in React, caching and interactions (sorting and searching). On the way you will learn best practices and patterns in React.
+
+In addition, the book gives you a transition from JavaScript ES5 to JavaScript ES6. React embraces a lot of JavaScript ES6 features and I want to show you how you can use them.
+
+In general each chapter of the book will build up on the previous chapter. Each chapter will teach you something new. Don't rush through the book. You should internalize each step. You could apply your own implementations and read more about the topic. After each chapter I give you some reading material and exercises. If you really want to learn React, I highly recommend to read the extra material and do some hands on exercises. After you have read a chapter, make yourself comfortable with the learnings before you continue.
+
+In the end you will have a complete React application in production. I am very keen to see your results, so please text me when you have finished the book. The final chapter of the book will give you a handful of options to continue your React journey. In general you will find a lot of React related topics on [my personal website](https://www.robinwieruch.de/).
+
+Since you are reading the book, I guess you are new to React. That's perfect. In the end I hope to get your feedback to improve the material to enable everyone to learn React. You can have a direct impact on [GitHub](https://github.com/rwieruch/the-road-to-learn-react) or text me on [Twitter](https://twitter.com/rwieruch).
 
 # What you can expect (so far...)
 
@@ -58,29 +74,6 @@ In the Road to learn React I want to offer a foundation before you start to dive
 * neat libraries along the way
 * exercises and more readings along the way
 * internalize and reinforce your learnings
-* deploy your app to production
-
-# What you could expect (in the future...)
-
-* advanced components and interactions to build a powerful dashboard
-* give your app a structure in terms of files/folders
-* arrive at the point to experience how state management could help you
-* introduce a state management library to your app
-* use common patterns in React and state management
-* get to know open source style guides for a better code style
-* more neat libraries along the way
-* usage of React dev tools and performance profiling
-* get to know a diverse set of styling tools in React
-* animate your components
+* deploy your application to production
 
 {pagebreak}
-
-# How to read it?
-
-Are you new to React? That's perfect. I will need your feedback to improve the material to enable everyone to learn React. You can have a direct impact on [GitHub](https://github.com/rwieruch/the-road-to-learn-react) or give me feedback on [Twitter](https://twitter.com/rwieruch).
-
-In general each chapter will build up on the previous. Each of them will dive into a new learning. Don't rush through the book. You should internalize each step. You could apply your own implementations and read more about the topic. Make yourself comfortable with the learnings before you continue.
-
-After you have read the book you could dive into the [SoundCloud Client in React + Redux](https://www.robinwieruch.de/the-soundcloud-client-in-react-redux). It guides you to implement your own SoundCloud application with a state management library.
-
-Additionally you may want to check out my [Tips to learn React (+ Redux)](https://www.robinwieruch.de/tips-to-learn-react-redux/).
