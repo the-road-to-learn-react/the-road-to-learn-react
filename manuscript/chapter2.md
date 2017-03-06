@@ -682,7 +682,7 @@ The whole internal state management and unidirectional data flow might be new to
 
 * read more about [React forms](https://facebook.github.io/react/docs/forms.html)
 
-## Breakup Your Components
+## Split Up Components
 
 You have one large App component now. It keeps growing and can be confusing eventually. You can start to split it up into chunks - smaller components.
 

@@ -146,7 +146,7 @@ Because of this reason, Facebook introduced *create-react-app* as a zero-configu
 
 * read more about [React installations](https://facebook.github.io/react/docs/installation.html)
 
-## create-react-app
+## Zero-Configuration Setup
 
 In the Road to learn React you will use [create-react-app](https://github.com/facebookincubator/create-react-app) to bootstrap your application. It's an opinionated yet zero-configuration starter kit for React introduced by Facebook in 2016. People would [recommend it to beginners by 96%](https://twitter.com/dan_abramov/status/806985854099062785). In *create-react-app* the tooling and configuration evolve in the background while the focus is on the application implementation.
 
@@ -233,7 +233,7 @@ Now you will get to know JSX. It is the syntax in React. As I mentioned before, 
 
 The only file you will touch in the beginning will be the *src/App.js* file.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
 import logo from './logo.svg';
@@ -394,7 +394,7 @@ export default App;
   * why do they make sense in programming in general
   * why are they used in React and its ecosystem
 
-## ReactDOM.render()
+## ReactDOM
 
 Before you continue with the App component, you might want to see where it is used. It is located in your entry point to the React world: the *src/index.js* file.
 

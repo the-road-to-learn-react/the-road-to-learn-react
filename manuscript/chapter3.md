@@ -37,23 +37,23 @@ Last but not least there is the unmounting lifecycle. It has only one lifecycle 
 
 After all, you don't need to know all of these lifecycle methods from the beginning. It can be intimidating yet you will not use all of them - even in a mature React application. Still, it is good to know that each lifecycle method can be used for specific use cases:
 
-* constructor(props) - It is called when the component gets initialized. You can set an initial component state and bind useful class methods during that lifecycle method.
+* **constructor(props)** - It is called when the component gets initialized. You can set an initial component state and bind useful class methods during that lifecycle method.
 
-* componentWillMount() - It is called before the `render()` lifecycle method. That's why it could be used to set internal component state, because it will not trigger a second rendering of the component. Generally it is recommend to use the `constructor()` to set the initial state.
+* **componentWillMount()** - It is called before the `render()` lifecycle method. That's why it could be used to set internal component state, because it will not trigger a second rendering of the component. Generally it is recommend to use the `constructor()` to set the initial state.
 
-* render() - The lifecycle method is mandatory and returns the elements as an output of the component. The method should be pure and therefore shouldn't modify the component state. It gets an input as props and state and returns an element.
+* **render()** - The lifecycle method is mandatory and returns the elements as an output of the component. The method should be pure and therefore shouldn't modify the component state. It gets an input as props and state and returns an element.
 
-* componentDidMount() - It is called only once when the component mounted. That's the perfect time to do an asynchronous request to fetch data from an API. The fetched data would get stored in the internal component state to display it in the `render()` lifecycle method.
+* **componentDidMount()** - It is called only once when the component mounted. That's the perfect time to do an asynchronous request to fetch data from an API. The fetched data would get stored in the internal component state to display it in the `render()` lifecycle method.
 
-* componentWillReceiveProps(nextProps) - The lifecycle method is called during an update lifecycle. As input you get the next props. You can diff the next props with the previous props (`this.props`) to apply a different behavior based on the diff. Additionally you can set state based on the next props.
+* **componentWillReceiveProps(nextProps)** - The lifecycle method is called during an update lifecycle. As input you get the next props. You can diff the next props with the previous props (`this.props`) to apply a different behavior based on the diff. Additionally you can set state based on the next props.
 
-* shouldComponentUpdate(nextProps, nextState) - It is always called when the component updates due to state or props changes. You will use it in mature React applications for performance optimizations. Depending on a boolean that you return from this lifecycle method, the component and all its children will render or will not render on an update lifecycle. You can prevent the render lifecycle method of a component.
+* **shouldComponentUpdate(nextProps, nextState)** - It is always called when the component updates due to state or props changes. You will use it in mature React applications for performance optimizations. Depending on a boolean that you return from this lifecycle method, the component and all its children will render or will not render on an update lifecycle. You can prevent the render lifecycle method of a component.
 
-* componentWillUpdate(nextProps, nextState) - The lifecycle method is immediately invoked before the `render()` method. You already have the next props and next state at your disposal. You can use the method as last opportunity to perform preparations before the render method gets executed. Note that you cannot trigger `setState()` anymore. If you want to compute state based on the next props, you have to use `componentWillReceiveProps()`.
+* **componentWillUpdate(nextProps, nextState)** - The lifecycle method is immediately invoked before the `render()` method. You already have the next props and next state at your disposal. You can use the method as last opportunity to perform preparations before the render method gets executed. Note that you cannot trigger `setState()` anymore. If you want to compute state based on the next props, you have to use `componentWillReceiveProps()`.
 
-* componentDidUpdate(prevProps, prevState) - The lifecycle method is immediately invoked after the `render()` method. You can use it as opportunity to perform DOM operations or to perform further asynchronous requests.
+* **componentDidUpdate(prevProps, prevState)** - The lifecycle method is immediately invoked after the `render()` method. You can use it as opportunity to perform DOM operations or to perform further asynchronous requests.
 
-* componentWillUnmount() - It is called before you destroy your component. You can use the lifecycle method to perform any clean up tasks.
+* **componentWillUnmount()** - It is called before you destroy your component. You can use the lifecycle method to perform any clean up tasks.
 
 The `constructor()` and `render()` lifecycle methods are already used by you. These are the commonly used lifecycle methods for ES6 class components. Actually the `render()` method is required, otherwise you wouldn't return a component instance.
 
@@ -62,7 +62,7 @@ The `constructor()` and `render()` lifecycle methods are already used by you. Th
 * read more about [lifecycle methods in React](https://facebook.github.io/react/docs/react-component.html)
 * read more about [the state related to lifecycle methods in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 
-## Fetch Data
+## Fetching Data
 
 Now you are prepared to fetch data from the Hacker News API. I mentioned one lifecycle method that can be used to fetch data: `componentDidMount()`. You will use the native fetch API to perform the request.
 
@@ -202,7 +202,7 @@ Back to your application: The list of hits should be visible now. But the "Dismi
 * read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
 * experiment with the [Hacker News API](https://hn.algolia.com/api)
 
-## ES6 spread operator
+## ES6 Spread Operators
 
 The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the complex result object. Let's change that:
 
@@ -407,7 +407,7 @@ After all, you should be able to see the fetched data in your application. Every
 * read more about [React conditional rendering](https://facebook.github.io/react/docs/conditional-rendering.html)
 * read more about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
 
-## Client- or Server-side Interaction: Search
+## Client- or Server-side Search
 
 When you use the search input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
 

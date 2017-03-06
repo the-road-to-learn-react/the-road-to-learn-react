@@ -282,7 +282,7 @@ The process of lifting state can go the other way as well: from child to parent 
 
 * read more about [lifting state in React](https://facebook.github.io/react/docs/lifting-state-up.html)
 
-## setState() revisited
+## Revisited: setState()
 
 So far, you have used React `setState()` to manage your internal component state. You can pass an object to the function where you can update partially the internal state.
 
@@ -462,7 +462,7 @@ Because of all these reasons, there exist standalone solutions to take care of t
 
 Redux and MobX are outside of the scope of this book. When you finished the book, you will get guidance how you can continue to learn React and its ecosystem. One learning path could be to learn Redux. Before you dive into the topic of external state management, I can recommend to read this [article](https://www.robinwieruch.de/redux-mobx-confusion/). It aims to give you a better understanding of how to learn external state management.
 
-# Exercises:
+### Exercises:
 
 * read more about [external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
 

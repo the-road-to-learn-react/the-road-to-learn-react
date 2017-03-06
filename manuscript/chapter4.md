@@ -18,10 +18,9 @@ But let's get practical. How do these `import` and `export` statements work? The
 
 You can export one or multiple variables. It is called a named export.
 
-*file1.js*
-
 {lang=javascript}
 ~~~~~~~~
+// in file1.js
 const firstname = 'robin';
 const lastname = 'wieruch';
 
@@ -30,10 +29,9 @@ export { firstname, lastname };
 
 And import them in another file with a relative path to the first file.
 
-*file2.js*
-
 {lang=javascript}
 ~~~~~~~~
+// in file2.js
 import { firstname, lastname } from './file1.js';
 
 console.log(firstname);
@@ -42,10 +40,9 @@ console.log(firstname);
 
 You can also import all exported variables from another file as one object.
 
-*file2.js*
-
 {lang=javascript}
 ~~~~~~~~
+// in file2.js
 import * as person from './file1.js';
 
 console.log(person.firstname);
@@ -54,10 +51,9 @@ console.log(person.firstname);
 
 Imports can have an alias. It can happen that you import functionalities from multiple files that have the same named export. That's why you can use an alias.
 
-*file2.js*
-
 {lang=javascript}
 ~~~~~~~~
+// in file2.js
 import { firstname as foo } from './file1.js';
 
 console.log(foo);
@@ -70,10 +66,9 @@ Last but not least there exists the `default` statement. It can be used for a fe
 * to highlight the main functionality of the exported API of a module
 * to have a fallback import functionality
 
-*file1.js*
-
 {lang=javascript}
 ~~~~~~~~
+// in file1.js
 const robin = {
   firstname: 'robin',
   lastname: 'wieruch',
@@ -82,10 +77,9 @@ const robin = {
 export default robin;
 ~~~~~~~~
 
-*file2.js*
-
 {lang=javascript}
 ~~~~~~~~
+// in file2.js
 import developer from './file1.js';
 
 console.log(developer);
@@ -94,10 +88,9 @@ console.log(developer);
 
 The import name can differ from the exported default name. You can also use it in conjunction with the named export and import statements.
 
-*file1.js*
-
 {lang=javascript}
 ~~~~~~~~
+// in file1.js
 const firstname = 'robin';
 const lastname = 'wieruch';
 
@@ -114,10 +107,9 @@ export {
 export default person;
 ~~~~~~~~
 
-*file2.js*
-
 {lang=javascript}
 ~~~~~~~~
+// in file2.js
 import developer, { firstname, lastname } from './file1.js';
 
 console.log(developer);
@@ -128,10 +120,9 @@ console.log(firstname, lastname);
 
 In named exports you can spare additional lines and export the variables directly.
 
-*file1.js*
-
 {lang=javascript}
 ~~~~~~~~
+// in file1.js
 export const firstname = 'robin';
 export const lastname = 'wieruch';
 ~~~~~~~~
