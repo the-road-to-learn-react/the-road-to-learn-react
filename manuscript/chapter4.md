@@ -18,9 +18,8 @@ But let's get practical. How do these `import` and `export` statements work? The
 
 You can export one or multiple variables. It is called a named export.
 
-{lang=javascript}
+{title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
-// in file1.js
 const firstname = 'robin';
 const lastname = 'wieruch';
 
@@ -29,9 +28,8 @@ export { firstname, lastname };
 
 And import them in another file with a relative path to the first file.
 
-{lang=javascript}
+{title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
-// in file2.js
 import { firstname, lastname } from './file1.js';
 
 console.log(firstname);
@@ -40,9 +38,8 @@ console.log(firstname);
 
 You can also import all exported variables from another file as one object.
 
-{lang=javascript}
+{title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
-// in file2.js
 import * as person from './file1.js';
 
 console.log(person.firstname);
@@ -51,9 +48,8 @@ console.log(person.firstname);
 
 Imports can have an alias. It can happen that you import functionalities from multiple files that have the same named export. That's why you can use an alias.
 
-{lang=javascript}
+{title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
-// in file2.js
 import { firstname as foo } from './file1.js';
 
 console.log(foo);
@@ -66,9 +62,8 @@ Last but not least there exists the `default` statement. It can be used for a fe
 * to highlight the main functionality of the exported API of a module
 * to have a fallback import functionality
 
-{lang=javascript}
+{title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
-// in file1.js
 const robin = {
   firstname: 'robin',
   lastname: 'wieruch',
@@ -77,9 +72,8 @@ const robin = {
 export default robin;
 ~~~~~~~~
 
-{lang=javascript}
+{title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
-// in file2.js
 import developer from './file1.js';
 
 console.log(developer);
@@ -88,9 +82,8 @@ console.log(developer);
 
 The import name can differ from the exported default name. You can also use it in conjunction with the named export and import statements.
 
-{lang=javascript}
+{title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
-// in file1.js
 const firstname = 'robin';
 const lastname = 'wieruch';
 
@@ -107,9 +100,8 @@ export {
 export default person;
 ~~~~~~~~
 
-{lang=javascript}
+{title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
-// in file2.js
 import developer, { firstname, lastname } from './file1.js';
 
 console.log(developer);
@@ -120,9 +112,8 @@ console.log(firstname, lastname);
 
 In named exports you can spare additional lines and export the variables directly.
 
-{lang=javascript}
+{title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
-// in file1.js
 export const firstname = 'robin';
 export const lastname = 'wieruch';
 ~~~~~~~~
@@ -142,7 +133,7 @@ In the following I will propose several module structures you *could* apply. I w
 
 One possible module structure could be:
 
-{lang=javascript}
+{title="Folder Structure",lang="text"}
 ~~~~~~~~
 src/
   index.js
@@ -163,7 +154,7 @@ src/
 
 It doesn't look too promising. You can see a lot of naming duplications and only the file extension differs. Another module structure could be:
 
-{lang=javascript}
+{title="Folder Structure",lang="text"}
 ~~~~~~~~
 src/
   index.js
@@ -190,7 +181,7 @@ It looks cleaner than before. A component is defined by its component declaratio
 
 Another step could be extracting the constant variables from the App component. These constants were used to compose the Hacker News API url.
 
-{lang=javascript}
+{title="Folder Structure",lang="text"}
 ~~~~~~~~
 src/
   index.js
@@ -215,7 +206,7 @@ Naturally the modules would split up into *constants/* and *components/*.
 
 Now the *constants/index.js* file could look like the following:
 
-{lang=javascript}
+{title="Code Playground: constants/index.js",lang="javascript"}
 ~~~~~~~~
 export const DEFAULT_QUERY = 'redux';
 export const DEFAULT_PAGE = 0;
@@ -230,7 +221,7 @@ export const PARAM_HPP = 'hitsPerPage=';
 
 The *App/index.js* file could import these variables in order to use them.
 
-{lang=javascript}
+{title="Code Playground: src/App.js",lang=javascript}
 ~~~~~~~~
 import {
   DEFAULT_QUERY,
@@ -249,7 +240,7 @@ import {
 
 When you use the *index.js* naming convention, you can omit the filename from the relative path.
 
-{lang=javascript}
+{title="Code Playground: src/App.js",lang=javascript}
 ~~~~~~~~
 import {
   DEFAULT_QUERY,
@@ -270,7 +261,7 @@ import {
 
 But what's behind the *index.js* file naming? The convention was introduced in the node.js world. The index file is the entry point to a module. It describes the public API to the module. External modules are only allowed to use the *index.js* file to import shared code from the module. Consider the following made up module structure to demonstrate it:
 
-{lang=javascript}
+{title="Folder Structure",lang="text"}
 ~~~~~~~~
 src/
   index.js
@@ -285,9 +276,7 @@ src/
 
 The *Buttons/* folder has multiple button components defined in its distinct files. Each file can `export default` the specific component making it available to *Buttons/index.js*. The *Buttons/index.js* file imports all different button representations and exports them as public module API.
 
-*src/Buttons/index.js*
-
-{lang=javascript}
+{title="Code Playground: src/Buttons/index.js",lang="javascript"}
 ~~~~~~~~
 import SubmitButton from './SubmitButton';
 import SaveButton from './SaveButton';
@@ -302,9 +291,7 @@ export {
 
 Now the *src/App/index.js* can import the buttons from the public module API located in the *index.js* file.
 
-*src/App/index.js*
-
-{lang=javascript}
+{title="Code Playground: src/App.js",lang=javascript}
 ~~~~~~~~
 import {
   SubmitButton,
@@ -315,9 +302,7 @@ import {
 
 By going with this constraint, it would be a bad practice to reach into other files than the *index.js* in the module. It would break the rules of encapsulation.
 
-*src/App/index.js*
-
-{lang=javascript}
+{title="Code Playground: src/App.js",lang=javascript}
 ~~~~~~~~
 // bad practice, don't do it
 import SubmitButton from '../Buttons/SubmitButton';
@@ -339,7 +324,7 @@ The chapter will show you how you can make all your components type safe with Pr
 
 Initially you can import PropTypes explicitly:
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 import React, { Component, PropTypes } from 'react';
@@ -348,7 +333,7 @@ import React, { Component, PropTypes } from 'react';
 
 Let's start to assign a props interface to the components:
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Button = ({ onClick, className = '', children }) =>
   <button
@@ -370,7 +355,7 @@ Button.propTypes = {
 
 That's it. You take every argument from the function signature and assign a PropType to it. The basic PropTypes for primitives and complex objects are:
 
-{lang=javascript}
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 * PropTypes.array
 * PropTypes.bool
@@ -382,7 +367,7 @@ That's it. You take every argument from the function signature and assign a Prop
 
 Additionally you have two more PropTypes to define a renderable fragment (node), e.g. a string, and a React element.
 
-{lang=javascript}
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 * PropTypes.node
 * PropTypes.element
@@ -392,7 +377,7 @@ You already used the `node` PropType for the Button component. Overall there are
 
 At the moment all of the defined PropTypes for the Button are optional. The parameters can be null or undefined. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 Button.propTypes = {
 # leanpub-start-insert
@@ -407,7 +392,7 @@ Button.propTypes = {
 
 The `className` is not required, because it can default to an empty string. Next you will define a PropType interface for the Table component:
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 Table.propTypes = {
@@ -419,7 +404,7 @@ Table.propTypes = {
 
 You can define the content of an array PropType more explicit:
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 Table.propTypes = {
   list: PropTypes.arrayOf(
@@ -439,7 +424,7 @@ Only the `objectID` is required, because you know that some of your code depends
 
 That's it for PropTypes. But there is one more aspect. You can define default props in your component. Let's take again the Button component. The `className` property has an ES6 default parameter in the component signature.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Button = ({ onClick, className = '', children }) =>
   ...
@@ -447,7 +432,7 @@ const Button = ({ onClick, className = '', children }) =>
 
 You could replace it with the internal React default prop:
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 const Button = ({ onClick, className, children }) =>
@@ -483,7 +468,7 @@ Same as the ES6 default parameter, the default prop ensures that the property is
 
 Let's start to test your first components. Before you can do that, you have to export the components from your *src/App.js* file to test them in a different file.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
 
@@ -506,7 +491,7 @@ export {
 
 In your *App.test.js* file you will find a first test. It verifies that the App component renders without any errors.
 
-{lang=javascript}
+{title="src/App.test.js",lang=javascript}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -520,7 +505,7 @@ it('renders without crashing', () => {
 
 You can run it by using the interactive *create-react-app* scripts on the command line.
 
-{lang=javascript}
+{title="Command Line",lang="text"}
 ~~~~~~~~
 npm run test
 ~~~~~~~~
@@ -531,14 +516,14 @@ Jest stores the snapshots in a folder. Only that way it can show the diff to fut
 
 You have to install an utility library before you can write your first Snapshot test.
 
-{lang=javascript}
+{title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save-dev react-test-renderer
 ~~~~~~~~
 
 Now you can extend the App component test with your first Snapshot test.
 
-{lang=javascript}
+{title="src/App.test.js",lang=javascript}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -575,7 +560,7 @@ Run your tests again and see how the tests either succeed or fail. They should s
 
 Let's add more tests for our independent components. First the Search component:
 
-{lang=javascript}
+{title="src/App.test.js",lang=javascript}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -608,7 +593,7 @@ describe('Search', () => {
 
 Second the Button component:
 
-{lang=javascript}
+{title="src/App.test.js",lang=javascript}
 ~~~~~~~~
 ...
 # leanpub-start-insert
@@ -639,7 +624,7 @@ describe('Button', () => {
 
 Last but not least, the Table component:
 
-{lang=javascript}
+{title="src/App.test.js",lang=javascript}
 ~~~~~~~~
 ...
 # leanpub-start-insert
@@ -690,14 +675,14 @@ Snapshot tests usually stay pretty basic. You only want to cover that the compon
 
 Let's see how you can use enzyme. First you have to install it since it doesn't come with *create-react-app*.
 
-{lang=javascript}
+{title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save-dev enzyme react-addons-test-utils
 ~~~~~~~~
 
 Now you can write your first unit test in the Table describe block. You will use `shallow()` to render your component and assert that the Table has two items.
 
-{lang=javascript}
+{title="src/App.test.js",lang=javascript}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';

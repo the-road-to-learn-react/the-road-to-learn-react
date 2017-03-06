@@ -12,7 +12,7 @@ In order to deal with state and methods in the Table component, it has to become
 
 Your Table component as functional stateless component:
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Table = ({
   list,
@@ -34,7 +34,7 @@ const Table = ({
 
 Can get refactored to an ES6 class component:
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 class Table extends Component {
@@ -63,7 +63,7 @@ class Table extends Component {
 
 Since you want to deal with state and methods in your component, you have to add a constructor and initial state.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Table extends Component {
 
@@ -83,7 +83,7 @@ class Table extends Component {
 
 Now you can move state and methods from your App component down to your Table component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Table extends Component {
 
@@ -115,7 +115,7 @@ class Table extends Component {
 
 Don't forget to remove the moved state and `onSort()` method from your App component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -144,7 +144,7 @@ class App extends Component {
 
 Additionally you can make the Table component API more lightweight. Remove the props which are handled internally in the Table component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -190,7 +190,7 @@ class App extends Component {
 
 Now in your Table component you can use the internal `onSort()` method and the internal Table state.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Table extends Component {
 
@@ -286,14 +286,14 @@ The process of lifting state can go the other way as well: from child to parent 
 
 So far, you have used React `setState()` to manage your internal component state. You can pass an object to the function where you can update partially the internal state.
 
-{lang=javascript}
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 this.setState({ foo: bar });
 ~~~~~~~~
 
 But `setState()` doesn't take only an object. In its second version, you can pass a function to update the state.
 
-{lang=javascript}
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 this.setState((prevState, props) => {
   ...
@@ -304,7 +304,7 @@ Why should you want to do that? There is one crucial use case where it makes sen
 
 But why does it cause bugs to use an object over a function when the update depends on the previous state or props? The React `setState()` method is asynchronous. React batches `setState()` calls and executes them eventually. It can happen that the previous state or props changed in between when you would rely on it.
 
-{lang=javascript}
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 const { fooCount } = this.state;
 const { barCount } = this.props;
@@ -315,7 +315,7 @@ Imagine that `fooCount` and `barCount`, thus the state or the props, can change 
 
 With the function approach, the function in `setState()` is a callback that operates on the state and props at the time of executing the callback function. Even though `setState()` is asynchronous, with a function it takes the state and props at the time when it is executed.
 
-{lang=javascript}
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 this.setState((prevState, props) => {
   const { fooCount } = prevState;
@@ -328,7 +328,7 @@ Now, lets get back to your code to fix this behavior. Together we will fix it fo
 
 The `setSearchTopstories()` method relies on the previous state and thus is a perfect example to use a function over an object in `setState()`. Right now it looks like the following code snippet. You extract values from the state, but update the state depending on the previous state asynchronously.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 setSearchTopstories(result) {
   const { hits, page } = result;
@@ -355,7 +355,7 @@ setSearchTopstories(result) {
 
 Now you can use the function to prevent bugs because of a stale state.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 setSearchTopstories(result) {
   const { hits, page } = result;
@@ -370,7 +370,7 @@ setSearchTopstories(result) {
 
 You can move the whole block that you already implemented into the function. You only have to exchange that you operate on the `prevState` rather than `this.state`.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 setSearchTopstories(result) {
   const { hits, page } = result;
@@ -402,7 +402,7 @@ setSearchTopstories(result) {
 
 That will fix the issue with a stale state. Since it is a function, you can extract the function for an improved readability. That's one more advantage to use a function over an object. The function can live outside of the component. But you have to use a higher order function to pass the result. After all you want to update the state based on the fetched result from the API.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 setSearchTopstories(result) {
   const { hits, page } = result;
@@ -412,7 +412,7 @@ setSearchTopstories(result) {
 
 The `updateSearchTopstoriesState()` function has to return a function. It is a higher order function. You can define this higher order function outside of your App component. Note how the function signature changes slightly now.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 const updateSearchTopstoriesState = (hits, page) => (prevState) => {

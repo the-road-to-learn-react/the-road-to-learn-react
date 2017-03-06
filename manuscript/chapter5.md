@@ -16,7 +16,7 @@ In general, you can use the `ref` attribute in both functional stateless compone
 
 The initial step is to refactor the functional stateless component to an ES6 class component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 class Search extends Component {
@@ -50,7 +50,7 @@ class Search extends Component {
 
 The `this` object of an ES6 class component helps us to reference the DOM node with the `ref` attribute.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Search extends Component {
 
@@ -83,7 +83,7 @@ class Search extends Component {
 
 Now you can focus the input field when the component mounted by using the `this` object and the appropriate lifecycle method.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Search extends Component {
 
@@ -122,7 +122,7 @@ The input field should be focused when the application is rendered. That's it ba
 
 But how would you get access to the `ref` in a functional stateless component without the `this` object? The following functional stateless component demonstrates it.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Search = ({
   value,
@@ -161,7 +161,7 @@ In the example of the focus use case it wouldn't help you, because you have no l
 
 Now let's get back to the application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component in your *src/App.js* file.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Loading = () =>
   <div>Loading ...</div>
@@ -169,7 +169,7 @@ const Loading = () =>
 
 Now you will need a property to store the loading state. Based on the loading state you can decide to show the Loading component later on.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -197,7 +197,7 @@ The initial value of that property is false. You don't load anything before the 
 
 When you make the request, you set a loading state to true. Eventually the request will succeed and you can set the loading state to false.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -244,7 +244,7 @@ class App extends Component {
 
 In the last step you will use the Loading component in your App. A conditional rendering based on the loading state will decide whether you show a Loading component or Button component. The latter one is your button to fetch more data.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -306,7 +306,7 @@ HOCs are used for different use cases. They can prepare properties, manage state
 
 Let's do a simple HOC which takes a component as input and returns a component. You can place it in your *src/App.js* file.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 function withFoo(Component) {
   return function(props) {
@@ -317,7 +317,7 @@ function withFoo(Component) {
 
 One neat convention is to prefix the naming of a HOC with `with`. Since you are using JavaScript ES6, you can express the HOC more concise with an ES6 arrow function.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const withFoo = (Component) => (props) =>
   <Component { ...props } />
@@ -325,7 +325,7 @@ const withFoo = (Component) => (props) =>
 
 In the example the input component would stay the same as the output component. Nothing happens. It renders the same component instance and passes all of the props to the output component. But that's useless. Let's enhance the output component. The output component should show the Loading component, when the loading state is true, otherwise it should show the input component. A conditional rendering is a great use case for a HOC.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 const withLoading = (Component) => (props) =>
@@ -337,7 +337,7 @@ Based on the loading property you can apply a conditional rendering. The functio
 
 In general it can be very efficient to spread an object, life the props object, as input for a component. See the difference in the following code snippet.
 
-{lang=javascript}
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 // before you would have to destructure the props before passing them
 const { foo, bar } = props;
@@ -349,7 +349,7 @@ const { foo, bar } = props;
 
 There is one little thing that you should avoid. You pass all the props including the `isLoading` property, by spreading the object, into the input component. However, the input component doesn't care about the `isLoading` property. You can use the ES6 rest destructuring to avoid it.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 const withLoading = (Component) => ({ isLoading, ...rest }) =>
@@ -361,7 +361,7 @@ It takes one property out of the object, but keeps the remaining object. It work
 
 Now you can use the HOC in your JSX. A use case in the appliaction could be to show either the "More" button or the Loading component. The Loading component is already encapsulated in the HOC, but an input component is missing. In the use case of showing a Button component or a Loading component, the Button is the input component of the HOC. The enhanced output component is a ButtonWithLoading component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Button = ({ onClick, className = '', children }) =>
   <button
@@ -385,7 +385,7 @@ const ButtonWithLoading = withLoading(Button);
 
 Everything is defined now. As a last step, you have to use the ButtonWithLoading component, which receives the loading state as an additional property. While the HOC consumes the loading property, all other props get passed to the Button component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -413,7 +413,7 @@ class App extends Component {
 
 When you run your tests again, you will notice that your snapshot test for the App component fails. It should show the following diff on the command line.
 
-{lang=javascript}
+{title="Command Line",lang="text"}
 ~~~~~~~~
 -     <button
 -       className=""
@@ -442,14 +442,14 @@ You have already implemented a client- and server-side search interaction. Since
 
 It would be possible to write your own sort function, but personally I prefer to use a utility library for such cases. [Lodash](https://lodash.com/) is one of these utility libraries. Let's install and use it for the sort functionality.
 
-{lang=javascript}
+{title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save lodash
 ~~~~~~~~
 
 Now you can import the sort functionality of lodash in your *src/App.js* file.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
 # leanpub-start-insert
@@ -460,7 +460,7 @@ import './App.css';
 
 You have several columns in your Table. There are title, author, comments and points columns. You can define sort functions where each function takes a list and returns a list of items sorted by property. Additionally you will need one default sort function which doesn't sort but only returns the unsorted list.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
 
@@ -486,7 +486,7 @@ The `SORTS` object allows you to reference any sort function now.
 
 Again your App component is responsible for storing the state of the sort. The initial state will be the initial default sort function, which doesn't sort at all and returns the input list as output.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 this.state = {
   results: null,
@@ -503,7 +503,7 @@ Once you choose a different `sortKey`, let's say the `AUTHOR` key, you will sort
 
 Now you can define a new sort method in your App component that simply sets a `sortKey` to your internal component state.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -535,7 +535,7 @@ class App extends Component {
 
 The next step is to pass the method and `sortKey` to your Table component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -598,7 +598,7 @@ class App extends Component {
 
 The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterward it keeps mapping over the sorted list.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 const Table = ({
@@ -640,7 +640,7 @@ const Table = ({
 
 In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`. So far no one executes the `onSort()` method to change the `sortKey`. Let's extend the Table with a row of headers that use Sort components in columns to sort each column.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Table = ({
   list,
@@ -696,7 +696,7 @@ const Table = ({
 
 Each Sort component gets a specific `sortKey` and the general `onSort()` function. Internally it calls the method with the `sortKey` to set the specific key.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Sort = ({ sortKey, onSort, children }) =>
   <Button onClick={() => onSort(sortKey)}>
@@ -708,7 +708,7 @@ As you can see, the Sort component reuses your common Button component. On a but
 
 But a button in a column header looks a bit silly. Let's give the Sort a proper `className`.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Sort = ({ sortKey, onSort, children }) =>
 # leanpub-start-insert
@@ -723,7 +723,7 @@ const Sort = ({ sortKey, onSort, children }) =>
 
 It should look nice now. The next goal would be to implement reverse sort as well. The list should get reverse sorted once you click a Sort component twice. First you need to define the reverse state.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 this.state = {
   results: null,
@@ -739,7 +739,7 @@ this.state = {
 
 Now in your sort method you can evaluate if the list is reverse sorted. It is when `sortKey` in the state is the same as the incoming `sortKey` and the reverse state is not already set to true.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 onSort(sortKey) {
 # leanpub-start-insert
@@ -751,7 +751,7 @@ onSort(sortKey) {
 
 Again you can pass the reverse prop to your Table component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -802,7 +802,7 @@ class App extends Component {
 
 The Table has to have an arrow function block body to compute the data now.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 const Table = ({
@@ -841,7 +841,7 @@ Last but not least you have to deal with one open question for the sake of an im
 
 Each Sort component gets its specific `sortKey` already. It could be used to identify the activated sort. You can pass the `sortKey` from the internal component state as active sort key to your Sort component.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Table = ({
   list,
@@ -916,7 +916,7 @@ const Table = ({
 
 Now in your Sort component you know based on the `sortKey` and `activeSortKey` if the sort is active. Give your Sort component an extra `class` attribute, when it is sorted, to give the user a visual feedback.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 const Sort = ({
@@ -945,14 +945,14 @@ const Sort = ({
 
 The way to define the `class` is a bit clumsy, isn't it? There is a neat little library to get rid of this. First you have to install it.
 
-{lang=javascript}
+{title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save classnames
 ~~~~~~~~
 
 And second you have to import it on top of your *src/App.js* file.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
 import { sortBy } from 'lodash';
@@ -964,7 +964,7 @@ import './App.css';
 
 Now you can use it to define your component `className` with conditional classes.
 
-{lang=javascript}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Sort = ({
   sortKey,
@@ -994,7 +994,7 @@ const Sort = ({
 
 Again, when you run your tests, you should see failing snapshot tests but also failing unit tests for the Table component. Since you changed again your component representations, you can accept the snapshot tests. But you have to fix the unit test. In your *src/App.test.js* file you need to provide a `sortKey` and the `isSortReverse` boolean for the Table component.
 
-{lang=javascript}
+{title="src/App.test.js",lang=javascript}
 ~~~~~~~~
 ...
 

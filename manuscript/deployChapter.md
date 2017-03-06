@@ -27,7 +27,7 @@ You need to fulfill two requirements before you can deploy your application to H
 
 If you have installed Homebrew, you can install the Heroku CLI from command line:
 
-{lang=javascript}
+{title="Command Line",lang="text"}
 ~~~~~~~~
 brew update
 brew install heroku-toolbelt
@@ -35,7 +35,7 @@ brew install heroku-toolbelt
 
 Now you can use git and Heroku CLI to deploy your application.
 
-{lang=javascript}
+{title="Command Line",lang="text"}
 ~~~~~~~~
 git init
 heroku create -b https://github.com/mars/create-react-app-buildpack.git
