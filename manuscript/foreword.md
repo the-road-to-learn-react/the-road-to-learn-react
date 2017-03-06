@@ -40,8 +40,9 @@ You will learn to build your own Hacker News application. It covers real world f
 * 30% improved content
 * 13 improved and new chapters
 * 140 pages of learning material
+* [+ interactive course of the book on educative.io](https://www.educative.io/collection/5740745361195008/5676830073815040)
 
-**07. March 2017:**
+**08. March 2017:**
 
 * [v3 Pull Request](https://github.com/rwieruch/the-road-to-learn-react/pull/34)
 * 20% more content
