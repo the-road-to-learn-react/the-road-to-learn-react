@@ -419,7 +419,7 @@ The first argument is JSX that gets rendered. The second argument specifies the 
 
 In the implementation `ReactDOM.render()` already takes your App component. However, it would be fine to pass simpler JSX as long as it is JSX. It doesn't have to be an instantiation of a component.
 
-{title="src/index.js",lang=javascript}
+{title="Code Playground",lang=javascript}
 ~~~~~~~~
 ReactDOM.render(
   <h1>Hello React World</h1>,
@@ -728,6 +728,7 @@ console.log(robin.getName());
 React uses JavaScript ES6 classes for ES6 class components. You already used one ES6 class component.
 
 {title="src/App.js",lang=javascript}
+~~~~~~~~
 import React, { Component } from 'react';
 
 ...

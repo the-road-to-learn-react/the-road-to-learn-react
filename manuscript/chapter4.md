@@ -202,11 +202,11 @@ src/
     ...
 ~~~~~~~~
 
-Naturally the modules would split up into *constants/* and *components/*.
+Naturally the modules would split up into *src/constants/* and *src/components/*.
 
-Now the *constants/index.js* file could look like the following:
+Now the *src/constants/index.js* file could look like the following:
 
-{title="Code Playground: constants/index.js",lang="javascript"}
+{title="Code Playground: src/constants/index.js",lang="javascript"}
 ~~~~~~~~
 export const DEFAULT_QUERY = 'redux';
 export const DEFAULT_PAGE = 0;
@@ -221,7 +221,7 @@ export const PARAM_HPP = 'hitsPerPage=';
 
 The *App/index.js* file could import these variables in order to use them.
 
-{title="Code Playground: src/App.js",lang=javascript}
+{title="Code Playground: src/components/App/index.js",lang=javascript}
 ~~~~~~~~
 import {
   DEFAULT_QUERY,
@@ -240,7 +240,7 @@ import {
 
 When you use the *index.js* naming convention, you can omit the filename from the relative path.
 
-{title="Code Playground: src/App.js",lang=javascript}
+{title="Code Playground: src/components/App/index.js",lang=javascript}
 ~~~~~~~~
 import {
   DEFAULT_QUERY,
@@ -291,7 +291,7 @@ export {
 
 Now the *src/App/index.js* can import the buttons from the public module API located in the *index.js* file.
 
-{title="Code Playground: src/App.js",lang=javascript}
+{title="Code Playground: src/App/index.js",lang=javascript}
 ~~~~~~~~
 import {
   SubmitButton,
@@ -302,7 +302,7 @@ import {
 
 By going with this constraint, it would be a bad practice to reach into other files than the *index.js* in the module. It would break the rules of encapsulation.
 
-{title="Code Playground: src/App.js",lang=javascript}
+{title="Code Playground: src/App/index.js",lang=javascript}
 ~~~~~~~~
 // bad practice, don't do it
 import SubmitButton from '../Buttons/SubmitButton';
