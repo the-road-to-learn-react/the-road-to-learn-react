@@ -644,7 +644,7 @@ You already learned about the unidirectional data flow in React. The same law ap
 
 But didn't we forget something in the input element? A HTML input tag comes with a `value` attribute. The value attribute usually has the value that is shown in the input field - in our case the `searchTerm` property. However, it seems like we don't need that in React.
 
-That's wrong. Form elements such as `<input>`, `<textarea>` and `<select> hold their own state. They modify the value internally once someone changes it from the outside. In React that's called an **uncontrolled component**, because it handles its own state. In React you should make sure to make those elements **controlled components**.
+That's wrong. Form elements such as `<input>`, `<textarea>` and `<select>` hold their own state. They modify the value internally once someone changes it from the outside. In React that's called an **uncontrolled component**, because it handles its own state. In React you should make sure to make those elements **controlled components**.
 
 How should you do that? You only have to set the value attribute of the input field. The value is already saved in the `searchTerm` state property.
 

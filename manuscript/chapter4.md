@@ -558,7 +558,7 @@ describe('App', () => {
 
 Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the Snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component.
 
-Let's add more tests for our independent components. First the Search component:
+Let's add more tests for our independent components. First, the Search component:
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -591,7 +591,7 @@ describe('Search', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Second the Button component:
+Second, the Button component:
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
