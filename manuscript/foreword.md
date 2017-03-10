@@ -16,7 +16,7 @@ You will learn to build your own Hacker News application. It covers real world f
 
 **How do I get updates?** You can [subscribe](https://www.getrevue.co/profile/rwieruch) to my Newsletter or follow me on [Twitter](https://twitter.com/rwieruch) to get updates. It keeps me motivated to continue. Once you have a copy of the book, it will stay updated. But you have to download the copy again when an update is announced. I will notify everyone by a [Newsletter](https://www.getrevue.co/profile/rwieruch) and [Twitter](https://twitter.com/rwieruch).
 
-**Does it cover Redux?** It doesn't. The book should give you a solid foundation before you dive into advanced topics. Still the implementation in the book will show you that you don't need Redux to build an application. After you have read the book, you should be able to implement a solid application without Redux.
+**Does it cover Redux?** It doesn't. The book should give you a solid foundation before you dive into advanced topics. Still the implementation in the book will show you that you don't need Redux to build an application. After you have read the book, you should be able to implement a solid application without Redux. You can pre-order my next book to support me: [The Road to learn Redux](https://gumroad.com/products/uwiyI).
 
 **Does it use JavaScript ES6?** Yes. But don't worry. You will be fine if you are familiar with JavaScript ES5. All JavaScript ES6 features I describe on the journey to learn React will transition from ES5 to ES6 in the book. Every feature along the way will be explained. The book does not only teach React, but also all useful JavaScript ES6 features for React.
 

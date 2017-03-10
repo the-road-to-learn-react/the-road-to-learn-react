@@ -1,6 +1,6 @@
 # Final Words
 
-That was the last chapter of the book. I hope you liked it so far. Share it with your friends, it would mean a lot to me.
+That was the last chapter of the book. I hope you liked it so far. Share it with your friends, it would mean a lot to me. You can already pre-order the next book: [The Road to learn Redux](https://gumroad.com/products/uwiyI).
 
 **But where can you go from here?** You can either extend the application on your own or dive into your own React project. Before you dive into another book or tutorial, you should create your own hands-on React project. Do it for one week, release it somewhere and reach out to me on [Twitter](https://twitter.com/rwieruch). I am curious what you will build after you have read the book. You can also find me on [GitHub](https://github.com/rwieruch) to share your repository.
 
@@ -29,4 +29,4 @@ If you are looking for further extensions for your application, I can recommend 
 
 In general I invite you to visit my website [www.robinwieruch.de](https://www.robinwieruch.de/) to find more interesting topics. You can [subscribe](https://www.getrevue.co/profile/rwieruch) to my Newsletter to get content updates.
 
-If you liked the book, I hope you will share it with your friends. I would really appreciate it. Thanks for reading - Robin.
+If you liked the book, I hope you will share it with your friends. I would really appreciate it. Stay tuned for [The Road to learn Redux](https://gumroad.com/products/uwiyI) that you can already pre-order to support me. Thanks for reading - Robin.
