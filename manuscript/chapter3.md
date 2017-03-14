@@ -155,7 +155,7 @@ Second, you use the `componentDidMount()` lifecycle method to fetch the data aft
 
 Third, the native fetch is used. The JavaScript ES6 template strings allow it to compose the url with the `searchTerm`. The url is the argument for the native fetch API function. The response needs to get transformed to json, that's a mandatory step in a native fetch, and can finally be set in the internal component state.
 
-Last bu not least, don't forget to bind your new component methods.
+Last but not least, don't forget to bind your new component methods.
 
 Now you can use the fetched data instead of the artificial list of items. However, you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
 
