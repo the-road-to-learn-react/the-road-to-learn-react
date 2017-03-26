@@ -10,7 +10,7 @@ The sort functionality is only handled in the Table component. You could move it
 
 In order to deal with state and methods in the Table component, it has to become an ES6 class component. The refactoring from functional stateless component to ES6 class component is straight forward.
 
-Your Table component as functional stateless component:
+Your Table component as a functional stateless component:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
