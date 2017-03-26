@@ -1,6 +1,8 @@
 # Final Steps to Production
 
-The last chapters will show you to deploy your application to production. You will use the free hosting service Heroku. On the way to deploy your application you will learn more about *create-react-app*.
+The last chapters will show you how to deploy your application to production.
+You will use the free hosting service Heroku.
+On the way to deploy your application you will learn more about *create-react-app*.
 
 ## Eject
 
