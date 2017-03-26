@@ -335,7 +335,7 @@ const withLoading = (Component) => (props) =>
 
 Based on the loading property you can apply a conditional rendering. The function will return the Loading component or the input component.
 
-In general it can be very efficient to spread an object, life the props object, as input for a component. See the difference in the following code snippet.
+In general it can be very efficient to spread an object, like the props object, as input for a component. See the difference in the following code snippet.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
