@@ -1,6 +1,6 @@
 # State Management in React and beyond
 
-You have learned the basics of state management in React already in the previous chapters. This chapter digs a bit deeper into the topic. You will learn best practices, how to apply them and why you could consider an third party state management library.
+You have learned the basics of state management in React already in the previous chapters. This chapter digs a bit deeper into the topic. You will learn best practices, how to apply them and why you could consider using a third party state management library.
 
 ## Lifting State
 
