@@ -8,7 +8,11 @@ On the way to deploy your application you will learn more about *create-react-ap
 
 The following step and knowledge is **not necessary** to deploy your application to production. Still, I want to explain it to you. *create-react-app* comes with one feature to prevent vendor lock-in. A vendor lock-in usually happens when you buy into a technology but there is no escape hatch. In a vendor lock-in it is hard to change the technology. In *create-react-app* you have the escape hatch with "eject".
 
-In your *package.json* you will find the scripts to *start*, *test* and *build* your application. The last script is *eject*. You could try it, but there is no way back. **It is a one-way operation. Once you eject, you can’t go back!**. If you just started to learn React, it makes no sense to leave the convenient environment of *create-react-app*.
+In your *package.json* you will find the scripts to *start*, *test* and *build* your application.
+The last script is *eject*.
+You could try it, but there is no way back.
+**It is a one-way operation. Once you eject, you can't go back!**.
+If you just started to learn React, it makes no sense to leave the convenient environment of *create-react-app*.
 
 If you would run `npm run eject`, the command would copy all the configuration and dependencies to your *package.json* and a new *config/* folder. You would convert the whole project into a custom setup with tooling that includes Babel, Webpack and ESLint. After all, you would have full control over all these tools.
 
