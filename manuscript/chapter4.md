@@ -322,11 +322,25 @@ React comes with a built-in type checker to prevent bugs. You can use PropTypes 
 
 The chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code refactorings. But you should keep and update them along the way to keep your components interface type safe.
 
-Initially you can import PropTypes explicitly:
+Initially you can import PropTypes. You have to be aware of your React version, because in React version 15.5 the import changed. Check your *package.json* for your React version.
+
+If it is 15.5 or above, you have to install an independent package.
+
+{title="Command Line",lang="text"}
+npm install --save prop-types
+~~~~~~~~
+
+If your version is 15.4 or below, you can use the already installed React package.
+
+Now, depending on your version, you can import the PropTypes.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
+// React 15.5 and above
+import PropTypes from 'prop-types';
+
+// React 15.4 and below
 import React, { Component, PropTypes } from 'react';
 # leanpub-end-insert
 ~~~~~~~~
