@@ -29,4 +29,6 @@ If you are looking for further extensions for your application, I can recommend 
 
 In general I invite you to visit my website [www.robinwieruch.de](https://www.robinwieruch.de/) to find more interesting topics. You can [subscribe](https://www.getrevue.co/profile/rwieruch) to my Newsletter to get content updates.
 
-If you liked the book, I hope you will share it with your friends. I would really appreciate it. Stay tuned for [The Road to learn Redux](https://gumroad.com/products/uwiyI) that you can already pre-order to support me. Thanks for reading - Robin.
+If you liked the book, I hope you will share it with your friends. I would really appreciate it. Otherwise you can give it a review on [Goodreads](https://www.goodreads.com/book/show/33541539-the-road-to-learn-react).
+
+Stay tuned for [The Road to learn Redux](https://gumroad.com/products/uwiyI) that you can already pre-order to support me. Thanks for reading - Robin.
