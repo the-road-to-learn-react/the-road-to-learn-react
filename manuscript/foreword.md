@@ -14,9 +14,13 @@ You will learn to build your own Hacker News application. It covers real world f
 
 # Testimonials
 
-* A Rookie Developer: *"I just finished the book as a rookie developer, thanks for working on this. It was easy to follow and I feel confident in starting a new app from scratch in the coming days. The book was much better than official React.js tutorial that I tried earlier (and couldn't complete due to lack of detail). The exercises at the end of each section were very rewarding."*
+* **[Muhammad Kashif](https://twitter.com/appsdevpk):** *"The Road to Learn React is a unique book that I recommend to any student or professional interested in learning react basics to advanced level. It is packed with insightful tips and techniques that are hard to find elsewhere, and remarkably thorough in its use of examples and references to sample problems, i have 17 years of experience in web and desktop app development, and before reading this book i was having trouble in learning react, but this book works like magic."*
 
-* Goodreads Review: *"Pretty solid introduction to React that doesn't try to be comprehensive. I just wanted a taste to understand what it was about and this book gave me exactly that. I didn't follow all the little footnotes to learn about the new ES6 features I've missed ("I wouldn't say I've been missing it, Bob."). But I'm sure for those of you who have fallen behind and are diligent about following those, you can probably learn a lot more than just what the book teaches."*
+* **A Rookie Developer:** *"I just finished the book as a rookie developer, thanks for working on this. It was easy to follow and I feel confident in starting a new app from scratch in the coming days. The book was much better than official React.js tutorial that I tried earlier (and couldn't complete due to lack of detail). The exercises at the end of each section were very rewarding."*
+
+* **Student:** *"The best book to start learning ReactJS. The project moves along with the concepts being learnt which helps to grasp the subject. I have found 'Code and learn' as best way to master programming and this book exactly does that."*
+
+* **Goodreads Review:** *"Pretty solid introduction to React that doesn't try to be comprehensive. I just wanted a taste to understand what it was about and this book gave me exactly that. I didn't follow all the little footnotes to learn about the new ES6 features I've missed ("I wouldn't say I've been missing it, Bob."). But I'm sure for those of you who have fallen behind and are diligent about following those, you can probably learn a lot more than just what the book teaches."*
 
 {pagebreak}
 
