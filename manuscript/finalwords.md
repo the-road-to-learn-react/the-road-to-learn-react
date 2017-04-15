@@ -1,6 +1,6 @@
 # Final Words
 
-That was the last chapter of the book. I hope you liked it so far. Share it with your friends, it would mean a lot to me. You can already pre-order the next book: [The Road to learn Redux](https://gumroad.com/products/uwiyI).
+That was the last chapter of the book. I hope you liked it so far. Share it with your friends, it would mean a lot to me. I am writing already the next book about state management in React. It focuses mainly on Redux and all the best practices around it. But it will also teach local state management, alternatives like MobX and outlines technologies like Relay/GraphQL. [You can already pre-order it](https://gumroad.com/products/uwiyI) and support me.
 
 **But where can you go from here?** You can either extend the application on your own or dive into your own React project. Before you dive into another book or tutorial, you should create your own hands-on React project. Do it for one week, release it somewhere and reach out to me on [Twitter](https://twitter.com/rwieruch). I am curious what you will build after you have read the book. You can also find me on [GitHub](https://github.com/rwieruch) to share your repository.
 
