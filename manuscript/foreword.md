@@ -12,11 +12,25 @@ You will learn to build your own Hacker News application. It covers real world f
 
 {pagebreak}
 
+# Testimonials
+
+* A Rookie Developer: *"I just finished the book as a rookie developer, thanks for working on this. It was easy to follow and I feel confident in starting a new app from scratch in the coming days. The book was much better than official React.js tutorial that I tried earlier (and couldn't complete due to lack of detail). The exercises at the end of each section were very rewarding."*
+
+* Goodreads Review: *"Pretty solid introduction to React that doesn't try to be comprehensive. I just wanted a taste to understand what it was about and this book gave me exactly that. I didn't follow all the little footnotes to learn about the new ES6 features I've missed ("I wouldn't say I've been missing it, Bob."). But I'm sure for those of you who have fallen behind and are diligent about following those, you can probably learn a lot more than just what the book teaches."*
+
+{pagebreak}
+
+# Education for Children
+
+The book is open source and should enable everyone to learn React. However, not everyone is privileged to use open source resources, because not everyone is educated in the English language in the first place. Even though the book is pay what you want, I want to use it to support projects that teach children English in the developing world.
+
+* 11. April to 18. April, 2017, [Giving Back, By Learning React](https://www.robinwieruch.de/giving-back-by-learning-react/)
+
+{pagebreak}
+
 # FAQ
 
 **How do I get updates?** You can [subscribe](https://www.getrevue.co/profile/rwieruch) to my Newsletter or follow me on [Twitter](https://twitter.com/rwieruch) to get updates. It keeps me motivated to continue. Once you have a copy of the book, it will stay updated. But you have to download the copy again when an update is announced. I will notify everyone by a [Newsletter](https://www.getrevue.co/profile/rwieruch) and [Twitter](https://twitter.com/rwieruch).
-
-****
 
 **Does it use the recent React version?** Books are outdated pretty soon after their release. Since this book is self-published, I can update it whenever I want. In conclusion, I update the resource whenever there is a new React version.
 
@@ -55,6 +69,10 @@ You will learn to build your own Hacker News application. It covers real world f
 * 25% improved content
 * 9 new chapters
 * 170 pages of learning material
+
+**15. April 2017:**
+
+* upgrade to React 15.5.
 
 {pagebreak}
 
