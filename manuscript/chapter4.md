@@ -327,6 +327,7 @@ Initially you can import PropTypes. You have to be aware of your React version, 
 If it is 15.5 or above, you have to install an independent package.
 
 {title="Command Line",lang="text"}
+~~~~~~~~
 npm install --save prop-types
 ~~~~~~~~
 
