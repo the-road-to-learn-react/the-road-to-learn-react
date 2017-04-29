@@ -155,7 +155,8 @@ In the example of the focus use case it wouldn't help you, because you have no l
 
 ### Exercises
 
-* read more about [the ref attribute in React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
+* read more about [the ref attribute in general in React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
+* read more about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
 
 ## Loading ...
 
@@ -429,6 +430,8 @@ When you run your tests again, you will notice that your snapshot test for the A
 You can either fix the component now, when you think there is something wrong about it, or can accept the new snapshot. Because you introduced the Loading component in this chapter, you can accept the failing snapshot test with `u` on the command line in the interactive test.
 
 Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composeability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
+
+I encourage you to read the [gentle introduction to higher order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them the functional programming way and solves specifically the problem of conditional rendering with higher order components.
 
 ### Exercises:
 
