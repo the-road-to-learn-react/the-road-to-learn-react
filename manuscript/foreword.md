@@ -54,6 +54,8 @@ The book is open source and should enable everyone to learn React. However, not 
 
 **Can I support the project?** Yes. Feel free to reach out or to support me. I invest a lot of my time into open source tutorials and learning resources. You can have a look at my [about me](https://www.robinwieruch.de/about/) page.
 
+**Is there a call to action?** Yes. I want you to take a moment to think about a person who would be a good match to learn React. The person could have shown the interest already, could be in the middle of learning React or might not yet be aware about wanting to learn React. Reach out to that person and share the book. It would mean a lot to me. The book is intended to be given to others.
+
 {pagebreak}
 
 # Change Log
