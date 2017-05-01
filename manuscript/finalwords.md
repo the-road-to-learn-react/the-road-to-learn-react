@@ -1,10 +1,6 @@
 # Final Words
 
-That was the last chapter of the book. If you liked it, share the book as a way to learn React.
-
-I am writing already the next book about state management in React. It focuses mainly on Redux and all the best practices around it. But it will also teach local state management, show alternatives in state management with MobX and outline technologies like Relay/GraphQL. [You can already pre-order it](https://gumroad.com/products/uwiyI) and support me.
-
-Once again, if you liked the book, I want you to take a moment to think about a person who would be a good match to learn React. Reach out to that person and share the book. It would mean a lot to me. The book is intended to be given to others. The resource will improve when more people consume it. I receive a lot of feedback about it and can improve it.
+That was the last chapter of the book. If you liked it, share the book as a way to learn React to your friends. In addition, you could give the book a review on [Goodreads](https://www.goodreads.com/book/show/33541539-the-road-to-learn-react) to support it.
 
 **But where can you go from here?** You can either extend the application on your own or dive into your own React project. Before you dive into another book or tutorial, you should create your own hands-on React project. Do it for one week, release it somewhere and reach out to me on [Twitter](https://twitter.com/rwieruch). I am curious what you will build after you have read the book. You can also find me on [GitHub](https://github.com/rwieruch) to share your repository.
 
@@ -17,17 +13,10 @@ If you are looking for further extensions for your application, I can recommend 
 * **State Management:** You have used React `setState` to manage internal component state. That's a perfect start. However, in a scaling application you will experience the limits of internal component state. Therefore you have third party state management libraries like Redux or MobX.
 * **Routing:** You can implement routing for your application with [react-router](https://github.com/ReactTraining/react-router). So far you only have one page in your application. React Router helps you to have multiple pages across different URLs.
 
-**More Readings:**
+In general, I invite you to [visit my website](https://www.robinwieruch.de/) to find more interesting topics about web development. You can [subscribe](https://www.getrevue.co/profile/rwieruch) to get updates every 3 months to your inbox.
 
-* [Tips to learn React + Redux](https://www.robinwieruch.de/tips-to-learn-react-redux/)
-* [Redux or MobX: An attempt to dissolve the Confusion](https://www.robinwieruch.de/redux-mobx-confusion/)
-* [SoundCloud Client in React + Redux](https://www.robinwieruch.de/the-soundcloud-client-in-react-redux) with [Extensions like ESLint, Flow, Normalizr, MobX and Observables](https://github.com/rwieruch/react-redux-soundcloud)
+I am writing already the next book about state management in React. It focuses mainly on Redux and all the best practices around it. But it will also teach local state management, show alternatives in state management with MobX and outline technologies like Relay/GraphQL. [You can already pre-order it](https://gumroad.com/products/uwiyI) and support me.
 
-**More Resources:**
+Once again, if you liked the book, I want you to take a moment to think about a person who would be a good match to learn React. Reach out to that person and share the book. It would mean a lot to me. The book is intended to be given to others. The book will improve when more people consume it and share their feedback.
 
-* A real SoundCloud Client in React + Redux: [Live](http://www.favesound.de/) & [Source](https://github.com/rwieruch/favesound-redux)
-* A real SoundCloud Client in React + MobX: [Source](https://github.com/rwieruch/favesound-mobx)
-
-In general, I invite you to [visit my website](https://www.robinwieruch.de/) to find more interesting topics. You can [subscribe](https://www.getrevue.co/profile/rwieruch) to get content updates. In addition, you could give the book a review on [Goodreads](https://www.goodreads.com/book/show/33541539-the-road-to-learn-react) to support it.
-
-Stay tuned for [The Road to learn Redux](https://gumroad.com/products/uwiyI). Thanks for reading - Robin.
+Thank you a lot for reading the Road to learn React - Robin.
