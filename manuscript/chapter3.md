@@ -102,6 +102,15 @@ That will keep your url composition flexible in the future.
 
 But let's get to the API request where you will use the url. The whole data fetch process will be presented at once, but each step will get explained afterward.
 
+First, we need to install the node module that will allow us to fetch data from a URL:
+
+{title="Command Line",lang="text"}
+~~~~~~~~
+npm install --save isomorphic-fetch
+~~~~~~~~
+
+Then we modify the Javascript class:
+
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
