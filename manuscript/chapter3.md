@@ -581,9 +581,6 @@ Let's extend the composeable API constants that it can deal with paginated data.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const DEFAULT_QUERY = 'redux';
-# leanpub-start-insert
-const DEFAULT_PAGE = 0;
-# leanpub-end-insert
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
@@ -603,7 +600,7 @@ console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-The `fetchSearchTopstories()` method will take the page as second argument. The `componentDidMount()` and `onSearchSubmit()` methods take the `DEFAULT_PAGE` for the initial API calls. They should fetch the first page on the first request. Every additional fetch should fetch the next page.
+The `fetchSearchTopstories()` method will take the page as second argument. The `componentDidMount()` and `onSearchSubmit()` methods will fetch the first page on the first request. Every additional fetch should fetch the next page.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -614,12 +611,12 @@ class App extends Component {
   componentDidMount() {
     const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+    this.fetchSearchTopstories(searchTerm);
 # leanpub-end-insert
   }
 
 # leanpub-start-insert
-  fetchSearchTopstories(searchTerm, page) {
+  fetchSearchTopstories(searchTerm, page = 0) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
 # leanpub-end-insert
       .then(response => response.json())
@@ -629,7 +626,7 @@ class App extends Component {
   onSearchSubmit(event) {
     const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+    this.fetchSearchTopstories(searchTerm);
 # leanpub-end-insert
     event.preventDefault();
   }
@@ -714,7 +711,6 @@ You can make one last adjustment. When you try the "More" button it only fetches
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const DEFAULT_QUERY = 'redux';
-const DEFAULT_PAGE = 0;
 # leanpub-start-insert
 const DEFAULT_HPP = '100';
 # leanpub-end-insert
@@ -815,7 +811,7 @@ componentDidMount() {
 # leanpub-start-insert
   this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+  this.fetchSearchTopstories(searchTerm);
 }
 
 onSearchSubmit(event) {
@@ -823,7 +819,7 @@ onSearchSubmit(event) {
 # leanpub-start-insert
   this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+  this.fetchSearchTopstories(searchTerm);
   event.preventDefault();
 }
 ~~~~~~~~
@@ -1009,7 +1005,7 @@ class App extends Component {
 # leanpub-start-insert
 
     if (this.needsToSearchTopstories(searchTerm)) {
-      this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+      this.fetchSearchTopstories(searchTerm);
     }
 
 # leanpub-end-insert
