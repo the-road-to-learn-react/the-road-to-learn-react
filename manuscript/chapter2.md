@@ -32,6 +32,8 @@ In your case the initial state is the artificial list of items. Note that you ha
 
 The state is bound to the class with the `this` object. You can access the state in your component. For instance, it can be used in the `render()` method. Before you have mapped a static list of items. Now you are about to use the list from your internal component state.
 
+The name of the property `state` is a React convention and in order to update your components state later you have to put your components's state data in this property. It will typically be an object, but you can use any variable type.
+
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
