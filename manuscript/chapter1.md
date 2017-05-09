@@ -454,7 +454,7 @@ ReactDOM.render(
 
 # leanpub-start-insert
 if (module.hot) {
-  module.hot.accept()
+  module.hot.accept();
 }
 # leanpub-end-insert
 ~~~~~~~~
