@@ -1,6 +1,10 @@
 # Getting Real with an API
 
-Now it's time to get real with an API, because it can get boring to deal with artificial data. Do you know [Hacker News](https://news.ycombinator.com/)? It's a great news aggregator. You will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API to get data from the platform. The latter one makes sense in your case to search stories on Hacker News. You can visit the API specification to get a glimpse of the data structure.
+Now it's time to get real with an API, because it can get boring to deal with artificial data.
+
+If you are not familiar with APIs, I encourage you [to read my journey where I got to know APIs](https://www.robinwieruch.de/what-is-an-api-javascript/).
+
+Do you know the [Hacker News](https://news.ycombinator.com/) platform? It's a great news aggregator about tech topics. In this book, you will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API to get data from the platform. The latter one makes sense in your case to search stories on Hacker News. You can visit the API specification to get a glimpse of the data structure.
 
 ## Lifecycle Methods
 
