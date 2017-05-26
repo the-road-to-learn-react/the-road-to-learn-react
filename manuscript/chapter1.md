@@ -8,7 +8,7 @@ The chapter gives you an introduction to React. You may ask yourself: Why should
 
 The initial React release was 2013 by Facebook. React is not an SPA framework but a view library. It is the V in the [MVC](https://de.wikipedia.org/wiki/Model_View_Controller) (model view controller). It only enables you to render components as viewable elements in a browser. Yet the whole ecosystem around React makes it possible to build single page applications.
 
-But why should you consider using React over the first generation of SPA frameworks? While the first generation of frameworks tried to solve a lot of things at once, React only helps you to build your view layer. It's a library and not a framework. The idea behind it: Your view is a hierarchy of composeable components.
+But why should you consider using React over the first generation of SPA frameworks? While the first generation of frameworks tried to solve a lot of things at once, React only helps you to build your view layer. It's a library and not a framework. The idea behind it: Your view is a hierarchy of composable components.
 
 In React you can focus on your view before you introduce more aspects to your application. Every other aspect is another building block for your SPA. These building blocks are essential to build a mature application. They come with two advantages.
 
