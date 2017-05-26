@@ -762,11 +762,11 @@ You have learned to bootstrap your own React application! Let's recap the last c
   * create-react-app bootstraps a React application
   * JSX mixes up HTML and JavaScript to define React components
   * components, instances and elements are different things
-  * ReactDOM.render() is an entry point for a React application
+  * `ReactDOM.render()` is an entry point for a React application
   * built-in JavaScript functionalities can be used in JSX
     * map can be used to render a list of items as HTML elements
 * ES6
-  * variable declarations with const and let for particular use cases
+  * variable declarations with `const` and `let` for particular use cases
   * arrow functions can be used to shorten your function declarations
   * classes are used to define components in React
 
