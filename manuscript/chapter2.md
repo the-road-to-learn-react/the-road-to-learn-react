@@ -30,7 +30,7 @@ class App extends Component {
 
 In your case the initial state is the artificial list of items. Note that you have to call `super(props);` to call the constructor of the extended Component class. It's mandatory, because it sets `this.props` in your constructor. You should follow the best practice, otherwise you might run into bugs in the future.
 
-The state is bound to the class with the `this` object. You can access the state in your component. For instance, it can be used in the `render()` method. Before you have mapped a static list of items. Now you are about to use the list from your internal component state.
+The state is bound to the class with the `this` object. You can access the state in your component. For instance, it can be used in the `render()` method. Earlier you mapped a static list of items. Now you are about to use the list from your internal component state.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -242,7 +242,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-You can do it more concise by using an ES6 arrow function again.
+You can do it more concisely by using an ES6 arrow function again.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -516,7 +516,7 @@ const isSearched = (searchTerm) => (item) =>
   !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
 ~~~~~~~~
 
-One could argue which function is more readable. Personally I prefer the second one. The React ecosystem uses a lot of functional programming concepts. It happens often that you will use a function which returns a function (higher order functions). In ES6 you can express these more concise with arrow functions.
+One could argue which function is more readable. Personally I prefer the second one. The React ecosystem uses a lot of functional programming concepts. It happens often that you will use a function which returns a function (higher order functions). In ES6 you can express these more concisely with arrow functions.
 
 Last but not least, you have to use the defined `isSearched()` function to filter your list.
 
