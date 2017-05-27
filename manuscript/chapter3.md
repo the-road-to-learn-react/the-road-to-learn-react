@@ -151,7 +151,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-A lot of things happen in the code. I thought about it to break it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain each step in detail.
+A lot of things happen in the code. I thought about breaking it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain each step in detail.
 
 First, you can remove the artificial list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default search term. The same default search term is used in the search field and in your first request.
 
@@ -163,7 +163,7 @@ Last but not least, don't forget to bind your new component methods.
 
 Now you can use the fetched data instead of the artificial list of items. However, you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
 
-Let's use the result to render it. But we will prevent to render anything - return null - when there is no result. Once the request to the API succeeded, the result is saved to the state and the App component will re-render with the updated state.
+Let's use the result to render it. But we will prevent it from rendering anything - return null - when there is no result. Once the request to the API succeeded, the result is saved to the state and the App component will re-render with the updated state.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -194,7 +194,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. But you prevent to display it, because the result is empty. Then the `componentDidMount()` lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the `render()` method again, but this time with populated data in your internal component state. The component and thus the Table component with its content gets re-rendered.
+Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. But you prevent it from displaying, because the result is empty. Then the `componentDidMount()` lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the `render()` method again, but this time with populated data in your internal component state. The component and thus the Table component with its content gets re-rendered.
 
 You used the native fetch API that is supported by most browsers to perform an asynchronous request to an API. The *create-react-app* configuration makes sure that it is supported in every browser. There are third party node packages that you can use to substitute the native fetch API: [superagent](https://github.com/visionmedia/superagent) and [axios](https://github.com/mzabriskie/axios).
 
@@ -570,7 +570,7 @@ onSearchSubmit(event) {
 }
 ~~~~~~~~
 
-Now you should be able to search different Hacker News stories. You interact with a real world API. There should be no client-sided search anymore.
+Now you should be able to search different Hacker News stories. You interact with a real world API. There should be no client-side search anymore.
 
 ### Exercises:
 
@@ -580,7 +580,7 @@ Now you should be able to search different Hacker News stories. You interact wit
 
 Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. The page property, which is 0 in the first response, can be used to fetch more paginated data. You only need to pass the next page with the same search term to the API.
 
-Let's extend the composeable API constants that it can deal with paginated data.
+Let's extend the composable API constants that so it can deal with paginated data.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -713,7 +713,7 @@ Third, you don't want to overwrite the old hits. You can merge old and new hits 
 
 Fourth, you set the merged hits and page in the internal component state.
 
-You can make one last adjustment. When you try the "More" button it only fetches a few list items. The API url can be extended to fetch more list items with each request. Again you can add more composeable path constants.
+You can make one last adjustment. When you try the "More" button it only fetches a few list items. The API url can be extended to fetch more list items with each request. Again you can add more composable path constants.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -870,7 +870,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `searchKey` will be used as key to save the updated hits and page in a `results` map.
+The `searchKey` will be used as the key to save the updated hits and page in a `results` map.
 
 First, you have to retrieve the `searchKey` from the component state. Remember that the `searchKey` gets set on `componentDidMount()` and `onSearchSubmit()`.
 
