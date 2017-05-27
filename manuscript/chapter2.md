@@ -809,7 +809,7 @@ Now you have three ES6 class components. Perhaps you have noticed the `this.prop
 * figure out which components you could split up
   * but don't do it now, otherwise you will run into conflicts in the next chapters
 
-## Composeable Components
+## Composable Components
 
 There is one more little property which is accessible in the props object: the `children` prop. You can use it to pass elements to your components from above - which are unknown to the component itself - but make it possible to compose components into each other. Let's see how this looks like when you only pass a text (string) as a child to the Search component.
 
@@ -874,7 +874,7 @@ The "Search" text should be visible next to your input field now. When you use t
 
 ## Reusable Components
 
-Reusable and composeable components empower you to come up with capable component hierarchies. They are the foundation of your view layer. The last chapters mentioned often the term reusability. You can reuse the Table and Search components already. Not to forget the App component.
+Reusable and composable components empower you to come up with capable component hierarchies. They are the foundation of your view layer. The last chapters mentioned often the term reusability. You can reuse the Table and Search components already. Not to forget the App component.
 
 Let's define one more reusable component - a Button component - which gets reused more often eventually.
 
