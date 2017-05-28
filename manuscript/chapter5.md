@@ -316,7 +316,7 @@ function withFoo(Component) {
 }
 ~~~~~~~~
 
-One neat convention is to prefix the naming of a HOC with `with`. Since you are using JavaScript ES6, you can express the HOC more concise with an ES6 arrow function.
+One neat convention is to prefix the naming of a HOC with `with`. Since you are using JavaScript ES6, you can express the HOC more concisely with an ES6 arrow function.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -429,7 +429,7 @@ When you run your tests again, you will notice that your snapshot test for the A
 
 You can either fix the component now, when you think there is something wrong about it, or can accept the new snapshot. Because you introduced the Loading component in this chapter, you can accept the failing snapshot test with `u` on the command line in the interactive test.
 
-Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composeability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
+Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
 
 I encourage you to read the [gentle introduction to higher order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them the functional programming way and solves specifically the problem of conditional rendering with higher order components.
 
