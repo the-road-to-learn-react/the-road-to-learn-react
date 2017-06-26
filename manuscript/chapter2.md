@@ -487,7 +487,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The condition says multiple things. You filter the list only when a `searchTerm` is set. When a `searchTerm` is set, you match the incoming `searchTerm` pattern with the title of the item. You can do that with the built-in `includes` JavaScript functionality. Only when the pattern matches, you return true and the item stays in the list. But be careful with pattern matching: You shouldn't forget to lower case both strings. Otherwise there will be mismatches between a search term 'redux' and an item title 'Redux'.
+Conditional rendering is discussed later but to touch on it briefly, the condition says multiple things. 
+If `searchTerm` is set, it evaluates to `true`. Therefore `!searchTerm` is the boolean opposite (false).
+You use the value of `searchTerm` to determine if you filter the list. When `searchTerm` is set, you match the incoming `searchTerm` pattern with the title of the item. You can do that with the built-in `includes` JavaScript functionality. Only when the pattern matches, you return true and the item stays in the list. But be careful with pattern matching: You shouldn't forget to lower case both strings. Otherwise there will be mismatches between a search term 'redux' and an item title 'Redux'.
 
 One thing is left to mention: We cheated a bit by using the built-in includes JavaScript functionality. It is already an ES6 feature. How would that look like in JavaScript ES5? You would use the `indexOf()` function to get the index of the item in the list. When the item is in the list, `indexOf()` will return a positive index.
 
