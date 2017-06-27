@@ -235,7 +235,8 @@ class App extends Component {
 
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(response => response.json())
-      .then(result => this.setSearchTopstories(result));
+      .then(result => this.setSearchTopstories(result))
+      .catch(e => e);
   }
 
   ...
@@ -261,17 +262,7 @@ class App extends Component {
     } = this.state;
 # leanpub-end-insert
 
-    const page = (
-      results &&
-      results[searchKey] &&
-      results[searchKey].page
-    ) || 0;
-
-    const list = (
-      results &&
-      results[searchKey] &&
-      results[searchKey].hits
-    ) || [];
+    ...
 
     return (
       <div className="page">
@@ -555,28 +546,12 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    const page = (
-      results &&
-      results[searchKey] &&
-      results[searchKey].page
-    ) || 0;
-
-    const list = (
-      results &&
-      results[searchKey] &&
-      results[searchKey].hits
-    ) || [];
+    ...
 
     return (
       <div className="page">
         <div className="interactions">
-          <Search
-            value={searchTerm}
-            onChange={this.onSearchChange}
-            onSubmit={this.onSearchSubmit}
-          >
-            Search
-          </Search>
+          ...
         </div>
         <Table
           list={list}
@@ -587,11 +562,7 @@ class App extends Component {
           onDismiss={this.onDismiss}
         />
         <div className="interactions">
-          <ButtonWithLoading
-            isLoading={isLoading}
-            onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
-            More
-          </ButtonWithLoading>
+          ...
         </div>
       </div>
     );
@@ -616,26 +587,7 @@ const Table = ({
     { SORTS[sortKey](list).map(item =>
 # leanpub-end-insert
       <div key={item.objectID} className="table-row">
-        <span style={{ width: '40%' }}>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <span style={{ width: '30%' }}>
-          {item.author}
-        </span>
-        <span style={{ width: '10%' }}>
-          {item.num_comments}
-        </span>
-        <span style={{ width: '10%' }}>
-          {item.points}
-        </span>
-        <span style={{ width: '10%' }}>
-          <Button
-            onClick={() => onDismiss(item.objectID)}
-            className="button-inline"
-          >
-            Dismiss
-          </Button>
-        </span>
+        ...
       </div>
     )}
   </div>
@@ -772,17 +724,7 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    const page = (
-      results &&
-      results[searchKey] &&
-      results[searchKey].page
-    ) || 0;
-
-    const list = (
-      results &&
-      results[searchKey] &&
-      results[searchKey].hits
-    ) || [];
+    ...
 
     return (
       <div className="page">
@@ -793,8 +735,8 @@ class App extends Component {
 # leanpub-start-insert
           isSortReverse={isSortReverse}
 # leanpub-end-insert
-          onDismiss={this.onDismiss}
           onSort={this.onSort}
+          onDismiss={this.onDismiss}
         />
         ...
       </div>
@@ -904,9 +846,9 @@ const Table = ({
           >
             Points
           </Sort>
-          <span style={{ width: '10%' }}>
-            Archive
-          </span>
+        </span>
+        <span style={{ width: '10%' }}>
+          Archive
         </span>
       </div>
       { reverseSortedList.map(item =>

@@ -41,7 +41,7 @@ You can verify your versions of node and npm on the command line. If you don't g
 node --version
 *v7.4.0
 npm --version
-*v4.0.5
+*v5.0.4
 ~~~~~~~~
 
 ## node and npm
@@ -164,7 +164,7 @@ You can check the version of *create-react-app* to verify a successful installat
 create-react-app --version
 ~~~~~~~~
 
-It should give you an output about the version.
+It should give you an output about the version. Mine is: 1.3.1.
 
 Now you can bootstrap your first React application. We call it *hackernews*, but you can choose a different name. Afterward simply navigate into the folder:
 
@@ -174,7 +174,7 @@ create-react-app hackernews
 cd hackernews
 ~~~~~~~~
 
-Now you can open the application in your editor. The following folder structure should be presented to you:
+Now you can open the application in your editor. The following folder structure, or a variaton of it depending on the create-react-app version, should be presented to you:
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -279,7 +279,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h2>Welcome to React</h2>
+        <h2>Welcome to the Road to learn React</h2>
       </div>
     );
   }
@@ -288,7 +288,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Now you only return HTML without JavaScript. Let's make the "Welcome to React" a variable. A variable can be used in your JSX.
+Now you only return HTML without JavaScript. Let's make the "Welcome to the Road to learn React" a variable. A variable can be used in your JSX.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -298,7 +298,7 @@ import './App.css';
 class App extends Component {
   render() {
 # leanpub-start-insert
-    var helloWorld = 'Welcome to React';
+    var helloWorld = 'Welcome to the Road to learn React';
 # leanpub-end-insert
     return (
       <div className="App">
@@ -333,7 +333,7 @@ A variable declared with `const` cannot be re-assigned or re-declared. It cannot
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 // not allowed
-const helloWorld = 'Welcome to React';
+const helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
 ~~~~~~~~
 
@@ -342,7 +342,7 @@ A variable declared with `let` can get mutated.
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 // allowed
-let helloWorld = 'Welcome to React';
+let helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
 ~~~~~~~~
 
@@ -354,7 +354,7 @@ However, you have to be careful with `const`. A variable declared with `const` c
 ~~~~~~~~
 // allowed
 const helloWorld = {
-  text: 'Welcome to React'
+  text: 'Welcome to the Road to learn React'
 };
 helloWorld.text = 'Bye Bye React';
 ~~~~~~~~
@@ -373,7 +373,7 @@ import './App.css';
 class App extends Component {
   render() {
 # leanpub-start-insert
-    const helloWorld = 'Welcome to React';
+    const helloWorld = 'Welcome to the Road to learn React';
 # leanpub-end-insert
     return (
       <div className="App">
@@ -459,9 +459,7 @@ if (module.hot) {
 # leanpub-end-insert
 ~~~~~~~~
 
-That's it. Try again to change the `hellowWorld` variable in your *src/App.js* file. The browser shouldn't perform a page refresh, but the application reloads and shows the correct output.
-
-HMR comes with multiple advantages.
+That's it. Try again to change the `hellowWorld` variable in your *src/App.js* file. The browser shouldn't perform a page refresh, but the application reloads and shows the correct output. HMR comes with multiple advantages:
 
 Imagine you are debugging your code with `console.log()` statements. These statements will stay in your developer console, even though you change your code, because the browser doesn't refresh the page anymore. That can be convenient for debugging purposes.
 

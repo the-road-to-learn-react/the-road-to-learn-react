@@ -138,7 +138,8 @@ class App extends Component {
   fetchSearchTopstories(searchTerm) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
-      .then(result => this.setSearchTopstories(result));
+      .then(result => this.setSearchTopstories(result))
+      .catch(e => e);
   }
 
   componentDidMount() {
@@ -627,7 +628,8 @@ class App extends Component {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
 # leanpub-end-insert
       .then(response => response.json())
-      .then(result => this.setSearchTopstories(result));
+      .then(result => this.setSearchTopstories(result))
+      .catch(e => e);
   }
 
   onSearchSubmit(event) {
@@ -741,7 +743,8 @@ fetchSearchTopstories(searchTerm, page) {
   fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
 # leanpub-end-insert
     .then(response => response.json())
-    .then(result => this.setSearchTopstories(result));
+    .then(result => this.setSearchTopstories(result))
+    .catch(e => e);
 }
 ~~~~~~~~
 
@@ -922,13 +925,7 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <Search
-            value={searchTerm}
-            onChange={this.onSearchChange}
-            onSubmit={this.onSearchSubmit}
-          >
-            Search
-          </Search>
+          ...
         </div>
 # leanpub-start-insert
         <Table

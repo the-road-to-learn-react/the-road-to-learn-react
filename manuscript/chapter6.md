@@ -160,17 +160,7 @@ class App extends Component {
     } = this.state;
 # leanpub-end-insert
 
-    const page = (
-      results &&
-      results[searchKey] &&
-      results[searchKey].page
-    ) || 0;
-
-    const list = (
-      results &&
-      results[searchKey] &&
-      results[searchKey].hits
-    ) || [];
+    ...
 
     return (
       <div className="page">
