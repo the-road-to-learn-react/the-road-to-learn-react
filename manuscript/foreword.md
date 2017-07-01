@@ -48,6 +48,8 @@ The book is open source and should enable everyone to learn React. However, not 
 
 **What are the reading formats?** In addition to the .pdf, .epub, and .mobi formats, you can read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general, I recommend reading it on a suitable format, otherwise the code snippets will have ugly line breaks.
 
+**How can I get help while reading the book?** The book has a [Slack Channel](https://slack-the-road-to-learn-react.wieruch.com/) for people who are reading the book. You can join the channel to get help or to help others. After all, helping others can internalize your learnings too.
+
 **Is there any troubleshoot area?** If you run into problems, please see the [open issues on GitHub](https://github.com/rwieruch/the-road-to-learn-react/issues) for the book. Perhaps your problem was already mentioned and you can find the fix there. If your problem wasn't mentioned, don't hesitate to open a new issue where you can explain your problem, maybe provide a screenshot, and some more details (book page, node version). After all, most of the accumulating issues will be fixed in the succeeding edition of the book.
 
 **Why is the book pay what you want?** I have put a lot of effort into this and will do so in the future. My desire is to reach as many people as possible. Everyone should be enabled to learn React. Still you could pay - if you can afford it - because it already took me a lot of my time to write and improve the book. In addition, the [book attempts to support projects that educate children in the developing world](https://www.robinwieruch.de/giving-back-by-learning-react/). You can have an impact too!
