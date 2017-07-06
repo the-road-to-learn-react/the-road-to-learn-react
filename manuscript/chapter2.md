@@ -1059,7 +1059,7 @@ Now you have one lightweight functional stateless component. Once you would need
 
 ## Styling Components
 
-Let's add some basic styling to your application and components. You can reuse the *src/App.css* and *src/index.css* files. I prepared some CSS to copy and paste, but feel free to use your own style.
+Let's add some basic styling to your application and components. You can reuse the *src/App.css* and *src/index.css* files. These files should be already in your project since you bootstapped it with create-react-app. They should be imported in your *src/App.js* and *src/index.js* files too. I prepared some CSS which you can simply copy and paste to these files, but feel free to use your own style.
 
 {title="src/index.css",lang="css"}
 ~~~~~~~~

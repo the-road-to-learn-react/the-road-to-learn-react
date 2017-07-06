@@ -26,7 +26,7 @@ React is probably one of the best choices for building single page applications 
 
 ## Requirements
 
-Before you start to read the book, you should be familiar with HTML, CSS and JavaScript (ES5). The book will teach JavaScript ES6 and beyond. If you are coming from a different SPA framework or library, you should already be familiar with the basics. If you have just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React.
+Before you start to read the book, you should be familiar with HTML, CSS and JavaScript (ES5). The book will teach JavaScript ES6 and beyond. If you are coming from a different SPA framework or library, you should already be familiar with the basics. If you have just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React. I encourage you to join the official [Slack Channel](https://slack-the-road-to-learn-react.wieruch.com/) for the book to get help or to help others.
 
 Every developer needs tools to build applications. You will need an editor (IDE) and terminal (command line) tool. You can read my developer setup to organize your tools: [Developer Setup](https://www.robinwieruch.de/developer-setup/). It is adjusted for Mac users, but you can substitute most of the tools for other operating system.
 
