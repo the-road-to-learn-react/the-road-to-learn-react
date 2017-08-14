@@ -314,7 +314,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the following scenario you will type into the field and filter the list temporary by the search term. To be able to filter the list, you need the value of the input field to update the state. But how do you access the value? You can use **synthetic events** in React to access the event payload.
+In the following scenario you will type into the field and filter the list temporarily by the search term. To be able to filter the list, you need the value of the input field to update the state. But how do you access the value? You can use **synthetic events** in React to access the event payload.
 
 Let's define an `onChange()` callback function for the input field.
 
@@ -413,7 +413,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you store the input value to your internal component state every time the value in the input field changes. However, the list doesn't update yet. You have to filter the list temporary based on the `searchTerm`. That's fairly simple. Before you map the list you can apply a filter on it. You have already used the built-in JavaScript filter functionality.
+Now you store the input value to your internal component state every time the value in the input field changes. However, the list doesn't update yet. You have to filter the list temporarily based on the `searchTerm`. That's fairly simple. Before you map the list you can apply a filter on it. You have already used the built-in JavaScript filter functionality.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -639,7 +639,7 @@ But since the book uses JavaScript ES6 most of the time, you should stick to ES6
 
 ## Controlled Components
 
-You already learned about the unidirectional data flow in React. The same law applies for the input field, which updates the state that in turn filters the list. The state was changed, the `render()` method runs again and uses the recent `searchTerm` state to apply the filter condition.
+You already learned about the unidirectional data flow in React. The same law applies for the input field, which updates the state that in turn filters the list. When the state changes, the `render()` method runs again and uses the recent `searchTerm` state to apply the filter condition.
 
 But didn't we forget something in the input element? A HTML input tag comes with a `value` attribute. The value attribute usually has the value that is shown in the input field - in our case the `searchTerm` property. However, it seems like we don't need that in React.
 
