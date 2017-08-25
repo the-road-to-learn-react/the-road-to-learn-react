@@ -40,7 +40,7 @@ The book is open source and should enable everyone to learn React. However, not 
 
 **Does it use the recent React version?** The book always receives an update when the React version got updated. Usually books are outdated pretty soon after their release. Since this book is self-published, I can update it whenever I want.
 
-**Does it cover Redux?** It doesn't. The book should give you a solid foundation before you dive into advanced topics. The implementation of the sample application in the book will show that you don't need Redux to build an application i React. After you have read the book, you should be able to implement a solid application without Redux.
+**Does it cover Redux?** It doesn't. The book should give you a solid foundation before you dive into advanced topics. The implementation of the sample application in the book will show that you don't need Redux to build an application in React. After you have read the book, you should be able to implement a solid application without Redux.
 
 **Does it use JavaScript ES6?** Yes. But don't worry. You will be fine if you are familiar with JavaScript ES5. All JavaScript ES6 features I describe on the journey to learn React will transition from ES5 to ES6 in the book. Every feature along the way will be explained. The book does not only teach React, but also all useful JavaScript ES6 features for React.
 
