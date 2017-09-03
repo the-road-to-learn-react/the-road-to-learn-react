@@ -201,7 +201,7 @@ The main focus lies on the *src/App.js* file to implement React components. It w
 
 Additionally you will find a *src/App.test.js* file for tests and a *src/index.js* as entry point to the React world. You will get to know both files in a later chapter. In addition, there is a *src/index.css* and a *src/App.css* file to style your application and components. They all come with default style when you open them.
 
-Next to to the *src/* folder you will find the *package.json* file and *node_modules/* folder to manage your node packages. The *create-react-app* application is a npm project. You can use npm to install and uninstall node packages to your project.
+Next to the *src/* folder you will find the *package.json* file and *node_modules/* folder to manage your node packages. The *create-react-app* application is a npm project. You can use npm to install and uninstall node packages to your project.
 
 The *create-react-app* project comes with the following npm scripts for your command line:
 
