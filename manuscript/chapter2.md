@@ -772,6 +772,9 @@ The second one is the Table component.
 
 # leanpub-start-insert
 class Table extends Component {
+  const isSearched = (searchTerm) => (item) =>
+    !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
   render() {
     const { list, pattern, onDismiss } = this.props;
     return (
@@ -907,6 +910,9 @@ Since you already have a button element, you can use the Button component instea
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Table extends Component {
+  const isSearched = (searchTerm) => (item) =>
+    !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
   render() {
     const { list, pattern, onDismiss } = this.props;
     return (
@@ -1220,6 +1226,9 @@ Second, apply it in your Table functional stateless component.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Table = ({ list, pattern, onDismiss }) =>
+  const isSearched = (searchTerm) => (item) =>
+    !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
 # leanpub-start-insert
   <div className="table">
 # leanpub-end-insert
@@ -1259,6 +1268,9 @@ Let's keep the Table column width flexible by using inline style.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Table = ({ list, pattern, onDismiss }) =>
+  const isSearched = (searchTerm) => (item) =>
+    !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
   <div className="table">
     { list.filter(isSearched(pattern)).map(item =>
       <div key={item.objectID} className="table-row">
