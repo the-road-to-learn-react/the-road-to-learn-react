@@ -148,7 +148,7 @@ Because of this reason, Facebook introduced *create-react-app* as a zero-configu
 
 ## Zero-Configuration Setup
 
-In the road to learn React you will use [create-react-app](https://github.com/facebookincubator/create-react-app) to bootstrap your application. It's an opinionated yet zero-configuration starter kit for React introduced by Facebook in 2016. People would [recommend it to beginners by 96%](https://twitter.com/dan_abramov/status/806985854099062785). In *create-react-app* the tooling and configuration evolve in the background while the focus is on the application implementation.
+In the Road to learn React you will use [create-react-app](https://github.com/facebookincubator/create-react-app) to bootstrap your application. It's an opinionated yet zero-configuration starter kit for React introduced by Facebook in 2016. People would [recommend it to beginners by 96%](https://twitter.com/dan_abramov/status/806985854099062785). In *create-react-app* the tooling and configuration evolve in the background while the focus is on the application implementation.
 
 To get started, you will have to install the package to your global node packages. After that you always have it available on the command line to bootstrap new React applications.
 
