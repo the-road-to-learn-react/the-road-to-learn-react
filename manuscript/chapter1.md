@@ -37,7 +37,7 @@ Last but not least you will need an installation of [node and npm](https://nodej
 You can verify your versions of node and npm on the command line. If you don't get any output in the terminal, you need to install node and npm first. These are my versions:
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 node --version
 *v8.1.3
 npm --version
@@ -53,28 +53,28 @@ The **node package manager** (npm) allows you to install external **node package
 Global node packages are accessible from everywhere in the terminal and you have to install them only once. You can install a global package by typing in your terminal:
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 npm install -g <package>
 ~~~~~~~~
 
 The `-g` flag tells npm to install the package globally. Local packages are used in your application. For instance, React as a library will be a local package which can be required in your application for usage. You can install it via the terminal by typing:
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 npm install <package>
 ~~~~~~~~
 
 In the case of React it would be:
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 npm install react
 ~~~~~~~~
 
 The installed package will automatically appear in a folder called *node_modules/*. But be careful. Whenever you install a local package you shouldn't forget the neat `--save` flag:
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 npm install --save <package>
 ~~~~~~~~
 
@@ -83,7 +83,7 @@ The `--save` flag tells npm to store the package requirement in a file called *p
 Not every project folder comes with a *package.json* file though. There is a npm command to initialize a npm project and thus a *package.json* file. Only when you have that file, you can install new local packages via npm.
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 npm init -y
 ~~~~~~~~
 
@@ -94,7 +94,7 @@ One more word about the *package.json*. The file enables you to share your proje
 I want to cover one more npm command to prevent confusion:
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 npm install --save-dev <package>
 ~~~~~~~~
 
@@ -122,7 +122,7 @@ The first one is to use a CDN. That may sound more complicated than it is. A CDN
 How to use a CDN to get started in React? You can inline the `<script>` tag in your HTML that points to a CDN url. To get started in React you need two files (libraries): *react* and *react-dom*.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~ html
 <script src="https://unpkg.com/react@15/dist/react.js"></script>
 <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
 ~~~~~~~~
@@ -132,7 +132,7 @@ But why should you use a CDN when you have npm to install node packages (librari
 When your application has a *package.json* file, you can install *react* and *react-dom* from the command line. The requirement is that the folder is initialized as npm project with a *package.json* file. You can install multiple node packages in one line with npm.
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 npm install --save react react-dom
 ~~~~~~~~
 
@@ -153,14 +153,14 @@ In the Road to learn React you will use [create-react-app](https://github.com/fa
 To get started, you will have to install the package to your global node packages. After that you always have it available on the command line to bootstrap new React applications.
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 npm install -g create-react-app
 ~~~~~~~~
 
 You can check the version of *create-react-app* to verify a successful installation on your command line:
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 create-react-app --version
 ~~~~~~~~
 
@@ -169,7 +169,7 @@ It should give you an output about the version. Mine is: 1.3.3.
 Now you can bootstrap your first React application. We call it *hackernews*, but you can choose a different name. Afterward simply navigate into the folder:
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 create-react-app hackernews
 cd hackernews
 ~~~~~~~~
@@ -177,7 +177,7 @@ cd hackernews
 Now you can open the application in your editor. The following folder structure, or a variation of it depending on the create-react-app version, should be presented to you:
 
 {title="Folder Structure",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 hackernews/
   README.md
   node_modules/
@@ -206,7 +206,7 @@ Next to the *src/* folder you will find the *package.json* file and *node_module
 The *create-react-app* project comes with the following npm scripts for your command line:
 
 {title="Command Line",lang="text"}
-~~~~~~~~
+~~~~~~~~ bash
 // Runs the application in http://localhost:3000
 npm start
 
@@ -234,7 +234,7 @@ Now you will get to know JSX. It is the syntax in React. As I mentioned before, 
 The only file you will touch in the beginning will be the *src/App.js* file.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -271,7 +271,7 @@ The content in the render block looks pretty similar to HTML, but it's JSX. JSX 
 First let's remove all the clutter in the file.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 import React, { Component } from 'react';
 import './App.css';
 
@@ -291,7 +291,7 @@ export default App;
 Now you only return HTML without JavaScript. Let's make the "Welcome to the Road to learn React" a variable. A variable can be used in your JSX.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 import React, { Component } from 'react';
 import './App.css';
 
@@ -331,7 +331,7 @@ I guess you noticed that we declared the variable `helloWorld` with `var`. JavaS
 A variable declared with `const` cannot be re-assigned or re-declared. It cannot get mutated (changed, modified). You embrace immutable data structures by using it. Once the data structure is defined, you cannot change it.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~ javascript
 // not allowed
 const helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
@@ -340,7 +340,7 @@ helloWorld = 'Bye Bye React';
 A variable declared with `let` can get mutated.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~ javascript
 // allowed
 let helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
@@ -351,7 +351,7 @@ You would use it when you would need to re-assign a variable.
 However, you have to be careful with `const`. A variable declared with `const` cannot get modified. But when the variable is an array or object, the value it holds can get altered. The value it holds is not immutable.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~ javascript
 // allowed
 const helloWorld = {
   text: 'Welcome to the Road to learn React'
@@ -366,7 +366,7 @@ Immutability is embraced in React and its ecosystem. That's why `const` should b
 In your application you should use `const` over `var`.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 import React, { Component } from 'react';
 import './App.css';
 
@@ -399,7 +399,7 @@ export default App;
 Before you continue with the App component, you might want to see where it is used. It is located in your entry point to the React world: the *src/index.js* file.
 
 {title="src/index.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -420,7 +420,7 @@ The first argument is JSX that gets rendered. The second argument specifies the 
 In the implementation `ReactDOM.render()` already takes your App component. However, it would be fine to pass simpler JSX as long as it is JSX. It doesn't have to be an instantiation of a component.
 
 {title="Code Playground",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 ReactDOM.render(
   <h1>Hello React World</h1>,
   document.getElementById('root')
@@ -441,7 +441,7 @@ In *create-react-app* it is already an advantage that the browser automatically 
 Hot Module Reloading (HMR) is a tool to reload your application in the browser. The browser doesn't perform a page refresh. You can easily activate it in *create-react-app*. In your *src/index.js* - your entry point to React - you have to add one little configuration.
 
 {title="src/index.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -479,7 +479,7 @@ Let's get back to your App component. So far you rendered some primitive variabl
 First you have to define the list of items.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 import React, { Component } from 'react';
 import './App.css';
 
@@ -514,7 +514,7 @@ The artifical data will reflect the data we will fetch later on from the API. An
 Now you can use the built-in JavaScript `map` functionality in your JSX. It enables you to iterate over your list of items to display them. As mentioned, you will use curly braces to encapsulate the JavaScript expression in your JSX.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 class App extends Component {
 
   render() {
@@ -538,7 +538,7 @@ That's pretty powerful in JSX. Usually you might have used `map` to convert one 
 So far, only the `title` will be displayed for each item. But let's display some more of the item properties.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 class App extends Component {
 
   render() {
@@ -571,7 +571,7 @@ You can see how the map function is simply inlined in your JSX. Each item proper
 React will do all the work for you and display each item. But you should add one helper for React to embrace its full potential and improve its performance. You have to assign a key attribute to each list element. That way React is able to identify added, changed and removed items when the list changes. The artificial list items come with an identifier already.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 { list.map(function(item) {
   return (
 # leanpub-start-insert
@@ -591,7 +591,7 @@ React will do all the work for you and display each item. But you should add one
 You should make sure that the key attribute is a stable identifier. Don't make the mistake of using the item index in the array. The array index isn't stable at all. For instance, when the list changes its order, React will have a hard time identifying the items properly.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 // don't do this
 { list.map(function(item, key) {
   return (
@@ -615,7 +615,7 @@ You are displaying both list items now. You can start your app, open your browse
 JavaScript ES6 introduced arrow functions. An arrow function expression is shorter than a function expression.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~ javascript
 // function expression
 function () { ... }
 
@@ -628,7 +628,7 @@ But you have to be aware of its functionalities. One of them is a different beha
 There is another valuable fact about arrow functions regarding the parenthesis. You can remove the parenthesis when the function gets only one argument, but have to keep them when it gets multiple arguments.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~ javascript
 // allowed
 item => { ... }
 
@@ -645,7 +645,7 @@ item, key => { ... }
 However, let's have a look at the `map` function. You can write it more concisely with an ES6 arrow function.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 # leanpub-start-insert
 { list.map(item => {
 # leanpub-end-insert
@@ -665,7 +665,7 @@ However, let's have a look at the `map` function. You can write it more concisel
 Additionally you can remove the *block body* of the ES6 arrow function. In a *concise body* an implicit return is attached thus you can remove the return statement. That will happen more often in the book, so be sure to understand the difference between a block body and a concise body.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 # leanpub-start-insert
 { list.map(item =>
 # leanpub-end-insert
@@ -697,7 +697,7 @@ Even though React embraces functional programming, for instance with immutable d
 Let's consider the following Developer class to examine a JavaScript ES6 class without thinking about a component.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~ javascript
 class Developer {
   constructor(firstname, lastname) {
     this.firstname = firstname;
@@ -717,7 +717,7 @@ The Developer class is only the class declaration. You can create multiple insta
 Let's see how you can instantiate the class and how you can use its methods.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~ javascript
 const robin = new Developer('Robin', 'Wieruch');
 console.log(robin.getName());
 // output: Robin Wieruch
@@ -726,7 +726,7 @@ console.log(robin.getName());
 React uses JavaScript ES6 classes for ES6 class components. You already used one ES6 class component.
 
 {title="src/App.js",lang=javascript}
-~~~~~~~~
+~~~~~~~~ jsx
 import React, { Component } from 'react';
 
 ...
