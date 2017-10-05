@@ -27,7 +27,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In your case the initial state is the artificial list of items. Note that you have to call `super(props);` to call the constructor of the extended Component class. It's mandatory, because it sets `this.props` in your constructor. You should follow the best practice, otherwise you might run into bugs in the future.
+In your case the initial state is the sample list of items. Note that you have to call `super(props);` to call the constructor of the extended Component class. It's mandatory, because it sets `this.props` in your constructor. You should follow the best practice, otherwise you might run into bugs in the future.
 
 The state is bound to the class with the `this` object. You can access the state in your component. For instance, it can be used in the `render()` method. Earlier you mapped a static list of items. Now you are about to use the list from your internal component state.
 
@@ -445,7 +445,7 @@ Let's approach the filter function in a different way this time. We want to defi
 
 Normally I wouldn't mention higher order functions, but in a React book it makes total sense. It makes sense to know about higher order functions, because React deals with a concept called higher order components. You will get to know the concept later in the book. Now again, let's focus on the filter functionality.
 
-First you have to define the higher order function outside of your class.
+First you have to define the higher order function outside of your App component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~

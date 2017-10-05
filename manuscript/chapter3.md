@@ -1,6 +1,6 @@
 # Getting Real with an API
 
-Now it's time to get real with an API, because it can get boring to deal with artificial data.
+Now it's time to get real with an API, because it can get boring to deal with sample data.
 
 If you are not familiar with APIs, I encourage you [to read my journey where I got to know APIs](https://www.robinwieruch.de/what-is-an-api-javascript/).
 
@@ -154,7 +154,7 @@ class App extends Component {
 
 A lot of things happen in the code. I thought about breaking it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain each step in detail.
 
-First, you can remove the artificial list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default search term. The same default search term is used in the search field and in your first request.
+First, you can remove the sample list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default search term. The same default search term is used in the search field and in your first request.
 
 Second, you use the `componentDidMount()` lifecycle method to fetch the data after the component did mount. In the very first fetch the default search term from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
 
@@ -162,7 +162,7 @@ Third, the native fetch is used. The JavaScript ES6 template strings allow it to
 
 Last but not least, don't forget to bind your new component methods.
 
-Now you can use the fetched data instead of the artificial list of items. However, you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
+Now you can use the fetched data instead of the sample list of items. However, you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
 
 Let's use the result to render it. But we will prevent it from rendering anything - return null - when there is no result. Once the request to the API succeeded, the result is saved to the state and the App component will re-render with the updated state.
 

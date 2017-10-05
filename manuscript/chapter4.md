@@ -328,7 +328,7 @@ If it is 15.5 or above, you have to install an independent package.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-npm install --save prop-types
+npm install prop-types
 ~~~~~~~~
 
 If your version is 15.4 or below, you can use the already installed React package.

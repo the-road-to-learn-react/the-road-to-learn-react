@@ -438,7 +438,7 @@ It would be possible to write your own sort function, but personally I prefer to
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-npm install --save lodash
+npm install lodash
 ~~~~~~~~
 
 Now you can import the sort functionality of lodash in your *src/App.js* file.
@@ -892,7 +892,7 @@ The way to define the `class` is a bit clumsy, isn't it? There is a neat little 
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-npm install --save classnames
+npm install classnames
 ~~~~~~~~
 
 And second you have to import it on top of your *src/App.js* file.
