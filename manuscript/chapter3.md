@@ -123,28 +123,28 @@ class App extends Component {
     };
 
 # leanpub-start-insert
-    this.setSearchTopstories = this.setSearchTopstories.bind(this);
-    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
 # leanpub-end-insert
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
   }
 
 # leanpub-start-insert
-  setSearchTopstories(result) {
+  setSearchTopStories(result) {
     this.setState({ result });
   }
 
-  fetchSearchTopstories(searchTerm) {
+  fetchSearchTopStories(searchTerm) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
-      .then(result => this.setSearchTopstories(result))
+      .then(result => this.setSearchTopStories(result))
       .catch(e => e);
   }
 
   componentDidMount() {
     const { searchTerm } = this.state;
-    this.fetchSearchTopstories(searchTerm);
+    this.fetchSearchTopStories(searchTerm);
   }
 # leanpub-end-insert
 
@@ -430,8 +430,8 @@ class App extends Component {
       searchTerm: DEFAULT_QUERY,
     };
 
-    this.setSearchTopstories = this.setSearchTopstories.bind(this);
-    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
 # leanpub-start-insert
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
@@ -444,7 +444,7 @@ class App extends Component {
 # leanpub-start-insert
   onSearchSubmit() {
     const { searchTerm } = this.state;
-    this.fetchSearchTopstories(searchTerm);
+    this.fetchSearchTopStories(searchTerm);
   }
 # leanpub-end-insert
 
@@ -564,7 +564,7 @@ When you try to search now, you will notice that the browser reloads. That's a n
 onSearchSubmit(event) {
 # leanpub-end-insert
   const { searchTerm } = this.state;
-  this.fetchSearchTopstories(searchTerm);
+  this.fetchSearchTopStories(searchTerm);
 # leanpub-start-insert
   event.preventDefault();
 # leanpub-end-insert
@@ -608,7 +608,7 @@ console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-The `fetchSearchTopstories()` method will take the page as second argument. The `componentDidMount()` and `onSearchSubmit()` methods take the `DEFAULT_PAGE` for the initial API calls. They should fetch the first page on the first request. Every additional fetch should fetch the next page.
+The `fetchSearchTopStories()` method will take the page as second argument. The `componentDidMount()` and `onSearchSubmit()` methods take the `DEFAULT_PAGE` for the initial API calls. They should fetch the first page on the first request. Every additional fetch should fetch the next page.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -619,23 +619,23 @@ class App extends Component {
   componentDidMount() {
     const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+    this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
 # leanpub-end-insert
   }
 
 # leanpub-start-insert
-  fetchSearchTopstories(searchTerm, page) {
+  fetchSearchTopStories(searchTerm, page) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
 # leanpub-end-insert
       .then(response => response.json())
-      .then(result => this.setSearchTopstories(result))
+      .then(result => this.setSearchTopStories(result))
       .catch(e => e);
   }
 
   onSearchSubmit(event) {
     const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+    this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
 # leanpub-end-insert
     event.preventDefault();
   }
@@ -645,7 +645,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can use the current page from the API response in `fetchSearchTopstories()`. You can use this method in a button to fetch more stories on a button click. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` function which takes the current search term and the next page (current page + 1).
+Now you can use the current page from the API response in `fetchSearchTopStories()`. You can use this method in a button to fetch more stories on a button click. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` function which takes the current search term and the next page (current page + 1).
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -670,7 +670,7 @@ class App extends Component {
         }
 # leanpub-start-insert
         <div className="interactions">
-          <Button onClick={() => this.fetchSearchTopstories(searchTerm, page + 1)}>
+          <Button onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}>
             More
           </Button>
         </div>
@@ -687,7 +687,7 @@ There is one step missing. You fetch the next page of data, but it will overwrit
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-setSearchTopstories(result) {
+setSearchTopStories(result) {
 # leanpub-start-insert
   const { hits, page } = result;
 
@@ -738,12 +738,12 @@ Now you can use the constants to extend the API url.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-fetchSearchTopstories(searchTerm, page) {
+fetchSearchTopStories(searchTerm, page) {
 # leanpub-start-insert
   fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
 # leanpub-end-insert
     .then(response => response.json())
-    .then(result => this.setSearchTopstories(result))
+    .then(result => this.setSearchTopStories(result))
     .catch(e => e);
 }
 ~~~~~~~~
@@ -822,7 +822,7 @@ componentDidMount() {
 # leanpub-start-insert
   this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+  this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
 }
 
 onSearchSubmit(event) {
@@ -830,7 +830,7 @@ onSearchSubmit(event) {
 # leanpub-start-insert
   this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+  this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
   event.preventDefault();
 }
 ~~~~~~~~
@@ -843,7 +843,7 @@ class App extends Component {
 
   ...
 
-  setSearchTopstories(result) {
+  setSearchTopStories(result) {
     const { hits, page } = result;
 # leanpub-start-insert
     const { searchKey, results } = this.state;
@@ -935,7 +935,7 @@ class App extends Component {
 # leanpub-end-insert
         <div className="interactions">
 # leanpub-start-insert
-          <Button onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
+          <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
 # leanpub-end-insert
             More
           </Button>
@@ -987,17 +987,17 @@ class App extends Component {
     ...
 
 # leanpub-start-insert
-    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+    this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
 # leanpub-end-insert
-    this.setSearchTopstories = this.setSearchTopstories.bind(this);
-    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
   }
 
 # leanpub-start-insert
-  needsToSearchTopstories(searchTerm) {
+  needsToSearchTopStories(searchTerm) {
     return !this.state.results[searchTerm];
   }
 # leanpub-end-insert
@@ -1009,8 +1009,8 @@ class App extends Component {
     this.setState({ searchKey: searchTerm });
 # leanpub-start-insert
 
-    if (this.needsToSearchTopstories(searchTerm)) {
-      this.fetchSearchTopstories(searchTerm, DEFAULT_PAGE);
+    if (this.needsToSearchTopStories(searchTerm)) {
+      this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
     }
 
 # leanpub-end-insert

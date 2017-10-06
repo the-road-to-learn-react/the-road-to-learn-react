@@ -129,12 +129,12 @@ class App extends Component {
       isLoading: false,
     };
 
-    this.setSearchTopstories = this.setSearchTopstories.bind(this);
-    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
-    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
+    this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
   }
 
   ...
@@ -316,11 +316,11 @@ this.setState((prevState, props) => {
 
 Now, lets get back to your code to fix this behavior. Together we will fix it for one place where `setState()` is used and relies on the state or props. Afterward you are able to fix it at places where the state update relies on the previous state or props.
 
-The `setSearchTopstories()` method relies on the previous state and thus is a perfect example to use a function over an object in `setState()`. Right now it looks like the following code snippet. You extract values from the state, but update the state depending on the previous state asynchronously.
+The `setSearchTopStories()` method relies on the previous state and thus is a perfect example to use a function over an object in `setState()`. Right now it looks like the following code snippet. You extract values from the state, but update the state depending on the previous state asynchronously.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-setSearchTopstories(result) {
+setSearchTopStories(result) {
   const { hits, page } = result;
   const { searchKey, results } = this.state;
 
@@ -347,7 +347,7 @@ Now you can use the function to prevent bugs because of a stale state.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-setSearchTopstories(result) {
+setSearchTopStories(result) {
   const { hits, page } = result;
 
 # leanpub-start-insert
@@ -362,7 +362,7 @@ You can move the whole block that you already implemented into the function. You
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-setSearchTopstories(result) {
+setSearchTopStories(result) {
   const { hits, page } = result;
 
   this.setState(prevState => {
@@ -394,18 +394,18 @@ That will fix the issue with a stale state. Since it is a function, you can extr
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-setSearchTopstories(result) {
+setSearchTopStories(result) {
   const { hits, page } = result;
-  this.setState(updateSearchTopstoriesState(hits, page));
+  this.setState(updateSearchTopStoriesState(hits, page));
 }
 ~~~~~~~~
 
-The `updateSearchTopstoriesState()` function has to return a function. It is a higher order function. You can define this higher order function outside of your App component. Note how the function signature changes slightly now.
+The `updateSearchTopStoriesState()` function has to return a function. It is a higher order function. You can define this higher order function outside of your App component. Note how the function signature changes slightly now.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const updateSearchTopstoriesState = (hits, page) => (prevState) => {
+const updateSearchTopStoriesState = (hits, page) => (prevState) => {
   const { searchKey, results } = prevState;
 
   const oldHits = results && results[searchKey]

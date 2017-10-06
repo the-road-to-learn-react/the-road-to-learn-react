@@ -204,7 +204,7 @@ class App extends Component {
 
   ...
 
-  setSearchTopstories(result) {
+  setSearchTopStories(result) {
     const { hits, page } = result;
     const { searchKey, results } = this.state;
 
@@ -228,14 +228,14 @@ class App extends Component {
     });
   }
 
-  fetchSearchTopstories(searchTerm, page) {
+  fetchSearchTopStories(searchTerm, page) {
 # leanpub-start-insert
     this.setState({ isLoading: true });
 # leanpub-end-insert
 
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(response => response.json())
-      .then(result => this.setSearchTopstories(result))
+      .then(result => this.setSearchTopStories(result))
       .catch(e => e);
   }
 
@@ -272,7 +272,7 @@ class App extends Component {
           { isLoading
             ? <Loading />
             : <Button
-              onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
+              onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
               More
             </Button>
           }
@@ -392,7 +392,7 @@ class App extends Component {
 # leanpub-start-insert
           <ButtonWithLoading
             isLoading={isLoading}
-            onClick={() => this.fetchSearchTopstories(searchKey, page + 1)}>
+            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
             More
           </ButtonWithLoading>
 # leanpub-end-insert
@@ -505,9 +505,9 @@ class App extends Component {
 
     ...
 
-    this.needsToSearchTopstories = this.needsToSearchTopstories.bind(this);
-    this.setSearchTopstories = this.setSearchTopstories.bind(this);
-    this.fetchSearchTopstories = this.fetchSearchTopstories.bind(this);
+    this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
