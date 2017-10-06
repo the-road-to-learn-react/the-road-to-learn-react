@@ -1,12 +1,12 @@
 # Basics in React
 
-The chapter will guide you through the basics of React. It covers state and interactions in components, because static components are a bit dull, aren't they? Additionally you will learn about the different ways to declare a component and how to keep components composeable and reusable. Be prepared to breathe life into your components.
+The chapter will guide you through the basics of React. It covers state and interactions in components, because static components are a bit dull, aren't they? Additionally, you will learn about the different ways to declare a component and how to keep components composable and reusable. Be prepared to breathe life into your components.
 
 ## Internal Component State
 
-Internal component state allows you to store, modify and delete properties of your component. The ES6 class component can use a constructor to initialize internal component state. The constructor is called only once when the component initializes.
+Internal component state, also known as local state, allows you to save, modify and delete properties that are stored in your component. The ES6 class component can use a constructor to initialize internal component state. The constructor is called only once when the component initializes.
 
-Let's introduce a class constructor where you can set the initial internal component state.
+Let's introduce a class constructor.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -15,10 +15,6 @@ class App extends Component {
 # leanpub-start-insert
   constructor(props) {
     super(props);
-
-    this.state = {
-      list: list,
-    };
   }
 # leanpub-end-insert
 
@@ -27,9 +23,44 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In your case the initial state is the sample list of items. Note that you have to call `super(props);` to call the constructor of the extended Component class. It's mandatory, because it sets `this.props` in your constructor. You should follow the best practice, otherwise you might run into bugs in the future.
+When having a constructor in your ES6 class component, it is mandatory to call `super();` because the App component is a subclass of `Component`. Hence the `extends Component` in your App component declaration. The book will go into more detail about ES6 class components later on.
 
-The state is bound to the class with the `this` object. You can access the state in your component. For instance, it can be used in the `render()` method. Earlier you mapped a static list of items. Now you are about to use the list from your internal component state.
+You can call `super(props);` as well. It sets `this.props` in your constructor in case you want to access them in the constructor. Otherwise, when accessing `this.props` in your constructor, they would be `undefined`. You will learn more about the props of a React component later on.
+
+Now, in your case, the initial state in your component should be the sample list of items.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+const list = [
+  {
+    title: 'React',
+    url: 'https://facebook.github.io/react/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  ...
+];
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+# leanpub-start-insert
+    this.state = {
+      list: list,
+    };
+# leanpub-end-insert
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+The state is bound to the class with the `this` object. Thus you can access the local state in your whole component. For instance, it can be used in the `render()` method. Earlier you have mapped a static list of items in your `render()` method that was defined outside of your component. Now you are about to use the list from your local state in your component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -41,7 +72,7 @@ class App extends Component {
     return (
       <div className="App">
 # leanpub-start-insert
-        { this.state.list.map(item =>
+        {this.state.list.map(item =>
 # leanpub-end-insert
           <div key={item.objectID}>
             <span>
@@ -58,20 +89,20 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The list is part of the component now. It resides in the internal component state. You could add items, change items or remove items in and from your list. Every time you change your component state, the `render()` method of your component will run again. That's how you can simply change your internal component state and be sure that the component re-renders.
+The list is part of the component now. It resides in the internal component state. You could add items, change items or remove items in and from your list. Every time you change your component state, the `render()` method of your component will run again. That's how you can simply change your internal component state and be sure that the component re-renders and displays the correct data that comes from the local state.
 
 But be careful. Don't mutate the state directly. You have to use a method called `setState()` to modify your state. You will get to know it in a following chapter.
 
 ### Exercises:
 
-* experiment with the internal state
+* experiment with the local state
   * define more initial state in the constructor
   * use the state in your `render()` method
 * read more about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
 
 ## ES6 Object Initializer
 
-In JavaScript ES6 you can use a shorthand property syntax to initialize your objects more concise. Imagine the following object initialization:
+In JavaScript ES6, you can use a shorthand property syntax to initialize your objects more concise. Imagine the following object initialization:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -93,7 +124,7 @@ const user = {
 };
 ~~~~~~~~
 
-In your application you can do the same. The list variable name and the state property name share the same name.
+In your application, you can do the same. The list variable name and the state property name share the same name.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -108,7 +139,7 @@ this.state = {
 };
 ~~~~~~~~
 
-Another neat helper are shorthand method names. In ES6 you can initialize methods in an object more concise.
+Another neat helper are shorthand method names. In JavaScript ES6, you can initialize methods in an object more concise.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -127,7 +158,7 @@ const userService = {
 };
 ~~~~~~~~
 
-Last but not least, you are allowed to use computed property names in ES6.
+Last but not least, you are allowed to use computed property names in JavaScript ES6.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -143,7 +174,7 @@ const user = {
 };
 ~~~~~~~~
 
-Computed property names might make no sense yet. Why should you need it? In a future chapter in the book you will come to a point where you can use it.
+Perhaps computed property names make no sense for you yet. Why should you need them? In a later chapter, you will come to a point where you can use them to allocate values by key in a dynamic way in an object.
 
 ### Exercises:
 
@@ -152,9 +183,9 @@ Computed property names might make no sense yet. Why should you need it? In a fu
 
 ## Unidirectional Data Flow
 
-Now you have some internal state in your App component. However, you have not manipulated the internal state yet. The state is static and thus is the component. A good way to experience state manipulation is to have some component interaction.
+Now you have some internal state in your App component. However, you have not manipulated the local state yet. The state is static and thus is the component. A good way to experience state manipulation is to have some component interaction.
 
-Let's add a button for each item in the displayed list. The button says "Dismiss" and will remove the item from the list. It could be useful eventually when you only want to keep a list of unread items.
+Let's add a button for each item in the displayed list. The button says "Dismiss" and is going to remove the item from the list. It could be useful eventually when you only want to keep a list of unread items and dismiss the articles that you are not interested in.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -165,7 +196,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { this.state.list.map(item =>
+        {this.state.list.map(item =>
           <div key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
@@ -191,11 +222,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-As you can see the `onDismiss()` method in the `onClick` function gets enclosed by another function. Only that way you can sneak in the `objectID` property. Otherwise you would have to define the function outside. However, by using an ES6 arrow function you can inline it.
+The `onDismiss()` class method is not defined yet. We will do it in a moment, but for now the focus should be on the `onClick` handler of the button element. As you can see, the `onDismiss()` method in the `onClick` handler is enclosed by another function. That way, you can sneak in the `objectID` property of the `item` object. An alternative way would be to define the function outside of the `onClick` handler and only pass the defined function to the handler. A following chapter will explain the topic of handlers in elements in more detail.
 
-Note that elements with multiple attributes get messy as one line at some point. That's why the button element is already used with multilines and indentation to keep it readable. But it is not mandatory. It is only a code style recommendation.
+Did you notice the multilines for the button element? Note that elements with multiple attributes get messy as one line at some point. That's why the button element is used with multilines and indentation to keep it readable. But it is not mandatory. It is only a code style recommendation.
 
-Now you have to implement the `onDismiss()` functionality. It takes an item id to identify the item to dismiss. The function is bound to the class and thus becomes a class method. You have to bind class methods in the constructor. Additionally you have to define its functionality in your class.
+Now you have to implement the `onDismiss()` functionality. It takes an id to identify the item to dismiss. The function is bound to the class and thus becomes a class method. That's why you access it with `this.onDismiss()` and not simply `onDismiss()`. The `this` object is your class instance. In order to define the `onDismiss()` as class method, you have to bind it in the constructor. Bindings will be explained in another chapter later on.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -213,6 +244,28 @@ class App extends Component {
 # leanpub-end-insert
   }
 
+  render() {
+    ...
+  }
+}
+~~~~~~~~
+
+In the next step, you have to define its functionality in your class. Class methods can be defined the following way.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      list,
+    };
+
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
 # leanpub-start-insert
   onDismiss(id) {
     ...
@@ -225,13 +278,27 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can define what happens inside of the class method. Since you want to remove the clicked item from your list, you can do that with the built-in array filter functionality. The filter function takes a function to evaluate each item in the list. If the evaluation for an item is true, the item stays in the list. Otherwise it will get removed. Additionally the function returns a new list and doesn't mutate the old list. It keeps the immutable data structure.
+Now you can define what happens inside of the class method. You want to remove the item identified by the id from the list and store an updated list to your local state. Afterward, the updated list will be used in the re-running `render()` method.
+
+You can remove an item from a list by using the JavaScript built-in filter functionality. The filter function takes a function as input. The function has access to each value in the list, because it iterates over the list. That way, you can evaluate each item in the list based on a filter condition. If the evaluation for an item is true, the item stays in the list. Otherwise it will be filtered from the list. Additionally, it is good to know that the function returns a new list and doesn't mutate the old list. It supports the convention in React of having immutable data structures.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 onDismiss(id) {
 # leanpub-start-insert
+  const updatedList = this.state.list.filter(function isNotId(item) {
+    return item.objectID !== id;
+  });
+# leanpub-end-insert
+}
+~~~~~~~~
 
+You can extract the function and pass it to the filter function.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+onDismiss(id) {
+# leanpub-start-insert
   function isNotId(item) {
     return item.objectID !== id;
   }
@@ -241,7 +308,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-You can do it more concisely by using an ES6 arrow function again.
+In additon, you can do it more concisely by using an ES6 arrow function again.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -253,7 +320,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-You could even inline it - like we did in the `onClick()` handler of the button - but it might get less readable.
+You could even inline it again, like we did in the `onClick()` handler of the button, but it might get less readable.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -277,13 +344,397 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-Now run again your application and try the "Dismiss" button. It should work. What you experience now is the **unidirectional data flow** in React. You trigger an action in your view - with `onClick()` - a function or class method modifies the internal component state and the `render()` method of the component runs again to update the view.
+Now run again your application and try the "Dismiss" button. It should work. What you experience now is the **unidirectional data flow** in React. You trigger an action in your view with `onClick()`, a function or class method modifies the internal component state and the `render()` method of the component runs again to update the view.
 
 ![Internal state update with unidirectional data flow](images/set-state-to-render-unidirectional.png)
 
 ### Exercises:
 
 * read more about [the state and lifecycle in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+
+## Bindings
+
+It is important to learn about bindings in JavaScript classes when using React ES6 class components. In the previous chapter, you have bound your class method `onDismiss()` in the constructor.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      list,
+    };
+
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  ...
+}
+~~~~~~~~
+
+Why would you have to do that in the first place? The binding step is necessary, because class methods don't automatically bind `this` to the class instance. Let's demonstrate it with the help of the following ES6 class component.
+
+{title="Code Playground",lang=javascript}
+~~~~~~~~
+class ExplainBindingsComponent extends Component {
+  onClickMe() {
+    console.log(this);
+  }
+
+  render() {
+    return (
+      <button
+        onClick={this.onClickMe}
+        type="button"
+      >
+        Click Me
+      </button>
+    );
+  }
+}
+~~~~~~~~
+
+The component renders just fine, but when you click the button, you will get `undefined` in your developer console log. That's a main source of bugs when using React, because if you want to access `this.state` or `this.props` in your class method, it cannot be retrieved because `this` is `undefined`. So in order to make `this` accessible in your class methods, you have to bind the class methods to `this`.
+
+In the following class component the class method is properly bound in the class constructor.
+
+{title="Code Playground",lang=javascript}
+~~~~~~~~
+class ExplainBindingsComponent extends Component {
+# leanpub-start-insert
+  constructor() {
+    super();
+
+    this.onClickMe = this.onClickMe.bind(this);
+  }
+# leanpub-end-insert
+
+  onClickMe() {
+    console.log(this);
+  }
+
+  render() {
+    return (
+      <button
+        onClick={this.onClickMe}
+        type="button"
+      >
+        Click Me
+      </button>
+    );
+  }
+}
+~~~~~~~~
+
+When trying the button again, the `this` object, to be more specific the class instance, should be defined and you would be able to access `this.state` or `this.props` now.
+
+The class method binding can happen somewhere else too. For instance, it can happen in the `render()` class method.
+
+{title="Code Playground",lang=javascript}
+~~~~~~~~
+class ExplainBindingsComponent extends Component {
+  onClickMe() {
+    console.log(this);
+  }
+
+  render() {
+    return (
+      <button
+# leanpub-start-insert
+        onClick={this.onClickMe.bind(this)}
+# leanpub-end-insert
+        type="button"
+      >
+        Click Me
+      </button>
+    );
+  }
+}
+~~~~~~~~
+
+But you should avoid it, because it would bind the function every time when the `render()` method runs. Basically every time your component updates which leads to performance implications. When binding the class method in the constructor, you bind it only once in the beginning when the component is instantiated.
+
+Another thing people sometimes come up with is defining the business logic of their class methods in the constructor.
+
+{title="Code Playground",lang=javascript}
+~~~~~~~~
+class ExplainBindingsComponent extends Component {
+  constructor() {
+    super();
+
+# leanpub-start-insert
+    this.onClickMe = () => {
+      console.log(this);
+    }
+# leanpub-end-insert
+  }
+
+  render() {
+    return (
+      <button
+        onClick={this.onClickMe}
+        type="button"
+      >
+        Click Me
+      </button>
+    );
+  }
+}
+~~~~~~~~
+
+You should avoid it too, because it will clutter your constructor over time. The constructor is only there to instantiate your class with all its properties. That's why the business logic of class methods should be defined outside of the constructor.
+
+{title="Code Playground",lang=javascript}
+~~~~~~~~
+class ExplainBindingsComponent extends Component {
+  constructor() {
+    super();
+
+    this.doSomething = this.doSomething.bind(this);
+    this.doSomethingElse = this.doSomethingElse.bind(this);
+  }
+
+  doSomething() {
+    // do something
+  }
+
+  doSomethingElse() {
+    // do something else
+  }
+
+  ...
+}
+~~~~~~~~
+
+Last but not least, it is worth to mention that class methods can be autobound automatically without binding them explicitly by using JavaScript ES6 arrow functions.
+
+{title="Code Playground",lang=javascript}
+~~~~~~~~
+class ExplainBindingsComponent extends Component {
+  onClickMe = () => {
+    console.log(this);
+  }
+
+  render() {
+    return (
+      <button
+        onClick={this.onClickMe}
+        type="button"
+      >
+        Click Me
+      </button>
+    );
+  }
+}
+~~~~~~~~
+
+If the repetitive binding in the constructor annoys you, you can go ahead with this approach instead. The official React documentation sticks to the class method bindings in the constructor. That's why the book will stick to those as well.
+
+### Exercises:
+
+* try the different approaches of bindings and console log the `this` object
+
+## Event Handler
+
+The chapter should give you a deeper understanding of event handlers in elements. In your application, you are using the following button element to dismiss an item from the list.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+...
+
+<button
+  onClick={() => this.onDismiss(item.objectID)}
+  type="button"
+>
+  Dismiss
+</button>
+
+...
+~~~~~~~~
+
+That's already a complex use case, because you have to pass a value to the class method and thus you have to wrap it into another (arrow) function. So after all, it has to be a function that is passed to the event handler. The following code wouldn't work, because the class method is executed immediatly when you open the application in the browser.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+...
+
+<button
+  onClick={this.onDismiss(item.objectID)}
+  type="button"
+>
+  Dismiss
+</button>
+
+...
+~~~~~~~~
+
+When using `onClick={doSomething()}`, the `doSomething()` function would execute immediately when you open the application in your browser. Since the returned value of the function isn't a function anymore, nothing would happen when you click the button. But when using `onClick={doSomething}` whereas `doSomething` is a function, it would be executed when clicking the button. The same rules apply for the used `onDismiss()` class method.
+
+However, using `onClick={this.onDismiss}` wouldn't suffice, because somehow the `item.objectID` property needs to be passed to the class method to identify the item that is going to be dismissed. That's why it can be wrapped into another function to sneak in the property.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+...
+
+<button
+  onClick={() => this.onDismiss(item.objectID)}
+  type="button"
+>
+  Dismiss
+</button>
+
+...
+~~~~~~~~
+
+A workaround would be to define the wrapping function somewhere outside and only pass the defined function to the handler:
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    return (
+      <div className="App">
+        {this.state.list.map(item => {
+# leanpub-start-insert
+          const onHandleDismiss = () =>
+            this.onDismiss(item.objectID);
+# leanpub-end-insert
+
+          return (
+            <div key={item.objectID}>
+              <span>
+                <a href={item.url}>{item.title}</a>
+              </span>
+              <span>{item.author}</span>
+              <span>{item.num_comments}</span>
+              <span>{item.points}</span>
+              <span>
+                <button
+# leanpub-start-insert
+                  onClick={onHandleDismiss}
+# leanpub-end-insert
+                  type="button"
+                >
+                  Dismiss
+                </button>
+              </span>
+            </div>
+          );
+        }
+        )}
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+But in the end, it has to be a function that is passed to the element's handlers. As an example, try this code instead:
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    return (
+      <div className="App">
+        {this.state.list.map(item =>
+            ...
+            <span>
+              <button
+# leanpub-start-insert
+                onClick={console.log(item.objectID)}
+# leanpub-end-insert
+                type="button"
+              >
+                Dismiss
+              </button>
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+It will run when you open the application in the browser but not when you click the button. Whereas the following code would only run when you click the button. It is a function that is executed when you trigger the handler.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+...
+
+<button
+# leanpub-start-insert
+  onClick={function () {
+    console.log(item.objectID)
+  }}
+# leanpub-end-insert
+  type="button"
+>
+  Dismiss
+</button>
+
+...
+~~~~~~~~
+
+In order to keep it concise, you can transform it into a JavaScript ES6 arrow function. That's what we did with the `onDismiss()` class method too.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+...
+
+<button
+# leanpub-start-insert
+  onClick={() => console.log(item.objectID)}
+# leanpub-end-insert
+  type="button"
+>
+  Dismiss
+</button>
+
+...
+~~~~~~~~
+
+Often newcomers to React have difficulties with the topic of using functions in event handlers. That's why I tried to explain it in more detail here. In the end, you should end up with the following code in your button to have a concisely inlined JavaScript ES6 function that has access to the `objectID` property of the `item` object.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+  ...
+
+  render() {
+    return (
+      <div className="App">
+        {this.state.list.map(item =>
+          <div key={item.objectID}>
+            ...
+            <span>
+# leanpub-start-insert
+              <button
+                onClick={() => this.onDismiss(item.objectID)}
+                type="button"
+              >
+                Dismiss
+              </button>
+# leanpub-end-insert
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+### Exercises:
+
+* try the different approaches of using functions in the `onClick` handler of your button
 
 ## Interactions with Forms and Events
 
@@ -305,7 +756,7 @@ class App extends Component {
           <input type="text" />
         </form>
 # leanpub-end-insert
-        { this.state.list.map(item =>
+        {this.state.list.map(item =>
           ...
         )}
       </div>
@@ -431,7 +882,7 @@ class App extends Component {
           />
         </form>
 # leanpub-start-insert
-        { this.state.list.filter(...).map(item =>
+        {this.state.list.filter(...).map(item =>
 # leanpub-end-insert
           ...
         )}
@@ -535,7 +986,7 @@ class App extends Component {
           />
         </form>
 # leanpub-start-insert
-        { this.state.list.filter(isSearched(this.state.searchTerm)).map(item =>
+        {this.state.list.filter(isSearched(this.state.searchTerm)).map(item =>
 # leanpub-end-insert
           ...
         )}
@@ -1329,7 +1780,6 @@ You have learned the basics to write your own React application! Let's recap the
   * usage and implementation of ES6 class components and functional stateless components
   * approaches to style your components
 * ES6
-  * arrow functions with block and concise bodies to shorten your function declarations
   * functions that are bound to a class are class methods
   * destructuring of objects and arrays
   * default parameters
