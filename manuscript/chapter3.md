@@ -233,9 +233,9 @@ One approach could be to mutate the hits in the result object. I will demonstrat
 this.state.result.hits = updatedHits;
 ~~~~~~~~
 
-React embraces functional programming. Thus you shouldn't mutate an object (or mutate the state directly). A better approach is to generate a new object based on information you have. Thereby none of the objects get altered. You will keep the immutable data structures. You will always return a new object and never alter an object.
+React embraces immutable data structures. Thus you shouldn't mutate an object (or mutate the state directly). A better approach is to generate a new object based on information you have. Thereby none of the objects get altered. You will keep the immutable data structures. You will always return a new object and never alter an object.
 
-Let's do it in JavaScript ES5. `Object.assign()` takes as first argument a target object. All following arguments are source objects. These objects are merged into the target object. The target object can be an empty object. It embraces immutability, because no source object gets mutated. It would look similar to the following:
+Therefore you can use JavaScript ES6 `Object.assign()`. It takes as first argument a target object. All following arguments are source objects. These objects are merged into the target object. The target object can be an empty object. It embraces immutability, because no source object gets mutated. It would look similar to the following:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -243,7 +243,7 @@ const updatedHits = { hits: updatedHits };
 const updatedResult = Object.assign({}, this.state.result, updatedHits);
 ~~~~~~~~
 
-Now let's do it in the `onDismiss()` method:
+Latter objects will overwrite former merged objects when they share the same property names. Now let's do it in the `onDismiss()` method:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -258,7 +258,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-That's it in JavaScript ES5. There is a simpler solution in ES6 and future JavaScript releases. May I introduce the spread operator to you? It only consists of three dots: `...` When it is used, every value from an array or object gets copied to another array or object.
+That would already be the solution. But there is a simpler way in JavaScript ES6 and future JavaScript releases. May I introduce the spread operator to you? It only consists of three dots: `...` When it is used, every value from an array or object gets copied to another array or object.
 
 Let's examine the ES6 **array** spread operator even though you don't need it yet.
 
@@ -310,7 +310,7 @@ console.log(user);
 // output: { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
 ~~~~~~~~
 
-After all it can be used to replace ES5 `Object.assign()`.
+After all, it can be used to replace `Object.assign()`.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -329,7 +329,7 @@ The "Dismiss" button should work again.
 
 ### Exercises:
 
-* read more about [Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+* read more about the [ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 * read more about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
   * the object spread operator is briefly mentioned
 
@@ -549,7 +549,7 @@ const Table = ({ list, onDismiss }) =>
 # leanpub-end-insert
   <div className="table">
 # leanpub-start-insert
-    { list.map(item =>
+    {list.map(item =>
 # leanpub-end-insert
       ...
     )}
