@@ -24,7 +24,7 @@ The official documentation says that *create-react-app* is suitable for small to
 
 ## Deploy your App
 
-In the end no application should stay on localhost. You want to go live. Heroku is a platform as a service where you can host your application. They offer a seamless integration with React. To be more specific: It's possible to deploy a create-react-app in minutes. It is a zero-configuration deployment which follows the philosophy of create-react-app.
+In the end no application should stay on localhost. You want to go live. Heroku is a platform as a service where you can host your application. They offer a seamless integration with React. To be more specific: It's possible to deploy a *create-react-app* in minutes. It is a zero-configuration deployment which follows the philosophy of *create-react-app*.
 
 You need to fulfill two requirements before you can deploy your application to Heroku:
 

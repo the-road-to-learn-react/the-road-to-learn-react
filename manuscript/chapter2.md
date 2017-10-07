@@ -981,7 +981,7 @@ function isSearched(searchTerm) {
 }
 
 // ES6
-const isSearched = (searchTerm) => (item) =>
+const isSearched = searchTerm => item =>
   item.title.toLowerCase().includes(searchTerm.toLowerCase());
 ~~~~~~~~
 
