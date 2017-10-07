@@ -71,7 +71,7 @@ There is one more lifecycle method: componentDidCatch(error, info). It was intro
 
 ## Fetching Data
 
-Now you are prepared to fetch data from the Hacker News API. I mentioned one lifecycle method that can be used to fetch data: `componentDidMount()`. You will use the native fetch API to perform the request.
+Now you are prepared to fetch data from the Hacker News API. There was one lifecycle method mentioned that can be used to fetch data: `componentDidMount()`. You will use the native fetch API in JavaScript to perform the request.
 
 Before we can use it, let's set up the url constants and default parameters to breakup the API request into chunks.
 
@@ -91,7 +91,7 @@ const PARAM_SEARCH = 'query=';
 ...
 ~~~~~~~~
 
-In ES6 JavaScript you can use [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) to concatenate strings. You will use it to concatenate your url for the API endpoint.
+In JavaScript ES6, you can use [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) to concatenate strings. You will use it to concatenate your url for the API endpoint.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -107,7 +107,7 @@ console.log(url);
 
 That will keep your url composition flexible in the future.
 
-But let's get to the API request where you will use the url. The whole data fetch process will be presented at once, but each step will get explained afterward.
+But let's get to the API request where you will use the url. The whole data fetch process will be presented at once, but each step will be explained afterward.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -157,17 +157,17 @@ class App extends Component {
 
 A lot of things happen in the code. I thought about breaking it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain each step in detail.
 
-First, you can remove the sample list of items, because you return a result from the Hacker News API. The initial state of your component has an empty result and default search term. The same default search term is used in the search field and in your first request.
+First, you can remove the sample list of items, because you return a real list from the Hacker News API. The sample data is not used anymore. The initial state of your component has an empty result and default search term now. The same default search term is used in the input field of the Search component and in your first request.
 
-Second, you use the `componentDidMount()` lifecycle method to fetch the data after the component did mount. In the very first fetch the default search term from the component state is used. It will fetch "redux" related stories, because that is the default parameter.
+Second, you use the `componentDidMount()` lifecycle method to fetch the data after the component did mount. In the very first fetch, the default search term from the local state is used. It will fetch "redux" related stories, because that is the default parameter.
 
-Third, the native fetch is used. The JavaScript ES6 template strings allow it to compose the url with the `searchTerm`. The url is the argument for the native fetch API function. The response needs to get transformed to json, that's a mandatory step in a native fetch, and can finally be set in the internal component state.
+Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the url with the `searchTerm`. The url is the argument for the native fetch API function. The response needs to get transformed to a JSON data structure, which is a mandatory step in a native fetch function when dealing with JSON data structures, and can finally be set as result in the internal component state. In addition, the catch block is used in case of an error. If an error happens during the request, the function will run into the catch block instead of the then block. In a later chapter of the book, you will include the error handling.
 
-Last but not least, don't forget to bind your new component methods.
+Last but not least, don't forget to bind your new component methods in the constructor.
 
-Now you can use the fetched data instead of the sample list of items. However, you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits (stories).](https://hn.algolia.com/api) You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
+Now you can use the fetched data instead of the sample list of items. However, you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits which are in our case the stories](https://hn.algolia.com/api). You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
 
-Let's use the result to render it. But we will prevent it from rendering anything - return null - when there is no result. Once the request to the API succeeded, the result is saved to the state and the App component will re-render with the updated state.
+In the next step, you will use the result to render it. But we will prevent it from rendering anything, so we will return null, when there is no result in the first place. Once the request to the API succeeded, the result is saved to the state and the App component will re-render with the updated state.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -198,21 +198,22 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that it renders for the first time. But you prevent it from displaying, because the result is empty. Then the `componentDidMount()` lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state. After that the update lifecycle comes into play. The component runs the `render()` method again, but this time with populated data in your internal component state. The component and thus the Table component with its content gets re-rendered.
+Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that, it renders for the first time. But you prevent it from displaying anything, because the result in the local state is null. It is allowed to return null for a component in order to display nothing. Then the `componentDidMount()` lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state in `setSearchTopStories()`. Afterward, the update lifecycle comes into play because the local state was updated. The component runs the `render()` method again, but this time with populated result in your internal component state. The component and thus the Table component with its content will be rendered.
 
 You used the native fetch API that is supported by most browsers to perform an asynchronous request to an API. The *create-react-app* configuration makes sure that it is supported in every browser. There are third party node packages that you can use to substitute the native fetch API: [superagent](https://github.com/visionmedia/superagent) and [axios](https://github.com/mzabriskie/axios).
 
-Back to your application: The list of hits should be visible now. But the "Dismiss" button is broken. We will fix that in the next chapter.
+Back to your application: The list of hits should be visible now. But the "Dismiss" button is broken. It will get fixed in the next chapter.
 
 ### Exercises:
 
 * read more about [ES6 template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
 * read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
+* read more about [data fetching in React](https://www.robinwieruch.de/react-fetching-data/)
 * experiment with the [Hacker News API](https://hn.algolia.com/api)
 
 ## ES6 Spread Operators
 
-The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the complex result object. Let's change that:
+The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the complex result object. It only know about a plain list in the local state. But it isn't a plain list anymore. Let's change it.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -287,7 +288,7 @@ console.log(allUsers);
 // output: ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-Now let's have a look at the object spread operator. It is not ES6! It is a [proposal for a future ES version](https://github.com/sebmarkbage/ecmascript-rest-spread) yet already used by the React community. That's why *create-react-app* incorporated the feature in the configuration.
+Now let's have a look at the object spread operator. It is not JavaScript ES6. It is a [proposal for a next JavaScript version](https://github.com/sebmarkbage/ecmascript-rest-spread) yet already used by the React community. That's why *create-react-app* incorporated the feature in the configuration.
 
 Basically it is the same as the JavaScript ES6 array spread operator but with objects. It copies each key value pair into a new object.
 
@@ -328,7 +329,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-The "Dismiss" button should work again.
+Now the "Dismiss" button should work again, because the `onDismiss()` method is aware of the complex result object and how to update it after dismissing an item from the list.
 
 ### Exercises:
 
@@ -340,9 +341,9 @@ The "Dismiss" button should work again.
 
 The conditional rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all, a conditional rendering simplest usage can be expressed by an if-else statement in JSX.
 
-The `result` object in the internal component state is null in the beginning. So far, the App component returned no elements when the `result` hasn't arrived from the API. That's already a conditional rendering, because you return earlier from the `render()` lifecycle method for a certain condition. The App component either renders nothing or its elements.
+The `result` object in the internal component state is `null` in the beginning. So far, the App component returned no elements when the `result` hasn't arrived from the API. That's already a conditional rendering, because you return earlier from the `render()` lifecycle method for a certain condition. The App component either renders nothing or its elements.
 
-But let's go one step further. It makes more sense to wrap the Table component, which is the only component that depends on the `result`, in an independent conditional rendering. Everything else should be displayed, even though there is no `result` yet. You can simply use a ternary expression in your JSX.
+But let's go one step further. It makes more sense to wrap the Table component, which is the only component that depends on the `result`, in an independent conditional rendering. Everything else should be displayed, even though there is no `result` yet. You can simply use a ternary operator in your JSX.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -406,9 +407,9 @@ In React you can make use of that behavior. If the condition is true, the expres
 }
 ~~~~~~~~
 
-These were a few approaches to use conditional rendering in React. You can read about [more alternatives on my website](https://www.robinwieruch.de/conditional-rendering-react/) where I keep an exhaustive list of conditional renderings. Moreover you will get to know their different use cases and when to apply them.
+These were a few approaches to use conditional rendering in React. You can read about [more alternatives in an exhaustive list of examples for conditional rendering approaches](https://www.robinwieruch.de/conditional-rendering-react/). Moreover you will get to know their different use cases and when to apply them.
 
-After all, you should be able to see the fetched data in your application. Everything except the Table is displayed when the data fetching is pending. Once the request resolves the result, the Table is displayed.
+After all, you should be able to see the fetched data in your application. Everything except the Table is displayed when the data fetching is pending. Once the request resolves the result and stores it into the local state, the Table is displayed because the `render()` method runs again and the condition in the conditional rendering resolves in favor of displaying the Table component.
 
 ### Exercises:
 
