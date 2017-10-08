@@ -10,7 +10,7 @@ Do you know the [Hacker News](https://news.ycombinator.com/) platform? It's a gr
 
 You will need to know about React lifecycle methods before you can start to fetch data in your components by using an API. These methods are a hook into the lifecycle of a React component. They can be used in ES6 class components, but not in functional stateless components.
 
-Do you remember when a previous chapter taught you about JavaScript ES6 classes and how they are used in React? Apart from the `render()` method, there are several methods that can be overwritten in a React ES6 class component. All of these are the lifecycle methods. Let's dive into them:
+Do you remember when a previous chapter taught you about JavaScript ES6 classes and how they are used in React? Apart from the `render()` method, there are several methods that can be overridden in a React ES6 class component. All of these are the lifecycle methods. Let's dive into them:
 
 You already know two lifecycle methods that can be used in an ES6 class component: `constructor()` and `render()`.
 
@@ -247,7 +247,7 @@ const updatedHits = { hits: updatedHits };
 const updatedResult = Object.assign({}, this.state.result, updatedHits);
 ~~~~~~~~
 
-Latter objects will overwrite former merged objects when they share the same property names. Now let's do it in the `onDismiss()` method:
+Latter objects will override former merged objects when they share the same property names. Now let's do it in the `onDismiss()` method:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -687,7 +687,7 @@ class App extends Component {
 
 You should make sure to default to page 0 when there is no result.
 
-There is one step missing. You fetch the next page of data, but it will overwrite your previous page of data. You want to concatenate the old and new data. Let's adjust the functionality to add the new data rather than to overwrite it.
+There is one step missing. You fetch the next page of data, but it will override your previous page of data. You want to concatenate the old and new data. Let's adjust the functionality to add the new data rather than to override it.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -715,7 +715,7 @@ First, you get the hits and page from the result.
 
 Second, you have to check if there are already old hits. When the page is 0, it is a new search request from `componentDidMount()` or `onSearchSubmit()`. The hits are empty. But when you click the "More" button to fetch paginated data the page isn't 0. It is the next page. The old hits are already stored in your state and thus can be used.
 
-Third, you don't want to overwrite the old hits. You can merge old and new hits from the recent API request. The merge of both lists can be done with the JavaScript ES6 array spread operator.
+Third, you don't want to override the old hits. You can merge old and new hits from the recent API request. The merge of both lists can be done with the JavaScript ES6 array spread operator.
 
 Fourth, you set the merged hits and page in the internal component state.
 

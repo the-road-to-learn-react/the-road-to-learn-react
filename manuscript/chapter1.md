@@ -743,7 +743,7 @@ The App class extends functionality from the Component class. To be more specifi
 
 The `Component` class encapsulates all the implementation details of a React component. It enables developers to use classes as components in React.
 
-The methods a React `Component` exposes is the public interface. One of these methods has to be overwritten, the others don't need to be overwritten. You will learn about the latter ones when the book arrives at lifecycle methods in a later chapter. The `render()` method has to be overwritten, because it defines the output of a React `Component`. It has to be defined.
+The methods a React `Component` exposes is the public interface. One of these methods has to be overridden, the others don't need to be overridden. You will learn about the latter ones when the book arrives at lifecycle methods in a later chapter. The `render()` method has to be overridden, because it defines the output of a React `Component`. It has to be defined.
 
 Now you know the basics around JavaScript ES6 classes and how they are used in React to extend them to components. You will learn more about the Component methods when the book describes React lifecycle methods.
 
