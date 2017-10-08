@@ -418,9 +418,9 @@ After all, you should be able to see the fetched data in your application. Every
 
 ## Client- or Server-side Search
 
-When you use the search input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
+When you use the Search component with its input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
 
-You can define an `onSubmit()` method in your ES6 class component, which fetches results from the Hacker News API. It will be the same fetch like in your `componentDidMount()` lifecycle method. But it fetches it with the modified search term from the search field input.
+You can define an `onSearchSubmit()` method in your App component, which fetches results from the Hacker News API when executing a search in the Search component. It will be the same fetch as in your `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -456,7 +456,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Search component gets an additional button. The button has to explicitly trigger the search. Otherwise you would fetch data every time from the Hacker News API when your input changes.
+Now the Search component has to add an additional button. The button has to explicitly trigger the search request. Otherwise you would fetch data every time from the Hacker News API when your input field changes. But you want to do it explicitly in a on click handler.
 
 As alternative you could debounce (delay) the `onChange()` function and spare the button, but it would add more complexity at this time. Let's keep it simple without a debounce.
 
