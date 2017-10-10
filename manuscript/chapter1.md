@@ -647,7 +647,7 @@ However, let's have a look at the `map` function. You can write it more concisel
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-{ list.map(item => {
+{ list.map(item) => {
 # leanpub-end-insert
   return (
     <div key={item.objectID}>
@@ -667,7 +667,7 @@ Additionally you can remove the *block body* of the ES6 arrow function. In a *co
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-{ list.map(item =>
+{ list.map(item) =>
 # leanpub-end-insert
   <div key={item.objectID}>
     <span>
