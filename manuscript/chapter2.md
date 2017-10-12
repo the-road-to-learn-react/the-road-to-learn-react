@@ -102,7 +102,7 @@ But be careful. Don't mutate the state directly. You have to use a method called
 
 ## ES6 Object Initializer
 
-In JavaScript ES6, you can use a shorthand property syntax to initialize your objects more concise. Imagine the following object initialization:
+In JavaScript ES6, you can use a shorthand property syntax to initialize your objects more concisely. Imagine the following object initialization:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -139,7 +139,7 @@ this.state = {
 };
 ~~~~~~~~
 
-Another neat helper are shorthand method names. In JavaScript ES6, you can initialize methods in an object more concise.
+Another neat helper are shorthand method names. In JavaScript ES6, you can initialize methods in an object more concisely.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
