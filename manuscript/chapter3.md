@@ -43,7 +43,7 @@ After all, you don't need to know all of these lifecycle methods from the beginn
 
 * **constructor(props)** - It is called when the component gets initialized. You can set an initial component state and bind useful class methods during that lifecycle method.
 
-* **componentWillMount()** - It is called before the `render()` lifecycle method. That's why it could be used to set internal component state, because it will not trigger a second rendering of the component. Generally it is recommend to use the `constructor()` to set the initial state.
+* **componentWillMount()** - It is called before the `render()` lifecycle method. That's why it could be used to set internal component state, because it will not trigger a second rendering of the component. Generally it is recommended to use the `constructor()` to set the initial state.
 
 * **render()** - The lifecycle method is mandatory and returns the elements as an output of the component. The method should be pure and therefore shouldn't modify the component state. It gets an input as props and state and returns an element.
 
