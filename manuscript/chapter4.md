@@ -1,14 +1,14 @@
 # Code Organization and Testing
 
-The chapter will focus on important topics to keep your code maintainable in a scaling application. You will learn about code organization to embrace best practices when structuring your folders and files. Another aspect you will learn is testing, which is important to keep your code robust.
+The chapter will focus on important topics to keep your code maintainable in a scaling application. You will learn about code organization to embrace best practices when structuring your folders and files. Another aspect you will learn is testing, which is important to keep your code robust. The whole chapter will take a step back from the practical application and explain a couple of these topics for you.
 
 ## ES6 Modules: Import and Export
 
-In JavaScript ES6 you can import and export functionalities from modules. These functionalities can be functions, classes, components, constants etc. Basically everything that you can assign to a variable. The modules can be single files or whole folders with one index file as entry point.
+In JavaScript ES6 you can import and export functionalities from modules. These functionalities can be functions, classes, components, constants and others. Basically everything that you can assign to a variable. The modules can be single files or whole folders with one index file as entry point.
 
 In the beginning of the book, after you have bootstrapped your application with *create-react-app*, you already had several `import` and `export` statements across your initial files. Now it is the appropriate time to explain these.
 
-The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one standardized way rather than having several approaches for the same thing. Now it is a native behavior in JavaScript ES6.
+The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one standardized way rather than having several approaches for the same thing. Now it is a native behavior since JavaScript ES6.
 
 Additionally these statements embrace code splitting. You distribute your code across multiple files to keep it reusable and maintainable. The former is true because you can import the piece of code in multiple files. The latter is true because you have one single source where you maintain the piece of code.
 
@@ -72,6 +72,8 @@ const robin = {
 export default robin;
 ~~~~~~~~
 
+You can leave out the curly braces for the import to import the default export.
+
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
 import developer from './file1.js';
@@ -80,7 +82,7 @@ console.log(developer);
 // output: { firstname: 'robin', lastname: 'wieruch' }
 ~~~~~~~~
 
-The import name can differ from the exported default name. You can also use it in conjunction with the named export and import statements.
+Furthermore, the import name can differ from the exported default name. You can also use it in conjunction with the named export and import statements.
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
@@ -129,7 +131,7 @@ These are the main functionalities for ES6 modules. They help you to organize yo
 
 You might wonder: Why didn't we follow the best practices of code splitting for the *src/App.js* file? In the file we already have multiple components which could be defined in their own files/folders (modules). For the sake of learning React, it is practical to keep these things at one place. But once your React application grows, you should consider to split up these components into multiple modules. Only that way your application scales.
 
-In the following I will propose several module structures you *could* apply. I would recommend to apply them as an exercise at the end of the book. To keep the book itself simple, I will not perform the code splitting and will continue the following chapters with the *src/App.js* file.
+In the following, I will propose several module structures you *could* apply. I would recommend to apply them as an exercise at the end of the book. To keep the book itself simple, I will not perform the code splitting and will continue the following chapters with the *src/App.js* file.
 
 One possible module structure could be:
 
@@ -152,7 +154,7 @@ src/
   Search.css
 ~~~~~~~~
 
-It doesn't look too promising. You can see a lot of naming duplications and only the file extension differs. Another module structure could be:
+It separates the components into their own files, but it doesn't look too promising. You can see a lot of naming duplications and only the file extension differs. Another module structure could be:
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -177,9 +179,9 @@ src/
     index.css
 ~~~~~~~~
 
-It looks cleaner than before. A component is defined by its component declaration in the JavasScript file, but also by its style and tests.
+It looks cleaner than before. The index naming of a file describes it as an entry point file to the folder. It is just a common naming convention, but you can use your own naming as well. In this module structure, a component is defined by its component declaration in the JavasScript file, but also by its style and tests.
 
-Another step could be extracting the constant variables from the App component. These constants were used to compose the Hacker News API url.
+Another step could be extracting the constant variables from the App component. These constants were used to compose the Hacker News API URL.
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -202,15 +204,12 @@ src/
     ...
 ~~~~~~~~
 
-Naturally the modules would split up into *src/constants/* and *src/components/*.
-
-Now the *src/constants/index.js* file could look like the following:
+Naturally the modules would split up into *src/constants/* and *src/components/*. Now the *src/constants/index.js* file could look like the following:
 
 {title="Code Playground: src/constants/index.js",lang="javascript"}
 ~~~~~~~~
 export const DEFAULT_QUERY = 'redux';
 export const DEFAULT_HPP = '100';
-
 export const PATH_BASE = 'https://hn.algolia.com/api/v1';
 export const PATH_SEARCH = '/search';
 export const PARAM_SEARCH = 'query=';
@@ -225,7 +224,6 @@ The *App/index.js* file could import these variables in order to use them.
 import {
   DEFAULT_QUERY,
   DEFAULT_HPP,
-
   PATH_BASE,
   PATH_SEARCH,
   PARAM_SEARCH,
@@ -243,7 +241,6 @@ When you use the *index.js* naming convention, you can omit the filename from th
 import {
   DEFAULT_QUERY,
   DEFAULT_HPP,
-
   PATH_BASE,
   PATH_SEARCH,
   PARAM_SEARCH,
@@ -305,174 +302,11 @@ By going with this constraint, it would be a bad practice to reach into other fi
 import SubmitButton from '../Buttons/SubmitButton';
 ~~~~~~~~
 
-Now you know how you could refactor your source code in modules with the constraints of encapsulation. As I said, for the sake of keeping the tutorial simple I will not apply these changes. But you should do the refactoring at the end of the book.
+Now you know how you could refactor your source code in modules with the constraints of encapsulation. As I said, for the sake of keeping the book simple I will not apply these changes. But you should do the refactoring when you finished reading the book.
 
 ### Exercises:
 
 * refactor your *src/App.js* file into multiple component modules when you finished the book
-
-## Component Interface with PropTypes
-
-You may know [TypeScript](https://www.typescriptlang.org/) or [Flow](https://flowtype.org/) to introduce a type interface to JavaScript. A typed language is less error prone, because the code gets validated based on its program text. Editors and other utilities can catch these errors before the program runs. It makes your program more robust.
-
-React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props that get passed from a parent component to a child component get validated based on the PropTypes interface assigned to the child component.
-
-The chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code refactorings. But you should keep and update them along the way to keep your components interface type safe.
-
-Initially you can import PropTypes. You have to be aware of your React version, because in React version 15.5 the import changed. Check your *package.json* for your React version.
-
-If it is 15.5 or above, you have to install an independent package.
-
-{title="Command Line",lang="text"}
-~~~~~~~~
-npm install prop-types
-~~~~~~~~
-
-If your version is 15.4 or below, you can use the already installed React package.
-
-Now, depending on your version, you can import the PropTypes.
-
-{title="src/App.js",lang=javascript}
-~~~~~~~~
-# leanpub-start-insert
-// React 15.5 and above
-import PropTypes from 'prop-types';
-
-// React 15.4 and below
-import React, { Component, PropTypes } from 'react';
-# leanpub-end-insert
-~~~~~~~~
-
-Let's start to assign a props interface to the components:
-
-{title="src/App.js",lang=javascript}
-~~~~~~~~
-const Button = ({ onClick, className = '', children }) =>
-  <button
-    onClick={onClick}
-    className={className}
-    type="button"
-  >
-    {children}
-  </button>
-
-# leanpub-start-insert
-Button.propTypes = {
-  onClick: PropTypes.func,
-  className: PropTypes.string,
-  children: PropTypes.node,
-};
-# leanpub-end-insert
-~~~~~~~~
-
-That's it. You take every argument from the function signature and assign a PropType to it. The basic PropTypes for primitives and complex objects are:
-
-{title="Code Playground",lang="javascript"}
-~~~~~~~~
-* PropTypes.array
-* PropTypes.bool
-* PropTypes.func
-* PropTypes.number
-* PropTypes.object
-* PropTypes.string
-~~~~~~~~
-
-Additionally you have two more PropTypes to define a renderable fragment (node), e.g. a string, and a React element.
-
-{title="Code Playground",lang="javascript"}
-~~~~~~~~
-* PropTypes.node
-* PropTypes.element
-~~~~~~~~
-
-You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up in the official React documentation.
-
-At the moment all of the defined PropTypes for the Button are optional. The parameters can be null or undefined. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
-
-{title="src/App.js",lang=javascript}
-~~~~~~~~
-Button.propTypes = {
-# leanpub-start-insert
-  onClick: PropTypes.func.isRequired,
-# leanpub-end-insert
-  className: PropTypes.string,
-# leanpub-start-insert
-  children: PropTypes.node.isRequired,
-# leanpub-end-insert
-};
-~~~~~~~~
-
-The `className` is not required, because it can default to an empty string. Next you will define a PropType interface for the Table component:
-
-{title="src/App.js",lang=javascript}
-~~~~~~~~
-# leanpub-start-insert
-Table.propTypes = {
-  list: PropTypes.array.isRequired,
-  onDismiss: PropTypes.func.isRequired,
-};
-# leanpub-end-insert
-~~~~~~~~
-
-You can define the content of an array PropType more explicit:
-
-{title="src/App.js",lang=javascript}
-~~~~~~~~
-Table.propTypes = {
-  list: PropTypes.arrayOf(
-    PropTypes.shape({
-      objectID: PropTypes.string.isRequired,
-      author: PropTypes.string,
-      url: PropTypes.string,
-      num_comments: PropTypes.number,
-      points: PropTypes.number,
-    })
-  ).isRequired,
-  onDismiss: PropTypes.func.isRequired,
-};
-~~~~~~~~
-
-Only the `objectID` is required, because you know that some of your code depends on it. The other properties are only displayed, thus they are not necessarily required. Moreover you cannot be sure that the Hacker News API has always a defined property for each object in the array.
-
-That's it for PropTypes. But there is one more aspect. You can define default props in your component. Let's take again the Button component. The `className` property has an ES6 default parameter in the component signature.
-
-{title="src/App.js",lang=javascript}
-~~~~~~~~
-const Button = ({ onClick, className = '', children }) =>
-  ...
-~~~~~~~~
-
-You could replace it with the internal React default prop:
-
-{title="src/App.js",lang=javascript}
-~~~~~~~~
-# leanpub-start-insert
-const Button = ({ onClick, className, children }) =>
-# leanpub-end-insert
-  <button
-    onClick={onClick}
-    className={className}
-    type="button"
-  >
-    {children}
-  </button>
-
-# leanpub-start-insert
-Button.defaultProps = {
-  className: '',
-};
-# leanpub-end-insert
-~~~~~~~~
-
-Same as the ES6 default parameter, the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
-
-### Exercises:
-
-* answer yourself the following question
-  * does the App component have a PropType interface?
-* define the PropType interface for the Search component
-* add and update the PropType interfaces when you add and update components in the next chapters
-* read more about [React PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 ## Snapshot Tests with Jest
 
@@ -743,6 +577,163 @@ You could continue to unit test your components. But make sure to keep the tests
 
 * keep your unit tests up to date during the following chapters
 * read more about [enzyme and its rendering API](https://github.com/airbnb/enzyme)
+
+## Component Interface with PropTypes
+
+You may know [TypeScript](https://www.typescriptlang.org/) or [Flow](https://flowtype.org/) to introduce a type interface to JavaScript. A typed language is less error prone, because the code gets validated based on its program text. Editors and other utilities can catch these errors before the program runs. It makes your program more robust.
+
+In the book, you will not introduce Flow or TypeScript, but another neat way to check your types in components. React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props that get passed from a parent component to a child component get validated based on the PropTypes interface assigned to the child component.
+
+The chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code refactorings. But you should keep and update them along the way to keep your components interface type safe.
+
+First, you have to install a separate package for React.
+
+{title="Command Line",lang="text"}
+~~~~~~~~
+npm install prop-types
+~~~~~~~~
+
+Now, you can import the PropTypes.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+import PropTypes from 'prop-types';
+# leanpub-end-insert
+~~~~~~~~
+
+Let's start to assign a props interface to the components:
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+const Button = ({ onClick, className = '', children }) =>
+  <button
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
+    {children}
+  </button>
+
+# leanpub-start-insert
+Button.propTypes = {
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
+# leanpub-end-insert
+~~~~~~~~
+
+Basically that's it. You take every argument from the function signature and assign a PropType to it. The basic PropTypes for primitives and complex objects are:
+
+* PropTypes.array
+* PropTypes.bool
+* PropTypes.func
+* PropTypes.number
+* PropTypes.object
+* PropTypes.string
+
+Additionally you have two more PropTypes to define a renderable fragment (node), e.g. a string, and a React element:
+
+* PropTypes.node
+* PropTypes.element
+
+You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up in the official React documentation.
+
+At the moment all of the defined PropTypes for the Button are optional. The parameters can be null or undefined. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+Button.propTypes = {
+# leanpub-start-insert
+  onClick: PropTypes.func.isRequired,
+# leanpub-end-insert
+  className: PropTypes.string,
+# leanpub-start-insert
+  children: PropTypes.node.isRequired,
+# leanpub-end-insert
+};
+~~~~~~~~
+
+The `className` is not required, because it can default to an empty string. Next you will define a PropType interface for the Table component:
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+Table.propTypes = {
+  list: PropTypes.array.isRequired,
+  onDismiss: PropTypes.func.isRequired,
+};
+# leanpub-end-insert
+~~~~~~~~
+
+You can define the content of an array PropType more explicit:
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+Table.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      objectID: PropTypes.string.isRequired,
+      author: PropTypes.string,
+      url: PropTypes.string,
+      num_comments: PropTypes.number,
+      points: PropTypes.number,
+    })
+  ).isRequired,
+  onDismiss: PropTypes.func.isRequired,
+};
+~~~~~~~~
+
+Only the `objectID` is required, because you know that some of your code depends on it. The other properties are only displayed, thus they are not necessarily required. Moreover you cannot be sure that the Hacker News API has always a defined property for each object in the array.
+
+That's it for PropTypes. But there is one more aspect. You can define default props in your component. Let's take again the Button component. The `className` property has an ES6 default parameter in the component signature.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+const Button = ({
+  onClick,
+  className = '',
+  children
+}) =>
+  ...
+~~~~~~~~
+
+You could replace it with the internal React default prop:
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+# leanpub-start-insert
+const Button = ({
+  onClick,
+  className,
+  children
+}) =>
+# leanpub-end-insert
+  <button
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
+    {children}
+  </button>
+
+# leanpub-start-insert
+Button.defaultProps = {
+  className: '',
+};
+# leanpub-end-insert
+~~~~~~~~
+
+Same as the ES6 default parameter, the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
+
+If you run your tests again, you might see PropType errors for your components on your command line. It can happen because you didn't define all props for your components in the tests that are defined as required in your PropType definition. The tests themselves all pass correctly though. You can pass all required props to avoid these errors.
+
+### Exercises:
+
+* define the PropType interface for the Search component
+* add and update the PropType interfaces when you add and update components in the next chapters
+* read more about [React PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 

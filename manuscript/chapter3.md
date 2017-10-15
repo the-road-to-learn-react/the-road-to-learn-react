@@ -73,7 +73,7 @@ There is one more lifecycle method: `componentDidCatch(error, info)`. It was int
 
 Now you are prepared to fetch data from the Hacker News API. There was one lifecycle method mentioned that can be used to fetch data: `componentDidMount()`. You will use the native fetch API in JavaScript to perform the request.
 
-Before we can use it, let's set up the url constants and default parameters to breakup the API request into chunks.
+Before we can use it, let's set up the URL constants and default parameters to breakup the API request into chunks.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -91,7 +91,7 @@ const PARAM_SEARCH = 'query=';
 ...
 ~~~~~~~~
 
-In JavaScript ES6, you can use [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) to concatenate strings. You will use it to concatenate your url for the API endpoint.
+In JavaScript ES6, you can use [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) to concatenate strings. You will use it to concatenate your URL for the API endpoint.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -105,7 +105,7 @@ console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux
 ~~~~~~~~
 
-That will keep your url composition flexible in the future.
+That will keep your URL composition flexible in the future.
 
 But let's get to the API request where you will use the url. The whole data fetch process will be presented at once, but each step will be explained afterward.
 
@@ -161,7 +161,7 @@ First, you can remove the sample list of items, because you return a real list f
 
 Second, you use the `componentDidMount()` lifecycle method to fetch the data after the component did mount. In the very first fetch, the default search term from the local state is used. It will fetch "redux" related stories, because that is the default parameter.
 
-Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the url with the `searchTerm`. The url is the argument for the native fetch API function. The response needs to get transformed to a JSON data structure, which is a mandatory step in a native fetch function when dealing with JSON data structures, and can finally be set as result in the internal component state. In addition, the catch block is used in case of an error. If an error happens during the request, the function will run into the catch block instead of the then block. In a later chapter of the book, you will include the error handling.
+Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the URL with the `searchTerm`. The URL is the argument for the native fetch API function. The response needs to get transformed to a JSON data structure, which is a mandatory step in a native fetch function when dealing with JSON data structures, and can finally be set as result in the internal component state. In addition, the catch block is used in case of an error. If an error happens during the request, the function will run into the catch block instead of the then block. In a later chapter of the book, you will include the error handling.
 
 Last but not least, don't forget to bind your new component methods in the constructor.
 
@@ -720,7 +720,7 @@ const PARAM_HPP = 'hitsPerPage=';
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can use the constants to extend the API url.
+Now you can use the constants to extend the API URL.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
