@@ -312,15 +312,15 @@ Now you know how you could refactor your source code in modules with the constra
 
 The book will not dive deeply into the topic of testing, but it shouldn't be unmentioned. Testing your code in programming is essential and should be seen as mandatory. You want to keep the quality of your code high and an assurance that everything works.
 
-Perhaps you have heard about the testing pyramid. There are end-to-end tests, integration tests and units tests. If you are not familiar with those, the book gives you a quick and basic overview. A unit test is used to test an isolated and small block of code. It can be a single function that is tested by an unit test. However, sometimes the units work well in isolation yet don't work in combination with other units. They need to be tested as a group as units. That's where integration tests can help out by covering whether units work well together. Last but not least, an end-to-end test is the simulation of a real user scenario. It could be an automated setup in a browser simulating the login flow of an user in a web application. While unit tests are fast and easy to write and to maintain, end-to-end tests are the opposite of this spectrum.
+Perhaps you have heard about the testing pyramid. There are end-to-end tests, integration tests and unit tests. If you are not familiar with those, the book gives you a quick and basic overview. A unit test is used to test an isolated and small block of code. It can be a single function that is tested by an unit test. However, sometimes the units work well in isolation yet don't work in combination with other units. They need to be tested as a group as units. That's where integration tests can help out by covering whether units work well together. Last but not least, an end-to-end test is the simulation of a real user scenario. It could be an automated setup in a browser simulating the login flow of an user in a web application. While unit tests are fast and easy to write and to maintain, end-to-end tests are the opposite of this spectrum.
 
 How many tests do I need of each type? You want to have many unit tests to cover your isolated functions. After that, you can have several integration tests to cover that the most important functions work in combination as expected. Last but not least, you might want to have only a few end-to-end tests to simulate critical scenarios in your web application. That's it for the general excursion in the world of testing.
 
-So how do you apply this knowledge in testing your React application? The foundation for testing in React are component tests which can be generalized as unit tests and a part of it as Snapshot tests. You will conduct unit tests for your components in the next chapter by using a library called Enzyme. In this chapter, you will focus on another kind of tests: Snapshot tests. That's were Jest comes into play.
+So how do you apply this knowledge in testing your React application? The foundation for testing in React are component tests which can be generalized as unit tests and a part of it as snapshot tests. You will conduct unit tests for your components in the next chapter by using a library called Enzyme. In this chapter, you will focus on another kind of tests: snapshot tests. That's were Jest comes into play.
 
-[Jest](https://facebook.github.io/jest/) is a JavaScript testing framework that is used at Facebook. In the React community, it is used for React component tests. Fortunately *create-react-app* already comes with Jest, so you don't need to worry to set it up.
+[Jest](https://facebook.github.io/jest/) is a JavaScript testing framework that is used at Facebook. In the React community, it is used for React component tests. Fortunately *create-react-app* already comes with Jest, so you don't need to worry about setting it up.
 
-Let's start to test your first components. Before you can do that, you have to export the components, that you are going to test, from your *src/App.js* file to test them in a different file. You have learned about this in the code organization chapter.
+Let's start to test your first components. Before you can do that, you have to export the components, which you are going to test, from your *src/App.js* file. Afterward you can test them in a different file. You have learned about this in the code organization chapter.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -343,7 +343,7 @@ export {
 # leanpub-end-insert
 ~~~~~~~~
 
-In your *App.test.js* file you will find a first test that came with *create-react-app*. It verifies that the App component renders without any errors.
+In your *App.test.js* file, you will find a first test that came with *create-react-app*. It verifies that the App component would render without any errors.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -359,30 +359,30 @@ it('renders without crashing', () => {
 
 The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suit. A test suit could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separated and organize your test cases.
 
-You can run your test cases by using the interactive *create-react-app* scripts on the command line. You will get the output for all test cases on your command line interface.
+You can run your test cases by using the interactive *create-react-app* test script on the command line. You will get the output for all test cases on your command line interface.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm test
 ~~~~~~~~
 
-**Note:** If errors show up when you run the single test for the App component for the first time, it could be because of the unsopported fetch method that is used in `fetchSearchTopStories()` which is triggered in `componentDidMount()`. You can make it work by following these two steps:
+**Note:** If errors show up when you run the single test for the App component for the first time, it could be because of the unsupported fetch method that is used in `fetchSearchTopStories()` which is triggered in `componentDidMount()`. You can make it work by following these two steps:
 
 * On the command line, install the following package: `npm install isomorphic-fetch`
 * Include it in your *App.js* file: `import fetch from 'isomorphic-fetch';`
 
-Now Jest enables you to write Snapshot tests. These tests make a snapshot of your rendered component and run this snapshot against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the diffs of the rendered output. It doesn't add huge maintanance costs, because you can accept changed snapshots when you changed something on purpose for the rendered output.
+Now Jest enables you to write snapshot tests. These tests make a snapshot of your rendered component and run this snapshot against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the diffs of the rendered output. It doesn't add big maintenance costs, because you can simply accept changed snapshots when you changed something on purpose for the rendered output in your component.
 
-Jest stores the snapshots in a folder. Only that way it can validate the diff against a future snapshot. Additionally the snapshots can be shared across teams by having them in one folder.
+Jest stores the snapshots in a folder. Only that way it can validate the diff against a future snapshot. Additionally, the snapshots can be shared across teams by having them in one folder.
 
-You have to install an utility library before you can write your first Snapshot test in Jest.
+Before writing your first snapshot test with Jest, you have to install an utility library.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save-dev react-test-renderer
 ~~~~~~~~
 
-Now you can extend the App component test with your first Snapshot test. First, import the new functionality from the node package and wrap your previous "it"-block for the App component into a descriptive "describe"-block.
+Now you can extend the App component test with your first snapshot test. First, import the new functionality from the node package and wrap your previous "it"-block for the App component into a descriptive "describe"-block. In this case, the test suit is only for the App component.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -397,7 +397,7 @@ import App from './App';
 describe('App', () => {
 # leanpub-end-insert
 
-  it('renders', () => {
+  it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
   });
@@ -418,13 +418,13 @@ import App from './App';
 
 describe('App', () => {
 
-  it('renders', () => {
+  it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
   });
 
 # leanpub-start-insert
-  test('snapshots', () => {
+  test('has a valid snapshot', () => {
     const component = renderer.create(
       <App />
     );
@@ -436,9 +436,9 @@ describe('App', () => {
 });
 ~~~~~~~~
 
-Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the Snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component.
+Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component.
 
-Basically the `renderer.create()` function creates a snapshot of your App component. It renders it virtually and stores the DOM into a snapshot. Afterward, the snapshot is expected to match the previous snapshot when you ran your snapshot tests the last time. This way, you can assure that your DOM stays the same and don't change anything by accident.
+Basically the `renderer.create()` function creates a snapshot of your App component. It renders it virtually and stores the DOM into a snapshot. Afterward, the snapshot is expected to match the previous snapshot from when you ran your snapshot tests the last time. This way, you can assure that your DOM stays the same and doesn't change anything by accident.
 
 Let's add more tests for our independent components. First, the Search component:
 
@@ -456,12 +456,12 @@ import App, { Search } from './App';
 # leanpub-start-insert
 describe('Search', () => {
 
-  it('renders', () => {
+  it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Search>Search</Search>, div);
   });
 
-  test('snapshots', () => {
+  test('has a valid snapshot', () => {
     const component = renderer.create(
       <Search>Search</Search>
     );
@@ -473,7 +473,7 @@ describe('Search', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-The Search component has two tests. The first test simply renders the Search component to the DOM and verifies that there is no error during the rendering process. If there would be an error, the test would break even though there isn't any assertion (e.g. expect, match, equal) in the test block. The second snapshot test is used to store a snapshot of the rendered component and to run it against a previous snapshot. It fails when the snapshot has changed.
+The Search component has two tests similar to the App component. The first test simply renders the Search component to the DOM and verifies that there is no error during the rendering process. If there would be an error, the test would break even though there isn't any assertion (e.g. expect, match, equal) in the test block. The second snapshot test is used to store a snapshot of the rendered component and to run it against a previous snapshot. It fails when the snapshot has changed.
 
 Second, you can test the Button component whereas the same test rules as in the Search component apply.
 
@@ -489,12 +489,12 @@ import App, { Search, Button } from './App';
 # leanpub-start-insert
 describe('Button', () => {
 
-  it('renders', () => {
+  it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Button>Give Me More</Button>, div);
   });
 
-  test('snapshots', () => {
+  test('has a valid snapshot', () => {
     const component = renderer.create(
       <Button>Give Me More</Button>
     );
@@ -506,7 +506,7 @@ describe('Button', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Last but not least, the Table component that you can pass a bunch of initial props to render it with real data.
+Last but not least, the Table component that you can pass a bunch of initial props to render it with a sample list.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -527,12 +527,12 @@ describe('Table', () => {
     ],
   };
 
-  it('renders', () => {
+  it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Table { ...props } />, div);
   });
 
-  test('snapshots', () => {
+  test('has a valid snapshot', () => {
     const component = renderer.create(
       <Table { ...props } />
     );
@@ -544,27 +544,27 @@ describe('Table', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Snapshot tests usually stay pretty basic. You only want to cover that the component doesn't change its output. Once its changes the output, you have to decide if you accept the changes. Otherwise you have to fix the component when the output is not the desired output.
+Snapshot tests usually stay pretty basic. You only want to cover that the component doesn't change its output. Once it changes the output, you have to decide if you accept the changes. Otherwise you have to fix the component when the output is not the desired output.
 
 ### Exercises:
 
-* see how the Snapshot tests fail once you change your component implementation
+* see how a snapshot test fails once you change your component's return value in the `render()` method
   * either accept or deny the snapshot change
-* keep your snapshots tests up to date when the implementation changes in next chapters
+* keep your snapshots tests up to date when the implementation of components change in next chapters
 * read more about [Jest in React](https://facebook.github.io/jest/docs/tutorial-react.html)
 
 ## Unit Tests with Enzyme
 
-[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests to complement your snapshot tests.
+[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests to complement your snapshot tests in React.
 
-Let's see how you can use enzyme. First you have to install it since it doesn't come with *create-react-app*.
+Let's see how you can use enzyme. First you have to install it since it doesn't come by default with *create-react-app*. It comes also with an extension to use it in React.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-npm install --save-dev enzyme react-addons-test-utils
+npm install --save-dev enzyme react-addons-test-utils enzyme-adapter-react-16
 ~~~~~~~~
 
-Now you can write your first unit test in the Table describe block. You will use `shallow()` to render your component and assert that the Table has two items.
+Second, you need to include it in your test setup and initialize its Adapter for using it in React.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -572,9 +572,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 # leanpub-start-insert
-import { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 # leanpub-end-insert
 import App, { Search, Button, Table } from './App';
+
+# leanpub-start-insert
+Enzyme.configure({ adapter: new Adapter() });
+# leanpub-end-insert
+~~~~~~~~
+
+Now you can write your first unit test in the Table "describe"-block. You will use `shallow()` to render your component and assert that the Table has two items, because you pass it two list items. The assertion simply checks if the element has two elements with the class `table-row`.
+
+{title="src/App.test.js",lang=javascript}
+~~~~~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
+# leanpub-start-insert
+import Enzyme, { shallow } from 'enzyme';
+# leanpub-end-insert
+import Adapter from 'enzyme-adapter-react-16';
+import App, { Search, Button, Table } from './App';
+
+...
 
 describe('Table', () => {
 
@@ -600,19 +621,20 @@ describe('Table', () => {
 });
 ~~~~~~~~
 
-Shallow renders the component without child components. You can make the test very dedicated to one component.
+Shallow renders the component without its child components. That way, you can make the test very dedicated to one component.
 
-Enzyme has overall three rendering mechanisms in its API. You already know `shallow()`, but there also exist `mount()` and `render()`. Both instantiate instances of the parent component and all child components. Additionally `mount()` gives you more access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
+Enzyme has overall three rendering mechanisms in its API. You already know `shallow()`, but there also exist `mount()` and `render()`. Both instantiate instances of the parent component and all child components. Additionally `mount()` gives you access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
 
 * Always begin with a shallow test
 * If `componentDidMount()` or `componentDidUpdate()` should be tested, use `mount()`
 * If you want to test component lifecycle and children behavior, use `mount()`
-* If you want to test children rendering with less overhead than `mount()` and you are not interested in lifecycle methods, use `render()`
+* If you want to test a component's children rendering with less overhead than `mount()` and you are not interested in lifecycle methods, use `render()`
 
-You could continue to unit test your components. But make sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. That's why Facebook introduced Snapshot tests with Jest in the first place.
+You could continue to unit test your components. But make sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. That's why Facebook introduced snapshot tests with Jest in the first place.
 
 ### Exercises:
 
+* write a unit test with Enzyme for your Button component
 * keep your unit tests up to date during the following chapters
 * read more about [enzyme and its rendering API](https://github.com/airbnb/enzyme)
 
@@ -786,4 +808,4 @@ You have learned how to organize your code and how to test it! Let's recap the l
 * General
   * code organization allows you to scale your application with best practices
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/393ce5a350aa34b1c7ae056333f7bb7b0807caef).
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.4).

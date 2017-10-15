@@ -1816,4 +1816,4 @@ You have learned the basics to write your own React application! Let's recap the
 
 Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. Additionally you can read more in the official [documentation](https://facebook.github.io/react/docs/installation.html).
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/2705dcd1a2027c4a6ecb8132428b399785afdfa5).
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.2).

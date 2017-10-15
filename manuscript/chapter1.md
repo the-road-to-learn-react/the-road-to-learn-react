@@ -770,4 +770,4 @@ You have learned to bootstrap your own React application! Let's recap the last c
 
 It makes sense to take a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/0c5a701170dcc72fe68bdd594df3a6522f58fbb3).
+You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.1).
