@@ -61,7 +61,7 @@ After all, you don't need to know all of these lifecycle methods from the beginn
 
 The `constructor()` and `render()` lifecycle methods are already used by you. These are the commonly used lifecycle methods for ES6 class components. Actually the `render()` method is required, otherwise you wouldn't return a component instance.
 
-There is one more lifecycle method: componentDidCatch(error, info). It was introduced in React 16 and is used to catch errors in components. For instance, displaying the sample list in your application works just fine. But there could be a case when the list in the local state is set to `null` by accident. Afterward, it wouldn't be possible to filter and map the list anymore, because it is `null` and not an empty list. The component would be broken. Now, by using `componentDidCatch()`, you can catch the error, store it in your local state, and show an optional message to your application user that an error has happened.
+There is one more lifecycle method: `componentDidCatch(error, info)`. It was introduced in [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/) and is used to catch errors in components. For instance, displaying the sample list in your application works just fine. But there could be a case when the list in the local state is set to `null` by accident (e.g. when fetching the list from an external API, but the request failed and you set the local state of the list to null). Afterward, it wouldn't be possible to filter and map the list anymore, because it is `null` and not an empty list. The component would be broken and the whole application would fail. Now, by using `componentDidCatch()`, you can catch the error, store it in your local state, and show an optional message to your application user that an error has happened.
 
 ### Exercises:
 
@@ -209,11 +209,10 @@ Back to your application: The list of hits should be visible now. However, there
 * read more about [ES6 template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
 * read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
 * read more about [data fetching in React](https://www.robinwieruch.de/react-fetching-data/)
-* experiment with the [Hacker News API](https://hn.algolia.com/api)
 
 ## ES6 Spread Operators
 
-The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the complex result object. It only know about a plain list in the local state. But it isn't a plain list anymore. Let's change it.
+The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the complex result object. It only knows about a plain list in the local state. But it isn't a plain list anymore. Let's change it to operate on the result object instead of the list itself.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -234,10 +233,11 @@ One approach could be to mutate the hits in the result object. I will demonstrat
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
+// don`t do this
 this.state.result.hits = updatedHits;
 ~~~~~~~~
 
-React embraces immutable data structures. Thus you shouldn't mutate an object (or mutate the state directly). A better approach is to generate a new object based on information you have. Thereby none of the objects get altered. You will keep the immutable data structures. You will always return a new object and never alter an object.
+React embraces immutable data structures. Thus you shouldn't mutate an object (or mutate the state directly). A better approach is to generate a new object based on the information you have. Thereby none of the objects get altered. You will keep the immutable data structures. You will always return a new object and never alter an object.
 
 Therefore you can use JavaScript ES6 `Object.assign()`. It takes as first argument a target object. All following arguments are source objects. These objects are merged into the target object. The target object can be an empty object. It embraces immutability, because no source object gets mutated. It would look similar to the following:
 
@@ -339,7 +339,7 @@ Now the "Dismiss" button should work again, because the `onDismiss()` method is 
 
 ## Conditional Rendering
 
-The conditional rendering is introduced pretty early in React applications. It happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all, a conditional rendering simplest usage can be expressed by an if-else statement in JSX.
+The conditional rendering is introduced pretty early in React applications. But not in the case of the book, because there wasn't such an use case yet. The conditional rendering happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all, a conditional rendering simplest usage can be expressed by an if-else statement in JSX.
 
 The `result` object in the internal component state is `null` in the beginning. So far, the App component returned no elements when the `result` hasn't arrived from the API. That's already a conditional rendering, because you return earlier from the `render()` lifecycle method for a certain condition. The App component either renders nothing or its elements.
 
@@ -420,7 +420,7 @@ After all, you should be able to see the fetched data in your application. Every
 
 When you use the Search component with its input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
 
-You can define an `onSearchSubmit()` method in your App component, which fetches results from the Hacker News API when executing a search in the Search component. It will be the same fetch as in your `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term.
+You can define an `onSearchSubmit()` method in your App component which fetches results from the Hacker News API when executing a search in the Search component. It will be the same fetch as in your `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -456,9 +456,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now the Search component has to add an additional button. The button has to explicitly trigger the search request. Otherwise you would fetch data every time from the Hacker News API when your input field changes. But you want to do it explicitly in a on click handler.
+Now the Search component has to add an additional button. The button has to explicitly trigger the search request. Otherwise you would fetch data from the Hacker News API every time when your input field changes. But you want to do it explicitly in a on click handler.
 
-As alternative you could debounce (delay) the `onChange()` function and spare the button, but it would add more complexity at this time. Let's keep it simple without a debounce.
+As alternative you could debounce (delay) the `onChange()` function and spare the button, but it would add more complexity at this time and maybe wouldn't be the desired effect. Let's keep it simple without a debounce for now.
 
 First, pass the `onSearchSubmit()` method to your Search component.
 
@@ -520,7 +520,7 @@ const Search = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-In the Table you can remove the filter functionality, because there will be no client-side filter (search) anymore. The result comes directly from the Hacker News API after you have clicked the "Search" button.
+In the Table, you can remove the filter functionality, because there will be no client-side filter (search) anymore. Don't forget to remove the `isSearched()` function as well. It will not be used anymore. The result comes directly from the Hacker News API now after you have clicked the "Search" button.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -560,7 +560,7 @@ const Table = ({ list, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-When you try to search now, you will notice that the browser reloads. That's a native browser behavior for a submit callback in a form. In React you will often come across the `preventDefault()` event method to suppress the native browser behavior.
+When you try to search now, you will notice that the browser reloads. That's a native browser behavior for a submit callback in a HTML form. In React you will often come across the `preventDefault()` event method to suppress the native browser behavior.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -575,24 +575,22 @@ onSearchSubmit(event) {
 }
 ~~~~~~~~
 
-Now you should be able to search different Hacker News stories. You interact with a real world API. There should be no client-side search anymore.
+Now you should be able to search different Hacker News stories. Perfect, you interact with a real world API. There should be no client-side search anymore.
 
 ### Exercises:
 
 * read more about [synthetic events in React](https://facebook.github.io/react/docs/events.html)
+* experiment with the [Hacker News API](https://hn.algolia.com/api)
 
 ## Paginated Fetch
 
-Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. The page property, which is 0 in the first response, can be used to fetch more paginated data. You only need to pass the next page with the same search term to the API.
+Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. Precisely it returns a paginated list. The page property, which is `0` in the first response, can be used to fetch more paginated sublists as result. You only need to pass the next page with the same search term to the API.
 
 Let's extend the composable API constants that so it can deal with paginated data.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const DEFAULT_QUERY = 'redux';
-# leanpub-start-insert
-const DEFAULT_PAGE = 0;
-# leanpub-end-insert
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
@@ -602,7 +600,7 @@ const PARAM_PAGE = 'page=';
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can use these constants to add the page parameter to your API request.
+Now you can use the new constant to add the page parameter to your API request.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -612,7 +610,7 @@ console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-The `fetchSearchTopStories()` method will take the page as second argument. The `componentDidMount()` and `onSearchSubmit()` methods take the `DEFAULT_PAGE` for the initial API calls. They should fetch the first page on the first request. Every additional fetch should fetch the next page.
+The `fetchSearchTopStories()` method will take the page as second argument. If you don't provide the second argument, it will fallback to the `0` page for the initial request. Thus the `componentDidMount()` and `onSearchSubmit()` methods fetch the first page on the first request. Every additional fetch should fetch the next page by providing the second argument.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -623,12 +621,12 @@ class App extends Component {
   componentDidMount() {
     const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
+    this.fetchSearchTopStories(searchTerm);
 # leanpub-end-insert
   }
 
 # leanpub-start-insert
-  fetchSearchTopStories(searchTerm, page) {
+  fetchSearchTopStories(searchTerm, page = 0) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
 # leanpub-end-insert
       .then(response => response.json())
@@ -639,7 +637,7 @@ class App extends Component {
   onSearchSubmit(event) {
     const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
+    this.fetchSearchTopStories(searchTerm);
 # leanpub-end-insert
     event.preventDefault();
   }
@@ -649,7 +647,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can use the current page from the API response in `fetchSearchTopStories()`. You can use this method in a button to fetch more stories on a button click. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` function which takes the current search term and the next page (current page + 1).
+Now you can use the current page from the API response in `fetchSearchTopStories()`. You can use this method in a button to fetch more stories on a `onClick` button handler. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` handler which takes the current search term and the next page (current page + 1).
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -685,9 +683,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-You should make sure to default to page 0 when there is no result.
+In addition, in your `render()` method you should make sure to default to page 0 when there is no result yet. Remember that the `render()` method is called before the data is fetched asynchronously in the `componentDidMount()` lifecycle method.
 
-There is one step missing. You fetch the next page of data, but it will override your previous page of data. You want to concatenate the old and new data. Let's adjust the functionality to add the new data rather than to override it.
+There is one step missing. You fetch the next page of data, but it will override your previous page of data. It would be ideal to concatenate the old and new list of hits from the local satte and new result object. Let's adjust the functionality to add the new data rather than to override it.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -711,20 +709,19 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-First, you get the hits and page from the result.
+A couple of things happen in the `setSearchTopStories()` method now. First, you get the hits and page from the result.
 
 Second, you have to check if there are already old hits. When the page is 0, it is a new search request from `componentDidMount()` or `onSearchSubmit()`. The hits are empty. But when you click the "More" button to fetch paginated data the page isn't 0. It is the next page. The old hits are already stored in your state and thus can be used.
 
 Third, you don't want to override the old hits. You can merge old and new hits from the recent API request. The merge of both lists can be done with the JavaScript ES6 array spread operator.
 
-Fourth, you set the merged hits and page in the internal component state.
+Fourth, you set the merged hits and page in the local component state.
 
-You can make one last adjustment. When you try the "More" button it only fetches a few list items. The API url can be extended to fetch more list items with each request. Again you can add more composable path constants.
+You can make one last adjustment. When you try the "More" button it only fetches a few list items. The API URL can be extended to fetch more list items with each request. Again, you can add more composable path constants.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const DEFAULT_QUERY = 'redux';
-const DEFAULT_PAGE = 0;
 # leanpub-start-insert
 const DEFAULT_HPP = '100';
 # leanpub-end-insert
@@ -742,7 +739,7 @@ Now you can use the constants to extend the API url.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-fetchSearchTopStories(searchTerm, page) {
+fetchSearchTopStories(searchTerm, page = 0) {
 # leanpub-start-insert
   fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
 # leanpub-end-insert
@@ -752,7 +749,7 @@ fetchSearchTopStories(searchTerm, page) {
 }
 ~~~~~~~~
 
-Afterward the request to the Hacker News API fetches more list items in one request than before.
+Afterward, the request to the Hacker News API fetches more list items in one request than before. As you can see, a powerful such as the Hacker News API gives you plenty of ways to experiment with real world data. You should make use of it to make your endavours when learning something new more exciting. That's [how I learned about the empowerment that APIs provide](https://www.robinwieruch.de/what-is-an-api-javascript/) when learning a new programming language or library.
 
 ### Exercises:
 
@@ -826,7 +823,7 @@ componentDidMount() {
 # leanpub-start-insert
   this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
+  this.fetchSearchTopStories(searchTerm);
 }
 
 onSearchSubmit(event) {
@@ -834,7 +831,7 @@ onSearchSubmit(event) {
 # leanpub-start-insert
   this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
+  this.fetchSearchTopStories(searchTerm);
   event.preventDefault();
 }
 ~~~~~~~~
@@ -1014,7 +1011,7 @@ class App extends Component {
 # leanpub-start-insert
 
     if (this.needsToSearchTopStories(searchTerm)) {
-      this.fetchSearchTopStories(searchTerm, DEFAULT_PAGE);
+      this.fetchSearchTopStories(searchTerm);
     }
 
 # leanpub-end-insert

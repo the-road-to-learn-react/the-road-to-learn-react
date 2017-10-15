@@ -209,7 +209,6 @@ Now the *src/constants/index.js* file could look like the following:
 {title="Code Playground: src/constants/index.js",lang="javascript"}
 ~~~~~~~~
 export const DEFAULT_QUERY = 'redux';
-export const DEFAULT_PAGE = 0;
 export const DEFAULT_HPP = '100';
 
 export const PATH_BASE = 'https://hn.algolia.com/api/v1';
@@ -225,7 +224,6 @@ The *App/index.js* file could import these variables in order to use them.
 ~~~~~~~~
 import {
   DEFAULT_QUERY,
-  DEFAULT_PAGE,
   DEFAULT_HPP,
 
   PATH_BASE,
@@ -244,7 +242,6 @@ When you use the *index.js* naming convention, you can omit the filename from th
 ~~~~~~~~
 import {
   DEFAULT_QUERY,
-  DEFAULT_PAGE,
   DEFAULT_HPP,
 
   PATH_BASE,

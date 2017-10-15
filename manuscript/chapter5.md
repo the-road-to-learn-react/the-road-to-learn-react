@@ -228,7 +228,7 @@ class App extends Component {
     });
   }
 
-  fetchSearchTopStories(searchTerm, page) {
+  fetchSearchTopStories(searchTerm, page = 0) {
 # leanpub-start-insert
     this.setState({ isLoading: true });
 # leanpub-end-insert
