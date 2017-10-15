@@ -126,6 +126,7 @@ class App extends Component {
       results: null,
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
+      error: null,
       isLoading: false,
     };
 
@@ -156,6 +157,7 @@ class App extends Component {
       searchTerm,
       results,
       searchKey,
+      error,
       isLoading
     } = this.state;
 # leanpub-end-insert

@@ -46,7 +46,7 @@ You can verify your versions of node and npm on the command line. If you don't g
 node --version
 *v8.3.0
 npm --version
-*v5.4.2
+*v5.5.1
 ~~~~~~~~
 
 ## node and npm
@@ -160,7 +160,7 @@ You can check the version of *create-react-app* to verify a successful installat
 {title="Command Line",lang="text"}
 ~~~~~~~~
 create-react-app --version
-*v1.3.3
+*v1.4.1
 ~~~~~~~~
 
 Now you can bootstrap your first React application. We call it *hackernews*, but you can choose a different name. The bootstrapping takes a couple of seconds. Afterward, simply navigate into the folder:

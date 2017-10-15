@@ -181,6 +181,7 @@ class App extends Component {
       results: null,
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
+      error: null,
 # leanpub-start-insert
       isLoading: false,
 # leanpub-end-insert
@@ -236,7 +237,7 @@ class App extends Component {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
+      .catch(e => this.setState({ error: e }));
   }
 
   ...
@@ -258,6 +259,7 @@ class App extends Component {
       searchTerm,
       results,
       searchKey,
+      error,
       isLoading
     } = this.state;
 # leanpub-end-insert
@@ -486,6 +488,7 @@ this.state = {
   results: null,
   searchKey: '',
   searchTerm: DEFAULT_QUERY,
+  error: null,
   isLoading: false,
 # leanpub-start-insert
   sortKey: 'NONE',
@@ -540,6 +543,7 @@ class App extends Component {
       searchTerm,
       results,
       searchKey,
+      error,
       isLoading,
 # leanpub-start-insert
       sortKey
@@ -550,9 +554,7 @@ class App extends Component {
 
     return (
       <div className="page">
-        <div className="interactions">
-          ...
-        </div>
+        ...
         <Table
           list={list}
 # leanpub-start-insert
@@ -561,9 +563,7 @@ class App extends Component {
 # leanpub-end-insert
           onDismiss={this.onDismiss}
         />
-        <div className="interactions">
-          ...
-        </div>
+        ...
       </div>
     );
   }
@@ -684,6 +684,7 @@ this.state = {
   results: null,
   searchKey: '',
   searchTerm: DEFAULT_QUERY,
+  error: null,
   isLoading: false,
   sortKey: 'NONE',
 # leanpub-start-insert
@@ -717,6 +718,7 @@ class App extends Component {
       searchTerm,
       results,
       searchKey,
+      error,
       isLoading,
       sortKey,
 # leanpub-start-insert

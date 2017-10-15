@@ -618,13 +618,6 @@ class App extends Component {
 
   ...
 
-  componentDidMount() {
-    const { searchTerm } = this.state;
-# leanpub-start-insert
-    this.fetchSearchTopStories(searchTerm);
-# leanpub-end-insert
-  }
-
 # leanpub-start-insert
   fetchSearchTopStories(searchTerm, page = 0) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
@@ -632,14 +625,6 @@ class App extends Component {
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
       .catch(e => e);
-  }
-
-  onSearchSubmit(event) {
-    const { searchTerm } = this.state;
-# leanpub-start-insert
-    this.fetchSearchTopStories(searchTerm);
-# leanpub-end-insert
-    event.preventDefault();
   }
 
   ...
@@ -761,7 +746,7 @@ Each search submit makes a request to the Hacker News API. You might search for 
 
 In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search term as key and the result as value. Each result from the API will be saved by search term (key).
 
-At the moment your result in the component state looks similar to the following:
+At the moment, your result in the local state looks similar to the following:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -771,7 +756,7 @@ result: {
 }
 ~~~~~~~~
 
-Imagine you have made two API requests. One for the search term "redux" and another one for "react". The results map should look like the following:
+Imagine you have made two API requests. One for the search term "redux" and another one for "react". The results object should look like the following:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -814,7 +799,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `searchKey` has to be set before each request is made. It reflects the `searchTerm`. You might wonder: Why don't we use the `searchTerm` in the first place? The `searchTerm` is a fluctuant variable, because it gets changed every time you type into the Search input field. However, in the end you will need a non fluctuant variable. It determines the recent submitted search term to the API and can be used to retrieve the correct result from the map of results. It is a pointer to your current result in the cache.
+The `searchKey` has to be set before each request is made. It reflects the `searchTerm`. You might wonder: Why don't we use the `searchTerm` in the first place? That's a crucial part to understand before continuing with the implementation. The `searchTerm` is a fluctuant variable, because it gets changed every time you type into the Search input field. However, in the end you will need a non fluctuant variable. It determines the recent submitted search term to the API and can be used to retrieve the correct result from the map of results. It is a pointer to your current result in the cache and thus can be used to display the current result in your `render()` method.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -890,11 +875,11 @@ results: {
 }
 ~~~~~~~~
 
-The bottom part makes sure to store the updated result by `searchKey` in the results map. The value is an object with a hits and page property. The `searchKey` is the search term. You already learned the `[searchKey]` syntax. It is an ES6 computed property name. It helps you to allocate values dynamically in an object.
+The bottom part makes sure to store the updated result by `searchKey` in the results map. The value is an object with a hits and page property. The `searchKey` is the search term. You already learned the `[searchKey]: ...` syntax. It is an ES6 computed property name. It helps you to allocate values dynamically in an object.
 
-The upper part needs to object spread all other results by `searchKey` in the state. Otherwise you would lose all results you stored before.
+The upper part needs to spread all other results by `searchKey` in the state by using the object spread operator. Otherwise you would lose all results that you have stored before.
 
-Now you store all results by search term. That's the first step to enable your cache. In the next step you can retrieve the result depending on the search term from your map of results.
+Now you store all results by search term. That's the first step to enable your cache. In the next step, you can retrieve the result depending on the non fluctuant `searchKey` from your map of results. That's why you had to introduce the `searchKey` in the first place as non fluctuant variable. Otherwise the retrieval would be broken when you would use the fluctuant `searchTerm` to retrieve the current result, because this value might change when you would use the Search component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -977,7 +962,7 @@ Additionally the `onDismiss()` method needs to get improved. It still deals with
 
 The "Dismiss" button should work again.
 
-However, nothing stops the application from sending an API request on each search submit. Even though there might be already a result, there is no check that prevents the request. The cache functionality is not complete yet. The last step would be to prevent the request when a result is available in the cache.
+However, nothing stops the application from sending an API request on each search submit. Even though there might be already a result, there is no check that prevents the request. Thus the cache functionality is not complete yet. It caches the results, but it doesn't make use of them. The last step would be to prevent the API request when a result is available in the cache.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1023,7 +1008,164 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now your client makes a request to the API only once although you search for a search term twice. Even paginated data with several pages gets cached that way, because you always save the last page for each result in the `results` map.
+Now your client makes a request to the API only once although you search for a search term twice. Even paginated data with several pages gets cached that way, because you always save the last page for each result in the `results` map. Isn't that a powerful approach to introduce caching to your application? The Hacker News API provides you with everything you need to even cache paginated data effectively.
+
+## Error Handling
+
+Everything is in place for your interactions with the Hacker News API. You even have introduced an elegant way to cache your results from the API and make use of its paginated list functionality to fetch an endless list of sublists of stories from the API. But there is one piece missing. Unfortunately it is often missed when developing applications nowadays: error handling. It is too easy to implement the happy path without worrying about the errors that can happen along the way.
+
+In this chapter, you will introduce an efficient solution to add error handling for your application in case of an errornous API request. You have already learned about the necessary building blocks in React to introduce error handling: local state and conditional rendering. Basically, the error is only another state in React. When an error occurs, you will store it in the local state and display it with a conditional rendering in your component. That's it. Let's implement it in the App component, because it's the component that is used to fetch the data from the Hacker News API in the first place. First, you have to introduce the error in the local state. It is initialized as null, but will be set to the error object in case of an error.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      results: null,
+      searchKey: '',
+      searchTerm: DEFAULT_QUERY,
+# leanpub-start-insert
+      error: null,
+# leanpub-end-insert
+    };
+
+    ...
+  }
+
+...
+
+}
+~~~~~~~~
+
+Second, you can use the catch block in your native fetch to store the error object in the local state by using `setState()`. Every time the API request isn't successful, the catch block would be executed.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  fetchSearchTopStories(searchTerm, page = 0) {
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(response => response.json())
+      .then(result => this.setSearchTopStories(result))
+# leanpub-start-insert
+      .catch(e => this.setState({ error: e }));
+# leanpub-end-insert
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+Third, you can retrieve the error object from your local state in the `render()` method and display a message in case of an error by using React's conditional rendering.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    const {
+      searchTerm,
+      results,
+      searchKey,
+# leanpub-start-insert
+      error
+# leanpub-end-insert
+    } = this.state;
+
+    ...
+
+# leanpub-start-insert
+    if (error) {
+      return <p>Something went wrong.</p>;
+    }
+# leanpub-end-insert
+
+    return (
+      <div className="page">
+        ...
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+That's it. If you want to test that your error handling is working, you can change the API URL to something else that is non existent.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+const PATH_BASE = 'https://hn.foo.bar.com/api/v1';
+~~~~~~~~
+
+Afterward, you should get the error message instead of your application. It is up to you where you want to place the conditional rendering for the error message. In this case, the whole app isn't displayed anymore. That wouldn't be the best user experience. So what about displaying either the Table component or the error message? The remaining application would still be visible in case of an error.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  render() {
+    const {
+      searchTerm,
+      results,
+      searchKey,
+      error
+    } = this.state;
+
+    const page = (
+      results &&
+      results[searchKey] &&
+      results[searchKey].page
+    ) || 0;
+
+    const list = (
+      results &&
+      results[searchKey] &&
+      results[searchKey].hits
+    ) || [];
+
+    return (
+      <div className="page">
+        <div className="interactions">
+          ...
+        </div>
+# leanpub-start-insert
+        { error
+          ? <div className="interactions">
+            <p>Something went wrong.</p>
+          </div>
+          : <Table
+            list={list}
+            onDismiss={this.onDismiss}
+          />
+        }
+# leanpub-end-insert
+        ...
+      </div>
+    );
+  }
+}
+~~~~~~~~
+
+In the end, don't forget to revert the URL for the API to the existent one.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+const PATH_BASE = 'https://hn.algolia.com/api/v1';
+~~~~~~~~
+
+Your application should still work, but this time with error handling in case the API request fails.
+
+### Exercises:
+
+* read more about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 {pagebreak}
 
@@ -1034,6 +1176,7 @@ You have learned to interact with an API in React! Let's recap the last chapters
   * componentDidMount() for API interactions
   * conditional renderings
   * synthetic events on forms
+  * error handling
 * ES6
   * template strings to compose strings
   * spread operator for immutable data structures

@@ -778,14 +778,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-# leanpub-start-insert
         <form>
+# leanpub-start-insert
           <input
             type="text"
             onChange={this.onSearchChange}
           />
-        </form>
 # leanpub-end-insert
+        </form>
         ...
       </div>
     );
