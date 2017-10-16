@@ -1,6 +1,6 @@
 # Outline
 
-That was the last chapter of the book. I hope you enjoyed reading it and that it helped you to get traction in React. If you liked the book, share it as a way to learn React with your friends. It should be used as giveaway. In addition, you can give the book a on [Goodreads](https://www.goodreads.com/book/show/33541539-the-road-to-learn-react) to support it.
+That was the last chapter of the book. I hope you enjoyed reading it and that it helped you to get traction in React. If you liked the book, share it as a way to learn React with your friends. It should be used as giveaway.
 
 **But where can you go from here after reading this book?** You can either extend the application on your own or give your own React project a shot. Before you dive into another book, course or tutorial, you should create your own hands-on React project. Do it for one week, take it to production by deploying it somewhere, and reach out to me on [Twitter](https://twitter.com/rwieruch) to showcase it. I am curious what you will build after you have read the book and I will gladly share it with my followers. You can also find me on [GitHub](https://github.com/rwieruch) to share your repository.
 
@@ -24,7 +24,7 @@ If you are looking for further extensions for your application, I can recommend 
 
 * **React Native:** [React Native](https://facebook.github.io/react-native/) brings your application on mobile devices. You can apply your learnings from React to ship iOS and Android applications. The learning curve, once you have learned React, shouldn't be steep in React Native. Both share the same principles. You will only encounter different layout components on mobile than you are used to in web applications.
 
-In general, I invite you to [visit my website](https://www.robinwieruch.de/) to find more interesting topics about web development and software engineering. You can [subscribe to get updates](https://www.getrevue.co/profile/rwieruch) roughly every month to your inbox. The course platform [Road to React](https://roadtoreact.com/) offers more advanced courses to learn about the React ecosystem. You should check it out!
+In general, I invite you to visit my [website](https://www.robinwieruch.de/) to find more interesting topics about web development and software engineering. You can [subscribe](https://www.getrevue.co/profile/rwieruch) to get updates roughly every month to your inbox and you can decide to support this kind of content by being my [Patron](https://www.patreon.com/rwieruch). Furthermore, the course platform [Road to React](https://roadtoreact.com/) offers more advanced courses to learn about the React ecosystem. You should check it out!
 
 Once again, if you liked the book, I want you to take a moment to think about a person who would be a good match to learn React. Reach out to that person and share the book. It would mean a lot to me. The book is intended to be given to others. It will improve over time when more people read it and share their feedback with me.
 

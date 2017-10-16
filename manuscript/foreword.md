@@ -10,25 +10,25 @@ You will learn to build your own Hacker News application. It covers real world f
 
 # Testimonials
 
-* **[Muhammad Kashif](https://twitter.com/appsdevpk/status/848625244956901376):** "The Road to Learn React is a unique book that I recommend to any student or professional interested in learning react basics to advanced level. It is packed with insightful tips and techniques that are hard to find elsewhere, and remarkably thorough in its use of examples and references to sample problems, i have 17 years of experience in web and desktop app development, and before reading this book i was having trouble in learning react, but this book works like magic."
+**[Muhammad Kashif](https://twitter.com/appsdevpk/status/848625244956901376):** "The Road to Learn React is a unique book that I recommend to any student or professional interested in learning react basics to advanced level. It is packed with insightful tips and techniques that are hard to find elsewhere, and remarkably thorough in its use of examples and references to sample problems, i have 17 years of experience in web and desktop app development, and before reading this book i was having trouble in learning react, but this book works like magic."
 
-* **[André Vargas](https://twitter.com/andrevar66/status/853789166987038720):** "The Road to Learn React by Robin Wieruch is such an awesome book! Most of what I learned about React and even ES6 was through it!"
+**[Andre Vargas](https://twitter.com/andrevar66/status/853789166987038720):** "The Road to Learn React by Robin Wieruch is such an awesome book! Most of what I learned about React and even ES6 was through it!"
 
-* **[Nicholas Hunt-Walker, Instructor of Python at a Seattle Coding School](https://twitter.com/nhuntwalker/status/845730837823840256):** "This is one of the most well-written & informative coding books I've ever worked through. A solid React & ES6 introduction."
+**[Nicholas Hunt-Walker, Instructor of Python at a Seattle Coding School](https://twitter.com/nhuntwalker/status/845730837823840256):** "This is one of the most well-written & informative coding books I've ever worked through. A solid React & ES6 introduction."
 
-* **[Austin Green](https://twitter.com/AustinGreen/status/845321540627521536):** "Thanks, really loved the book. Perfect blend to learn React, ES6, and higher level programming concepts."
+**[Austin Green](https://twitter.com/AustinGreen/status/845321540627521536):** "Thanks, really loved the book. Perfect blend to learn React, ES6, and higher level programming concepts."
 
-* **[Nicole Ferguson](https://twitter.com/nicoleffe/status/833488391148822528):** "I'm doing Robin's Road to Learn React course this weekend & I almost feel guilty for having so much fun."
+**[Nicole Ferguson](https://twitter.com/nicoleffe/status/833488391148822528):** "I'm doing Robin's Road to Learn React course this weekend & I almost feel guilty for having so much fun."
 
-* **[Karan](https://twitter.com/kvss1992/status/889197346344493056):** "Just finished your Road to React. Best book for a beginner in the world of React and JS. Elegant exposure to ES. Kudos! :)"
+**[Karan](https://twitter.com/kvss1992/status/889197346344493056):** "Just finished your Road to React. Best book for a beginner in the world of React and JS. Elegant exposure to ES. Kudos! :)"
 
-* **[Eric Priou](https://twitter.com/erixtekila/status/840875459730657283):** "The Road to learn React by Robin Wieruch is a must read. Clean and concise for React and JavaScript."
+**[Eric Priou](https://twitter.com/erixtekila/status/840875459730657283):** "The Road to learn React by Robin Wieruch is a must read. Clean and concise for React and JavaScript."
 
-* **A Rookie Developer:** "I just finished the book as a rookie developer, thanks for working on this. It was easy to follow and I feel confident in starting a new app from scratch in the coming days. The book was much better than official React.js tutorial that I tried earlier (and couldn't complete due to lack of detail). The exercises at the end of each section were very rewarding."
+**A Rookie Developer:** "I just finished the book as a rookie developer, thanks for working on this. It was easy to follow and I feel confident in starting a new app from scratch in the coming days. The book was much better than official React.js tutorial that I tried earlier (and couldn't complete due to lack of detail). The exercises at the end of each section were very rewarding."
 
-* **Student:** "The best book to start learning ReactJS. The project moves along with the concepts being learnt which helps to grasp the subject. I have found 'Code and learn' as best way to master programming and this book exactly does that."
+**Student:** "The best book to start learning ReactJS. The project moves along with the concepts being learnt which helps to grasp the subject. I have found 'Code and learn' as best way to master programming and this book exactly does that."
 
-* **[Thomas Lockney](https://www.goodreads.com/review/show/1880673388):** "Pretty solid introduction to React that doesn't try to be comprehensive. I just wanted a taste to understand what it was about and this book gave me exactly that. I didn't follow all the little footnotes to learn about the new ES6 features I've missed ("I wouldn't say I've been missing it, Bob."). But I'm sure for those of you who have fallen behind and are diligent about following those, you can probably learn a lot more than just what the book teaches."
+**[Thomas Lockney](https://www.goodreads.com/review/show/1880673388):** "Pretty solid introduction to React that doesn't try to be comprehensive. I just wanted a taste to understand what it was about and this book gave me exactly that. I didn't follow all the little footnotes to learn about the new ES6 features I've missed ("I wouldn't say I've been missing it, Bob."). But I'm sure for those of you who have fallen behind and are diligent about following those, you can probably learn a lot more than just what the book teaches."
 
 {pagebreak}
 
