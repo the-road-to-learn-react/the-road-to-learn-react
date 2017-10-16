@@ -395,7 +395,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-The component renders just fine, but when you click the button, you will get `undefined` in your developer console log. That's a main source of bugs when using React, because if you want to access `this.state` or `this.props` in your class method, it cannot be retrieved because `this` is `undefined`. So in order to make `this` accessible in your class methods, you have to bind the class methods to `this`.
+The component renders just fine, but when you click the button, you will get `undefined` in your developer console log. That's a main source of bugs when using React, because if you want to access `this.state` in your class method, it cannot be retrieved because `this` is `undefined`. So in order to make `this` accessible in your class methods, you have to bind the class methods to `this`.
 
 In the following class component the class method is properly bound in the class constructor.
 
@@ -427,7 +427,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-When trying the button again, the `this` object, to be more specific the class instance, should be defined and you would be able to access `this.state` or `this.props` now.
+When trying the button again, the `this` object, to be more specific the class instance, should be defined and you would be able to access `this.state`, or as you will later learn `this.props`, now.
 
 The class method binding can happen somewhere else too. For instance, it can happen in the `render()` class method.
 
@@ -731,6 +731,8 @@ class App extends Component {
   }
 }
 ~~~~~~~~
+
+Another performance relevant topic, that is often mentioned, are the implications of using arrow functions in event handlers. For instance, the `onClick` handler for the `onDismiss()` method is wrapping the method in another arrow function to be able to pass the item identifier. So every time the `render()` method runs, the handler instantiates the higher order arrow function. It *can* have an impact on your application performance, but in most cases you will not notice it. Imagine you have a huge table of data with 1000 items and each row or column has such an arrow function in an event handler. Then it is worth to think about the performance implications and therefore you could implement a dedicated Button component to bind the method in the constructor. But before that happens it is premature optimization. It is more valuable to focus on learning React itself.
 
 ### Exercises:
 
