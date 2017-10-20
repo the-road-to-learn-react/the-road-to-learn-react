@@ -586,7 +586,7 @@ Now you should be able to search different Hacker News stories. Perfect, you int
 
 Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. Precisely it returns a paginated list. The page property, which is `0` in the first response, can be used to fetch more paginated sublists as result. You only need to pass the next page with the same search term to the API.
 
-Let's extend the composable API constants that so it can deal with paginated data.
+Let's extend the composable API constants so that it can deal with paginated data.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
