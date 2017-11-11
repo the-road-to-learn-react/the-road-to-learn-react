@@ -1278,7 +1278,7 @@ class Table extends Component {
 
 Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short form for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
 
-By extracting those components from the App component, you would be able to reuse them somewhere else. Since components get there values by using the props object, you can pass every time different props to your components when you use them somewhere else. These components became reusable.
+By extracting those components from the App component, you would be able to reuse them somewhere else. Since components get their values by using the props object, you can pass every time different props to your components when you use them somewhere else. These components became reusable.
 
 ### Exercises:
 
