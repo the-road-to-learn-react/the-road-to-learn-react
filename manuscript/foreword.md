@@ -34,7 +34,7 @@ You will learn to build your own React application. It covers real world feature
 
 # Education for Children
 
-The book is open source and should enable everyone to learn React. However, not everyone is privileged to use open source resources, because not everyone is educated in the English language in the first place. Even though the book is pay what you want, I want to use it to support projects that teach children English in the developing world.
+The book should enable everyone to learn React. However, not everyone is privileged to use those resources, because not everyone is educated in the English language in the first place. Thus I want to use the project to support projects that teach children English in the developing world.
 
 * 11. April to 18. April, 2017, [Giving Back, By Learning React](https://www.robinwieruch.de/giving-back-by-learning-react/)
 
@@ -52,15 +52,11 @@ The book is open source and should enable everyone to learn React. However, not 
 
 **Will you add more chapters in the future?** You can have a look at the Change Log chapter for major updates that already happened. There will be unannounced improvements in between too. In general, it depends on the community whether I continue to work on the book. If there is an acceptance for the book, I will deliver more chapters and improve the old material. I will keep the content up to date with recent best practices, concepts and patterns.
 
-**What are the reading formats?** In addition to the .pdf, .epub, and .mobi formats, you can read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general, I recommend reading it on a suitable format, otherwise the code snippets will have ugly line breaks.
-
 **How can I get help while reading the book?** The book has a [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for people who are reading the book. You can join the channel to get help or to help others. After all, helping others can improve your learnings too.
 
 **Is there any troubleshoot area?** If you run into problems, please join the Slack Group. In addition, you could have a look into the [open issues on GitHub](https://github.com/rwieruch/the-road-to-learn-react/issues) for the book. Perhaps your problem was already mentioned and you can find the solution for it. If your problem wasn't mentioned, don't hesitate to open a new issue where you can explain your problem, maybe provide a screenshot, and some more details (e.g. book page, node version). After all, I try to ship all fixes in next editions of the book.
 
 **Can I help to improve it?** Yes. You can have a direct impact with your thoughts and [contributions on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in native English. I would appreciate your help very much.
-
-**Why is the book pay what you want?** I have put a lot of effort into this and will do so in the future. My desire is to reach as many people as possible. Everyone should be enabled to learn React. Still you could pay, if you can afford it. In addition, the [book attempts to support projects that educate children in the developing world](https://www.robinwieruch.de/giving-back-by-learning-react/). You can have an impact too.
 
 **Can I support the project?** Yes. Feel free to reach out. I invest a lot of my time into open source tutorials and learning resources. You can have a look at my [about me](https://www.robinwieruch.de/about/) page. I would love to have you as my [Patron on Patreon](https://www.patreon.com/rwieruch).
 
