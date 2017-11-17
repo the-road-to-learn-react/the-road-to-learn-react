@@ -1,6 +1,6 @@
 # Outline
 
-That was the last chapter of the book. I hope you enjoyed reading it and that it helped you to get traction in React. If you liked the book, share it as a way to learn React with your friends. It should be used as giveaway.
+That was the last chapter of the book. I hope you enjoyed reading it and that it helped you to get traction in React. If you liked the book, share it as a way to learn React with your friends. It should be used as giveaway. In addition, you could take 5 minutes to write a quick review about it on [Amazon](https://www.amazon.de/dp/B077HJFCQX).
 
 **But where can you go from here after reading this book?** You can either extend the application on your own or give your own React project a shot. Before you dive into another book, course or tutorial, you should create your own hands-on React project. Do it for one week, take it to production by deploying it somewhere, and reach out to me on [Twitter](https://twitter.com/rwieruch) to showcase it. I am curious what you will build after you have read the book and I will gladly share it with my followers. You can also find me on [GitHub](https://github.com/rwieruch) to share your repository.
 
