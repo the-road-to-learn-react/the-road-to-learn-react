@@ -228,7 +228,7 @@ The scripts are defined in your *package.json*. Your boilerplate React applicati
 
 * `npm start` your application and visit the application in your browser
 * run the interactive `npm test` script
-* check the content of your *public/* folder, run the `npm run build` script and verify that files were added to the folder (you can remove these files again, but they don't do any harm)
+* run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it again afterward; note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/))
 * make yourself familiar with the folder structure
 * make yourself familiar with the content of the files
 * read more about [the npm scripts and create-react-app](https://github.com/facebookincubator/create-react-app)
