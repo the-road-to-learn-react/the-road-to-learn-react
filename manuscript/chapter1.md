@@ -322,7 +322,7 @@ Additionally you might have noticed the `className` attribute. It reflects the s
 ### Exercises:
 
 * define more variables and render them in your JSX
-  * use a complex object to represent an user with a first name and last name
+  * use a complex object to represent a user with a first name and last name
   * render the user properties in your JSX
 * read more about [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
 * read more about [React components, elements and instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
