@@ -183,6 +183,7 @@ hackernews/
   public/
     favicon.ico
     index.html
+    manifest.json
   src/
     App.css
     App.js
@@ -190,6 +191,7 @@ hackernews/
     index.css
     index.js
     logo.svg
+    registerServiceWorker.js
 ~~~~~~~~
 
 A short break down of the folder and files. It is fine if you don't understand all of them in the beginning.
