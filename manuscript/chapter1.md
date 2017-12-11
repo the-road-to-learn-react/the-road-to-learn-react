@@ -230,7 +230,7 @@ The scripts are defined in your *package.json*. Your boilerplate React applicati
 
 ### Exercises:
 
-* `npm start` your application and visit the application in your browser
+* `npm start` your application and visit the application in your browser (you can exit the command by pressing Control + C )
 * run the interactive `npm test` script
 * run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it again afterward; note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/))
 * make yourself familiar with the folder structure
