@@ -86,7 +86,9 @@ Now you can focus the input field when the component mounted by using the `this`
 class Search extends Component {
 # leanpub-start-insert
   componentDidMount() {
-    this.input.focus();
+    if(this.input) {
+      this.input.focus();
+    }
   }
 # leanpub-end-insert
 
