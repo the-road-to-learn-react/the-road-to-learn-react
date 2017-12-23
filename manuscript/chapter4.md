@@ -359,6 +359,8 @@ it('renders without crashing', () => {
 
 The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suit. A test suit could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separated and organize your test cases.
 
+Note that the `it` function is acknowledged in the JavaScript community as the function where you run a single test. However, in Jest it is often found as an alias `test` function.
+
 You can run your test cases by using the interactive *create-react-app* test script on the command line. You will get the output for all test cases on your command line interface.
 
 {title="Command Line",lang="text"}
