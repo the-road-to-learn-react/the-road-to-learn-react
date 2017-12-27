@@ -18,3 +18,13 @@ In addition, you can open Issues when you run into problems. In order to make th
 
 Thanks a lot for your help,
 Robin
+
+## Backers
+
+Support us with a monthly donation and help us continue our activities.
+[[Become a backer](https://opencollective.com/the-road-to-learn-react#backer)]
+
+## Sponsors
+
+Become a sponsor and get your logo on our README on GitHub with a link to your
+site. [[Become a sponsor](https://opencollective.com/the-road-to-learn-react#sponsor)]
