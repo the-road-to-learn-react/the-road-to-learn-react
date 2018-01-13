@@ -8,7 +8,7 @@ Sometimes you need to interact with your DOM nodes in React. The `ref` attribute
 
 * to use the DOM API (focus, media playback etc.)
 * to invoke imperative DOM node animations
-* to integrate with third-party library that needs the DOM node (e.g. [D3.js](https://d3js.org/))
+* to integrate with a third-party library that needs the DOM node (e.g. [D3.js](https://d3js.org/))
 
 Let's do it by example with the Search component. When the application renders the first time, the input field should be focused. That's one use case where you would need access to the DOM API. This chapter will show you how it works, but since it is not very useful for the application itself, we will omit the changes after the chapter. You can keep it for your own application though.
 
@@ -420,7 +420,7 @@ You can either fix the component now, when you think there is something wrong ab
 
 Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
 
-I encourage you to read the [gentle introduction to higher order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them a functional programming way and solves specifically the problem of conditional rendering with higher order components.
+I encourage you to read the [gentle introduction to higher order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them in a functional programming way and solves specifically the problem of conditional rendering with higher order components.
 
 ### Exercises:
 

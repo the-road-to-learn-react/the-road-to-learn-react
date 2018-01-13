@@ -628,7 +628,7 @@ function () { ... }
 
 But you have to be aware of its functionalities. One of them is a different behavior with the `this` object. A function expression always defines its own `this` object. Arrow function expressions still have the `this` object of the enclosing context. Don't get confused when using `this` in an arrow function.
 
-There is another valuable fact about arrow functions regarding the parenthesis. You can remove the parenthesis when the function gets only one argument, but have to keep them when it gets multiple arguments.
+There is another valuable fact about arrow functions regarding the parentheses. You can remove the parentheses when the function gets only one argument, but have to keep them when it gets multiple arguments.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
