@@ -390,7 +390,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-That will fix the issue with a stale state. There is one more improvement. Since it is a function, you can extract the function for an improved readability. That's one more advantage to use a function over an object. The function can live outside of the component. But you have to use a higher order function to pass the result to it. After all, you want to update the state based on the fetched result from the API.
+That will fix the issue with a stale state. There is one more improvement. Since it is a function, you can extract the function for an improved readability. That's one more advantage to use a function over an object. The function can live outside of the component. But you have to use a higher-order function to pass the result to it. After all, you want to update the state based on the fetched result from the API.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -400,7 +400,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-The `updateSearchTopStoriesState()` function has to return a function. It is a higher order function. You can define this higher order function outside of your App component. Note how the function signature changes slightly now.
+The `updateSearchTopStoriesState()` function has to return a function. It is a higher-order function. You can define this higher-order function outside of your App component. Note how the function signature changes slightly now.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
