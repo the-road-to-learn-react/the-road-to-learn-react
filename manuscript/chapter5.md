@@ -283,7 +283,7 @@ Initially the Loading component will show up when you start your application, be
 
 ## Higher-Order Components
 
-Higher order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher-order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
+Higher-order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher-order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
 
 HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand, the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.
 
@@ -418,7 +418,7 @@ When you run your tests again, you will notice that your snapshot test for the A
 
 You can either fix the component now, when you think there is something wrong about it, or can accept the new snapshot of it. Because you introduced the Loading component in this chapter, you can accept the altered snapshot test on the command line in the interactive test.
 
-Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
+Higher-order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
 
 I encourage you to read the [gentle introduction to higher-order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them in a functional programming way and solves specifically the problem of conditional rendering with higher-order components.
 
