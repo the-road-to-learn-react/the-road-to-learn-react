@@ -1,6 +1,6 @@
 # The Road to learn React
 
-The official repository for [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). In addition, here you can find the [Source Code](https://github.com/the-road-to-learn-react/hackernews-client) and [Complete Course](https://roadtoreact.com/).
+The official repository for [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). In addition, here you can find the [Source Code](https://github.com/the-road-to-learn-react/hackernews-client) and [Complete Course](https://roadtoreact.com/). If you want to leave a review, you can do it on [Amazon](https://www.amazon.com/dp/B077HJFCQX) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react).
 
 ## Updates, Help and Support
 
@@ -16,15 +16,8 @@ You can open up any PR that corrects spelling or explains a certain lesson with 
 
 In addition, you can open Issues when you run into problems. In order to make the fix for the Issue as easy as possible, please provide a couple of details such as error log, screenshot, which page of the book it happened, your node version (command line: node -v) and a link to your own repository. Not all of these details are mandatory, but most of them help to fix the Issue and to improve the book.
 
-Thanks a lot for your help,
-Robin
+Thanks a lot for your help!
 
-## Backers
+## Become a Patron
 
-Support us with a monthly donation and help us continue our activities.
-[Become a backer](https://opencollective.com/the-road-to-learn-react#backer)
-
-## Sponsors
-
-Become a sponsor and get your logo on our README on GitHub with a link to your
-site. [Become a sponsor](https://opencollective.com/the-road-to-learn-react#sponsor)
+The Road to learn React is a free ebook which should enable everyone to learn about React. This kind of educational content needs your support to sustain itself. Robin Wieruch writes a lot of this educational content on [his website](https://www.robinwieruch.de/) too. So you can support him be being his [Patron on Patreon](https://www.patreon.com/rwieruch).
