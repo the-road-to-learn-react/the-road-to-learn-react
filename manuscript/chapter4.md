@@ -357,7 +357,7 @@ it('renders without crashing', () => {
 });
 ~~~~~~~~
 
-The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suit. A test suit could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separated and organize your test cases.
+The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suite. A test suite could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separated and organize your test cases.
 
 Note that the `it` function is acknowledged in the JavaScript community as the function where you run a single test. However, in Jest it is often found as an alias `test` function.
 
@@ -384,7 +384,7 @@ Before writing your first snapshot test with Jest, you have to install an utilit
 npm install --save-dev react-test-renderer
 ~~~~~~~~
 
-Now you can extend the App component test with your first snapshot test. First, import the new functionality from the node package and wrap your previous "it"-block for the App component into a descriptive "describe"-block. In this case, the test suit is only for the App component.
+Now you can extend the App component test with your first snapshot test. First, import the new functionality from the node package and wrap your previous "it"-block for the App component into a descriptive "describe"-block. In this case, the test suite is only for the App component.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -700,7 +700,7 @@ Additionally you have two more PropTypes to define a renderable fragment (node),
 * PropTypes.node
 * PropTypes.element
 
-You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up in the official React documentation.
+You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up on in the official React documentation.
 
 At the moment all of the defined PropTypes for the Button are optional. The parameters can be null or undefined. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
 
@@ -729,7 +729,7 @@ Table.propTypes = {
 # leanpub-end-insert
 ~~~~~~~~
 
-You can define the content of an array PropType more explicit:
+You can define the content of an array PropType more explicitly:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~

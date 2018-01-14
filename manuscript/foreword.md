@@ -136,7 +136,7 @@ Since you are reading the book, I guess you are new to React. That's perfect. In
   * client-sided filtering
   * server-sided searching
 * implementation of client-side caching
-* higher order functions and higher order components
+* higher-order functions and higher-order components
 * snapshot test components with Jest
 * unit test components with Enzyme
 * neat libraries along the way
