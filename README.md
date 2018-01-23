@@ -1,4 +1,4 @@
-# The Road to learn React
+# The Road to learn React [Book]
 
 The official repository for [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). In addition, here you can find the [Source Code](https://github.com/the-road-to-learn-react/hackernews-client) and [Complete Course](https://roadtoreact.com/). If you want to leave a review, you can do it on [Amazon](https://www.amazon.com/dp/B077HJFCQX) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react).
 
