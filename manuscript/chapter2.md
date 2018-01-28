@@ -978,7 +978,7 @@ Another neat refactoring can be done with an ES6 arrow function again. It makes 
 // ES5
 function isSearched(searchTerm) {
   return function(item) {
-    return item.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
   }
 }
 
