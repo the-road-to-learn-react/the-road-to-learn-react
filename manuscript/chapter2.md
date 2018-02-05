@@ -346,8 +346,6 @@ onDismiss(id) {
 
 Now run again your application and try the "Dismiss" button. It should work. What you experience now is the **unidirectional data flow** in React. You trigger an action in your view with `onClick()`, a function or class method modifies the internal component state and the `render()` method of the component runs again to update the view.
 
-![Internal state update with unidirectional data flow](images/set-state-to-render-unidirectional.png)
-
 ### Exercises:
 
 * read more about [the state and lifecycle in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
