@@ -634,6 +634,8 @@ class App extends Component {
 }
 ~~~~~~~~
 
+The page argument uses the JavaScript ES6 default parameter to introduce the fallback to page `0` in case no defined page argument is provided for the function.
+
 Now you can use the current page from the API response in `fetchSearchTopStories()`. You can use this method in a button to fetch more stories on a `onClick` button handler. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` handler which takes the current search term and the next page (current page + 1).
 
 {title="src/App.js",lang=javascript}
@@ -740,6 +742,7 @@ Afterward, the request to the Hacker News API fetches more list items in one req
 
 ### Exercises:
 
+* read more about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 * experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
 
 ## Client Cache

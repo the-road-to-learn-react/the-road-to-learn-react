@@ -1411,9 +1411,7 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-The Button component expects a `className` property in the props. The `className` attribute is another React derivate for the HTML attribute class. But we didn't pass any `className` when the Button was used. In the code it should be more explicit in the Button component that the `className` is optional.
-
-Therefore, you can use the default parameter which is a JavaScript ES6 feature.
+The Button component expects a `className` property in the props. The `className` attribute is another React derivate for the HTML attribute class. But we didn't pass any `className` when the Button was used. In the code it should be more explicit in the Button component that the `className` is optional. Therefore, you can assign a default value in your object destructuring.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1433,10 +1431,6 @@ class Button extends Component {
 ~~~~~~~~
 
 Now, whenever there is no `className` property specified when using the Button component, the value will be an empty string instead of `undefined`.
-
-### Exercises:
-
-* read more about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
 ## Component Declarations
 
