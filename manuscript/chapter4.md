@@ -354,6 +354,7 @@ import App from './App';
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
+  ReactDOM.unmountComponentAtNode(div);
 });
 ~~~~~~~~
 
@@ -367,11 +368,6 @@ You can run your test cases by using the interactive *create-react-app* test scr
 ~~~~~~~~
 npm test
 ~~~~~~~~
-
-**Note:** If errors show up when you run the single test for the App component for the first time, it could be because of the unsupported fetch method that is used in `fetchSearchTopStories()` which is triggered in `componentDidMount()`. You can make it work by following these two steps:
-
-* On the command line, install the following package: `npm install isomorphic-fetch`
-* Include it in your *App.js* file: `import fetch from 'isomorphic-fetch';`
 
 Now Jest enables you to write snapshot tests. These tests make a snapshot of your rendered component and run this snapshot against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the diffs of the rendered output. It doesn't add big maintenance costs, because you can simply accept changed snapshots when you changed something on purpose for the rendered output in your component.
 
@@ -397,14 +393,15 @@ import App from './App';
 
 # leanpub-start-insert
 describe('App', () => {
-# leanpub-end-insert
 
+# leanpub-end-insert
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
-
 # leanpub-start-insert
+
 });
 # leanpub-end-insert
 ~~~~~~~~
@@ -423,6 +420,7 @@ describe('App', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
 # leanpub-start-insert
@@ -433,8 +431,8 @@ describe('App', () => {
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
-# leanpub-end-insert
 
+# leanpub-end-insert
 });
 ~~~~~~~~
 
@@ -461,6 +459,7 @@ describe('Search', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Search>Search</Search>, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
@@ -494,6 +493,7 @@ describe('Button', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Button>Give Me More</Button>, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
@@ -659,6 +659,8 @@ Now, you can import the PropTypes.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
+import React, { Component } from 'react';
+import axios from 'axios';
 # leanpub-start-insert
 import PropTypes from 'prop-types';
 # leanpub-end-insert
@@ -668,7 +670,11 @@ Let's start to assign a props interface to the components:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-const Button = ({ onClick, className = '', children }) =>
+const Button = ({
+  onClick,
+  className = '',
+  children,
+}) =>
   <button
     onClick={onClick}
     className={className}
@@ -789,7 +795,7 @@ Button.defaultProps = {
 
 Same as the ES6 default parameter, the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
 
-If you run your tests again, you might see PropType errors for your components on your command line. It can happen because you didn't define all props for your components in the tests that are defined as required in your PropType definition. The tests themselves all pass correctly though. You can pass all required props to avoid these errors.
+If you run your tests again, you might see PropType errors for your components on your command line. It can happen because you didn't define all props for your components in the tests that are defined as required in your PropType definition. The tests themselves all pass correctly though. You can pass all required props to the components in your tests to avoid these errors.
 
 ### Exercises:
 

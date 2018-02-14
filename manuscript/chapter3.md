@@ -1219,6 +1219,108 @@ Your application should still work, but this time with error handling in case th
 ### Exercises:
 
 * read more about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+
+## Axios instead of Fetch
+
+- show power of React's flexible ecosystem, let's exchange the native fetch API with axios
+
+{title="Command Line",lang="text"}
+~~~~~~~~
+npm install axios
+~~~~~~~~
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+# leanpub-start-insert
+import axios from 'axios';
+# leanpub-end-insert
+import './App.css';
+
+...
+~~~~~~~~
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  fetchSearchTopStories(searchTerm, page = 0) {
+# leanpub-start-insert
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(result => this.setSearchTopStories(result.data))
+# leanpub-end-insert
+      .catch(error => this.setState({ error }));
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+- benefits: if you test your application in a browserless environemtn later on, you are not dependent on the native fetch API of the browser which can cause trouble in tests, because there is no browser
+
+- benefits: you can cancel a request with axios
+- Imagien you can navigate in your application from page A to page B. In page A, you would have a request on `componentDidMount()` as you have in your App component right now. However, when you navigate to page B during the request which happens in the lifecycle method, the request resolves eventually but would end up in the void. due to the navigation, the App component would have been unmounted already and the `then()` block of the request would call `this.setState()` without any effect. Thus you should consider to cancel the request because it  hasn't an effect anymore (only in Error!)
+
+- since a Promise cannot be cancelled in JavaScript yet, there exists a workaround to stop the request when a componen did unmount.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+# leanpub-start-insert
+  _isMounted = false;
+# leanpub-end-insert
+
+  constructor(props) {
+    ...
+  }
+
+  ...
+
+  componentDidMount() {
+# leanpub-start-insert
+    this._isMounted = true;
+# leanpub-end-insert
+
+    const { searchTerm } = this.state;
+    this.setState({ searchKey: searchTerm });
+    this.fetchSearchTopStories(searchTerm);
+  }
+
+# leanpub-start-insert
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+# leanpub-end-insert
+
+  ...
+
+}
+~~~~~~~~
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  fetchSearchTopStories(searchTerm, page = 0) {
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(result => this.setSearchTopStories(result.data))
+# leanpub-start-insert
+      .catch(error => this._isMounted && this.setState({ error }));
+# leanpub-end-insert
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+### Exercises:
+
 * read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
 
 {pagebreak}
@@ -1231,6 +1333,7 @@ You have learned to interact with an API in React! Let's recap the last chapters
   * conditional renderings
   * synthetic events on forms
   * error handling
+  * aborting a request
 * ES6
   * template strings to compose strings
   * spread operator for immutable data structures

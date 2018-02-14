@@ -1,6 +1,6 @@
 # Advanced React Components
 
-The chapter will focus on the implementation of advanced React components. You will learn about higher-order components and how to implement them. In addition you will dive into more advanced topics in React and implement complex interactions with it.
+The chapter will focus on the implementation of advanced React components. You will learn about higher-order components and how to implement them. In addition, you will dive into more advanced topics in React and implement complex interactions with it.
 
 ## Ref a DOM Element
 
@@ -172,6 +172,7 @@ Now you will need a property to store the loading state. Based on the loading st
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
+  _isMounted = false;
 
   constructor(props) {
     super(props);
@@ -223,10 +224,9 @@ class App extends Component {
     this.setState({ isLoading: true });
 # leanpub-end-insert
 
-    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
-      .then(response => response.json())
-      .then(result => this.setSearchTopStories(result))
-      .catch(error => this.setState({ error }));
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(result => this.setSearchTopStories(result.data))
+      .catch(error => this._isMounted && this.setState({ error }));
   }
 
   ...
@@ -350,7 +350,11 @@ Now you can use the HOC in your JSX. An use case in the application could be to 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-const Button = ({ onClick, className = '', children }) =>
+const Button = ({
+  onClick,
+  className = '',
+  children,
+}) =>
   <button
     onClick={onClick}
     className={className}
@@ -445,7 +449,7 @@ Now you can import the sort functionality of Lodash in your *src/App.js* file.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 # leanpub-start-insert
 import { sortBy } from 'lodash';
 # leanpub-end-insert
@@ -501,6 +505,7 @@ Now you can define a new class method in your App component that simply sets a `
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
+  _isMounted = false;
 
   constructor(props) {
 
@@ -516,6 +521,8 @@ class App extends Component {
     this.onSort = this.onSort.bind(this);
 # leanpub-end-insert
   }
+
+  ...
 
 # leanpub-start-insert
   onSort(sortKey) {
@@ -900,7 +907,7 @@ And second you have to import it on top of your *src/App.js* file.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 import { sortBy } from 'lodash';
 # leanpub-start-insert
 import classNames from 'classnames';
