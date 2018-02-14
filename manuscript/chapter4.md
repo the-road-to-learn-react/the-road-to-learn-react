@@ -358,7 +358,7 @@ it('renders without crashing', () => {
 });
 ~~~~~~~~
 
-The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suite. A test suite could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separated and organize your test cases.
+The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suite. A test suite could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separate and organize your test cases.
 
 Note that the `it` function is acknowledged in the JavaScript community as the function where you run a single test. However, in Jest it is often found as an alias `test` function.
 
