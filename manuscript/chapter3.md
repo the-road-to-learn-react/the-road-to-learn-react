@@ -142,7 +142,7 @@ class App extends Component {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
+      .catch(error => error);
   }
 
   componentDidMount() {
@@ -626,7 +626,7 @@ class App extends Component {
 # leanpub-end-insert
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
+      .catch(error => error);
   }
 
   ...
@@ -734,7 +734,7 @@ fetchSearchTopStories(searchTerm, page = 0) {
 # leanpub-end-insert
     .then(response => response.json())
     .then(result => this.setSearchTopStories(result))
-    .catch(e => e);
+    .catch(error => error);
 }
 ~~~~~~~~
 
@@ -1057,7 +1057,7 @@ class App extends Component {
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
 # leanpub-start-insert
-      .catch(e => this.setState({ error: e }));
+      .catch(error => this.setState({ error }));
 # leanpub-end-insert
   }
 
