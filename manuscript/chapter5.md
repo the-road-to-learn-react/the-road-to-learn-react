@@ -154,8 +154,8 @@ Now you would be able to access the input DOM element. In the example of the foc
 
 ### Exercises
 
-* read more about [the ref attribute in general in React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
 * read more about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* read more about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
 
 ## Loading ...
 
@@ -991,4 +991,4 @@ You have learned advanced component techniques in React! Let's recap the last ch
 * ES6
   * rest destructuring to split up objects and arrays
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.5).
+You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.5).

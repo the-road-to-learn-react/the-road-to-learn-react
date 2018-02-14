@@ -143,7 +143,7 @@ Because of this reason, Facebook introduced *create-react-app* as a zero-configu
 
 ### Exercises:
 
-* read more about [React installations](https://facebook.github.io/react/docs/installation.html)
+* read more about [React installations](https://reactjs.org/docs/try-react.html)
 
 ## Zero-Configuration Setup
 
@@ -322,14 +322,14 @@ export default App;
 
 It should work when you start your application on the command line with `npm start` again.
 
-Additionally you might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML. Because of technical reasons, JSX had to replace a handful of internal HTML attributes. You can find all of the [supported HTML attributes in the React documentation](https://facebook.github.io/react/docs/dom-elements.html). They all follow the camelCase convention. On your way to learn React, you will come across some more JSX specific attributes.
+Additionally you might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML. Because of technical reasons, JSX had to replace a handful of internal HTML attributes. You can find all of the [supported HTML attributes in the React documentation](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes). They all follow the camelCase convention. On your way to learn React, you will come across some more JSX specific attributes.
 
 ### Exercises:
 
 * define more variables and render them in your JSX
   * use a complex object to represent a user with a first name and last name
   * render the user properties in your JSX
-* read more about [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
+* read more about [JSX](https://reactjs.org/docs/introducing-jsx.html)
 * read more about [React components, elements and instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
 
 ## ES6 const and let
@@ -436,7 +436,7 @@ ReactDOM.render(
 ### Exercises:
 
 * open the *public/index.html* to see where the React applications hooks into your HTML
-* read more about [rendering elements in React](https://facebook.github.io/react/docs/rendering-elements.html)
+* read more about [rendering elements in React](https://reactjs.org/docs/rendering-elements.html)
 
 ## Hot Module Replacement
 
@@ -610,7 +610,7 @@ You are displaying both list items now. You can start your app, open your browse
 
 ### Exercises:
 
-* read more about [React lists and keys](https://facebook.github.io/react/docs/lists-and-keys.html)
+* read more about [React lists and keys](https://reactjs.org/docs/lists-and-keys.html)
 * recap the [standard built-in array functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 * use more JavaScript expressions on your own in JSX
 
@@ -773,6 +773,4 @@ You have learned to bootstrap your own React application! Let's recap the last c
   * arrow functions can be used to keep your functions concise
   * classes are used to define components in React by extending them
 
-It makes sense to take a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
-
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.1).
+It makes sense to take a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1).

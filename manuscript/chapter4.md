@@ -801,7 +801,7 @@ If you run your tests again, you might see PropType errors for your components o
 
 * define the PropType interface for the Search component
 * add and update the PropType interfaces when you add and update components in the next chapters
-* read more about [React PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
+* read more about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 
@@ -816,4 +816,4 @@ You have learned how to organize your code and how to test it! Let's recap the l
 * General
   * code organization allows you to scale your application with best practices
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.4).
+You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.4).

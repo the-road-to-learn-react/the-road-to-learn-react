@@ -275,7 +275,7 @@ The process of lifting state can go the other way as well: from child to parent 
 
 ### Exercises:
 
-* read more about [lifting state in React](https://facebook.github.io/react/docs/lifting-state-up.html)
+* read more about [lifting state in React](https://reactjs.org/docs/lifting-state-up.html)
 * read more about lifting state in [learn React before using Redux](https://www.robinwieruch.de/learn-react-before-using-redux/)
 
 ## Revisited: setState()
@@ -442,7 +442,7 @@ That's it. The function over an object approach in `setState()` fixes potential 
 
 ### Exercise:
 
-* read more about [React using state correctly](https://facebook.github.io/react/docs/state-and-lifecycle.html#using-state-correctly)
+* read more about [React using state correctly](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
 * export updateSearchTopStoriesState from the file
  * write a test for it which passes the a payload (hits, page) and a made up previous state and finally expect a new state
 * refactor your `setState()` methods to use a function
@@ -475,4 +475,4 @@ You have learned advanced state management in React! Let's recap the last chapte
   * setState can use a function to prevent stale state bugs
   * existing external solutions that help you to tame the state
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.6).
+You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.6).

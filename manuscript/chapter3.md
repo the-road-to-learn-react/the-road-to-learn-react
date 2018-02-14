@@ -65,8 +65,8 @@ There is one more lifecycle method: `componentDidCatch(error, info)`. It was int
 
 ### Exercises:
 
-* read more about [lifecycle methods in React](https://facebook.github.io/react/docs/react-component.html)
-* read more about [the state related to lifecycle methods in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* read more about [lifecycle methods in React](https://reactjs.org/docs/react-component.html)
+* read more about [the state related to lifecycle methods in React](https://reactjs.org/docs/state-and-lifecycle.html)
 * read more about [error handling in components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Fetching Data
@@ -411,8 +411,8 @@ After all, you should be able to see the fetched data in your application. Every
 
 ### Exercises:
 
-* read more about [React conditional rendering](https://facebook.github.io/react/docs/conditional-rendering.html)
 * read more about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
+* read more about [React conditional rendering](https://reactjs.org/docs/conditional-rendering.html)
 
 ## Client- or Server-side Search
 
@@ -629,7 +629,7 @@ Now you should be able to search different Hacker News stories. Perfect, you int
 
 ### Exercises:
 
-* read more about [synthetic events in React](https://facebook.github.io/react/docs/events.html)
+* read more about [synthetic events in React](https://reactjs.org/docs/events.html)
 * experiment with the [Hacker News API](https://hn.algolia.com/api)
 
 ## Paginated Fetch
@@ -1345,6 +1345,4 @@ You have learned to interact with an API in React! Let's recap the last chapters
   * pagination of data
   * client-side caching
 
-Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
-
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.3).
+Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.3.1).
