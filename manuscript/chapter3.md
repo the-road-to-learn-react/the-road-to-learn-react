@@ -1219,6 +1219,7 @@ Your application should still work, but this time with error handling in case th
 ### Exercises:
 
 * read more about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
 
 {pagebreak}
 
