@@ -24,6 +24,7 @@ React is probably one of the best choices for building modern web applications n
 
 * read about [why I moved from Angular to React](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
 * read about [React's flexible ecosystem](https://www.robinwieruch.de/essential-react-libraries-framework/)
+* read about [how to learn a framework](https://www.robinwieruch.de/how-to-learn-framework/)
 
 ## Requirements
 
@@ -44,7 +45,7 @@ You can verify your versions of node and npm on the command line. If you don't g
 {title="Command Line",lang="text"}
 ~~~~~~~~
 node --version
-*v8.3.0
+*v8.9.4
 npm --version
 *v5.6.0
 ~~~~~~~~
@@ -160,7 +161,7 @@ You can check the version of *create-react-app* to verify a successful installat
 {title="Command Line",lang="text"}
 ~~~~~~~~
 create-react-app --version
-*v1.4.1
+*v1.5.1
 ~~~~~~~~
 
 Now you can bootstrap your first React application. We call it *hackernews*, but you can choose a different name. The bootstrapping takes a couple of seconds. Afterward, simply navigate into the folder:
