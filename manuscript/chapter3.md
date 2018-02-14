@@ -127,7 +127,6 @@ class App extends Component {
 
 # leanpub-start-insert
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
-    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
 # leanpub-end-insert
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
@@ -138,16 +137,13 @@ class App extends Component {
     this.setState({ result });
   }
 
-  fetchSearchTopStories(searchTerm) {
+  componentDidMount() {
+    const { searchTerm } = this.state;
+
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
       .catch(error => error);
-  }
-
-  componentDidMount() {
-    const { searchTerm } = this.state;
-    this.fetchSearchTopStories(searchTerm);
   }
 # leanpub-end-insert
 
@@ -163,7 +159,7 @@ Second, you use the `componentDidMount()` lifecycle method to fetch the data aft
 
 Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the URL with the `searchTerm`. The URL is the argument for the native fetch API function. The response needs to get transformed to a JSON data structure, which is a mandatory step in a native fetch function when dealing with JSON data structures, and can finally be set as result in the internal component state. In addition, the catch block is used in case of an error. If an error happens during the request, the function will run into the catch block instead of the then block. In a later chapter of the book, you will include the error handling.
 
-Last but not least, don't forget to bind your new component methods in the constructor.
+Last but not least, don't forget to bind your new component method in the constructor.
 
 Now you can use the fetched data instead of the sample list of items. However, you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits which are in our case the stories](https://hn.algolia.com/api). You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
 
@@ -422,7 +418,7 @@ After all, you should be able to see the fetched data in your application. Every
 
 When you use the Search component with its input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
 
-You can define an `onSearchSubmit()` method in your App component which fetches results from the Hacker News API when executing a search in the Search component. It will be the same fetch as in your `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term.
+You can define an `onSearchSubmit()` method in your App component which fetches results from the Hacker News API when executing a search in the Search component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -437,7 +433,6 @@ class App extends Component {
     };
 
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
-    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
 # leanpub-start-insert
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
@@ -450,9 +445,62 @@ class App extends Component {
 # leanpub-start-insert
   onSearchSubmit() {
     const { searchTerm } = this.state;
-    this.fetchSearchTopStories(searchTerm);
   }
 # leanpub-end-insert
+
+  ...
+}
+~~~~~~~~
+
+The `onSearchSubmit()` method should use the same functionality as the `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term. Thus you can extract the functionality as a reusable class method.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      result: null,
+      searchTerm: DEFAULT_QUERY,
+    };
+
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+# leanpub-start-insert
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
+# leanpub-end-insert
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  ...
+
+# leanpub-start-insert
+  fetchSearchTopStories(searchTerm) {
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
+      .then(response => response.json())
+      .then(result => this.setSearchTopStories(result))
+      .catch(error => error);
+  }
+# leanpub-end-insert
+
+  componentDidMount() {
+    const { searchTerm } = this.state;
+# leanpub-start-insert
+    this.fetchSearchTopStories(searchTerm);
+# leanpub-end-insert
+  }
+
+  ...
+
+  onSearchSubmit() {
+    const { searchTerm } = this.state;
+# leanpub-start-insert
+    this.fetchSearchTopStories(searchTerm);
+# leanpub-end-insert
+  }
 
   ...
 }
