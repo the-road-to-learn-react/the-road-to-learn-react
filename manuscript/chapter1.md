@@ -46,7 +46,7 @@ You can verify your versions of node and npm on the command line. If you don't g
 node --version
 *v8.3.0
 npm --version
-*v5.5.1
+*v5.6.0
 ~~~~~~~~
 
 ## node and npm
