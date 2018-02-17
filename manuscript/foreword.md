@@ -121,6 +121,16 @@ The book should enable everyone to learn React. However, not everyone is privile
 * 190+ pages of learning material
 * [+9 Source Code Projects](https://roadtoreact.com/course-details?courseId=THE_ROAD_TO_LEARN_REACT)
 
+**17. February 2018:**
+
+* upgrade to node 8.9.4
+* upgrade to npm 5.6.0
+* upgrade to create-react-app 1.5.1
+* [v5 Pull Request](https://github.com/the-road-to-learn-react/the-road-to-learn-react/pull/105)
+* more learning paths
+* extra reading material
+* 1 new chapter (Axios instead of Fetch)
+
 {pagebreak}
 
 # How to read it?
