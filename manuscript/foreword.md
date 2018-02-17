@@ -22,7 +22,7 @@ Nowadays, Robin is self-employed to teach others. He finds it a fulfilling activ
 
 # Testimonials
 
-There are many [testimonials](https://roadtoreact.com/), [ratings](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) and [reviews](https://www.amazon.com/dp/B077HJFCQX?tag=21moves-20) about the book which should confirm the quality of it. I am so proud of it, because I never expected such an overwhelming feedback. If you enjoy the book as well, I would love to find your rating/review somewhere as well. It helps me to spread the word about the book. The following shows a short excerpt of these good voices:
+There are many [testimonials](https://roadtoreact.com/), [ratings](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) and [reviews](https://www.amazon.com/dp/B077HJFCQX) about the book which should confirm the quality of it. I am so proud of it, because I never expected such an overwhelming feedback. If you enjoy the book as well, I would love to find your rating/review somewhere as well. It helps me to spread the word about the book. The following shows a short excerpt of these good voices:
 
 **[Muhammad Kashif](https://twitter.com/appsdevpk/status/848625244956901376):** "The Road to Learn React is a unique book that I recommend to any student or professional interested in learning react basics to advanced level. It is packed with insightful tips and techniques that are hard to find elsewhere, and remarkably thorough in its use of examples and references to sample problems, i have 17 years of experience in web and desktop app development, and before reading this book i was having trouble in learning react, but this book works like magic."
 
