@@ -1222,12 +1222,18 @@ Your application should still work, but this time with error handling in case th
 
 ## Axios instead of Fetch
 
-- show power of React's flexible ecosystem, let's exchange the native fetch API with axios
+In one of the previous chapters, you have introduced the native fetch API to perform a request to the Hacker News platform. The browser enables you to use this native fetch API. However, not all browsers, especially older browsers, support it. In addition, once you start to test your application in a headless browser environment (there is no browser, instead it is only mocked), there can be issues regarding the fetch API. Such a headless browser environment can happen when writing and executing tests for your application which don't run in a real browser. There are a couple of ways to make fetch work in older browsers (polyfills) and in tests ([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)), but we won't go down this rabbit hole in this book.
+
+An alternative way to solve it would be to substitute the native fetch API with a stable library such as [axios](https://github.com/axios/axios). Axios is a library that solves only one problem, but it solves it with a high quality: performing asynchronous requests to remote APIs. That's why you will use it in this book. On a concrete level, the chapter should show you how you can substitute a library (which is a native API of the browser in this case) with another library. On an abstract level, it should show you how you can always find a solution for the quirks (e.g. old browsers, headless browser tests) in web development. So never stop to look for solutions if anything gets in your way.
+
+Let's see how the native fetch API can be substituted with axios. Actually everything said before sounds more difficult than it is. First, you have to install axios on the command line:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install axios
 ~~~~~~~~
+
+Second, you can import axios in your App component's file:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1239,6 +1245,8 @@ import './App.css';
 
 ...
 ~~~~~~~~
+
+And last but not least, you can use it instead of `fetch()`. Its usage looks almost identical to the native fetch API. It takes the URL as argument and returns a promise. You don't have to transform the returned response to JSON anymore. Axios is doing it for you and wraps the result into a `data` object in JavaScript. Thus make sure to adapt your code to the returned data structure.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1259,12 +1267,18 @@ class App extends Component {
 }
 ~~~~~~~~
 
-- benefits: if you test your application in a browserless environemtn later on, you are not dependent on the native fetch API of the browser which can cause trouble in tests, because there is no browser
+That's it for replacing fetch with axios in this chapter. In your code, you are calling `axios()` which uses by default a HTTP GET request. You can make the GET request explicit by calling `axios.get()`. Also you can use another HTTP method such as HTTP POST with `axios.post()` instead. There you can already see how axios is a powerful library to perform requests to remote APIs. I often recommend to use it over the native fetch API when your API requests become complex or you have to deal with web development quirks with promises. In addition, in a later chapter, you will introduce testing in your application. Then you don't need to worry anymore about a browser or headless browser environment.
 
-- benefits: you can cancel a request with axios
-- Imagien you can navigate in your application from page A to page B. In page A, you would have a request on `componentDidMount()` as you have in your App component right now. However, when you navigate to page B during the request which happens in the lifecycle method, the request resolves eventually but would end up in the void. due to the navigation, the App component would have been unmounted already and the `then()` block of the request would call `this.setState()` without any effect. Thus you should consider to cancel the request because it  hasn't an effect anymore (only in Error!)
+I want to introduce another improvement for the Hacker News request in the App component. Imagine your component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but then, because your application introduced some kind of navigation, you navigate away from this page to another page. Your App component unmounts, but there is still a pending request from your `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. Perhaps then it's the first time you will see the following warning on your command line or in your browser's developer output:
 
-- since a Promise cannot be cancelled in JavaScript yet, there exists a workaround to stop the request when a componen did unmount.
+{title="Command Line",lang="text"}
+~~~~~~~~
+Warning: Can only update a mounted or mounting component. This usually means you called setState, replaceState, or forceUpdate on an unmounted component. This is a no-op.
+~~~~~~~~
+
+You can deal with this issue by aborting the request when your component unmounts or preventing to call `this.setState()` on an unmounted component. It's a best practice in React, even though it's not followed by many developers, to preserve an clean application without any annoying warnings. However, the current promise API doesn't implement aborting a request. Thus you need to help yourself on this issue. This might also be the case why not many developers are following this best practice. The following implementation seems more like a workaround than a sustainable implementation. Because of that, you can decide on your own if you want to implement it to work around the warning because of an unmounted component. Nevertheless, keep the warning in mind in case it comes up in a later chapter of this book or in your own application one day. Then you know how to deal with it.
+
+Let's start to work around it. You can introduce a class field which holds the lifecycle state of your component. It can be initialized as `false` when the component initializes, changed to `true` when the component mounted, but then again set to `false` when the component unmounted. This way, you can keep track of your component's lifecycle state. It has nothing to do with the local state stored and modified with `this.state` and `this.setState()`, because you should be able to access it directly on the component instance without relying on React's local state management. Moreover, it doesn't lead to any re-rendering of the component when the class field is changed this way.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1300,6 +1314,8 @@ class App extends Component {
 }
 ~~~~~~~~
 
+Finally, you can use this knowledge not to abort the request itself but to avoid calling `this.setState()` on your component instance even though the component already unmounted. It will prevent the mentioned warning.
+
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
@@ -1308,8 +1324,8 @@ class App extends Component {
 
   fetchSearchTopStories(searchTerm, page = 0) {
     axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
-      .then(result => this.setSearchTopStories(result.data))
 # leanpub-start-insert
+      .then(result => this._isMounted && this.setSearchTopStories(result.data))
       .catch(error => this._isMounted && this.setState({ error }));
 # leanpub-end-insert
   }
@@ -1319,9 +1335,12 @@ class App extends Component {
 }
 ~~~~~~~~
 
+Overall the chapter has shown you how you can replace one library with another library in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to help yourself. In addition, you have seen a way how you can avoid calling `this.setState()` in React on an unmounted component. If you dig deeper into the axios library, you will find a way to prevent the cancel the request in the first place too. It's up to you to read up more about this topic.
+
 ### Exercises:
 
 * read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
+* find out more about [an alternative React component syntax](https://github.com/rwieruch/react-alternative-class-component-syntax)
 
 {pagebreak}
 
@@ -1333,16 +1352,18 @@ You have learned to interact with an API in React! Let's recap the last chapters
   * conditional renderings
   * synthetic events on forms
   * error handling
-  * aborting a request
-* ES6
+  * aborting a remote API request
+* ES6 and beyond
   * template strings to compose strings
   * spread operator for immutable data structures
   * computed property names
+  * class fields
 * General
   * Hacker News API interaction
   * native fetch browser API
   * client- and server-side search
   * pagination of data
   * client-side caching
+  * axios as an alternative for the native fetch API
 
 Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.3.1).
