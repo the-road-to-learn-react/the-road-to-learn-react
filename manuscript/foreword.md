@@ -1,14 +1,28 @@
 # Foreword
 
-The Road to learn React teaches you the fundamentals of React. You will build a real world application along the way in plain React without complicated tooling. Everything from project setup to deployment on a server will be explained. The book comes with additional referenced reading material and exercises with each chapter. After reading the book, you will be able to build your own applications in React. The material is kept up to date by me, Robin Wieruch, and the community.
+The Road to learn React teaches you the fundamentals of React. You will build a real world application along the way in plain React without complicated tooling. Everything from project setup to deployment on a server will be explained for you. The book comes with additional referenced reading material and exercises with each chapter. After reading the book, you will be able to build your own applications in React. The material is kept up to date by me and the community.
 
-In the Road to learn React, I want to offer a foundation before you start to dive into the broader React ecosystem. It has less tooling and less external state management, but a lot of information around React. It explains general concepts, patterns and best practices in a real world React application.
+In the Road to learn React, I want to offer a foundation before you start to dive into the broader React ecosystem. It has less tooling and less external state management, but a lot of information about React. It explains general concepts, patterns and best practices in a real world React application.
 
-You will learn to build your own React application. It covers real world features like pagination, client-side caching and interactions like searching and sorting. Additionally you will transition from JavaScript ES5 to JavaScript ES6 along the way. I hope this book captures my enthusiasm for React and JavaScript and helps you to get started.
+You will learn to build your own React application. It covers real world features like pagination, client-side caching and interactions such as searching and sorting. Additionally, you will transition from JavaScript ES5 to JavaScript ES6 along the way. I hope this book captures my enthusiasm for React and JavaScript and helps you to get started with it.
+
+{pagebreak}
+
+# About the Author
+
+Robin Wieruch is a german software and web engineer who is dedicated to learn and teach programming in JavaScript. After graduating from university with a masters degree in computer science, he hasn't stopped learning every day on his own. His experiences from the startup world, where he used JavaScript excessively during his professional time and spare time, gave him the opportunity to teach others about these topics.
+
+For a few years, Robin worked closely with a great team of engineers at a company called Small Improvements on a large scale application. The company builds a SaaS product enabling customers to create a feedback culture at their company. Under the hood, the application worked with JavaScript in the frontend and Java in the backend. In the frontend, the first iteration was written in Java with the Wicket Framework and jQuery. When the first generation of SPAs became popular, the company migrated to Angular 1.x for the frontend application. After using Angular for more than 2 years, it became clear that Angular wasn't the best solution to work with state intense applications back in the days. That's why the company made the final jump to React and Redux that has enabled it to operate on a large scale successfully.
+
+During his time in the company, Robin regularly wrote articles about web development on his personal website. He noticed that people would give him great feedback on his articles that allowed him to improve his writing and teaching style. Article after article, Robin grew in his ability to teach others. Whereas the first article was packed with too much stuff that could be quite overwhelming for students, the articles improved over time by focussing and teaching only one subject.
+
+Nowadays, Robin is self-employed to teach others. He finds it a fulfilling activity to see students thrive by giving them clear objectives and a short feedback loop. That's one thing you would learn at a feedback company, wouldn't you? But without coding himself he wouldn't be able to teach things. That's why he invests his remaining time in programming. You can find more information about Robin and ways to support and work with him on his [website](https://www.robinwieruch.de/about).
 
 {pagebreak}
 
 # Testimonials
+
+There are many [testimonials](https://roadtoreact.com/), [ratings](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) and [reviews](https://www.amazon.com/dp/B077HJFCQX) about the book which should confirm the quality of it. I am so proud of it, because I never expected such an overwhelming feedback. If you enjoy the book as well, I would love to find your rating/review somewhere as well. It helps me to spread the word about the book. The following shows a short excerpt of these good voices:
 
 **[Muhammad Kashif](https://twitter.com/appsdevpk/status/848625244956901376):** "The Road to Learn React is a unique book that I recommend to any student or professional interested in learning react basics to advanced level. It is packed with insightful tips and techniques that are hard to find elsewhere, and remarkably thorough in its use of examples and references to sample problems, i have 17 years of experience in web and desktop app development, and before reading this book i was having trouble in learning react, but this book works like magic."
 
@@ -107,6 +121,16 @@ The book should enable everyone to learn React. However, not everyone is privile
 * 190+ pages of learning material
 * [+9 Source Code Projects](https://roadtoreact.com/course-details?courseId=THE_ROAD_TO_LEARN_REACT)
 
+**17. February 2018:**
+
+* upgrade to node 8.9.4
+* upgrade to npm 5.6.0
+* upgrade to create-react-app 1.5.1
+* [v5 Pull Request](https://github.com/the-road-to-learn-react/the-road-to-learn-react/pull/105)
+* more learning paths
+* extra reading material
+* 1 new chapter (Axios instead of Fetch)
+
 {pagebreak}
 
 # How to read it?
@@ -115,33 +139,10 @@ The book is my attempt to teach React while you will write an application. It is
 
 In addition, the book gives you a transition from JavaScript ES5 to JavaScript ES6. React embraces a lot of JavaScript ES6 features and I want to show you how you can use them.
 
-In general each chapter of the book will build up on the previous chapter. Each chapter will teach you something new. Don't rush through the book. You should internalize each step. You could apply your own implementations and read more about the topic. After each chapter I give you some reading material and exercises. If you really want to learn React, I highly recommend to read the extra material and do some hands on exercises. After you have read a chapter, make yourself comfortable with the learnings before you continue.
+In general, each chapter of the book will build up on the previous chapter. Each chapter will teach you something new. Don't rush through the book. You should internalize each step. You could apply your own implementations and read more about the topic. After each chapter I give you some reading material and exercises. If you really want to learn React, I highly recommend to read the extra material and do some hands on exercises. After you have read a chapter, make yourself comfortable with the learnings before you continue.
 
-In the end you will have a complete React application in production. I am very keen to see your results, so please text me when you have finished the book. The final chapter of the book will give you a handful of options to continue your React journey. In general you will find a lot of React related topics on [my personal website](https://www.robinwieruch.de/).
+In the end, you will have a complete React application in production. I am very keen to see your results, so please text me when you have finished the book. The final chapter of the book will give you a handful of options to continue your React journey. In general you will find a lot of React related topics on [my personal website](https://www.robinwieruch.de/).
 
-Since you are reading the book, I guess you are new to React. That's perfect. In the end I hope to get your feedback to improve the material to enable everyone to learn React. You can have a direct impact on [GitHub](https://github.com/rwieruch/the-road-to-learn-react) or text me on [Twitter](https://twitter.com/rwieruch).
-
-# What you can expect (so far...)
-
-* [Hacker News App in React](https://intense-refuge-78753.herokuapp.com/)
-* no complicated configurations
-* create-react-app to bootstrap your application
-* efficient lightweight code
-* only React setState as state management (so far...)
-* transition from JavaScript ES5 to ES6 along the way
-* the React API with setState and lifecycle methods
-* interaction with a real world API (Hacker News)
-* advanced user interactions
-  * client-sided sorting
-  * client-sided filtering
-  * server-sided searching
-* implementation of client-side caching
-* higher-order functions and higher-order components
-* snapshot test components with Jest
-* unit test components with Enzyme
-* neat libraries along the way
-* exercises and more readings along the way
-* internalize and reinforce your learnings
-* deploy your application to production
+Since you are reading the book, I guess you are new to React. That's perfect. In the end, I hope to get your feedback to improve the material to enable everyone to learn React. You can have a direct impact on [GitHub](https://github.com/rwieruch/the-road-to-learn-react) or text me on [Twitter](https://twitter.com/rwieruch).
 
 {pagebreak}

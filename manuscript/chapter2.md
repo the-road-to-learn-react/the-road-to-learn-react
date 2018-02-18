@@ -346,11 +346,9 @@ onDismiss(id) {
 
 Now run again your application and try the "Dismiss" button. It should work. What you experience now is the **unidirectional data flow** in React. You trigger an action in your view with `onClick()`, a function or class method modifies the internal component state and the `render()` method of the component runs again to update the view.
 
-![Internal state update with unidirectional data flow](images/set-state-to-render-unidirectional.png)
-
 ### Exercises:
 
-* read more about [the state and lifecycle in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* read more about [the state and lifecycle in React](https://reactjs.org/docs/state-and-lifecycle.html)
 
 ## Bindings
 
@@ -1021,7 +1019,7 @@ The search functionality should work now. Try it yourself in the browser.
 
 ### Exercises:
 
-* read more about [React events](https://facebook.github.io/react/docs/handling-events.html)
+* read more about [React events](https://reactjs.org/docs/handling-events.html)
 * read more about [higher-order functions](https://en.wikipedia.org/wiki/Higher-order_function)
 
 ## ES6 Destructuring
@@ -1154,7 +1152,7 @@ The whole internal state management and unidirectional data flow might be new to
 
 ### Exercises:
 
-* read more about [React forms](https://facebook.github.io/react/docs/forms.html)
+* read more about [React forms](https://reactjs.org/docs/forms.html)
 
 ## Split Up Components
 
@@ -1346,7 +1344,7 @@ The "Search" text should be visible next to your input field now. When you use t
 
 ### Exercises:
 
-* read more about [the composition model of React](https://facebook.github.io/react/docs/composition-vs-inheritance.html)
+* read more about [the composition model of React](https://reactjs.org/docs/composition-vs-inheritance.html)
 
 ## Reusable Components
 
@@ -1411,9 +1409,7 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-The Button component expects a `className` property in the props. The `className` attribute is another React derivate for the HTML attribute class. But we didn't pass any `className` when the Button was used. In the code it should be more explicit in the Button component that the `className` is optional.
-
-Therefore, you can use the default parameter which is a JavaScript ES6 feature.
+The Button component expects a `className` property in the props. The `className` attribute is another React derivate for the HTML attribute class. But we didn't pass any `className` when the Button was used. In the code it should be more explicit in the Button component that the `className` is optional. Therefore, you can assign a default value in your object destructuring.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1433,10 +1429,6 @@ class Button extends Component {
 ~~~~~~~~
 
 Now, whenever there is no `className` property specified when using the Button component, the value will be an empty string instead of `undefined`.
-
-### Exercises:
-
-* read more about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
 ## Component Declarations
 
@@ -1532,7 +1524,7 @@ Now you have one lightweight functional stateless component. Once you would need
 ### Exercises:
 
 * refactor the Table and Button component to stateless functional components
-* read more about [ES6 class components and functional stateless components](https://facebook.github.io/react/docs/components-and-props.html)
+* read more about [ES6 class components and functional stateless components](https://reactjs.org/docs/components-and-props.html)
 
 ## Styling Components
 
@@ -1816,6 +1808,4 @@ You have learned the basics to write your own React application! Let's recap the
 * General
   * higher-order functions
 
-Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. Additionally you can read more in the official [documentation](https://facebook.github.io/react/docs/installation.html).
-
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.2).
+Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.2).
