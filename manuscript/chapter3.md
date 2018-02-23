@@ -1340,7 +1340,7 @@ Overall the chapter has shown you how you can replace one library with another l
 ### Exercises:
 
 * read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
-* find out more about [an alternative React component syntax](https://github.com/rwieruch/react-alternative-class-component-syntax)
+* learn more about [an alternative React component syntax](https://github.com/rwieruch/react-alternative-class-component-syntax)
 
 {pagebreak}
 

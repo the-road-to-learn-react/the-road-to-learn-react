@@ -1153,6 +1153,7 @@ The whole internal state management and unidirectional data flow might be new to
 ### Exercises:
 
 * read more about [React forms](https://reactjs.org/docs/forms.html)
+* learn more about [different controlled components](https://github.com/the-road-to-learn-react/react-controlled-components-examples)
 
 ## Split Up Components
 
