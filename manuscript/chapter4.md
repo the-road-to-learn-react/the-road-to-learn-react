@@ -229,7 +229,7 @@ import {
   PARAM_SEARCH,
   PARAM_PAGE,
   PARAM_HPP,
-} from '../constants/index.js';
+} from '../../constants/index.js';
 
 ...
 ~~~~~~~~
@@ -247,7 +247,7 @@ import {
   PARAM_PAGE,
   PARAM_HPP,
 # leanpub-start-insert
-} from '../constants';
+} from '../../constants';
 # leanpub-end-insert
 
 ...
