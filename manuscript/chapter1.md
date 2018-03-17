@@ -195,7 +195,7 @@ hackernews/
     registerServiceWorker.js
 ~~~~~~~~
 
-A short break down of the folder and files. It is fine if you don't understand all of them in the beginning.
+A short break down of the folders and files. It is fine if you don't understand all of them in the beginning.
 
 * **README.md:** The .md extension indicates that the file is a markdown file. Markdown is used as a lightweight markup language with plain text formatting syntax. Many source code projects come with a *README.md* file to give you initial instructions about the project. When pushing your project to a platform such as GitHub eventually, the *README.md* file will show its content prominently when you access the repository. Because you have used *create-react-app*, your *README.md* should be the same as shown in the official [create-react-app GitHub repository](https://github.com/facebookincubator/create-react-app).
 
@@ -205,7 +205,9 @@ A short break down of the folder and files. It is fine if you don't understand a
 
 * **.gitignore:** The file indicates all files and folders that shouldn't be added to your remote git repository when using git. They should only live in your local project. The *node_modules/* folder is such a use case. It is sufficient to share the *package.json* file with your peers to enable them to install all dependencies on their own without sharing the whole dependency folder.
 
-* **public/:** The folder holds all your files when building your project for production. Eventually all your written code in the *src/* folder will be bundled into a couple of files when building your project and placed in the public folder.
+* **public/:** The folder holds development root files, such as *public/index.html*. This index is the one displayed on localhost:3000 when developing your app. The boilerplate takes care of relating this index with all the scripts in *src/*.
+
+* **build/** The folder will be created when building the project for production. It holds all your production files when building your project for production. All your written code in the *src/* and *public/* folders are bundled into a couple of files when building your project and placed in the build folder.
 
 * **manifest.json** and **registerServiceWorker.js:** don't worry about what these files do at this stage, we won't be needing them in this project.
 
