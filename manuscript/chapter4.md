@@ -639,6 +639,7 @@ You could continue to unit test your components. But make sure to keep the tests
 * write a unit test with Enzyme for your Button component
 * keep your unit tests up to date during the following chapters
 * read more about [enzyme and its rendering API](https://github.com/airbnb/enzyme)
+* read more about [testing React applications](https://www.robinwieruch.de/react-testing-tutorial)
 
 ## Component Interface with PropTypes
 
