@@ -1230,7 +1230,7 @@ Let's see how the native fetch API can be substituted with axios. Actually every
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-npm install axios
+npm install --save axios
 ~~~~~~~~
 
 Second, you can import axios in your App component's file:
