@@ -6,7 +6,7 @@ The chapter gives you an introduction to React. You may ask yourself: Why should
 
 **Why should you bother to learn React?** In recent years single page applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) have become popular. Frameworks like Angular, Ember and Backbone helped JavaScript developers to build modern web applications beyond the usage of vanilla JavaScript and jQuery. The list of these popular solutions is not exhaustive. There exists a wide range of SPA frameworks. When you consider the release dates, most of them are among the first generation of SPAs: Angular 2010, Backbone 2010 and Ember 2011.
 
-The initial React release was 2013 by Facebook. React is not an SPA framework but a view library. It is the V in the [MVC](https://de.wikipedia.org/wiki/Model_View_Controller) (model view controller). It only enables you to render components as viewable elements in a browser. Yet the whole ecosystem around React makes it possible to build single page applications.
+The initial React release was 2013 by Facebook. React is not an SPA framework but a view library. It is the V in the [MVC](https://en.wikipedia.org/wiki/Model–view–controller) (model view controller). It only enables you to render components as viewable elements in a browser. Yet the whole ecosystem around React makes it possible to build single page applications.
 
 But why should you consider using React over the first generation of SPA frameworks? While the first generation of frameworks tried to solve a lot of things at once, React only helps you to build your view layer. It's a library and not a framework. The idea behind it: Your view is a hierarchy of composable components.
 
@@ -24,14 +24,15 @@ React is probably one of the best choices for building modern web applications n
 
 * read about [why I moved from Angular to React](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
 * read about [React's flexible ecosystem](https://www.robinwieruch.de/essential-react-libraries-framework/)
+* read about [how to learn a framework](https://www.robinwieruch.de/how-to-learn-framework/)
 
 ## Requirements
 
-If you are coming from a different SPA framework or library, you should already be familiar with the basics of web development. If you have just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React. The book will smoothly transition to JavaScript ES6 and beyond. I encourage you to join the official [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for the book to get help or to help others.
+What are the requirements to read the book? First of all, you should be familiar with the basics of web development. You should know how to use HTML, CSS and JavaScript. Perhaps it makes sense to know the term [API](https://www.robinwieruch.de/what-is-an-api-javascript/) too, because you will use APIs in the book. In addition, I encourage you to join the official [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for the book to get help or to help others.
 
 ### Editor and Terminal
 
-What about the development environment? You will need a running editor or IDE and terminal (command line tool). You can [follow my setup guide](https://www.robinwieruch.de/developer-setup/). It is adjusted for MacOS users, but you can substitute most of the tools for other operating system. There is a ton of articles out there that will show you how to setup a web development environment in a more elaborated way for your OS.
+What about the development environment? You will need a running editor or IDE and terminal (command line tool). You can [follow my setup guide](https://www.robinwieruch.de/developer-setup/). It is adjusted for MacOS users, but you can find a Windows setup guide for React too. In general, there is a ton of articles out there that will show you how to setup a web development environment in a more elaborated way for your OS.
 
 Optionally, you can use git and GitHub on your own, while conducting the exercises in the book, to keep your projects and the progress in repositories on GitHub. There exists a [little guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. But once again, it is not mandatory for the book and can be overwhelming when learning everything from scratch. So you can skip it if you are a newcomer in web development to focus on the essential parts taught in this book.
 
@@ -44,9 +45,9 @@ You can verify your versions of node and npm on the command line. If you don't g
 {title="Command Line",lang="text"}
 ~~~~~~~~
 node --version
-*v8.3.0
+*v8.9.4
 npm --version
-*v5.5.1
+*v5.6.0
 ~~~~~~~~
 
 ## node and npm
@@ -142,7 +143,7 @@ Because of this reason, Facebook introduced *create-react-app* as a zero-configu
 
 ### Exercises:
 
-* read more about [React installations](https://facebook.github.io/react/docs/installation.html)
+* read more about [React installations](https://reactjs.org/docs/try-react.html)
 
 ## Zero-Configuration Setup
 
@@ -160,7 +161,7 @@ You can check the version of *create-react-app* to verify a successful installat
 {title="Command Line",lang="text"}
 ~~~~~~~~
 create-react-app --version
-*v1.4.1
+*v1.5.1
 ~~~~~~~~
 
 Now you can bootstrap your first React application. We call it *hackernews*, but you can choose a different name. The bootstrapping takes a couple of seconds. Afterward, simply navigate into the folder:
@@ -183,6 +184,7 @@ hackernews/
   public/
     favicon.ico
     index.html
+    manifest.json
   src/
     App.css
     App.js
@@ -190,9 +192,10 @@ hackernews/
     index.css
     index.js
     logo.svg
+    registerServiceWorker.js
 ~~~~~~~~
 
-A short break down of the folder and files. It is fine if you don't understand all of them in the beginning.
+A short break down of the folders and files. It is fine if you don't understand all of them in the beginning.
 
 * **README.md:** The .md extension indicates that the file is a markdown file. Markdown is used as a lightweight markup language with plain text formatting syntax. Many source code projects come with a *README.md* file to give you initial instructions about the project. When pushing your project to a platform such as GitHub eventually, the *README.md* file will show its content prominently when you access the repository. Because you have used *create-react-app*, your *README.md* should be the same as shown in the official [create-react-app GitHub repository](https://github.com/facebookincubator/create-react-app).
 
@@ -202,7 +205,11 @@ A short break down of the folder and files. It is fine if you don't understand a
 
 * **.gitignore:** The file indicates all files and folders that shouldn't be added to your remote git repository when using git. They should only live in your local project. The *node_modules/* folder is such a use case. It is sufficient to share the *package.json* file with your peers to enable them to install all dependencies on their own without sharing the whole dependency folder.
 
-* **public/:** The folder holds all your files when building your project for production. Eventually all your written code in the *src/* folder will be bundled into a couple of files when building your project and placed in the public folder.
+* **public/:** The folder holds development root files, such as *public/index.html*. This index is the one displayed on localhost:3000 when developing your app. The boilerplate takes care of relating this index with all the scripts in *src/*.
+
+* **build/** The folder will be created when building the project for production. It holds all your production files when building your project for production. All your written code in the *src/* and *public/* folders are bundled into a couple of files when building your project and placed in the build folder.
+
+* **manifest.json** and **registerServiceWorker.js:** don't worry about what these files do at this stage, we won't be needing them in this project.
 
 After all, you don't need to touch the mentioned files and folders. In the beginning everything you need is located in the *src/* folder. The main focus lies on the *src/App.js* file to implement React components. It will be used to implement your application, but later you might want to split up your components into multiple files whereas each file maintains one or a few components on its own.
 
@@ -226,9 +233,9 @@ The scripts are defined in your *package.json*. Your boilerplate React applicati
 
 ### Exercises:
 
-* `npm start` your application and visit the application in your browser
+* `npm start` your application and visit the application in your browser (you can exit the command by pressing Control + C )
 * run the interactive `npm test` script
-* check the content of your *public/* folder, run the `npm run build` script and verify that files were added to the folder (you can remove these files again, but they don't do any harm)
+* run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it again afterward; note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/))
 * make yourself familiar with the folder structure
 * make yourself familiar with the content of the files
 * read more about [the npm scripts and create-react-app](https://github.com/facebookincubator/create-react-app)
@@ -270,7 +277,7 @@ The **element** it returns is specified in the `render()` method. Elements are w
 
 Pretty soon, you will see where the App component is instantiated. Otherwise you wouldn't see the rendered output in the browser, would you? The App component is only the declaration, but not the usage. You would instantiate the component somewhere in your JSX with `<App />`.
 
-The content in the render block looks pretty similar to HTML, but it's JSX. JSX allows you to mix HTML and JavaScript. It's powerful yet confusing when you are used to separate your HTML and JavaScript. That's why a good starting point is to use basic HTML in your JSX. In the beginning, remove all the distracting content in the file.
+The content in the render block looks pretty similar to HTML, but it's JSX. JSX allows you to mix HTML and JavaScript. It's powerful yet confusing when you are used to separating your HTML and JavaScript. That's why a good starting point is to use basic HTML in your JSX. In the beginning, remove all the distracting content in the file.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -317,14 +324,14 @@ export default App;
 
 It should work when you start your application on the command line with `npm start` again.
 
-Additionally you might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML. Because of technical reasons, JSX had to replace a handful of internal HTML attributes. You can find all of the [supported HTML attributes in the React documentation](https://facebook.github.io/react/docs/dom-elements.html). They all follow the camelCase convention. On your way to learn React, you will come across some more JSX specific attributes.
+Additionally you might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML. Because of technical reasons, JSX had to replace a handful of internal HTML attributes. You can find all of the [supported HTML attributes in the React documentation](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes). They all follow the camelCase convention. On your way to learn React, you will come across some more JSX specific attributes.
 
 ### Exercises:
 
 * define more variables and render them in your JSX
-  * use a complex object to represent an user with a first name and last name
+  * use a complex object to represent a user with a first name and last name
   * render the user properties in your JSX
-* read more about [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
+* read more about [JSX](https://reactjs.org/docs/introducing-jsx.html)
 * read more about [React components, elements and instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
 
 ## ES6 const and let
@@ -431,7 +438,7 @@ ReactDOM.render(
 ### Exercises:
 
 * open the *public/index.html* to see where the React applications hooks into your HTML
-* read more about [rendering elements in React](https://facebook.github.io/react/docs/rendering-elements.html)
+* read more about [rendering elements in React](https://reactjs.org/docs/rendering-elements.html)
 
 ## Hot Module Replacement
 
@@ -605,7 +612,7 @@ You are displaying both list items now. You can start your app, open your browse
 
 ### Exercises:
 
-* read more about [React lists and keys](https://facebook.github.io/react/docs/lists-and-keys.html)
+* read more about [React lists and keys](https://reactjs.org/docs/lists-and-keys.html)
 * recap the [standard built-in array functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 * use more JavaScript expressions on your own in JSX
 
@@ -624,7 +631,7 @@ function () { ... }
 
 But you have to be aware of its functionalities. One of them is a different behavior with the `this` object. A function expression always defines its own `this` object. Arrow function expressions still have the `this` object of the enclosing context. Don't get confused when using `this` in an arrow function.
 
-There is another valuable fact about arrow functions regarding the parenthesis. You can remove the parenthesis when the function gets only one argument, but have to keep them when it gets multiple arguments.
+There is another valuable fact about arrow functions regarding the parentheses. You can remove the parentheses when the function gets only one argument, but have to keep them when it gets multiple arguments.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -768,6 +775,4 @@ You have learned to bootstrap your own React application! Let's recap the last c
   * arrow functions can be used to keep your functions concise
   * classes are used to define components in React by extending them
 
-It makes sense to take a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
-
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.1).
+It makes sense to take a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1).

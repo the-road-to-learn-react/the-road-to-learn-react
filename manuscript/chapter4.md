@@ -229,7 +229,7 @@ import {
   PARAM_SEARCH,
   PARAM_PAGE,
   PARAM_HPP,
-} from '../constants/index.js';
+} from '../../constants/index.js';
 
 ...
 ~~~~~~~~
@@ -247,7 +247,7 @@ import {
   PARAM_PAGE,
   PARAM_HPP,
 # leanpub-start-insert
-} from '../constants';
+} from '../../constants';
 # leanpub-end-insert
 
 ...
@@ -354,10 +354,13 @@ import App from './App';
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
+  ReactDOM.unmountComponentAtNode(div);
 });
 ~~~~~~~~
 
-The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suit. A test suit could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separated and organize your test cases.
+The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suite. A test suite could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separate and organize your test cases.
+
+Note that the `it` function is acknowledged in the JavaScript community as the function where you run a single test. However, in Jest it is often found as an alias `test` function.
 
 You can run your test cases by using the interactive *create-react-app* test script on the command line. You will get the output for all test cases on your command line interface.
 
@@ -365,11 +368,6 @@ You can run your test cases by using the interactive *create-react-app* test scr
 ~~~~~~~~
 npm test
 ~~~~~~~~
-
-**Note:** If errors show up when you run the single test for the App component for the first time, it could be because of the unsupported fetch method that is used in `fetchSearchTopStories()` which is triggered in `componentDidMount()`. You can make it work by following these two steps:
-
-* On the command line, install the following package: `npm install isomorphic-fetch`
-* Include it in your *App.js* file: `import fetch from 'isomorphic-fetch';`
 
 Now Jest enables you to write snapshot tests. These tests make a snapshot of your rendered component and run this snapshot against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the diffs of the rendered output. It doesn't add big maintenance costs, because you can simply accept changed snapshots when you changed something on purpose for the rendered output in your component.
 
@@ -382,7 +380,7 @@ Before writing your first snapshot test with Jest, you have to install an utilit
 npm install --save-dev react-test-renderer
 ~~~~~~~~
 
-Now you can extend the App component test with your first snapshot test. First, import the new functionality from the node package and wrap your previous "it"-block for the App component into a descriptive "describe"-block. In this case, the test suit is only for the App component.
+Now you can extend the App component test with your first snapshot test. First, import the new functionality from the node package and wrap your previous "it"-block for the App component into a descriptive "describe"-block. In this case, the test suite is only for the App component.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -395,14 +393,15 @@ import App from './App';
 
 # leanpub-start-insert
 describe('App', () => {
-# leanpub-end-insert
 
+# leanpub-end-insert
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
-
 # leanpub-start-insert
+
 });
 # leanpub-end-insert
 ~~~~~~~~
@@ -421,6 +420,7 @@ describe('App', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
 # leanpub-start-insert
@@ -431,8 +431,8 @@ describe('App', () => {
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
-# leanpub-end-insert
 
+# leanpub-end-insert
 });
 ~~~~~~~~
 
@@ -459,6 +459,7 @@ describe('Search', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Search>Search</Search>, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
@@ -492,6 +493,7 @@ describe('Button', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Button>Give Me More</Button>, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
@@ -637,6 +639,7 @@ You could continue to unit test your components. But make sure to keep the tests
 * write a unit test with Enzyme for your Button component
 * keep your unit tests up to date during the following chapters
 * read more about [enzyme and its rendering API](https://github.com/airbnb/enzyme)
+* read more about [testing React applications](https://www.robinwieruch.de/react-testing-tutorial)
 
 ## Component Interface with PropTypes
 
@@ -657,6 +660,8 @@ Now, you can import the PropTypes.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
+import React, { Component } from 'react';
+import axios from 'axios';
 # leanpub-start-insert
 import PropTypes from 'prop-types';
 # leanpub-end-insert
@@ -666,7 +671,11 @@ Let's start to assign a props interface to the components:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-const Button = ({ onClick, className = '', children }) =>
+const Button = ({
+  onClick,
+  className = '',
+  children,
+}) =>
   <button
     onClick={onClick}
     className={className}
@@ -698,7 +707,7 @@ Additionally you have two more PropTypes to define a renderable fragment (node),
 * PropTypes.node
 * PropTypes.element
 
-You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up in the official React documentation.
+You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up on in the official React documentation.
 
 At the moment all of the defined PropTypes for the Button are optional. The parameters can be null or undefined. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
 
@@ -727,7 +736,7 @@ Table.propTypes = {
 # leanpub-end-insert
 ~~~~~~~~
 
-You can define the content of an array PropType more explicit:
+You can define the content of an array PropType more explicitly:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -787,13 +796,13 @@ Button.defaultProps = {
 
 Same as the ES6 default parameter, the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
 
-If you run your tests again, you might see PropType errors for your components on your command line. It can happen because you didn't define all props for your components in the tests that are defined as required in your PropType definition. The tests themselves all pass correctly though. You can pass all required props to avoid these errors.
+If you run your tests again, you might see PropType errors for your components on your command line. It can happen because you didn't define all props for your components in the tests that are defined as required in your PropType definition. The tests themselves all pass correctly though. You can pass all required props to the components in your tests to avoid these errors.
 
 ### Exercises:
 
 * define the PropType interface for the Search component
 * add and update the PropType interfaces when you add and update components in the next chapters
-* read more about [React PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
+* read more about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 
@@ -808,4 +817,4 @@ You have learned how to organize your code and how to test it! Let's recap the l
 * General
   * code organization allows you to scale your application with best practices
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.4).
+You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.4).

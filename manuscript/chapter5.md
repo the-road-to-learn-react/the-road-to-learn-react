@@ -1,6 +1,6 @@
 # Advanced React Components
 
-The chapter will focus on the implementation of advanced React components. You will learn about higher order components and how to implement them. In addition you will dive into more advanced topics in React and implement complex interactions with it.
+The chapter will focus on the implementation of advanced React components. You will learn about higher-order components and how to implement them. In addition, you will dive into more advanced topics in React and implement complex interactions with it.
 
 ## Ref a DOM Element
 
@@ -8,7 +8,7 @@ Sometimes you need to interact with your DOM nodes in React. The `ref` attribute
 
 * to use the DOM API (focus, media playback etc.)
 * to invoke imperative DOM node animations
-* to integrate with third-party library that needs the DOM node (e.g. [D3.js](https://d3js.org/))
+* to integrate with a third-party library that needs the DOM node (e.g. [D3.js](https://d3js.org/))
 
 Let's do it by example with the Search component. When the application renders the first time, the input field should be focused. That's one use case where you would need access to the DOM API. This chapter will show you how it works, but since it is not very useful for the application itself, we will omit the changes after the chapter. You can keep it for your own application though.
 
@@ -86,7 +86,9 @@ Now you can focus the input field when the component mounted by using the `this`
 class Search extends Component {
 # leanpub-start-insert
   componentDidMount() {
-    this.input.focus();
+    if(this.input) {
+      this.input.focus();
+    }
   }
 # leanpub-end-insert
 
@@ -152,8 +154,8 @@ Now you would be able to access the input DOM element. In the example of the foc
 
 ### Exercises
 
-* read more about [the ref attribute in general in React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
 * read more about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* read more about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
 
 ## Loading ...
 
@@ -170,6 +172,7 @@ Now you will need a property to store the loading state. Based on the loading st
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
+  _isMounted = false;
 
   constructor(props) {
     super(props);
@@ -221,10 +224,9 @@ class App extends Component {
     this.setState({ isLoading: true });
 # leanpub-end-insert
 
-    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
-      .then(response => response.json())
-      .then(result => this.setSearchTopStories(result))
-      .catch(e => this.setState({ error: e }));
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(result => this._isMounted && this.setSearchTopStories(result.data))
+      .catch(error => this._isMounted && this.setState({ error }));
   }
 
   ...
@@ -279,9 +281,9 @@ Initially the Loading component will show up when you start your application, be
 
 * use a library such as [Font Awesome](http://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
 
-## Higher Order Components
+## Higher-Order Components
 
-Higher order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
+Higher-order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher-order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
 
 HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand, the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.
 
@@ -348,7 +350,11 @@ Now you can use the HOC in your JSX. An use case in the application could be to 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-const Button = ({ onClick, className = '', children }) =>
+const Button = ({
+  onClick,
+  className = '',
+  children,
+}) =>
   <button
     onClick={onClick}
     className={className}
@@ -416,13 +422,13 @@ When you run your tests again, you will notice that your snapshot test for the A
 
 You can either fix the component now, when you think there is something wrong about it, or can accept the new snapshot of it. Because you introduced the Loading component in this chapter, you can accept the altered snapshot test on the command line in the interactive test.
 
-Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
+Higher-order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
 
-I encourage you to read the [gentle introduction to higher order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them a functional programming way and solves specifically the problem of conditional rendering with higher order components.
+I encourage you to read the [gentle introduction to higher-order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them in a functional programming way and solves specifically the problem of conditional rendering with higher-order components.
 
 ### Exercises:
 
-* read [a gentle introduction to higher order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/)
+* read [a gentle introduction to higher-order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/)
 * experiment with the HOC you have created
 * think about a use case where another HOC would make sense
   * implement the HOC, if there is a use case
@@ -443,7 +449,7 @@ Now you can import the sort functionality of Lodash in your *src/App.js* file.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 # leanpub-start-insert
 import { sortBy } from 'lodash';
 # leanpub-end-insert
@@ -499,6 +505,7 @@ Now you can define a new class method in your App component that simply sets a `
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
+  _isMounted = false;
 
   constructor(props) {
 
@@ -514,6 +521,8 @@ class App extends Component {
     this.onSort = this.onSort.bind(this);
 # leanpub-end-insert
   }
+
+  ...
 
 # leanpub-start-insert
   onSort(sortKey) {
@@ -898,7 +907,7 @@ And second you have to import it on top of your *src/App.js* file.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 import { sortBy } from 'lodash';
 # leanpub-start-insert
 import classNames from 'classnames';
@@ -976,10 +985,10 @@ You have learned advanced component techniques in React! Let's recap the last ch
 
 * React
   * the ref attribute to reference DOM nodes
-  * higher order components are a common way to build advanced components
+  * higher-order components are a common way to build advanced components
   * implementation of advanced interactions in React
   * conditional classNames with a neat helper library
 * ES6
   * rest destructuring to split up objects and arrays
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.5).
+You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.5).

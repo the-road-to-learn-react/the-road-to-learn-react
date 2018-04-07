@@ -45,7 +45,7 @@ After all, you don't need to know all of these lifecycle methods from the beginn
 
 * **componentWillMount()** - It is called before the `render()` lifecycle method. That's why it could be used to set internal component state, because it will not trigger a second rendering of the component. Generally it is recommended to use the `constructor()` to set the initial state.
 
-* **render()** - The lifecycle method is mandatory and returns the elements as an output of the component. The method should be pure and therefore shouldn't modify the component state. It gets an input as props and state and returns an element.
+* **render()** - This lifecycle method is mandatory and returns the elements as an output of the component. The method should be pure and therefore shouldn't modify the component state. It gets an input as props and state and returns an element.
 
 * **componentDidMount()** - It is called only once when the component mounted. That's the perfect time to do an asynchronous request to fetch data from an API. The fetched data would get stored in the internal component state to display it in the `render()` lifecycle method.
 
@@ -65,8 +65,8 @@ There is one more lifecycle method: `componentDidCatch(error, info)`. It was int
 
 ### Exercises:
 
-* read more about [lifecycle methods in React](https://facebook.github.io/react/docs/react-component.html)
-* read more about [the state related to lifecycle methods in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* read more about [lifecycle methods in React](https://reactjs.org/docs/react-component.html)
+* read more about [the state related to lifecycle methods in React](https://reactjs.org/docs/state-and-lifecycle.html)
 * read more about [error handling in components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Fetching Data
@@ -127,7 +127,6 @@ class App extends Component {
 
 # leanpub-start-insert
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
-    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
 # leanpub-end-insert
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
@@ -138,16 +137,13 @@ class App extends Component {
     this.setState({ result });
   }
 
-  fetchSearchTopStories(searchTerm) {
+  componentDidMount() {
+    const { searchTerm } = this.state;
+
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
-  }
-
-  componentDidMount() {
-    const { searchTerm } = this.state;
-    this.fetchSearchTopStories(searchTerm);
+      .catch(error => error);
   }
 # leanpub-end-insert
 
@@ -163,7 +159,7 @@ Second, you use the `componentDidMount()` lifecycle method to fetch the data aft
 
 Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the URL with the `searchTerm`. The URL is the argument for the native fetch API function. The response needs to get transformed to a JSON data structure, which is a mandatory step in a native fetch function when dealing with JSON data structures, and can finally be set as result in the internal component state. In addition, the catch block is used in case of an error. If an error happens during the request, the function will run into the catch block instead of the then block. In a later chapter of the book, you will include the error handling.
 
-Last but not least, don't forget to bind your new component methods in the constructor.
+Last but not least, don't forget to bind your new component method in the constructor.
 
 Now you can use the fetched data instead of the sample list of items. However, you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits which are in our case the stories](https://hn.algolia.com/api). You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
 
@@ -202,7 +198,9 @@ Let's recap what happens during the component lifecycle. Your component gets ini
 
 You used the native fetch API that is supported by most browsers to perform an asynchronous request to an API. The *create-react-app* configuration makes sure that it is supported in every browser. There are third-party node packages that you can use to substitute the native fetch API: [superagent](https://github.com/visionmedia/superagent) and [axios](https://github.com/mzabriskie/axios).
 
-Back to your application: The list of hits should be visible now. However, there are two regression bugs in the application now. First, the "Dismiss" button is broken. It doesn't know about the complex result object and still operates on the plain list from the local state when dismissing an item. Second, when the list is displayed but you try to search for something else, the list gets filtered on the client-side even though the initial search was made by searching for stories on the server-side. The perfect behvaior would be to fetch another result object from the API when using the Search component. Both regression bugs will be fixed in the following chapters.
+Keep in mind that the book builds up on the JavaScript's shorthand notation for truthfulness checks. In the previous example, `if (!result)` was used in favor of `if (result === null)`. The same applies for other cases throughout the book too. For instance, `if (!list.length)` is used in favor of `if (list.length === 0)` or `if (someString)` is used in favor of `if (someString !== '')`. Read up about the topic if you are not too familiar with it.
+
+Back to your application: The list of hits should be visible now. However, there are two regression bugs in the application now. First, the "Dismiss" button is broken. It doesn't know about the complex result object and still operates on the plain list from the local state when dismissing an item. Second, when the list is displayed but you try to search for something else, the list gets filtered on the client-side even though the initial search was made by searching for stories on the server-side. The perfect behavior would be to fetch another result object from the API when using the Search component. Both regression bugs will be fixed in the following chapters.
 
 ### Exercises:
 
@@ -339,7 +337,7 @@ Now the "Dismiss" button should work again, because the `onDismiss()` method is 
 
 ## Conditional Rendering
 
-The conditional rendering is introduced pretty early in React applications. But not in the case of the book, because there wasn't such an use case yet. The conditional rendering happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all, a conditional rendering simplest usage can be expressed by an if-else statement in JSX.
+Conditional rendering is introduced pretty early in React applications. But not in the case of the book, because there wasn't such an use case yet. The conditional rendering happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all, a conditional rendering simplest usage can be expressed by an if-else statement in JSX.
 
 The `result` object in the internal component state is `null` in the beginning. So far, the App component returned no elements when the `result` hasn't arrived from the API. That's already a conditional rendering, because you return earlier from the `render()` lifecycle method for a certain condition. The App component either renders nothing or its elements.
 
@@ -413,14 +411,14 @@ After all, you should be able to see the fetched data in your application. Every
 
 ### Exercises:
 
-* read more about [React conditional rendering](https://facebook.github.io/react/docs/conditional-rendering.html)
 * read more about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
+* read more about [React conditional rendering](https://reactjs.org/docs/conditional-rendering.html)
 
 ## Client- or Server-side Search
 
 When you use the Search component with its input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
 
-You can define an `onSearchSubmit()` method in your App component which fetches results from the Hacker News API when executing a search in the Search component. It will be the same fetch as in your `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term.
+You can define an `onSearchSubmit()` method in your App component which fetches results from the Hacker News API when executing a search in the Search component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -435,7 +433,6 @@ class App extends Component {
     };
 
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
-    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
 # leanpub-start-insert
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
@@ -448,7 +445,6 @@ class App extends Component {
 # leanpub-start-insert
   onSearchSubmit() {
     const { searchTerm } = this.state;
-    this.fetchSearchTopStories(searchTerm);
   }
 # leanpub-end-insert
 
@@ -456,7 +452,61 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now the Search component has to add an additional button. The button has to explicitly trigger the search request. Otherwise you would fetch data from the Hacker News API every time when your input field changes. But you want to do it explicitly in a on click handler.
+The `onSearchSubmit()` method should use the same functionality as the `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term. Thus you can extract the functionality as a reusable class method.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      result: null,
+      searchTerm: DEFAULT_QUERY,
+    };
+
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+# leanpub-start-insert
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
+# leanpub-end-insert
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  ...
+
+# leanpub-start-insert
+  fetchSearchTopStories(searchTerm) {
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
+      .then(response => response.json())
+      .then(result => this.setSearchTopStories(result))
+      .catch(error => error);
+  }
+# leanpub-end-insert
+
+  componentDidMount() {
+    const { searchTerm } = this.state;
+# leanpub-start-insert
+    this.fetchSearchTopStories(searchTerm);
+# leanpub-end-insert
+  }
+
+  ...
+
+  onSearchSubmit() {
+    const { searchTerm } = this.state;
+# leanpub-start-insert
+    this.fetchSearchTopStories(searchTerm);
+# leanpub-end-insert
+  }
+
+  ...
+}
+~~~~~~~~
+
+Now the Search component has to add an additional button. The button has to explicitly trigger the search request. Otherwise you would fetch data from the Hacker News API every time when your input field changes. But you want to do it explicitly in a `onClick()` handler.
 
 As alternative you could debounce (delay) the `onChange()` function and spare the button, but it would add more complexity at this time and maybe wouldn't be the desired effect. Let's keep it simple without a debounce for now.
 
@@ -579,14 +629,14 @@ Now you should be able to search different Hacker News stories. Perfect, you int
 
 ### Exercises:
 
-* read more about [synthetic events in React](https://facebook.github.io/react/docs/events.html)
+* read more about [synthetic events in React](https://reactjs.org/docs/events.html)
 * experiment with the [Hacker News API](https://hn.algolia.com/api)
 
 ## Paginated Fetch
 
 Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. Precisely it returns a paginated list. The page property, which is `0` in the first response, can be used to fetch more paginated sublists as result. You only need to pass the next page with the same search term to the API.
 
-Let's extend the composable API constants that so it can deal with paginated data.
+Let's extend the composable API constants so that it can deal with paginated data.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -624,13 +674,15 @@ class App extends Component {
 # leanpub-end-insert
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
+      .catch(error => error);
   }
 
   ...
 
 }
 ~~~~~~~~
+
+The page argument uses the JavaScript ES6 default parameter to introduce the fallback to page `0` in case no defined page argument is provided for the function.
 
 Now you can use the current page from the API response in `fetchSearchTopStories()`. You can use this method in a button to fetch more stories on a `onClick` button handler. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` handler which takes the current search term and the next page (current page + 1).
 
@@ -670,7 +722,7 @@ class App extends Component {
 
 In addition, in your `render()` method you should make sure to default to page 0 when there is no result yet. Remember that the `render()` method is called before the data is fetched asynchronously in the `componentDidMount()` lifecycle method.
 
-There is one step missing. You fetch the next page of data, but it will override your previous page of data. It would be ideal to concatenate the old and new list of hits from the local satte and new result object. Let's adjust the functionality to add the new data rather than to override it.
+There is one step missing. You fetch the next page of data, but it will override your previous page of data. It would be ideal to concatenate the old and new list of hits from the local state and new result object. Let's adjust the functionality to add the new data rather than to override it.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -730,14 +782,15 @@ fetchSearchTopStories(searchTerm, page = 0) {
 # leanpub-end-insert
     .then(response => response.json())
     .then(result => this.setSearchTopStories(result))
-    .catch(e => e);
+    .catch(error => error);
 }
 ~~~~~~~~
 
-Afterward, the request to the Hacker News API fetches more list items in one request than before. As you can see, a powerful such as the Hacker News API gives you plenty of ways to experiment with real world data. You should make use of it to make your endavours when learning something new more exciting. That's [how I learned about the empowerment that APIs provide](https://www.robinwieruch.de/what-is-an-api-javascript/) when learning a new programming language or library.
+Afterward, the request to the Hacker News API fetches more list items in one request than before. As you can see, a powerful API such as the Hacker News API gives you plenty of ways to experiment with real world data. You should make use of it to make your endeavours when learning something new more exciting. That's [how I learned about the empowerment that APIs provide](https://www.robinwieruch.de/what-is-an-api-javascript/) when learning a new programming language or library.
 
 ### Exercises:
 
+* read more about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 * experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
 
 ## Client Cache
@@ -1052,7 +1105,7 @@ class App extends Component {
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
 # leanpub-start-insert
-      .catch(e => this.setState({ error: e }));
+      .catch(error => this.setState({ error }));
 # leanpub-end-insert
   }
 
@@ -1167,6 +1220,128 @@ Your application should still work, but this time with error handling in case th
 
 * read more about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
+## Axios instead of Fetch
+
+In one of the previous chapters, you have introduced the native fetch API to perform a request to the Hacker News platform. The browser enables you to use this native fetch API. However, not all browsers, especially older browsers, support it. In addition, once you start to test your application in a headless browser environment (there is no browser, instead it is only mocked), there can be issues regarding the fetch API. Such a headless browser environment can happen when writing and executing tests for your application which don't run in a real browser. There are a couple of ways to make fetch work in older browsers (polyfills) and in tests ([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)), but we won't go down this rabbit hole in this book.
+
+An alternative way to solve it would be to substitute the native fetch API with a stable library such as [axios](https://github.com/axios/axios). Axios is a library that solves only one problem, but it solves it with a high quality: performing asynchronous requests to remote APIs. That's why you will use it in this book. On a concrete level, the chapter should show you how you can substitute a library (which is a native API of the browser in this case) with another library. On an abstract level, it should show you how you can always find a solution for the quirks (e.g. old browsers, headless browser tests) in web development. So never stop to look for solutions if anything gets in your way.
+
+Let's see how the native fetch API can be substituted with axios. Actually everything said before sounds more difficult than it is. First, you have to install axios on the command line:
+
+{title="Command Line",lang="text"}
+~~~~~~~~
+npm install --save axios
+~~~~~~~~
+
+Second, you can import axios in your App component's file:
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+# leanpub-start-insert
+import axios from 'axios';
+# leanpub-end-insert
+import './App.css';
+
+...
+~~~~~~~~
+
+And last but not least, you can use it instead of `fetch()`. Its usage looks almost identical to the native fetch API. It takes the URL as argument and returns a promise. You don't have to transform the returned response to JSON anymore. Axios is doing it for you and wraps the result into a `data` object in JavaScript. Thus make sure to adapt your code to the returned data structure.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  fetchSearchTopStories(searchTerm, page = 0) {
+# leanpub-start-insert
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(result => this.setSearchTopStories(result.data))
+# leanpub-end-insert
+      .catch(error => this.setState({ error }));
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+That's it for replacing fetch with axios in this chapter. In your code, you are calling `axios()` which uses by default a HTTP GET request. You can make the GET request explicit by calling `axios.get()`. Also you can use another HTTP method such as HTTP POST with `axios.post()` instead. There you can already see how axios is a powerful library to perform requests to remote APIs. I often recommend to use it over the native fetch API when your API requests become complex or you have to deal with web development quirks with promises. In addition, in a later chapter, you will introduce testing in your application. Then you don't need to worry anymore about a browser or headless browser environment.
+
+I want to introduce another improvement for the Hacker News request in the App component. Imagine your component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but then, because your application introduced some kind of navigation, you navigate away from this page to another page. Your App component unmounts, but there is still a pending request from your `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. Perhaps then it's the first time you will see the following warning on your command line or in your browser's developer output:
+
+{title="Command Line",lang="text"}
+~~~~~~~~
+Warning: Can only update a mounted or mounting component. This usually means you called setState, replaceState, or forceUpdate on an unmounted component. This is a no-op.
+~~~~~~~~
+
+You can deal with this issue by aborting the request when your component unmounts or preventing to call `this.setState()` on an unmounted component. It's a best practice in React, even though it's not followed by many developers, to preserve an clean application without any annoying warnings. However, the current promise API doesn't implement aborting a request. Thus you need to help yourself on this issue. This might also be the case why not many developers are following this best practice. The following implementation seems more like a workaround than a sustainable implementation. Because of that, you can decide on your own if you want to implement it to work around the warning because of an unmounted component. Nevertheless, keep the warning in mind in case it comes up in a later chapter of this book or in your own application one day. Then you know how to deal with it.
+
+Let's start to work around it. You can introduce a class field which holds the lifecycle state of your component. It can be initialized as `false` when the component initializes, changed to `true` when the component mounted, but then again set to `false` when the component unmounted. This way, you can keep track of your component's lifecycle state. It has nothing to do with the local state stored and modified with `this.state` and `this.setState()`, because you should be able to access it directly on the component instance without relying on React's local state management. Moreover, it doesn't lead to any re-rendering of the component when the class field is changed this way.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+# leanpub-start-insert
+  _isMounted = false;
+# leanpub-end-insert
+
+  constructor(props) {
+    ...
+  }
+
+  ...
+
+  componentDidMount() {
+# leanpub-start-insert
+    this._isMounted = true;
+# leanpub-end-insert
+
+    const { searchTerm } = this.state;
+    this.setState({ searchKey: searchTerm });
+    this.fetchSearchTopStories(searchTerm);
+  }
+
+# leanpub-start-insert
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+# leanpub-end-insert
+
+  ...
+
+}
+~~~~~~~~
+
+Finally, you can use this knowledge not to abort the request itself but to avoid calling `this.setState()` on your component instance even though the component already unmounted. It will prevent the mentioned warning.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  fetchSearchTopStories(searchTerm, page = 0) {
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+# leanpub-start-insert
+      .then(result => this._isMounted && this.setSearchTopStories(result.data))
+      .catch(error => this._isMounted && this.setState({ error }));
+# leanpub-end-insert
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+Overall the chapter has shown you how you can replace one library with another library in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to help yourself. In addition, you have seen a way how you can avoid calling `this.setState()` in React on an unmounted component. If you dig deeper into the axios library, you will find a way to prevent the cancel the request in the first place too. It's up to you to read up more about this topic.
+
+### Exercises:
+
+* read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
+* learn more about [an alternative React component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
+
 {pagebreak}
 
 You have learned to interact with an API in React! Let's recap the last chapters:
@@ -1177,17 +1352,18 @@ You have learned to interact with an API in React! Let's recap the last chapters
   * conditional renderings
   * synthetic events on forms
   * error handling
-* ES6
+  * aborting a remote API request
+* ES6 and beyond
   * template strings to compose strings
   * spread operator for immutable data structures
   * computed property names
+  * class fields
 * General
   * Hacker News API interaction
   * native fetch browser API
   * client- and server-side search
   * pagination of data
   * client-side caching
+  * axios as an alternative for the native fetch API
 
-Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
-
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.3).
+Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.3.1).
