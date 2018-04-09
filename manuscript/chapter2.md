@@ -23,9 +23,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-When having a constructor in your ES6 class component, it is mandatory to call `super();` because the App component is a subclass of `Component`. Hence the `extends Component` in your App component declaration. You will learn more about ES6 class components later on.
+The App component is a subclass of `Component`: hence the `extends Component` in your App component declaration. You will learn more about ES6 class components later on.
 
-You can call `super(props);` as well. It sets `this.props` in your constructor in case you want to access them in the constructor. Otherwise, when accessing `this.props` in your constructor, they would be `undefined`. You will learn more about the props of a React component later on.
+It is mandatory to call `super(props);`: it sets `this.props` in your constructor in case you want to access them in the constructor. Otherwise, when accessing `this.props` in your constructor, they would be `undefined`. You will learn more about the props of a React component later on.
 
 Now, in your case, the initial state in your component should be the sample list of items.
 
