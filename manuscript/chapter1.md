@@ -203,7 +203,7 @@ A short break down of the folders and files. It is fine if you don't understand 
 
 * **package.json:** The file shows you a list of node package dependencies and other project configuration.
 
-* **.gitignore:** The file indicates all files and folders that shouldn't be added to your remote git repository when using git. They should only live in your local project. The *node_modules/* folder is such a use case. It is sufficient to share the *package.json* file with your peers to enable them to install all dependencies on their own without sharing the whole dependency folder.
+* **.gitignore:** The file indicates all files and folders that shouldn't be added to your git repository when using git. They should only live in your local project. The *node_modules/* folder is such a use case. It is sufficient to share the *package.json* file with your peers to enable them to install all dependencies on their own without sharing the whole dependency folder.
 
 * **public/:** The folder holds development root files, such as *public/index.html*. This index is the one displayed on localhost:3000 when developing your app. The boilerplate takes care of relating this index with all the scripts in *src/*.
 
