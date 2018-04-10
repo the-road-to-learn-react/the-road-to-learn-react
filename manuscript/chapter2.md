@@ -425,7 +425,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-When trying the button again, the `this` object, to be more specific the class instance, should be defined and you would be able to access `this.state`, or as you will later learn `this.props`, now.
+When trying the button again, the `this` object, to be more specific the class instance, should be defined and you would be able to access `this.onClickMe` now.
 
 The class method binding can happen somewhere else too. For instance, it can happen in the `render()` class method.
 
