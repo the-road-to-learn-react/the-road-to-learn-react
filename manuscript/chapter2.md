@@ -1148,7 +1148,7 @@ class App extends Component {
 
 That's it. The unidirectional data flow loop for the input field is self-contained now. The internal component state is the single source of truth for the input field.
 
-The whole internal state management and unidirectional data flow might be new to you. But once you are used to it, it will be your natural flow to implement things in React. In general, React brought a novel pattern with the unidirectional data flow to the world of single page applications. It is adopted by several frameworks and libraries by now.
+The whole internal state management and unidirectional data flow might be new to you. But once you are used to it, it will be your natural flow to implement things in React. In general, React brought a novel pattern with the unidirectional data flow to the world of single page applications. It is now adopted by several frameworks and libraries.
 
 ### Exercises:
 
