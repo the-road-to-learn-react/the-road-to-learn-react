@@ -1157,9 +1157,7 @@ The whole internal state management and unidirectional data flow might be new to
 
 ## Split Up Components
 
-You have one large App component now. It keeps growing and can become confusing eventually. You can start to split it up into chunks of smaller components.
-
-Let's start to use a component for the search input and a component for the list of items.
+You now have one large App component, that keeps growing and can eventually become confusing. Let's start to split it up into chunks of smaller components, creating separate components for the search input and for the list of items.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1275,9 +1273,9 @@ class Table extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short form for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
+Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
 
-By extracting those components from the App component, you would be able to reuse them somewhere else. Since components get their values by using the props object, you can pass every time different props to your components when you use them somewhere else. These components became reusable.
+By extracting those components from the App component, they have become reusable. Since components get their values by using the props object, you can pass different props to your components every time you use them somewhere else. 
 
 ### Exercises:
 
