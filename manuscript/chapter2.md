@@ -1275,7 +1275,7 @@ class Table extends Component {
 
 Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
 
-By extracting those components from the App component, they have become reusable. Since components get their values by using the props object, you can pass different props to your components every time you use them somewhere else. 
+By extracting those components from the App component, they have become reusable. Since components get their values by using the props object, you can pass different props to your components every time you use them somewhere else.
 
 ### Exercises:
 
@@ -1284,7 +1284,7 @@ By extracting those components from the App component, they have become reusable
 
 ## Composable Components
 
-There is one more little property which is accessible in the props object: the `children` prop. You can use it to pass elements to your components from above, which are unknown to the component itself, but make it possible to compose components into each other. Let's see how this looks like when you only pass a text (string) as a child to the Search component.
+There is one more little property which is accessible in the props object: the `children` prop. You can use it to pass elements to your components from above, which are unknown to the component itself but which make it possible to compose your components together. Let's see how this looks when you pass a text string, as a child, to the Search component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1315,7 +1315,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now the Search component can destructure the children property from the props object. Then it can specify where the children should be displayed.
+Now the Search component can destructure the `children` property from the props object, and specify where it should be displayed.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1339,7 +1339,7 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The "Search" text should be visible next to your input field now. When you use the Search component somewhere else, you can choose a different text if you like. After all, it is not only text that you can pass as children. You can pass an element and element trees (which can be encapsulated by components again) as children. The children property makes it possible to weave components into each other.
+The "Search" text should now be visible next to your input field. And, when you use the Search component somewhere else, you can, if you like, use different text. After all, it's not only text that can be passed as children. You can pass an element, or element trees (which can be encapsulated by components again), as children. The children property makes it possible to weave components into each other.
 
 ### Exercises:
 
@@ -1347,9 +1347,9 @@ The "Search" text should be visible next to your input field now. When you use t
 
 ## Reusable Components
 
-Reusable and composable components empower you to come up with capable component hierarchies. They are the foundation of React's view layer. The last chapters mentioned the term reusability. You can reuse the Table and Search components by now. Even the App component is reusable, because you could instantiate it somewhere else again.
+Reusable and composable components empower you to come up with capable component hierarchies. They are the foundation of React's view layer. The last chapters mentioned reusability. Now, you can reuse the Table and Search components. Even the App component is reusable, as you could instantiate it somewhere else again.
 
-Let's define one more reusable component, a Button component, which gets reused more often eventually.
+Let's define one more reusable component, a Button component, which will, eventually, be reused more often.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1374,7 +1374,7 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-It might seem redundant to declare such a component. You will use a `Button` component instead of a `button` element. It only spares the `type="button"`. Except for the type attribute you have to define everything else when you want to use the Button component. But you have to think about the long term investment here. Imagine you have several buttons in your application, but want to change an attribute, style or behavior for the button. Without the component you would have to refactor every button. Instead the Button component ensures to have only one single source of truth. One Button to refactor all buttons at once. One Button to rule them all.
+It might seem redundant to declare a component such as this. You will use a `Button` component instead of a `button` element. It only spares the `type="button"`. Except for the type attribute you have to define everything else when you want to use the Button component. But you have to think about the long term investment here. Imagine you have several buttons in your application, but want to change an attribute, style or behavior for the button. Without the component you would have to refactor every button. Instead the Button component ensures to have only one single source of truth. One Button to refactor all buttons at once. One Button to rule them all.
 
 Since you already have a button element, you can use the Button component instead. It omits the type attribute, because the Button component specifies it.
 
