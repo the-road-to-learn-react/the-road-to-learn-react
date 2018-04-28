@@ -28,11 +28,11 @@ React is probably one of the best choices for building modern web applications n
 
 ## Requirements
 
-If you are coming from a different SPA framework or library, you should already be familiar with the basics of web development. If you have just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React. The book will smoothly transition to JavaScript ES6 and beyond. I encourage you to join the official [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for the book to get help or to help others.
+What are the requirements to read the book? First of all, you should be familiar with the basics of web development. You should know how to use HTML, CSS and JavaScript. Perhaps it makes sense to know the term [API](https://www.robinwieruch.de/what-is-an-api-javascript/) too, because you will use APIs in the book. In addition, I encourage you to join the official [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for the book to get help or to help others.
 
 ### Editor and Terminal
 
-What about the development environment? You will need a running editor or IDE and terminal (command line tool). You can [follow my setup guide](https://www.robinwieruch.de/developer-setup/). It is adjusted for MacOS users, but you can substitute most of the tools for other operating system. There is a ton of articles out there that will show you how to setup a web development environment in a more elaborated way for your OS.
+What about the development environment? You will need a running editor or IDE and terminal (command line tool). You can [follow my setup guide](https://www.robinwieruch.de/developer-setup/). It is adjusted for MacOS users, but you can find a Windows setup guide for React too. In general, there is a ton of articles out there that will show you how to setup a web development environment in a more elaborated way for your OS.
 
 Optionally, you can use git and GitHub on your own, while conducting the exercises in the book, to keep your projects and the progress in repositories on GitHub. There exists a [little guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. But once again, it is not mandatory for the book and can be overwhelming when learning everything from scratch. So you can skip it if you are a newcomer in web development to focus on the essential parts taught in this book.
 
@@ -195,7 +195,7 @@ hackernews/
     registerServiceWorker.js
 ~~~~~~~~
 
-A short break down of the folder and files. It is fine if you don't understand all of them in the beginning.
+A short break down of the folders and files. It is fine if you don't understand all of them in the beginning.
 
 * **README.md:** The .md extension indicates that the file is a markdown file. Markdown is used as a lightweight markup language with plain text formatting syntax. Many source code projects come with a *README.md* file to give you initial instructions about the project. When pushing your project to a platform such as GitHub eventually, the *README.md* file will show its content prominently when you access the repository. Because you have used *create-react-app*, your *README.md* should be the same as shown in the official [create-react-app GitHub repository](https://github.com/facebookincubator/create-react-app).
 
@@ -203,9 +203,11 @@ A short break down of the folder and files. It is fine if you don't understand a
 
 * **package.json:** The file shows you a list of node package dependencies and other project configuration.
 
-* **.gitignore:** The file indicates all files and folders that shouldn't be added to your remote git repository when using git. They should only live in your local project. The *node_modules/* folder is such a use case. It is sufficient to share the *package.json* file with your peers to enable them to install all dependencies on their own without sharing the whole dependency folder.
+* **.gitignore:** The file indicates all files and folders that shouldn't be added to your git repository when using git. They should only live in your local project. The *node_modules/* folder is such a use case. It is sufficient to share the *package.json* file with your peers to enable them to install all dependencies on their own without sharing the whole dependency folder.
 
-* **public/:** The folder holds all your files when building your project for production. Eventually all your written code in the *src/* folder will be bundled into a couple of files when building your project and placed in the public folder.
+* **public/:** The folder holds development root files, such as *public/index.html*. This index is the one displayed on localhost:3000 when developing your app. The boilerplate takes care of relating this index with all the scripts in *src/*.
+
+* **build/** The folder will be created when building the project for production. It holds all your production files when building your project for production. All your written code in the *src/* and *public/* folders are bundled into a couple of files when building your project and placed in the build folder.
 
 * **manifest.json** and **registerServiceWorker.js:** don't worry about what these files do at this stage, we won't be needing them in this project.
 

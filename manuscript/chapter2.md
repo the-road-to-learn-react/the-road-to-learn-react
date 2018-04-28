@@ -23,9 +23,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-When having a constructor in your ES6 class component, it is mandatory to call `super();` because the App component is a subclass of `Component`. Hence the `extends Component` in your App component declaration. You will learn more about ES6 class components later on.
+The App component is a subclass of `Component`: hence the `extends Component` in your App component declaration. You will learn more about ES6 class components later on.
 
-You can call `super(props);` as well. It sets `this.props` in your constructor in case you want to access them in the constructor. Otherwise, when accessing `this.props` in your constructor, they would be `undefined`. You will learn more about the props of a React component later on.
+It is mandatory to call `super(props);`: it sets `this.props` in your constructor in case you want to access them in the constructor. Otherwise, when accessing `this.props` in your constructor, they would be `undefined`. You will learn more about the props of a React component later on.
 
 Now, in your case, the initial state in your component should be the sample list of items.
 
@@ -730,7 +730,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Another performance relevant topic, that is often mentioned, are the implications of using arrow functions in event handlers. For instance, the `onClick` handler for the `onDismiss()` method is wrapping the method in another arrow function to be able to pass the item identifier. So every time the `render()` method runs, the handler instantiates the higher-order arrow function. It *can* have an impact on your application performance, but in most cases you will not notice it. Imagine you have a huge table of data with 1000 items and each row or column has such an arrow function in an event handler. Then it is worth to think about the performance implications and therefore you could implement a dedicated Button component to bind the method in the constructor. But before that happens it is premature optimization. It is more valuable to focus on learning React itself.
+Another performance relevant topic, that is often mentioned, are the implications of using arrow functions in event handlers. For instance, the `onClick` handler for the `onDismiss()` method is wrapping the method in another arrow function to be able to pass the item identifier. So every time the `render()` method runs, the handler instantiates the higher-order arrow function. It *can* have an impact on your application performance, but in most cases you will not notice it. Imagine you have a huge table of data with 1000 items and each row or column has such an arrow function in an event handler. Then it is worth thinking about the performance implications and therefore you could implement a dedicated Button component to bind the method in the constructor. But before that happens it is premature optimization. It is more valuable to focus on learning React itself.
 
 ### Exercises:
 
@@ -886,7 +886,7 @@ Now you store the input value to your internal component state every time the va
 
 A brief note about updating the local state in a React component. It would be fair to assume that when updating the `searchTerm` with `this.setState()` the list needs to be passed as well to preserve it. But that isn't the case. React's `this.setState()` is a shallow merge. It preserves the sibling properties in the state object when updating one sole property in it. Thus the list state, even though you have already dismissed an item from it, would stay the same when updating the `searchTerm` property.
 
-Let's get back to your application. The list isn't filtered yet based on the input field value that is stored in the local state. Basically you have to filter the list temporarily based on the `searchTerm`. You have everything you need to filter it. So how to filter it temporarily now? In your `render()` method, before you map over the list, you can apply a filter on it. The filter would only evaluate if the `searchTerm` matches title property of the item. You have already used the built-in JavaScript filter functionality, so let's do it again. You can sneak in the filter function before the map function, because the filter function returns a new array and thus the map function can be used on it in such a convenient way.
+Let's get back to your application. The list isn't filtered yet based on the input field value that is stored in the local state. Basically you have to filter the list temporarily based on the `searchTerm`. You have everything you need to filter it. So how to filter it temporarily now? In your `render()` method, before you map over the list, you can apply a filter on it. The filter would only evaluate if the `searchTerm` matches the title property of the item. You have already used the built-in JavaScript filter functionality, so let's do it again. You can sneak in the filter function before the map function, because the filter function returns a new array and thus the map function can be used on it in such a convenient way.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -976,7 +976,7 @@ Another neat refactoring can be done with an ES6 arrow function again. It makes 
 // ES5
 function isSearched(searchTerm) {
   return function(item) {
-    return item.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
   }
 }
 
@@ -1148,17 +1148,16 @@ class App extends Component {
 
 That's it. The unidirectional data flow loop for the input field is self-contained now. The internal component state is the single source of truth for the input field.
 
-The whole internal state management and unidirectional data flow might be new to you. But once you are used to it, it will be your natural flow to implement things in React. In general, React brought a novel pattern with the unidirectional data flow to the world of single page applications. It is adopted by several frameworks and libraries by now.
+The whole internal state management and unidirectional data flow might be new to you. But once you are used to it, it will be your natural flow to implement things in React. In general, React brought a novel pattern with the unidirectional data flow to the world of single page applications. It is now adopted by several frameworks and libraries.
 
 ### Exercises:
 
 * read more about [React forms](https://reactjs.org/docs/forms.html)
+* learn more about [different controlled components](https://github.com/the-road-to-learn-react/react-controlled-components-examples)
 
 ## Split Up Components
 
-You have one large App component now. It keeps growing and can become confusing eventually. You can start to split it up into chunks of smaller components.
-
-Let's start to use a component for the search input and a component for the list of items.
+You now have one large App component, that keeps growing and can eventually become confusing. Let's start to split it up into chunks of smaller components, creating separate components for the search input and for the list of items.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1274,9 +1273,9 @@ class Table extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short form for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
+Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
 
-By extracting those components from the App component, you would be able to reuse them somewhere else. Since components get their values by using the props object, you can pass every time different props to your components when you use them somewhere else. These components became reusable.
+By extracting those components from the App component, they have become reusable. Since components get their values by using the props object, you can pass different props to your components every time you use them somewhere else.
 
 ### Exercises:
 
@@ -1285,7 +1284,7 @@ By extracting those components from the App component, you would be able to reus
 
 ## Composable Components
 
-There is one more little property which is accessible in the props object: the `children` prop. You can use it to pass elements to your components from above, which are unknown to the component itself, but make it possible to compose components into each other. Let's see how this looks like when you only pass a text (string) as a child to the Search component.
+There is one more little property which is accessible in the props object: the `children` prop. You can use it to pass elements to your components from above, which are unknown to the component itself but which make it possible to compose your components together. Let's see how this looks when you pass a text string, as a child, to the Search component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1316,7 +1315,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now the Search component can destructure the children property from the props object. Then it can specify where the children should be displayed.
+Now the Search component can destructure the `children` property from the props object, and specify where it should be displayed.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1340,7 +1339,7 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The "Search" text should be visible next to your input field now. When you use the Search component somewhere else, you can choose a different text if you like. After all, it is not only text that you can pass as children. You can pass an element and element trees (which can be encapsulated by components again) as children. The children property makes it possible to weave components into each other.
+The "Search" text should now be visible next to your input field. And, when you use the Search component somewhere else, you can, if you like, use different text. After all, it's not only text that can be passed as children. You can pass an element, or element trees (which can be encapsulated by components again), as children. The children property makes it possible to weave components into each other.
 
 ### Exercises:
 
@@ -1348,9 +1347,9 @@ The "Search" text should be visible next to your input field now. When you use t
 
 ## Reusable Components
 
-Reusable and composable components empower you to come up with capable component hierarchies. They are the foundation of React's view layer. The last chapters mentioned the term reusability. You can reuse the Table and Search components by now. Even the App component is reusable, because you could instantiate it somewhere else again.
+Reusable and composable components empower you to come up with capable component hierarchies. They are the foundation of React's view layer. The last chapters mentioned reusability. Now, you can reuse the Table and Search components. Even the App component is reusable, as you could instantiate it somewhere else again.
 
-Let's define one more reusable component, a Button component, which gets reused more often eventually.
+Let's define one more reusable component, a Button component, which will, eventually, be reused more often.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1375,7 +1374,7 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-It might seem redundant to declare such a component. You will use a `Button` component instead of a `button` element. It only spares the `type="button"`. Except for the type attribute you have to define everything else when you want to use the Button component. But you have to think about the long term investment here. Imagine you have several buttons in your application, but want to change an attribute, style or behavior for the button. Without the component you would have to refactor every button. Instead the Button component ensures to have only one single source of truth. One Button to refactor all buttons at once. One Button to rule them all.
+It might seem redundant to declare a component such as this. You will use a `Button` component instead of a `button` element. It only spares the `type="button"`. Except for the type attribute you have to define everything else when you want to use the Button component. But you have to think about the long term investment here. Imagine you have several buttons in your application, but want to change an attribute, style or behavior for the button. Without the component you would have to refactor every button. Instead the Button component ensures to have only one single source of truth. One Button to refactor all buttons at once. One Button to rule them all.
 
 Since you already have a button element, you can use the Button component instead. It omits the type attribute, because the Button component specifies it.
 

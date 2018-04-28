@@ -200,7 +200,7 @@ You used the native fetch API that is supported by most browsers to perform an a
 
 Keep in mind that the book builds up on the JavaScript's shorthand notation for truthfulness checks. In the previous example, `if (!result)` was used in favor of `if (result === null)`. The same applies for other cases throughout the book too. For instance, `if (!list.length)` is used in favor of `if (list.length === 0)` or `if (someString)` is used in favor of `if (someString !== '')`. Read up about the topic if you are not too familiar with it.
 
-Back to your application: The list of hits should be visible now. However, there are two regression bugs in the application now. First, the "Dismiss" button is broken. It doesn't know about the complex result object and still operates on the plain list from the local state when dismissing an item. Second, when the list is displayed but you try to search for something else, the list gets filtered on the client-side even though the initial search was made by searching for stories on the server-side. The perfect behvaior would be to fetch another result object from the API when using the Search component. Both regression bugs will be fixed in the following chapters.
+Back to your application: The list of hits should be visible now. However, there are two regression bugs in the application now. First, the "Dismiss" button is broken. It doesn't know about the complex result object and still operates on the plain list from the local state when dismissing an item. Second, when the list is displayed but you try to search for something else, the list gets filtered on the client-side even though the initial search was made by searching for stories on the server-side. The perfect behavior would be to fetch another result object from the API when using the Search component. Both regression bugs will be fixed in the following chapters.
 
 ### Exercises:
 
@@ -1230,7 +1230,7 @@ Let's see how the native fetch API can be substituted with axios. Actually every
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-npm install axios
+npm install --save axios
 ~~~~~~~~
 
 Second, you can import axios in your App component's file:
@@ -1340,7 +1340,7 @@ Overall the chapter has shown you how you can replace one library with another l
 ### Exercises:
 
 * read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
-* find out more about [an alternative React component syntax](https://github.com/rwieruch/react-alternative-class-component-syntax)
+* learn more about [an alternative React component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
 
 {pagebreak}
 
