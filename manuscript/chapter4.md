@@ -196,11 +196,11 @@ src/
     App/
       index.js
       test.js
-      index..css
+      index.css
     Button/
       index.js
       test.js
-      index..css
+      index.css
     ...
 ~~~~~~~~
 
