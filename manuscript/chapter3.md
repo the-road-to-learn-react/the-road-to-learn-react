@@ -1335,7 +1335,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Overall the chapter has shown you how you can replace one library with another library in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to help yourself. In addition, you have seen a way how you can avoid calling `this.setState()` in React on an unmounted component. If you dig deeper into the axios library, you will find a way to prevent the cancel the request in the first place too. It's up to you to read up more about this topic.
+Overall the chapter has shown you how you can replace one library with another library in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to help yourself. In addition, you have seen a way how you can avoid calling `this.setState()` in React on an unmounted component. If you dig deeper into the axios library, you will find a way to cancel the request in the first place too. It's up to you to read up more about this topic.
 
 ### Exercises:
 
