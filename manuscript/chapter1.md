@@ -273,11 +273,11 @@ Don't let yourself get confused by the import/export statements and class declar
 
 In the file you have an **React ES6 class component** with the name App. It is a component declaration. Basically after you have declared a component, you can use it as element everywhere in your application. It will produce an **instance** of your **component** or in other words: the component gets instantiated.
 
-The **element** it returns is specified in the `render()` method. Elements are what components are made of. It is useful to understand the differences between component, instance and element.
+The **element** returned is specified in the `render()` method. Elements are what components are made of. It is important to understand the differences between a component, an instance of a component and an element.
 
 Pretty soon, you will see where the App component is instantiated. Otherwise you wouldn't see the rendered output in the browser, would you? The App component is only the declaration, but not the usage. You would instantiate the component somewhere in your JSX with `<App />`.
 
-The content in the render block looks pretty similar to HTML, but it's JSX. JSX allows you to mix HTML and JavaScript. It's powerful yet confusing when you are used to separating your HTML and JavaScript. That's why a good starting point is to use basic HTML in your JSX. In the beginning, remove all the distracting content in the file.
+The content in the render block looks pretty similar to HTML, but it's JSX. JSX allows you to mix HTML and JavaScript. It's powerful yet confusing when you are used to separating your HTML and JavaScript. That's why a good starting point is to use basic HTML in your JSX. As a starting point, open the `All.js` file and remove all the unnecessary HTML code as illustrated below.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -297,7 +297,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Now, you only return HTML in your `render()` method without JavaScript. Let's define the "Welcome to the Road to learn React" as a variable. A variable can be used in your JSX by using curly braces.
+Now, you only return HTML in your `render()` method without any JavaScript. Let's define the "Welcome to the Road to learn React" as a variable. A variable can be used in your JSX by using curly braces.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -338,7 +338,7 @@ Additionally you might have noticed the `className` attribute. It reflects the s
 
 I guess you noticed that we declared the variable `helloWorld` with a `var` statement. JavaScript ES6 comes with two more options to declare your variables: `const` and `let`. In JavaScript ES6, you will rarely find `var` anymore.
 
-A variable declared with `const` cannot be re-assigned or re-declared. It cannot get mutated (changed, modified). You embrace immutable data structures by using it. Once the data structure is defined, you cannot change it.
+A variable declared with `const` cannot be re-assigned or re-declared and cannot be changed or modified (it's immutable). Once the data structure is defined, you cannot change it.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -347,7 +347,7 @@ const helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
 ~~~~~~~~
 
-A variable declared with `let` can get mutated.
+A variable declared with `let` can be modified.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -406,7 +406,7 @@ export default App;
 
 ## ReactDOM
 
-Before you continue with the App component, you might want to see where it is used. It is located in your entry point to the React world: the *src/index.js* file.
+Before we continue with the App component, you might want to see where it is used. It is located in your entry point to the React world: the *src/index.js* file.
 
 {title="src/index.js",lang=javascript}
 ~~~~~~~~
