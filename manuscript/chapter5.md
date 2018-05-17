@@ -117,7 +117,7 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The input field should be focused when the application renders. That's it basically for using the `ref` attribute.
+The input field should be focused when the application renders. That's basically it for using the `ref` attribute.
 
 But how would you get access to the `ref` in a functional stateless component without the `this` object? The following functional stateless component demonstrates it.
 
@@ -346,7 +346,7 @@ const withLoading = (Component) => ({ isLoading, ...rest }) =>
 
 It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in the [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
 
-Now you can use the HOC in your JSX. An use case in the application could be to show either the "More" button or the Loading component. The Loading component is already encapsulated in the HOC, but an input component is missing. In the use case of showing a Button component or a Loading component, the Button is the input component of the HOC. The enhanced output component is a ButtonWithLoading component.
+Now you can use the HOC in your JSX. A use case in the application could be to show either the "More" button or the Loading component. The Loading component is already encapsulated in the HOC, but an input component is missing. In the use case of showing a Button component or a Loading component, the Button is the input component of the HOC. The enhanced output component is a ButtonWithLoading component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
