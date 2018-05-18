@@ -364,7 +364,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-You can move the whole block that you have already implemented into the function. You only have to exchange that you operate on the `prevState` rather than `this.state`.
+You can move the whole block that you have already implemented into the function. You only have to replace that you operate on the `prevState` rather than `this.state`.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
