@@ -528,7 +528,7 @@ class App extends Component {
     return (
       <div className="App">
 # leanpub-start-insert
-        {list.map(function(item) {
+        {list.map(function (item) {
           return <div>{item.title}</div>;
         })}
 # leanpub-end-insert
@@ -551,7 +551,7 @@ class App extends Component {
     return (
       <div className="App">
 # leanpub-start-insert
-        {list.map(function(item) {
+        {list.map(function (item) {
           return (
             <div>
               <span>
@@ -578,7 +578,7 @@ React will do all the work for you and display each item. But you should add one
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-{list.map(function(item) {
+{list.map(function (item) {
   return (
 # leanpub-start-insert
     <div key={item.objectID}>
@@ -599,7 +599,7 @@ You should make sure that the key attribute is a stable identifier. Don't make t
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 // don't do this
-{list.map(function(item, key) {
+{list.map(function (item, key) {
   return (
     <div key={key}>
       ...
