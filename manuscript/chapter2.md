@@ -505,7 +505,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-Last but not least, it is worth to mention that class methods can be autobound automatically without binding them explicitly by using JavaScript ES6 arrow functions.
+Last but not least, it is worth to mention that class methods can be auto-bound automatically without binding them explicitly by using JavaScript ES6 arrow functions.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
