@@ -654,7 +654,7 @@ Now you can use the new constant to add the page parameter to your API request.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}`;
+const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}&${PARAM_PAGE}`;
 
 console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux&page=
