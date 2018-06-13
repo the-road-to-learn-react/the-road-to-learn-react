@@ -203,7 +203,7 @@ A short break down of the folders and files. It is fine if you don't understand 
 
 * **package.json:** The file shows you a list of node package dependencies and other project configuration.
 
-* **yarn.lock:** By default, if Yarn is installed, create-react-app uses Yarn as a package manager. If you don't have Yarn installed then create-react-app will use the NPM package manager. If you have both Yarn and NPM package managers installed you can use the Node package manager by adding --use-npm to the create-react-app command. You don't need to worry about this file for now.
+* **yarn.lock:** By default, if Yarn is installed, create-react-app uses Yarn as a package manager. If you don't have Yarn installed then create-react-app will use the Node package manager. If you have both Yarn and Node package managers installed you can use the Node package manager by adding --use-npm to the create-react-app command. You don't need to worry about this file for now.
 
 * **.gitignore:** The file indicates all files and folders that shouldn't be added to your git repository when using git. They should only live in your local project. The *node_modules/* folder is such a use case. It is sufficient to share the *package.json* file with your peers to enable them to install all dependencies on their own without sharing the whole dependency folder.
 
