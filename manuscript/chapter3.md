@@ -20,21 +20,21 @@ The `render()` method is called during the mount process too, but also when the 
 
 Now you know more about the two lifecycle methods and when they are called. You already used them as well. But there are more of them.
 
-The mounting of a component has two more lifecycle methods: `componentWillMount()` and `componentDidMount()`. The constructor is called first, `componentWillMount()` gets called before the `render()` method and `componentDidMount()` is called after the `render()` method.
+The mounting of a component has two more lifecycle methods: `getDerivedStateFromProps()` and `componentDidMount()`. The constructor is called first, `getDerivedStateFromProps()` gets called before the `render()` method and `componentDidMount()` is called after the `render()` method.
 
 Overall the mounting process has 4 lifecycle methods. They are invoked in the following order:
 
 * constructor()
-* componentWillMount()
+* getDerivedStateFromProps()
 * render()
 * componentDidMount()
 
 But what about the update lifecycle of a component that happens when the state or the props change? Overall it has 5 lifecycle methods in the following order:
 
-* componentWillReceiveProps()
+* getDerivedStateFromProps()
 * shouldComponentUpdate()
-* componentWillUpdate()
 * render()
+* getSnapshotBeforeUpdate()
 * componentDidUpdate()
 
 Last but not least there is the unmounting lifecycle. It has only one lifecycle method: `componentWillUnmount()`.
@@ -43,19 +43,17 @@ After all, you don't need to know all of these lifecycle methods from the beginn
 
 * **constructor(props)** - It is called when the component gets initialized. You can set an initial component state and bind class methods during that lifecycle method.
 
-* **componentWillMount()** - It is called before the `render()` lifecycle method. That's why it could be used to set internal component state, because it will not trigger a second rendering of the component. Generally it is recommended to use the `constructor()` to set the initial state.
+* **static getDerivedStateFromProps(props, state)** - It is called before the `render()` lifecycle method, both on the initial mount and on the subsequent updates. It should return an object to update the state, or null to update nothing. It exists for **rare** use cases where the state depends on changes in props over time. It is important to know that this is a static method and it doesn't have access to the component instance.
 
 * **render()** - This lifecycle method is mandatory and returns the elements as an output of the component. The method should be pure and therefore shouldn't modify the component state. It gets an input as props and state and returns an element.
 
 * **componentDidMount()** - It is called only once when the component mounted. That's the perfect time to do an asynchronous request to fetch data from an API. The fetched data would get stored in the internal component state to display it in the `render()` lifecycle method.
 
-* **componentWillReceiveProps(nextProps)** - The lifecycle method is called during an update lifecycle. As input you get the next props. You can diff the next props with the previous props, by using `this.props`, to apply a different behavior based on the diff. Additionally, you can set state based on the next props.
-
 * **shouldComponentUpdate(nextProps, nextState)** - It is always called when the component updates due to state or props changes. You will use it in mature React applications for performance optimizations. Depending on a boolean that you return from this lifecycle method, the component and all its children will render or will not render on an update lifecycle. You can prevent the render lifecycle method of a component.
 
-* **componentWillUpdate(nextProps, nextState)** - The lifecycle method is immediately invoked before the `render()` method. You already have the next props and next state at your disposal. You can use the method as last opportunity to perform preparations before the render method gets executed. Note that you cannot trigger `setState()` anymore. If you want to compute state based on the next props, you have to use `componentWillReceiveProps()`.
+* **getSnapshotBeforeUpdate(prevProps, prevState)** - This lifecycle method is invoked just before the the most recently rendered output is committed to the DOM. In rare use cases, the component needs to capture information from the DOM before it is potentially changed. This lifecycle method enables the component to do it. Another method (`componentDidUpdate()`) will receive any value returned by `getSnapshotBeforeUpdate()` as a parameter.
 
-* **componentDidUpdate(prevProps, prevState)** - The lifecycle method is immediately invoked after the `render()` method. You can use it as opportunity to perform DOM operations or to perform further asynchronous requests.
+* **componentDidUpdate(prevProps, prevState, snapshot)** - The lifecycle method is immediately invoked after updating occurs, but not for the initial render. You can use it as opportunity to perform DOM operations or to perform further asynchronous requests. If your component implements the `getSnapshotBeforeUpdate()` method, the value it returns will be received as the `snapshot` parameter.
 
 * **componentWillUnmount()** - It is called before you destroy your component. You can use the lifecycle method to perform any clean up tasks.
 
