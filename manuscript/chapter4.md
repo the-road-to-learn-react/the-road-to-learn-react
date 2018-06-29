@@ -559,7 +559,7 @@ Snapshot tests usually stay pretty basic. You only want to cover that the compon
 
 [Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests to complement your snapshot tests in React.
 
-Let's see how you can use enzyme. First you have to install it since it doesn't come by default with *create-react-app*. It comes also with an extension to use it in React.
+Let's see how you can use Enzyme. First you have to install it since it doesn't come by default with *create-react-app*. It comes also with an extension to use it in React.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
