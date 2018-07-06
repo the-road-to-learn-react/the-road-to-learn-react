@@ -101,6 +101,8 @@ The `--save-dev` flag indicates that the node package is only used in the develo
 
 You will encounter more npm commands along the way, but these will be sufficient for now.
 
+There is one more important thing to be mentioned. Many people opt to use another package manager to work with node packages in their applications. **Yarn** is a dependency manager that works in a very similar way to **npm**. Is has its own list of commands to perform the same tasks, but you still have access to the npm registry. Yarn was born to solve some issues that npm couldn't. But today, both tools are evolving really fast and you can choose to use whichever you want.
+
 ### Exercises:
 
 * setup a throw away npm project
@@ -111,6 +113,7 @@ You will encounter more npm commands along the way, but these will be sufficient
   * have a look into the *package.json* file and the *node_modules/* folder
   * find out on your own how to uninstall the *react* node package again
 * read more about [npm](https://docs.npmjs.com/)
+* read more about [yarn](https://yarnpkg.com/en/docs/) package manager
 
 ## Installation
 
