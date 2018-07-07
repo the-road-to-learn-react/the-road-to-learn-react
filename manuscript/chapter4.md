@@ -201,7 +201,7 @@ src/
       index.js
       test.js
       index.css
-    ...
+    // ...
 ~~~~~~~~
 
 Naturally the modules would split up into *src/constants/* and *src/components/*. Now the *src/constants/index.js* file could look like the following:
@@ -231,7 +231,7 @@ import {
   PARAM_HPP,
 } from '../../constants/index.js';
 
-...
+// ...
 ~~~~~~~~
 
 When you use the *index.js* naming convention, you can omit the filename from the relative path.
@@ -250,7 +250,7 @@ import {
 } from '../../constants';
 # leanpub-end-insert
 
-...
+// ...
 ~~~~~~~~
 
 But what's behind the *index.js* file naming? The convention was introduced in the node.js world. The index file is the entry point to a module. It describes the public API to the module. External modules are only allowed to use the *index.js* file to import shared code from the module. Consider the following made up module structure to demonstrate it:
@@ -324,13 +324,13 @@ Let's start to test your first components. Before you can do that, you have to e
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-...
+// ...
 
 class App extends Component {
-  ...
+  // ...
 }
 
-...
+// ...
 
 export default App;
 
@@ -451,7 +451,7 @@ import renderer from 'react-test-renderer';
 import App, { Search } from './App';
 # leanpub-end-insert
 
-...
+// ...
 
 # leanpub-start-insert
 describe('Search', () => {
@@ -480,12 +480,12 @@ Second, you can test the Button component whereas the same test rules as in the 
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
-...
+// ...
 # leanpub-start-insert
 import App, { Search, Button } from './App';
 # leanpub-end-insert
 
-...
+// ...
 
 # leanpub-start-insert
 describe('Button', () => {
@@ -500,7 +500,7 @@ describe('Button', () => {
     const component = renderer.create(
       <Button>Give Me More</Button>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -512,12 +512,12 @@ Last but not least, the Table component that you can pass a bunch of initial pro
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
-...
+// ...
 # leanpub-start-insert
 import App, { Search, Button, Table } from './App';
 # leanpub-end-insert
 
-...
+// ...
 
 # leanpub-start-insert
 describe('Table', () => {
@@ -538,7 +538,7 @@ describe('Table', () => {
     const component = renderer.create(
       <Table { ...props } />
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -597,7 +597,7 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import App, { Search, Button, Table } from './App';
 
-...
+// ...
 
 describe('Table', () => {
 
@@ -608,7 +608,7 @@ describe('Table', () => {
     ],
   };
 
-  ...
+  // ...
 
 # leanpub-start-insert
   it('shows two items in list', () => {
@@ -765,7 +765,7 @@ const Button = ({
   className = '',
   children
 }) =>
-  ...
+  // ...
 ~~~~~~~~
 
 You could replace it with the internal React default prop:
