@@ -187,10 +187,10 @@ class App extends Component {
 # leanpub-end-insert
     };
 
-    ...
+    // ...
   }
 
-  ...
+  // ...
 
 }
 ~~~~~~~~
@@ -203,10 +203,10 @@ When you make the request, you set a loading state to true. Eventually the reque
 ~~~~~~~~
 class App extends Component {
 
-  ...
+  // ...
 
   setSearchTopStories(result) {
-    ...
+    // ...
 
     this.setState({
       results: {
@@ -229,7 +229,7 @@ class App extends Component {
       .catch(error => this._isMounted && this.setState({ error }));
   }
 
-  ...
+  //...
 
 }
 ~~~~~~~~
@@ -240,7 +240,7 @@ In the last step, you will use the Loading component in your App. A conditional 
 ~~~~~~~~
 class App extends Component {
 
-  ...
+  // ...
 
   render() {
     const {
@@ -253,17 +253,18 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    ...
+    // ...
 
     return (
       <div className="page">
-        ...
+        // ...
         <div className="interactions">
 # leanpub-start-insert
           { isLoading
             ? <Loading />
             : <Button
-              onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+                onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
+              >
               More
             </Button>
           }
@@ -279,7 +280,7 @@ Initially the Loading component will show up when you start your application, be
 
 ### Exercises:
 
-* use a library such as [Font Awesome](http://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
+* use a library such as [Font Awesome](https://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
 
 ## Higher-Order Components
 
@@ -382,13 +383,13 @@ Everything is defined now. As a last step, you have to use the ButtonWithLoading
 ~~~~~~~~
 class App extends Component {
 
-  ...
+  // ...
 
   render() {
-    ...
+    // ...
     return (
       <div className="page">
-        ...
+        // ...
         <div className="interactions">
 # leanpub-start-insert
           <ButtonWithLoading
@@ -473,9 +474,9 @@ const SORTS = {
 # leanpub-end-insert
 
 class App extends Component {
-  ...
+  // ...
 }
-...
+// ...
 ~~~~~~~~
 
 You can see that two of the sort functions return a reversed list. That's because you want to see the items with the highest comments and points rather than to see the items with the lowest counts when you sort the list for the first time.
@@ -509,7 +510,7 @@ class App extends Component {
 
   constructor(props) {
 
-    ...
+    // ...
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
@@ -522,7 +523,7 @@ class App extends Component {
 # leanpub-end-insert
   }
 
-  ...
+  // ...
 
 # leanpub-start-insert
   onSort(sortKey) {
@@ -555,7 +556,7 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    ...
+    // ...
 
     return (
       <div className="page">
@@ -568,7 +569,7 @@ class App extends Component {
 # leanpub-end-insert
           onDismiss={this.onDismiss}
         />
-        ...
+        // ...
       </div>
     );
   }
@@ -592,7 +593,7 @@ const Table = ({
     {SORTS[sortKey](list).map(item =>
 # leanpub-end-insert
       <div key={item.objectID} className="table-row">
-        ...
+        // ...
       </div>
     )}
   </div>
@@ -716,7 +717,7 @@ Again you can pass the reverse prop to your Table component.
 ~~~~~~~~
 class App extends Component {
 
-  ...
+  // ...
 
   render() {
     const {
@@ -731,7 +732,7 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    ...
+    // ...
 
     return (
       <div className="page">
@@ -745,7 +746,7 @@ class App extends Component {
           onSort={this.onSort}
           onDismiss={this.onDismiss}
         />
-        ...
+        // ...
       </div>
     );
   }
@@ -765,7 +766,7 @@ const Table = ({
   onDismiss
 }) => {
   const sortedList = SORTS[sortKey](list);
-  const reverseSortedList = isSortReverse
+  const finalSortedList = isSortReverse
     ? sortedList.reverse()
     : sortedList;
 
@@ -773,12 +774,12 @@ const Table = ({
 # leanpub-end-insert
     <div className="table">
       <div className="table-header">
-        ...
+        // ...
       </div>
 # leanpub-start-insert
-      {reverseSortedList.map(item =>
+      {finalSortedList.map(item =>
 # leanpub-end-insert
-        ...
+        // ...
       )}
     </div>
 # leanpub-start-insert
@@ -803,7 +804,7 @@ const Table = ({
   onDismiss
 }) => {
   const sortedList = SORTS[sortKey](list);
-  const reverseSortedList = isSortReverse
+  const finalSortedList = isSortReverse
     ? sortedList.reverse()
     : sortedList;
 
@@ -858,8 +859,8 @@ const Table = ({
           Archive
         </span>
       </div>
-      {reverseSortedList.map(item =>
-          ...
+      {finalSortedList.map(item =>
+          // ...
       )}
     </div>
   );
@@ -949,7 +950,7 @@ Again, when you run your tests, you should see failing snapshot tests but also f
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
-...
+// ...
 
 describe('Table', () => {
 
@@ -964,7 +965,7 @@ describe('Table', () => {
 # leanpub-end-insert
   };
 
-  ...
+  // ...
 
 });
 ~~~~~~~~
@@ -975,7 +976,7 @@ Finally your advanced sort interaction is complete now.
 
 ### Exercises:
 
-* use a library like [Font Awesome](http://fontawesome.io/) to indicate the (reverse) sort
+* use a library like [Font Awesome](https://fontawesome.io/) to indicate the (reverse) sort
   * it could be an arrow up or arrow down icon next to each Sort header
 * read more about the [classnames library](https://github.com/JedWatson/classnames)
 
