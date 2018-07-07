@@ -187,10 +187,10 @@ class App extends Component {
 # leanpub-end-insert
     };
 
-    // ...
+    ...
   }
 
-  // ...
+  ...
 
 }
 ~~~~~~~~
@@ -203,10 +203,10 @@ When you make the request, you set a loading state to true. Eventually the reque
 ~~~~~~~~
 class App extends Component {
 
-  // ...
+  ...
 
   setSearchTopStories(result) {
-    // ...
+    ...
 
     this.setState({
       results: {
@@ -240,7 +240,7 @@ In the last step, you will use the Loading component in your App. A conditional 
 ~~~~~~~~
 class App extends Component {
 
-  // ...
+  ...
 
   render() {
     const {
@@ -253,7 +253,7 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    // ...
+    ...
 
     return (
       <div className="page">
@@ -383,13 +383,13 @@ Everything is defined now. As a last step, you have to use the ButtonWithLoading
 ~~~~~~~~
 class App extends Component {
 
-  // ...
+  ...
 
   render() {
-    // ...
+    ...
     return (
       <div className="page">
-        // ...
+        ...
         <div className="interactions">
 # leanpub-start-insert
           <ButtonWithLoading
@@ -474,9 +474,9 @@ const SORTS = {
 # leanpub-end-insert
 
 class App extends Component {
-  // ...
+  ...
 }
-// ...
+...
 ~~~~~~~~
 
 You can see that two of the sort functions return a reversed list. That's because you want to see the items with the highest comments and points rather than to see the items with the lowest counts when you sort the list for the first time.
@@ -510,7 +510,7 @@ class App extends Component {
 
   constructor(props) {
 
-    // ...
+    ...
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
@@ -523,7 +523,7 @@ class App extends Component {
 # leanpub-end-insert
   }
 
-  // ...
+  ...
 
 # leanpub-start-insert
   onSort(sortKey) {
@@ -556,7 +556,7 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    // ...
+    ...
 
     return (
       <div className="page">
@@ -569,7 +569,7 @@ class App extends Component {
 # leanpub-end-insert
           onDismiss={this.onDismiss}
         />
-        // ...
+        ...
       </div>
     );
   }
@@ -593,7 +593,7 @@ const Table = ({
     {SORTS[sortKey](list).map(item =>
 # leanpub-end-insert
       <div key={item.objectID} className="table-row">
-        // ...
+        ...
       </div>
     )}
   </div>
@@ -717,7 +717,7 @@ Again you can pass the reverse prop to your Table component.
 ~~~~~~~~
 class App extends Component {
 
-  // ...
+  ...
 
   render() {
     const {
@@ -732,7 +732,7 @@ class App extends Component {
 # leanpub-end-insert
     } = this.state;
 
-    // ...
+    ...
 
     return (
       <div className="page">
@@ -746,7 +746,7 @@ class App extends Component {
           onSort={this.onSort}
           onDismiss={this.onDismiss}
         />
-        // ...
+        ...
       </div>
     );
   }
@@ -774,12 +774,12 @@ const Table = ({
 # leanpub-end-insert
     <div className="table">
       <div className="table-header">
-        // ...
+        ...
       </div>
 # leanpub-start-insert
       {finalSortedList.map(item =>
 # leanpub-end-insert
-        // ...
+        ...
       )}
     </div>
 # leanpub-start-insert
@@ -860,7 +860,7 @@ const Table = ({
         </span>
       </div>
       {finalSortedList.map(item =>
-          // ...
+          ...
       )}
     </div>
   );
@@ -950,7 +950,7 @@ Again, when you run your tests, you should see failing snapshot tests but also f
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
-// ...
+...
 
 describe('Table', () => {
 
@@ -965,7 +965,7 @@ describe('Table', () => {
 # leanpub-end-insert
   };
 
-  // ...
+  ...
 
 });
 ~~~~~~~~
