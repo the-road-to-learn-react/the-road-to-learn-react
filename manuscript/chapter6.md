@@ -27,7 +27,7 @@ const Table = ({
     : sortedList;
 
   return(
-    // ...
+    ...
   );
 }
 ~~~~~~~~
@@ -53,7 +53,7 @@ class Table extends Component {
       : sortedList;
 
     return (
-      // ...
+      ...
     );
   }
 }
@@ -74,7 +74,7 @@ class Table extends Component {
 # leanpub-end-insert
 
   render() {
-    // ...
+    ...
   }
 }
 ~~~~~~~~
@@ -136,7 +136,7 @@ class App extends Component {
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
   }
 
-  // ...
+  ...
 
 }
 ~~~~~~~~
@@ -160,11 +160,11 @@ class App extends Component {
     } = this.state;
 # leanpub-end-insert
 
-    // ...
+    ...
 
     return (
       <div className="page">
-        // ...
+        ...
         { error
           ? <div className="interactions">
             <p>Something went wrong.</p>
@@ -176,7 +176,7 @@ class App extends Component {
 # leanpub-end-insert
           />
         }
-        // ...
+        ...
       </div>
     );
   }
@@ -189,7 +189,7 @@ Now in your Table component you can use the internal `onSort()` method and the i
 ~~~~~~~~
 class Table extends Component {
 
-  // ...
+  ...
 
   render() {
 # leanpub-start-insert
@@ -261,7 +261,7 @@ class Table extends Component {
           </span>
         </div>
         { reverseSortedList.map((item) =>
-          // ...
+          ...
         )}
       </div>
     );
@@ -292,7 +292,7 @@ But `setState()` doesn't take only an object. In its second version, you can pas
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 this.setState((prevState, props) => {
-  // ...
+  ...
 });
 ~~~~~~~~
 
@@ -358,7 +358,7 @@ setSearchTopStories(result) {
 
 # leanpub-start-insert
   this.setState(prevState => {
-    // ...
+    ...
   });
 # leanpub-end-insert
 }
@@ -434,7 +434,7 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
 # leanpub-end-insert
 
 class App extends Component {
-  // ...
+  ...
 }
 ~~~~~~~~
 
