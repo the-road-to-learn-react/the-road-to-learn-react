@@ -428,7 +428,7 @@ describe('App', () => {
     const component = renderer.create(
       <App />
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -466,7 +466,7 @@ describe('Search', () => {
     const component = renderer.create(
       <Search>Search</Search>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -500,7 +500,7 @@ describe('Button', () => {
     const component = renderer.create(
       <Button>Give Me More</Button>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -538,7 +538,7 @@ describe('Table', () => {
     const component = renderer.create(
       <Table { ...props } />
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
