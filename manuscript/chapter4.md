@@ -512,7 +512,7 @@ Last but not least, the Table component that you can pass a bunch of initial pro
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
-// ...
+...
 # leanpub-start-insert
 import App, { Search, Button, Table } from './App';
 # leanpub-end-insert
