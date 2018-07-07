@@ -229,7 +229,7 @@ class App extends Component {
       .catch(error => this._isMounted && this.setState({ error }));
   }
 
-  //...
+  ...
 
 }
 ~~~~~~~~
@@ -257,7 +257,7 @@ class App extends Component {
 
     return (
       <div className="page">
-        // ...
+        ...
         <div className="interactions">
 # leanpub-start-insert
           { isLoading
