@@ -625,10 +625,10 @@ JavaScript ES6 introduced arrow functions. An arrow function expression is short
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-// function expression
+// function declaration
 function () { ... }
 
-// arrow function expression
+// arrow function declaration
 () => { ... }
 ~~~~~~~~
 
