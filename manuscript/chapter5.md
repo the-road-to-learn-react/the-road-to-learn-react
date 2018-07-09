@@ -766,7 +766,7 @@ const Table = ({
   onDismiss
 }) => {
   const sortedList = SORTS[sortKey](list);
-  const finalSortedList = isSortReverse
+  const reverseSortedList = isSortReverse
     ? sortedList.reverse()
     : sortedList;
 
@@ -777,7 +777,7 @@ const Table = ({
         ...
       </div>
 # leanpub-start-insert
-      {finalSortedList.map(item =>
+      {reverseSortedList.map(item =>
 # leanpub-end-insert
         ...
       )}
@@ -804,7 +804,7 @@ const Table = ({
   onDismiss
 }) => {
   const sortedList = SORTS[sortKey](list);
-  const finalSortedList = isSortReverse
+  const reverseSortedList = isSortReverse
     ? sortedList.reverse()
     : sortedList;
 
@@ -859,7 +859,7 @@ const Table = ({
           Archive
         </span>
       </div>
-      {finalSortedList.map(item =>
+      {reverseSortedList.map(item =>
           ...
       )}
     </div>
