@@ -818,9 +818,9 @@ First, you would like to check the "Highlight Updates" option (usually above the
 
 Finally, you can press the “Search” button. The `searchKey` state will immediately be changed for the same value as `searchTerm` and the response object will be added to `results` a few seconds after that. The asynchronous nature of your code is now visible to your eyes.
 
-Last but not least, if you right-click on any element, a dropdown menu will show several useful options to you. For instance, you could copy the element’s props or name, find the corresponding DOM node or jump to the application’s source code in browser. This last option is very useful for inserting breakpoints and debug your JavaScript functions.
+Last but not least, if you right-click on any element, a dropdown menu will show several useful options to you. For instance, you could copy the element’s props or name, find the corresponding DOM node or jump to the application’s source code in the browser. This last option is very useful for inserting breakpoints and debug your JavaScript functions.
 
-### Exercices:
+### Exercises:
 
 * Install the [React Developer Tools](https://github.com/facebook/react-devtools) extension on your favorite browser
 	* Run your Hackernews Clone application and inspect it using the extension
