@@ -146,7 +146,7 @@ Because of this, Facebook introduced *create-react-app* as a zero-configuration 
 
 ### Exercises:
 
-* read more about [React installations](https://reactjs.org/docs/try-react.html)
+* read more about [React installations](https://reactjs.org/docs/getting-started.html)
 
 ## Zero-Configuration Setup
 
@@ -222,13 +222,13 @@ The *create-react-app* application is a npm project. You can use npm to install 
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-// Runs the application in http://localhost:3000
+# Runs the application in http://localhost:3000
 npm start
 
-// Runs the tests
+# Runs the tests
 npm test
 
-// Builds the application for production
+# Builds the application for production
 npm run build
 ~~~~~~~~
 
@@ -236,7 +236,7 @@ The scripts are defined in your *package.json*. Your boilerplate React applicati
 
 ### Exercises:
 
-* `npm start` your application and visit the application in your browser (you can exit the command by pressing Control + C )
+* `npm start` your application and visit the application in your browser (you can exit the command by pressing Control + C)
 * run the interactive `npm test` script
 * run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it again afterward; note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/))
 * make yourself familiar with the folder structure
@@ -575,7 +575,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-You can see how the map function is simply inlined in your JSX. Each item property is displayed in a `<span>` tag. Moreover, the url property of the item is used in the `href` attribute of the anchor tag.
+You can see how the `map` function is simply inlined in your JSX. Each item property is displayed in a `<span>` tag. Moreover, the url property of the item is used in the `href` attribute of the anchor tag.
 
 React will do all the work for you and display each item, but you should add one helper for React to embrace its full potential and improve its performance. You have to assign a key attribute to each list element. That way React is able to identify added, changed and removed items when the list changes. The sample list items come with an identifier already.
 
@@ -671,7 +671,7 @@ Let's take a look at the `map` function. You can write it more concisely with an
 })}
 ~~~~~~~~
 
-Additionally, you can remove the *block body*, meaning the curly braces, of the ES6 arrow function. In a *concise body*, an implicit return is attached. Thus you can remove the return statement. This will happen more often in this book, so be sure to understand the difference between a block body and a concise body when using arrow functions.
+Additionally, you can remove the *block body*, meaning the curly braces, of the ES6 arrow function. In a *concise body*, an implicit return is attached. Thus you can remove the `return` statement. This will happen more often in this book, so be sure to understand the difference between a block body and a concise body when using arrow functions.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -691,7 +691,7 @@ Additionally, you can remove the *block body*, meaning the curly braces, of the 
 # leanpub-end-insert
 ~~~~~~~~
 
-Your JSX looks more concise and readable now. It omits the function statement, the curly braces, and the return statement. Instead a developer can focus on the implementation details.
+Your JSX looks more concise and readable now. It omits the `function` statement, the curly braces, and the return statement. Instead a developer can focus on the implementation details.
 
 ### Exercises:
 
