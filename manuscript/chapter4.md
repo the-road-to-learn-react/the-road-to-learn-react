@@ -1,6 +1,6 @@
 # Code Organization and Testing
 
-The chapter will focus on important topics to keep your code maintainable in a scaling application. You will learn about code organization to embrace best practices when structuring your folders and files. Another aspect you will learn is testing, which is important to keep your code robust. The whole chapter will take a step back from the practical application and explain a couple of these topics for you.
+The chapter will focus on important topics to keep your code maintainable in a scaling application. You will learn about code organization to embrace best practices when structuring your folders and files. Another aspect you will learn is testing, which is important to keep your code robust. Last, you are going to learn about a useful tool for debugging your React applications. Most of the chapter will take a step back from the practical application and explain a couple of these topics for you.
 
 ## ES6 Modules: Import and Export
 
@@ -804,6 +804,31 @@ If you run your tests again, you might see PropType errors for your components o
 * add and update the PropType interfaces when you add and update components in the next chapters
 * read more about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
+## Debugging with React Developer Tools
+
+This last section presents to you a helpful tool, generally used to inspect and debug React applications. [React Developer Tools](https://github.com/facebook/react-devtools) lets you inspect the React components hierarchy, props and state. It comes as a browser extension (for Chrome and Firefox, at the moment) and as a standalone app (that works with other environments).
+
+Once installed, the extension icon will light up on the websites using React. On such pages, you will see a tab called "React" in your browser's developer tools.
+
+Let's try it on your Hacker News application. On most browsers, a quick way to bring the _dev tools_ up is to right-click on the page and than hit “Inspect”. Do it when your applications is loaded, then click on the "React" tab. You should see its elements hierarchy, being `<App>` the root element. If you expand it, you will find instances of your `<Search>`, `<Table>` and `<Button>` components, as well.
+
+The extension shows on the side pane the component's state and props for the selected element. For instance, if you click on `<App>`, you will see that it has no props, but it already has a state. A very straightforward debugging technique is to monitor your application's state changing because of the user interaction.
+
+First, you would like to check the "Highlight Updates" option (usually above the elements tree). Second, you can type a different search term in the application’s input field. As you will see, only `searchTerm` will be changed in the component’s state. You already knew that would happen, but now you can actually see it working as planned.
+
+Finally, you can press the “Search” button. The `searchKey` state will immediately be changed for the same value as `searchTerm` and the response object will be added to `results` a few seconds after that. The asynchronous nature of your code is now visible to your eyes.
+
+Last but not least, if you right-click on any element, a dropdown menu will show several useful options to you. For instance, you could copy the element’s props or name, find the corresponding DOM node or jump to the application’s source code in browser. This last option is very useful for inserting breakpoints and debug your JavaScript functions.
+
+### Exercices:
+
+* Install the [React Developer Tools](https://github.com/facebook/react-devtools) extension on your favorite browser
+	* Run your Hackernews Clone application and inspect it using the extension
+	* Experiment with state and props changes
+	* Watch what happens when you trigger an asynchronous request
+	* Perform several requests, including repeated ones. Watch the cache mechanism working
+* Read about [how to debug your JavaScript functions in the browser](https://developers.google.com/web/tools/chrome-devtools/javascript/)
+
 {pagebreak}
 
 You have learned how to organize your code and how to test it! Let's recap the last chapters:
@@ -812,6 +837,7 @@ You have learned how to organize your code and how to test it! Let's recap the l
   * PropTypes let you define type checks for components
   * Jest allows you to write snapshot tests for your components
   * Enzyme allows you to write unit tests for your components
+  * React Developer Tools is a helpful debugging tool
 * ES6
   * import and export statements help you to organize your code
 * General
