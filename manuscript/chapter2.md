@@ -1275,7 +1275,7 @@ class Table extends Component {
 
 Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
 
-By extracting those components from the App component, they have become reusable. Since components get their values by using the props object, you can pass different props to your components every time you use them somewhere else.
+By extracting those components from the App component, they have become reusable. Since components get their values by using the `props` object, you can pass different props to your components every time you use them somewhere else.
 
 ### Exercises:
 
@@ -1315,7 +1315,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now the Search component can destructure the `children` property from the props object, and specify where it should be displayed.
+Now the Search component can destructure the `children` property from the `props` object, and specify where it should be displayed.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1408,7 +1408,7 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-The Button component expects a `className` property in the props. The `className` attribute is another React derivate for the HTML attribute class. But we didn't pass any `className` when the Button was used. In the code it should be more explicit in the Button component that the `className` is optional. Therefore, you can assign a default value in your object destructuring.
+The Button component expects a `className` property in the `props`. The `className` attribute is another React derivate for the HTML attribute class. But we didn't pass any `className` when the Button was used. In the code it should be more explicit in the Button component that the `className` is optional. Therefore, you can assign a default value in your object destructuring.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1461,7 +1461,7 @@ function Search(props) {
 # leanpub-end-insert
 ~~~~~~~~
 
-That's basically it. The props are accessible in the function signature and the return value is JSX. But you can do more code wise in a functional stateless component. You already know the ES6 destructuring. The best practice is to use it in the function signature to destructure the props.
+That's basically it. The `props` are accessible in the function signature and the return value is JSX. But you can do more code wise in a functional stateless component. You already know the ES6 destructuring. The best practice is to use it in the function signature to destructure the `props`.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1480,7 +1480,7 @@ function Search({ value, onChange, children }) {
 }
 ~~~~~~~~
 
-But it can get better. You know already that ES6 arrow functions allow you to keep your functions concise. You can remove the block body of the function. In a concise body an implicit return is attached thus you can remove the return statement. Since your functional stateless component is a function, you can keep it concise as well.
+But it can get better. You know already that ES6 arrow functions allow you to keep your functions concise. You can remove the block body of the function. In a concise body an implicit return is attached thus you can remove the `return` statement. Since your functional stateless component is a function, you can keep it concise as well.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1536,7 +1536,7 @@ First, styling for your overall application.
 body {
   color: #222;
   background: #f4f4f4;
-  font: 400 14px CoreSans, Arial,sans-serif;
+  font: 400 14px CoreSans, Arial, sans-serif;
 }
 
 a {
