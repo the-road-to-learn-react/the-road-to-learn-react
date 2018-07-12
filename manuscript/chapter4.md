@@ -808,20 +808,20 @@ If you run your tests again, you might see PropType errors for your components o
 
 This last section presents to you a helpful tool, generally used to inspect and debug React applications. [React Developer Tools](https://github.com/facebook/react-devtools) lets you inspect the React components hierarchy, props and state. It comes as a browser extension (for Chrome and Firefox) and as a standalone app (that works with other environments). Once installed, the extension icon will light up on the websites using React. On such pages, you will see a tab called "React" in your browser's developer tools.
 
-Let's try it on your Hacker News application. On most browsers, a quick way to bring the *dev tools* up is to right-click on the page and than hit "Inspect". Do it when your applications is loaded, then click on the "React" tab. You should see its elements hierarchy, being `<App>` the root element. If you expand it, you will find instances of your `<Search>`, `<Table>` and `<Button>` components, as well.
+Let's try it on your Hacker News application. On most browsers, a quick way to bring the *dev tools* up is to right-click on the page and than hit "Inspect". Do it when your application is loaded, then click on the "React" tab. You should see its elements hierarchy, being `<App>` the root element. If you expand it, you will find instances of your `<Search>`, `<Table>` and `<Button>` components, as well.
 
 The extension shows on the side pane the component's state and props for the selected element. For instance, if you click on `<App>`, you will see that it has no props, but it already has a state. A very straightforward debugging technique is to monitor your application's state changing because of the user interaction.
 
 First, you would like to check the "Highlight Updates" option (usually above the elements tree). Second, you can type a different search term in the application’s input field. As you will see, only `searchTerm` will be changed in the component’s state. You already knew that would happen, but now you can actually see it working as planned.
 
-Finally, you can press the “Search” button. The `searchKey` state will immediately be changed for the same value as `searchTerm` and the response object will be added to `results` a few seconds after that. The asynchronous nature of your code is now visible to your eyes.
+Finally, you can press the “Search” button. The `searchKey` state will immediately be changed for the same value as `searchTerm` and the response object will be added to `results` a few seconds later. The asynchronous nature of your code is now visible to your eyes.
 
 Last but not least, if you right-click on any element, a dropdown menu will show several useful options to you. For instance, you could copy the element’s props or name, find the corresponding DOM node or jump to the application’s source code in the browser. This last option is very useful for inserting breakpoints and debug your JavaScript functions.
 
 ### Exercises:
 
 * install the [React Developer Tools](https://github.com/facebook/react-devtools) extension on your favorite browser
-  * run your Hackernews Clone application and inspect it using the extension
+  * run your Hacker News Clone application and inspect it using the extension
   * experiment with state and props changes
   * watch what happens when you trigger an asynchronous request
   * perform several requests, including repeated ones. Watch the cache mechanism working
