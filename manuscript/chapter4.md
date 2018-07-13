@@ -20,8 +20,8 @@ You can export one or multiple variables. It is called a named export.
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
-const firstname = 'robin';
-const lastname = 'wieruch';
+const firstname = 'Robin';
+const lastname = 'Wieruch';
 
 export { firstname, lastname };
 ~~~~~~~~
@@ -33,7 +33,7 @@ And import them in another file with a relative path to the first file.
 import { firstname, lastname } from './file1.js';
 
 console.log(firstname);
-// output: robin
+// output: Robin
 ~~~~~~~~
 
 You can also import all exported variables from another file as one object.
@@ -43,7 +43,7 @@ You can also import all exported variables from another file as one object.
 import * as person from './file1.js';
 
 console.log(person.firstname);
-// output: robin
+// output: Robin
 ~~~~~~~~
 
 Imports can have an alias. It can happen that you import functionalities from multiple files that have the same named export. That's why you can use an alias.
@@ -53,7 +53,7 @@ Imports can have an alias. It can happen that you import functionalities from mu
 import { firstname as foo } from './file1.js';
 
 console.log(foo);
-// output: robin
+// output: Robin
 ~~~~~~~~
 
 Last but not least there exists the `default` statement. It can be used for a few use cases:
@@ -65,8 +65,8 @@ Last but not least there exists the `default` statement. It can be used for a fe
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
 const robin = {
-  firstname: 'robin',
-  lastname: 'wieruch',
+  firstname: 'Robin',
+  lastname: 'Wieruch',
 };
 
 export default robin;
@@ -79,15 +79,15 @@ You can leave out the curly braces for the import to import the default export.
 import developer from './file1.js';
 
 console.log(developer);
-// output: { firstname: 'robin', lastname: 'wieruch' }
+// output: { firstname: 'Robin', lastname: 'Wieruch' }
 ~~~~~~~~
 
 Furthermore, the import name can differ from the exported default name. You can also use it in conjunction with the named export and import statements.
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
-const firstname = 'robin';
-const lastname = 'wieruch';
+const firstname = 'Robin';
+const lastname = 'Wieruch';
 
 const person = {
   firstname,
@@ -107,17 +107,17 @@ export default person;
 import developer, { firstname, lastname } from './file1.js';
 
 console.log(developer);
-// output: { firstname: 'robin', lastname: 'wieruch' }
+// output: { firstname: 'Robin', lastname: 'Wieruch' }
 console.log(firstname, lastname);
-// output: robin wieruch
+// output: Robin Wieruch
 ~~~~~~~~
 
 In named exports you can spare additional lines and export the variables directly.
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
-export const firstname = 'robin';
-export const lastname = 'wieruch';
+export const firstname = 'Robin';
+export const lastname = 'Wieruch';
 ~~~~~~~~
 
 These are the main functionalities for ES6 modules. They help you to organize your code, to maintain your code and to design reusable module APIs. You can also export and import functionalities to test them. You will do that in one of the following chapters.
@@ -316,9 +316,9 @@ Perhaps you have heard about the testing pyramid. There are end-to-end tests, in
 
 How many tests do I need of each type? You want to have many unit tests to cover your isolated functions. After that, you can have several integration tests to cover that the most important functions work in combination as expected. Last but not least, you might want to have only a few end-to-end tests to simulate critical scenarios in your web application. That's it for the general excursion in the world of testing.
 
-So how do you apply this knowledge in testing your React application? The foundation for testing in React are component tests which can be generalized as unit tests and a part of it as snapshot tests. You will conduct unit tests for your components in the next chapter by using a library called Enzyme. In this chapter, you will focus on another kind of tests: snapshot tests. That's were Jest comes into play.
+So how do you apply this knowledge in testing your React application? The foundation for testing in React are component tests which can be generalized as unit tests and a part of it as snapshot tests. You will conduct unit tests for your components in the next chapter by using a library called Enzyme. In this section of the chapter, you will focus on another kind of tests: snapshot tests. That's were Jest comes into play.
 
-[Jest](https://facebook.github.io/jest/) is a JavaScript testing framework that is used at Facebook. In the React community, it is used for React component tests. Fortunately *create-react-app* already comes with Jest, so you don't need to worry about setting it up.
+[Jest](https://jestjs.io/) is a JavaScript testing framework that is used at Facebook. In the React community, it is used for React component tests. Fortunately *create-react-app* already comes with Jest, so you don't need to worry about setting it up.
 
 Let's start to test your first components. Before you can do that, you have to export the components, which you are going to test, from your *src/App.js* file. Afterward you can test them in a different file. You have learned about this in the code organization chapter.
 
@@ -553,7 +553,7 @@ Snapshot tests usually stay pretty basic. You only want to cover that the compon
 * see how a snapshot test fails once you change your component's return value in the `render()` method
   * either accept or deny the snapshot change
 * keep your snapshots tests up to date when the implementation of components change in next chapters
-* read more about [Jest in React](https://facebook.github.io/jest/docs/tutorial-react.html)
+* read more about [Jest in React](https://jestjs.io/docs/en/tutorial-react)
 
 ## Unit Tests with Enzyme
 
@@ -638,7 +638,7 @@ You could continue to unit test your components. But make sure to keep the tests
 
 * write a unit test with Enzyme for your Button component
 * keep your unit tests up to date during the following chapters
-* read more about [enzyme and its rendering API](https://github.com/airbnb/enzyme)
+* read more about [Enzyme and its rendering API](https://github.com/airbnb/enzyme)
 * read more about [testing React applications](https://www.robinwieruch.de/react-testing-tutorial)
 
 ## Component Interface with PropTypes
@@ -647,7 +647,7 @@ You may know [TypeScript](https://www.typescriptlang.org/) or [Flow](https://flo
 
 In the book, you will not introduce Flow or TypeScript, but another neat way to check your types in components. React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props that get passed from a parent component to a child component get validated based on the PropTypes interface assigned to the child component.
 
-The chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code refactorings. But you should keep and update them along the way to keep your components interface type safe.
+This section of the chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code refactorings. But you should keep and update them along the way to keep your components interface type safe.
 
 First, you have to install a separate package for React.
 
@@ -709,7 +709,7 @@ Additionally you have two more PropTypes to define a renderable fragment (node),
 
 You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up on in the official React documentation.
 
-At the moment all of the defined PropTypes for the Button are optional. The parameters can be null or undefined. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
+At the moment all of the defined PropTypes for the Button are optional. The parameters can be `null` or `undefined`. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -814,7 +814,7 @@ The extension shows on the side pane the component's state and props for the sel
 
 First, you would like to check the "Highlight Updates" option (usually above the elements tree). Second, you can type a different search term in the application’s input field. As you will see, only `searchTerm` will be changed in the component’s state. You already knew that would happen, but now you can actually see it working as planned.
 
-Finally, you can press the “Search” button. The `searchKey` state will immediately be changed for the same value as `searchTerm` and the response object will be added to `results` a few seconds later. The asynchronous nature of your code is now visible to your eyes.
+Finally, you can press the "Search" button. The `searchKey` state will immediately be changed for the same value as `searchTerm` and the response object will be added to `results` a few seconds later. The asynchronous nature of your code is now visible to your eyes.
 
 Last but not least, if you right-click on any element, a dropdown menu will show several useful options to you. For instance, you could copy the element’s props or name, find the corresponding DOM node or jump to the application’s source code in the browser. This last option is very useful for inserting breakpoints and debug your JavaScript functions.
 
