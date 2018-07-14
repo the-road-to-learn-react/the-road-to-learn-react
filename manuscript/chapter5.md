@@ -47,7 +47,7 @@ class Search extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-The `this` object of an ES6 class component helps us to reference the DOM node with the `ref` attribute.
+The `this` object of an ES6 class component helps us to reference the DOM element with the `ref` attribute.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
