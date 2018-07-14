@@ -154,8 +154,8 @@ Now you would be able to access the input DOM element. In the example of the foc
 
 ### Exercises
 
-* read more about [the usage of the `ref` attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
-* read more about [the `ref` attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
+* read more about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* read more about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
 
 ## Loading ...
 
@@ -986,7 +986,7 @@ Finally your advanced sort interaction is complete now.
 You have learned advanced component techniques in React! Let's recap the last chapters:
 
 * React
-  * the ref attribute to reference DOM nodes
+  * the `ref` attribute to reference DOM nodes
   * higher-order components are a common way to build advanced components
   * implementation of advanced interactions in React
   * conditional classNames with a neat helper library
