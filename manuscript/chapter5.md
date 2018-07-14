@@ -986,7 +986,7 @@ Finally your advanced sort interaction is complete now.
 You have learned advanced component techniques in React! Let's recap the last chapters:
 
 * React
-  * the `ref` attribute to reference DOM nodes
+  * the `ref` attribute to reference DOM elements
   * higher-order components are a common way to build advanced components
   * implementation of advanced interactions in React
   * conditional classNames with a neat helper library
