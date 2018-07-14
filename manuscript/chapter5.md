@@ -47,7 +47,7 @@ class Search extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-The `this` object of an ES6 class component helps us to reference the DOM node with the `ref` attribute.
+The `this` object of an ES6 class component helps us to reference the DOM element with the `ref` attribute.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -67,7 +67,7 @@ class Search extends Component {
           value={value}
           onChange={onChange}
 # leanpub-start-insert
-          ref={(node) => { this.input = node; }}
+          ref={el => this.input = el}
 # leanpub-end-insert
         />
         <button type="submit">
@@ -86,7 +86,7 @@ Now you can focus the input field when the component mounted by using the `this`
 class Search extends Component {
 # leanpub-start-insert
   componentDidMount() {
-    if(this.input) {
+    if (this.input) {
       this.input.focus();
     }
   }
@@ -106,7 +106,7 @@ class Search extends Component {
           type="text"
           value={value}
           onChange={onChange}
-          ref={(node) => { this.input = node; }}
+          ref={el => this.input = el}
         />
         <button type="submit">
           {children}
@@ -139,7 +139,7 @@ const Search = ({
         value={value}
         onChange={onChange}
 # leanpub-start-insert
-        ref={(node) => input = node}
+        ref={el => this.input = el}
 # leanpub-end-insert
       />
       <button type="submit">
@@ -394,7 +394,8 @@ class App extends Component {
 # leanpub-start-insert
           <ButtonWithLoading
             isLoading={isLoading}
-            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
+          >
             More
           </ButtonWithLoading>
 # leanpub-end-insert
@@ -985,7 +986,7 @@ Finally your advanced sort interaction is complete now.
 You have learned advanced component techniques in React! Let's recap the last chapters:
 
 * React
-  * the ref attribute to reference DOM nodes
+  * the `ref` attribute to reference DOM elements
   * higher-order components are a common way to build advanced components
   * implementation of advanced interactions in React
   * conditional classNames with a neat helper library
