@@ -67,7 +67,7 @@ class Search extends Component {
           value={value}
           onChange={onChange}
 # leanpub-start-insert
-          ref={(node) => { this.input = node; }}
+          ref={el => this.input = el}
 # leanpub-end-insert
         />
         <button type="submit">
@@ -86,7 +86,7 @@ Now you can focus the input field when the component mounted by using the `this`
 class Search extends Component {
 # leanpub-start-insert
   componentDidMount() {
-    if(this.input) {
+    if (this.input) {
       this.input.focus();
     }
   }
@@ -106,7 +106,7 @@ class Search extends Component {
           type="text"
           value={value}
           onChange={onChange}
-          ref={(node) => { this.input = node; }}
+          ref={el => this.input = el}
         />
         <button type="submit">
           {children}
@@ -139,7 +139,7 @@ const Search = ({
         value={value}
         onChange={onChange}
 # leanpub-start-insert
-        ref={(node) => input = node}
+        ref={el => this.input = el}
 # leanpub-end-insert
       />
       <button type="submit">
@@ -154,8 +154,8 @@ Now you would be able to access the input DOM element. In the example of the foc
 
 ### Exercises
 
-* read more about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
-* read more about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
+* read more about [the usage of the `ref` attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* read more about [the `ref` attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
 
 ## Loading ...
 
@@ -394,7 +394,8 @@ class App extends Component {
 # leanpub-start-insert
           <ButtonWithLoading
             isLoading={isLoading}
-            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
+          >
             More
           </ButtonWithLoading>
 # leanpub-end-insert
