@@ -14,7 +14,7 @@ The official documentation says that *create-react-app* is suitable for small to
 
 ### Exercises:
 
-* read more about [eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup)
+* read more about [eject](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject)
 
 ## Deploy your App
 
@@ -22,7 +22,7 @@ In the end, no application should stay on localhost. You want to go live. Heroku
 
 You need to fulfill two requirements before you can deploy your application to Heroku:
 
-* install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
+* install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 * create a [free Heroku account](https://www.heroku.com/)
 
 If you have installed Homebrew, you can install the Heroku CLI from command line:
