@@ -544,7 +544,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Second, introduce a button in your Search component. The button has the `type="submit"` and the form uses its `onSubmit()` attribute to pass the `onSubmit()` method. You can reuse the children property, but this time it will be used as the content of the button.
+Second, introduce a button in your Search component. The button has the `type="submit"` and the form uses its `onSubmit` attribute to pass the `onSubmit()` method. You can reuse the `children` property, but this time it will be used as the content of the button.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
