@@ -760,6 +760,7 @@ Now you know the basics around JavaScript ES6 classes and how they are used in R
 ### Exercises:
 
 * read more about [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
+* read more about [JavaScript fundamentals before learning React](https://www.robinwieruch.de/javascript-fundamentals-react-requirements/)
 
 {pagebreak}
 
