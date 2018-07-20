@@ -50,9 +50,9 @@ Imports can have an alias. It can happen that you import functionalities from mu
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
-import { firstname as foo } from './file1.js';
+import { firstname as username } from './file1.js';
 
-console.log(foo);
+console.log(username);
 // output: Robin
 ~~~~~~~~
 
@@ -102,6 +102,8 @@ export {
 export default person;
 ~~~~~~~~
 
+And import the default or the named exports in another file.
+
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
 import developer, { firstname, lastname } from './file1.js';
@@ -112,7 +114,7 @@ console.log(firstname, lastname);
 // output: Robin Wieruch
 ~~~~~~~~
 
-In named exports you can spare additional lines and export the variables directly.
+You can also spare additional lines and export the variables directly for named exports.
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
