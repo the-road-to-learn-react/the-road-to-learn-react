@@ -616,7 +616,7 @@ You are displaying both list items now. You can start your app, open your browse
 ### Exercises:
 
 * read more about [React lists and keys](https://reactjs.org/docs/lists-and-keys.html)
-* recap the [standard built-in array functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+* recap the [standard built-in array functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/)
 * use more JavaScript expressions on your own in JSX
 
 ## ES6 Arrow Functions
