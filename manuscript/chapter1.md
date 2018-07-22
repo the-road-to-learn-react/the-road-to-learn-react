@@ -335,7 +335,7 @@ Additionally, you might have noticed the `className` attribute. It reflects the 
   * use a complex object to represent a user with a first name and last name
   * render the user properties in your JSX
 * read more about [JSX](https://reactjs.org/docs/introducing-jsx.html)
-* read more about [React components, elements and instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
+* read more about [React components, elements and instances](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
 
 ## ES6 const and let
 
@@ -498,7 +498,7 @@ import './App.css';
 const list = [
   {
     title: 'React',
-    url: 'https://facebook.github.io/react/',
+    url: 'https://reactjs.org/',
     author: 'Jordan Walke',
     num_comments: 3,
     points: 4,
@@ -506,7 +506,7 @@ const list = [
   },
   {
     title: 'Redux',
-    url: 'https://github.com/reactjs/redux',
+    url: 'https://redux.js.org/',
     author: 'Dan Abramov, Andrew Clark',
     num_comments: 2,
     points: 5,
