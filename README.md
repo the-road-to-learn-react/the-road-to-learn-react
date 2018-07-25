@@ -8,7 +8,7 @@ The official repository for [The Road to learn React](https://www.robinwieruch.d
 
 The Road to learn React is also available in other languages. Thanks for all translators for their awesome work!
 
-* 🇨🇳 [Chinese](https://leanpub.com/the-road-to-learn-react-chinese)
+* 🇨🇳 [Simplified Chinese](https://leanpub.com/the-road-to-learn-react-chinese)
 * 🇫🇷 [French](https://leanpub.com/the-road-to-learn-react-french)
 * 🇰🇷 [Korean](https://leanpub.com/the-road-to-learn-react-korean)
 * 🇧🇷 [Portuguese](https://leanpub.com/the-road-to-learn-react-portuguese)
