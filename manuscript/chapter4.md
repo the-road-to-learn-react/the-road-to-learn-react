@@ -318,7 +318,7 @@ Perhaps you have heard about the testing pyramid. There are end-to-end tests, in
 
 How many tests do I need of each type? You want to have many unit tests to cover your isolated functions. After that, you can have several integration tests to cover that the most important functions work in combination as expected. Last but not least, you might want to have only a few end-to-end tests to simulate critical scenarios in your web application. That's it for the general excursion in the world of testing.
 
-So how do you apply this knowledge in testing your React application? The foundation for testing in React are component tests which can be generalized as unit tests and a part of it as snapshot tests. You will conduct unit tests for your components in the next chapter by using a library called Enzyme. In this section of the chapter, you will focus on another kind of tests: snapshot tests. That's were Jest comes into play.
+So how do you apply this knowledge in testing your React application? The foundation for testing in React are component tests which can be generalized as unit tests and a part of it as snapshot tests. You will conduct unit tests for your components in the next chapter by using a library called Enzyme. In this section of the chapter, you will focus on another kind of tests: snapshot tests. That's where Jest comes into play.
 
 [Jest](https://jestjs.io/) is a JavaScript testing framework that is used at Facebook. In the React community, it is used for React component tests. Fortunately *create-react-app* already comes with Jest, so you don't need to worry about setting it up.
 
