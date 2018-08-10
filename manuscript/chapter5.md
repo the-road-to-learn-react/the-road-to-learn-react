@@ -1,18 +1,16 @@
 # Advanced React Components
 
-The chapter will focus on the implementation of advanced React components. You will learn about higher-order components and how to implement them. In addition, you will dive into more advanced topics in React and implement complex interactions with it.
+This chapter focuses on implementing advanced React components. You will learn how to implement higher-order components, and we will dive into more advanced topics in React.
 
 ## Ref a DOM Element
 
-Sometimes you need to interact with your DOM nodes in React. The `ref` attribute gives you access to a node in your elements. Usually that is an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. You have learned about it when you have introduced your first search input field. But there are certain cases where you need access to the DOM node. The official documentation mentions three use cases:
+Sometimes you need to interact with your DOM nodes in React. The `ref` attribute gives you access to a node in your elements. That’s is usually an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. We learned about it when we introduced the first search input field, but there are certain cases where you need access to the DOM node. The official documentation mentions three:
 
 * to use the DOM API (focus, media playback etc.)
 * to invoke imperative DOM node animations
 * to integrate with a third-party library that needs the DOM node (e.g. [D3.js](https://d3js.org/))
 
-Let's do it by example with the Search component. When the application renders the first time, the input field should be focused. That's one use case where you would need access to the DOM API. This chapter will show you how it works, but since it is not very useful for the application itself, we will omit the changes after the chapter. You can keep it for your own application though.
-
-In general, you can use the `ref` attribute in both functional stateless components and ES6 class components. In the example of the focus use case, you will need a lifecycle method. That's why the approach is first showcased by using the `ref` attribute with an ES6 class component.
+We'll use the Search component as an example. When the application renders for the first time, the input field should be focused. This is one case where we need access to the DOM API. The `ref` attribute can be used in both functional stateless components and ES6 class components. In this example, we need a lifecycle method, so the approach is showcased using the `ref` attribute with an ES6 class component.
 
 The initial step is to refactor the functional stateless component to an ES6 class component.
 
@@ -117,9 +115,7 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The input field should be focused when the application renders. That's basically it for using the `ref` attribute.
-
-But how would you get access to the `ref` in a functional stateless component without the `this` object? The following functional stateless component demonstrates it.
+The input field should be focused when the application renders. We access to the `ref` in a functional stateless component without the `this` object using the following functional stateless component:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -150,7 +146,7 @@ const Search = ({
 }
 ~~~~~~~~
 
-Now you would be able to access the input DOM element. In the example of the focus use case it wouldn't help you, because you have no lifecycle method in a functional stateless component to trigger the focus. But in the future you might come across other use cases where it can make sense to use a functional stateless component with the `ref` attribute.
+Now we can access the input DOM element. In our case it wouldn't help much since there's no lifecycle method in a functional stateless component to trigger the focus. In the future, though, you may encounter cases where it makes sense to use a functional stateless component with the `ref` attribute.
 
 ### Exercises
 
@@ -159,7 +155,7 @@ Now you would be able to access the input DOM element. In the example of the foc
 
 ## Loading ...
 
-Now let's get back to the application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component in your *src/App.js* file.
+Now we get back to the application, where we'll show a loading indicator when a search request submits to the Hacker News API. The request is asynchronous, so you should show your user feedback that something is happening. Let's define a reusable Loading component in your *src/App.js* file.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -167,7 +163,7 @@ const Loading = () =>
   <div>Loading ...</div>
 ~~~~~~~~
 
-Now you will need a property to store the loading state. Based on the loading state you can decide to show the Loading component later on.
+Now we need a property to store the loading state. Based on the loading state, we can decide to show the Loading component later.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -195,9 +191,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The initial value of that `isLoading` property is false. You don't load anything before the App component is mounted.
-
-When you make the request, you set a loading state to true. Eventually the request will succeed and you can set the loading state to false.
+The initial value of that `isLoading` property is false. We don't load anything before the App component is mounted.  When the request is made, the loading state is set to true. The request will succeed eventually, and you can set the loading state to false.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -234,7 +228,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the last step, you will use the Loading component in your App. A conditional rendering based on the loading state will decide whether you show a Loading component or the Button component. The latter one is your button to fetch more data.
+In the last step, we used the Loading component in App. A conditional rendering based on the loading state will decide whether to show a Loading component or the Button component. The latter is the button to fetch more data.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -276,7 +270,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Initially the Loading component will show up when you start your application, because you make a request on `componentDidMount()`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false and the Loading component disappears. Instead, the "More" button to fetch more data appears. Once you fetch more data, the button will disappear again and the Loading component will show up.
+Initially, the Loading component will show when you start your application, because you make a request on `componentDidMount()`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false, and the Loading component disappears. Instead, the "More" button to fetch more data appears. Once you fetch more data, the button will disappear again and the Loading component will appear.
 
 ### Exercises:
 
@@ -284,11 +278,11 @@ Initially the Loading component will show up when you start your application, be
 
 ## Higher-Order Components
 
-Higher-order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher-order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
+Higher-order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher-order functions. They take any input--usually a component, but also optional arguments--and return a component as output. The returned component is an enhanced version of the input component, and it can be used in your JSX.
 
-HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand, the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.
+HOCs are used for different use cases. They can prepare properties, manage state, or alter the representation of a component. One case is to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand, the plain List component doesn't need to bother anymore about an non existent list, as it only cares about rendering the list.
 
-Let's do a simple HOC which takes a component as input and returns a component. You can place it in your *src/App.js* file.
+Let's do a simple HOC that takes a component as input and returns a component. You can place it in your *src/App.js* file.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -299,15 +293,15 @@ function withFoo(Component) {
 }
 ~~~~~~~~
 
-One neat convention is to prefix the naming of a HOC with `with`. Since you are using JavaScript ES6, you can express the HOC more concisely with an ES6 arrow function.
+It is a useful convention to prefix a HOC with `with`. Since you are using JavaScript ES6, you can express the HOC better with an ES6 arrow function.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-const withFoo = (Component) => (props) =>
+const withEnhancement = (Component) => (props) =>
   <Component { ...props } />
 ~~~~~~~~
 
-In the example, the input component would stay the same as the output component. Nothing happens. It renders the same component instance and passes all of the props to the output component. But that's useless. Let's enhance the output component. The output component should show the Loading component, when the loading state is true, otherwise it should show the input component. A conditional rendering is a great use case for a HOC.
+In our example, the input component stays the same as the output, so nothing happens. The output component should show the Loading component when the loading state is true, otherwise it should show the input component. A conditional rendering is a great use case for an HOC.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -319,9 +313,7 @@ const withLoading = (Component) => (props) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-Based on the loading property you can apply a conditional rendering. The function will return the Loading component or the input component.
-
-In general it can be very efficient to spread an object, like the props object in the previous example, as input for a component. See the difference in the following code snippet.
+Based on the loading property, you can apply a conditional rendering. The function will return the Loading component or the input component. In general, it can be very efficient to spread an object like the props object in the previous example as input for a component. See the difference in the following code snippet:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -333,7 +325,7 @@ const { foo, bar } = props;
 <SomeComponent { ...props } />
 ~~~~~~~~
 
-There is one little thing that you should avoid. You pass all the props including the `isLoading` property, by spreading the object, into the input component. However, the input component may not care about the `isLoading` property. You can use the ES6 rest destructuring to avoid it.
+We passed all the props including the `isLoading` property by spreading the object into the input component. The input component may not care about the `isLoading` property. You can use the ES6 rest destructuring to avoid it:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -345,9 +337,9 @@ const withLoading = (Component) => ({ isLoading, ...rest }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in the [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+It takes one property out of the object, but keeps the remaining object, which also works with multiple properties.  More can be read about it in Mozilla's [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
 
-Now you can use the HOC in your JSX. A use case in the application could be to show either the "More" button or the Loading component. The Loading component is already encapsulated in the HOC, but an input component is missing. In the use case of showing a Button component or a Loading component, the Button is the input component of the HOC. The enhanced output component is a ButtonWithLoading component.
+Now you can use the HOC in JSX. Maybe you want to show either the "More" button or the Loading component. The Loading component is already encapsulated in the HOC, but an input component is missing. For showing either a Button component or a Loading component, the Button is the input component of the HOC. The enhanced output component is a ButtonWithLoading component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -406,7 +398,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-When you run your tests again, you will notice that your snapshot test for the App component fails. The diff might look like the following on the command line:
+Note that when you run your tests again, your snapshot test for the App component fails. The diff might look like the following on the command line:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -424,9 +416,7 @@ When you run your tests again, you will notice that your snapshot test for the A
 
 You can either fix the component now, when you think there is something wrong about it, or can accept the new snapshot of it. Because you introduced the Loading component in this chapter, you can accept the altered snapshot test on the command line in the interactive test.
 
-Higher-order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
-
-I encourage you to read the [gentle introduction to higher-order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them in a functional programming way and solves specifically the problem of conditional rendering with higher-order components.
+Higher-order components are an advanced pattern in React. They have multiple purposes: improved reusability of components, greater abstraction, composability of components, and manipulations of props, state and view. I encourage you to read [gentle introduction to higher-order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them in a functional programming way, and solves the problem of conditional rendering with higher-order components.
 
 ### Exercises:
 
@@ -437,16 +427,16 @@ I encourage you to read the [gentle introduction to higher-order components](htt
 
 ## Advanced Sorting
 
-You have already implemented a client- and server-side search interaction. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about introducing a sort functionality for each column by using the column headers of the Table?
+We implemented a client and server-side search interaction earlier. Since you have a Table component, it makes sense to enhance it with advanced interactions. Next, we'll introduce a sort functionality for each column by using the column headers of the Table.
 
-It would be possible to write your own sort function, but personally I prefer to use a utility library for such cases. [Lodash](https://lodash.com/) is one of these utility libraries, but you can use whatever library suits you. Let's install Lodash and use it for the sort functionality.
+It is possible to write your own sort function, but I prefer to use a utility library like [Lodash](https://lodash.com/) for these cases. There are other options, but we'll install Lodash for our sort function:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install lodash
 ~~~~~~~~
 
-Now you can import the sort functionality of Lodash in your *src/App.js* file.
+Now we import the sort functionality of Lodash in your *src/App.js* file:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -458,7 +448,7 @@ import { sortBy } from 'lodash';
 import './App.css';
 ~~~~~~~~
 
-You have several columns in your Table. There are title, author, comments and points columns. You can define sort functions whereas each function takes a list and returns a list of items sorted by a specific property. Additionally, you will need one default sort function which doesn't sort but only returns the unsorted list. That will be your initial state.
+Now we have several columns in Table: title, author, comments and points columns. You can define sort functions where each takes a list and returns a list of items sorted by a specific property. Additionally, you will need a default sort function that doesn't sort, but returns the unsorted list. This will be the initial state.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -480,11 +470,11 @@ class App extends Component {
 ...
 ~~~~~~~~
 
-You can see that two of the sort functions return a reversed list. That's because you want to see the items with the highest comments and points rather than to see the items with the lowest counts when you sort the list for the first time.
+Two of the sort functions return a reversed list. That's to see the items with the highest comments and points, rather than the items with the lowest counts when the list is sorted for the first time.
 
 The `SORTS` object allows you to reference any sort function now.
 
-Again your App component is responsible for storing the state of the sort. The initial state will be the initial default sort function, which doesn't sort at all and returns the input list as output.
+Again, the App component is responsible for storing the state of the sort. The initial state will be the default sort function, which doesn't sort at all and returns the input list as output.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -500,9 +490,9 @@ this.state = {
 };
 ~~~~~~~~
 
-Once you choose a different `sortKey`, let's say the `AUTHOR` key, you will sort the list with the appropriate sort function from the `SORTS` object.
+Once we choose a different `sortKey`, like the `AUTHOR` key, we sort the list with the appropriate sort function from the `SORTS` object.
 
-Now you can define a new class method in your App component that simply sets a `sortKey` to your local component state. Afterward, the `sortKey` can be used to retrieve the sorting function to apply it on your list.
+Now we define a new class method in App component that sets a `sortKey` to the local component state, then `sortKey` can be used to retrieve the sorting function to apply it to the list:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -537,7 +527,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The next step is to pass the method and `sortKey` to your Table component.
+The next step is to pass the method and `sortKey` to the Table component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -577,7 +567,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterward it keeps mapping over the sorted list.
+The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input, after which it keeps mapping over the sorted list.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -600,7 +590,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`, so nothing is sorted yet. So far, no one executes the `onSort()` method to change the `sortKey`. Let's extend the Table with a row of column headers that use Sort components in columns to sort each column.
+In theory, the list should get sorted by one of the functions. But the default sort is set to `NONE`, so nothing is sorted yet, as nothing executes the `onSort()` method to change the `sortKey`.  We extend the Table with a row of column headers that use Sort components in columns to sort each column:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -656,7 +646,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-Each Sort component gets a specific `sortKey` and the general `onSort()` function. Internally it calls the method with the `sortKey` to set the specific key.
+Each Sort component gets a specific `sortKey` and the general `onSort()` function. Internally, it calls the method with the `sortKey` to set the specific key.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -666,9 +656,9 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-As you can see, the Sort component reuses your common Button component. On a button click each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list when you click on the column headers.
+As you can see, the Sort component reuses your common Button component. On a button click, each individual passed `sortKey` is set by the `onSort()` method, so the list is sorted when column headers are selected.
 
-There is one minor improvement for an improved look. So far, the button in a column header looks a bit silly. Let's give the button in the Sort component a proper `className`.
+Now we'll improve the look of the button in the column header. Let's give it a proper `className`:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -683,7 +673,7 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-It should look nice now. The next goal would be to implement a reverse sort as well. The list should get reverse sorted once you click a Sort component twice. First, you need to define the reverse state with a boolean. The sort can be either reversed or non reversed.
+This was done to improve the UI. The next goal is to implement a reverse sort. The list should perform a reverse sort once you click a Sort component twice. First, you need to define the reverse state with a boolean. The sort can be either reversed or non-reversed.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -712,7 +702,7 @@ onSort(sortKey) {
 }
 ~~~~~~~~
 
-Again you can pass the reverse prop to your Table component.
+Again, we pass the reverse prop to your Table component:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -754,7 +744,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table has to have an arrow function block body to compute the data now.
+The Table has to have an arrow function block body to compute the data now:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -789,11 +779,7 @@ const Table = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-The reverse sort should work now.
-
-Last but not least, you have to deal with one open question for the sake of an improved user experience. Can a user distinguish which column is actively sorted? So far, it is not possible. Let's give the user a visual feedback.
-
-Each Sort component gets its specific `sortKey` already. It could be used to identify the activated sort. You can pass the `sortKey` from the internal component state as active sort key to your Sort component.
+Finally, we want to give the user visual feedback to distinguish which column is actively sorted. Each Sort component has its specific `sortKey` already, which can be used to identify the activated sort. We pass the `sortKey` from the internal component state as active sort key to your Sort component:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -868,7 +854,7 @@ const Table = ({
 }
 ~~~~~~~~
 
-Now in your Sort component, you know based on the `sortKey` and `activeSortKey` whether the sort is active. Give your Sort component an extra `className` attribute, in case it is sorted, to give the user a visual feedback.
+Now the user will know whether sort is active based on the `sortKey` and `activeSortKey` . Give your Sort component an extra `className` attribute, in case it is sorted, to give visual feedback:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -897,14 +883,14 @@ const Sort = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-The way to define the `sortClass` is a bit clumsy, isn't it? There is a neat little library to get rid of this. First you have to install it.
+We can define `sortClass` more efficiently using a library called classnames, which is installed using npm:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install classnames
 ~~~~~~~~
 
-And second you have to import it on top of your *src/App.js* file.
+After installation, we import it on top of the *src/App.js* file.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -917,7 +903,7 @@ import classNames from 'classnames';
 import './App.css';
 ~~~~~~~~
 
-Now you can use it to define your component `className` with conditional classes.
+Now we can define `className` with conditional classes:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -947,7 +933,7 @@ const Sort = ({
 }
 ~~~~~~~~
 
-Again, when you run your tests, you should see failing snapshot tests but also failing unit tests for the Table component. Since you changed again your component representations, you can accept the snapshot tests. But you have to fix the unit test. In your *src/App.test.js* file, you need to provide a `sortKey` and the `isSortReverse` boolean for the Table component.
+There will be failing snapshot and unit tests for the Table component. Since we intentionally changed again our component representations, we accept the snapshot tests, but we still need to fix the unit test. In *src/App.test.js* , provide a `sortKey` and the `isSortReverse` boolean for the Table component.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -971,9 +957,7 @@ describe('Table', () => {
 });
 ~~~~~~~~
 
-Once again you might need to accept the failing snapshot tests for your Table component, because you provided extended props for the Table component.
-
-Finally your advanced sort interaction is complete now.
+We may need to accept the failing snapshot tests again for the Table component, because we provided extended props for it.  The advanced sort interaction is finally complete.
 
 ### Exercises:
 
@@ -983,7 +967,7 @@ Finally your advanced sort interaction is complete now.
 
 {pagebreak}
 
-You have learned advanced component techniques in React! Let's recap the last chapters:
+You have learned advanced component techniques in React! Let's recap the chapter:
 
 * React
   * the `ref` attribute to reference DOM elements
@@ -993,4 +977,6 @@ You have learned advanced component techniques in React! Let's recap the last ch
 * ES6
   * rest destructuring to split up objects and arrays
 
-You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.5).
+You can always find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.5).
+
+
