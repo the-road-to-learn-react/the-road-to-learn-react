@@ -149,9 +149,9 @@ src/
   Table.js
   Table.test.js
   Table.css
-  search.js
-  search.test.js
-  search.css
+  Search.js
+  Search.test.js
+  Search.css
 ~~~~~~~~
 
 This one separates the components into their own files, but it doesn't look too promising. You can see a lot of naming duplications, and only the file extension differs. Another module structure could be:
@@ -337,7 +337,7 @@ export default App;
 # leanpub-start-insert
 export {
   Button,
-  search,
+  Search,
   Table,
 };
 # leanpub-end-insert
@@ -448,23 +448,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 # leanpub-start-insert
-import App, { search } from './App';
+import App, { Search } from './App';
 # leanpub-end-insert
 
 ...
 
 # leanpub-start-insert
-describe('search', () => {
+describe('Search', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<search>search</search>, div);
+    ReactDOM.render(<Search>Search</Search>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
     const component = renderer.create(
-      <Search>search</search>
+      <Search>Search</search>
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -514,7 +514,7 @@ Finally, the Table component that you can pass a bunch of initial props to rende
 ~~~~~~~~
 ...
 # leanpub-start-insert
-import App, { search, Button, Table} from './App';
+import App, { Search, Button, Table} from './App';
 # leanpub-end-insert
 
 ...
@@ -593,7 +593,7 @@ import renderer from 'react-test-renderer';
 import Enzyme, { shallow } from 'enzyme';
 # leanpub-end-insert
 import Adapter from 'enzyme-adapter-react-16';
-import App, { search, Button, Table} from './App';
+import App, { Search, Button, Table} from './App';
 
 ...
 

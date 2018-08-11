@@ -1,4 +1,4 @@
-# Getting Real wit APIs
+# Getting Real with APIs
 
 Now it's time to get real with APIs and move past sample data. If you are not familiar, I encourage you [to read my article on how I got to know APIs](https://www.robinwieruch.de/what-is-an-api-javascript/).
 
@@ -113,9 +113,9 @@ class App extends Component {
     };
 
 # leanpub-start-insert
-    this.setSearchTopStories = this.setsearchTopStories.bind(this);
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
 # leanpub-end-insert
-    this.onSearchChange = this.onsearchChange.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
   }
 
@@ -166,7 +166,7 @@ class App extends Component {
     return (
       <div className="page">
         ...
-        <table
+        <Table
 # leanpub-start-insert
           list={result.hits}
 # leanpub-end-insert
@@ -283,7 +283,7 @@ console.log(user);
 // output: { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
 ~~~~~~~~
 
-Multiple objects can be spread as in the array spread example.
+Multiple objects can be spread, as with the array spread example.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -339,16 +339,16 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <search
+          <Search
             value={searchTerm}
             onChange={this.onsearchChange}
           >
-            search
-          </search>
+            Search
+          </Search>
         </div>
 # leanpub-start-insert
         { result
-          ? <table
+          ? <Table
             list={result.hits}
             pattern={searchTerm}
             onDismiss={this.onDismiss}
@@ -380,7 +380,7 @@ In React, you can make use of that behavior. If the condition is true, the expre
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 { result &&
-  <table
+  <Table
     list={result.hits}
     pattern={searchTerm}
     onDismiss={this.onDismiss}
@@ -415,10 +415,10 @@ class App extends Component {
       searchTerm: DEFAULT_QUERY,
     };
 
-    this.setsearchTopStories = this.setsearchTopStories.bind(this);
-    this.onsearchChange = this.onsearchChange.bind(this);
+    this.SetsearchTopStories = this.setSearchTopStories.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
 # leanpub-start-insert
-    this.onsearchSubmit = this.onsearchSubmit.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
 # leanpub-end-insert
     this.onDismiss = this.onDismiss.bind(this);
   }
@@ -426,7 +426,7 @@ class App extends Component {
   ...
 
 # leanpub-start-insert
-  onsearchSubmit() {
+  onSearchSubmit() {
     const { searchTerm } = this.state;
   }
 # leanpub-end-insert
@@ -435,7 +435,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `onsearchSubmit()` method should use the same functionality as the `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term. Thus you can extract the functionality as a reusable class method.
+The `onSearchSubmit()` method should use the same functionality as the `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term. Thus you can extract the functionality as a reusable class method.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -449,19 +449,19 @@ class App extends Component {
       searchTerm: DEFAULT_QUERY,
     };
 
-    this.setsearchTopStories = this.setsearchTopStories.bind(this);
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
 # leanpub-start-insert
-    this.fetchsearchTopStories = this.fetchsearchTopStories.bind(this);
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
 # leanpub-end-insert
-    this.onsearchChange = this.onsearchChange.bind(this);
-    this.onsearchSubmit = this.onsearchSubmit.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
   }
 
   ...
 
 # leanpub-start-insert
-  fetchsearchTopStories(searchTerm) {
+  fetchSearchTopStories(searchTerm) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setsearchTopStories(result))
@@ -472,16 +472,16 @@ class App extends Component {
   componentDidMount() {
     const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchsearchTopStories(searchTerm);
+    this.fetchSearchTopStories(searchTerm);
 # leanpub-end-insert
   }
 
   ...
 
-  onsearchSubmit() {
+  onSearchSubmit() {
     const { searchTerm } = this.state;
 # leanpub-start-insert
-    this.fetchsearchTopStories(searchTerm);
+    this.fetchSearchTopStories(searchTerm);
 # leanpub-end-insert
   }
 
@@ -506,18 +506,18 @@ class App extends Component {
     return (
       <div className="page">
         <div className="interactions">
-          <search
+          <Search
             value={searchTerm}
-            onChange={this.onsearchChange}
+            onChange={this.onSearchChange}
 # leanpub-start-insert
-            onSubmit={this.onsearchSubmit}
+            onSubmit={this.onSearchSubmit}
 # leanpub-end-insert
           >
-            search
-          </search>
+            Search
+          </Search>
         </div>
         { result &&
-          <table
+          <Table
             list={result.hits}
             pattern={searchTerm}
             onDismiss={this.onDismiss}
@@ -534,7 +534,7 @@ Second, introduce a button in your search component. The button has the `type="s
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-const search = ({
+const Search = ({
   value,
   onChange,
   onSubmit,
@@ -567,7 +567,7 @@ class App extends Component {
       <div className="page">
         ...
         { result &&
-          <table
+          <Table
 # leanpub-start-insert
             list={result.hits}
             onDismiss={this.onDismiss}
@@ -582,7 +582,7 @@ class App extends Component {
 ...
 
 # leanpub-start-insert
-const table = ({ list, onDismiss }) =>
+const Table = ({ list, onDismiss }) =>
 # leanpub-end-insert
   <div className="table">
 # leanpub-start-insert
@@ -598,10 +598,10 @@ Now when you try to search, you will notice the browser reloads. That's a native
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
-onsearchSubmit(event) {
+onSearchSubmit(event) {
 # leanpub-end-insert
   const { searchTerm } = this.state;
-  this.fetchsearchTopStories(searchTerm);
+  this.fetchSearchTopStories(searchTerm);
 # leanpub-start-insert
   event.preventDefault();
 # leanpub-end-insert
@@ -652,11 +652,11 @@ class App extends Component {
   ...
 
 # leanpub-start-insert
-  fetchsearchTopStories(searchTerm, page = 0) {
+  fetchSearchTopStories(searchTerm, page = 0) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
 # leanpub-end-insert
       .then(response => response.json())
-      .then(result => this.setsearchTopStories(result))
+      .then(result => this.setSearchTopStories(result))
       .catch(error => error);
   }
 
@@ -685,14 +685,14 @@ class App extends Component {
         <div className="interactions">
         ...
         { result &&
-          <table
+          <Table
             list={result.hits}
             onDismiss={this.onDismiss}
           />
         }
 # leanpub-start-insert
         <div className="interactions">
-          <Button onClick={() => this.fetchsearchTopStories(searchTerm, page + 1)}>
+          <Button onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}>
             More
           </Button>
         </div>
@@ -709,7 +709,7 @@ There is still one step missing, because fetching the next page of data will ove
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-setsearchTopStories(result) {
+setSearchTopStories(result) {
 # leanpub-start-insert
   const { hits, page } = result;
 
@@ -759,12 +759,12 @@ Now you can use the constants to extend the API URL.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-fetchsearchTopStories(searchTerm, page = 0) {
+fetchSearchTopStories(searchTerm, page = 0) {
 # leanpub-start-insert
   fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
 # leanpub-end-insert
     .then(response => response.json())
-    .then(result => this.setsearchTopStories(result))
+    .then(result => this.setSearchTopStories(result))
     .catch(error => error);
 }
 ~~~~~~~~
@@ -844,7 +844,7 @@ componentDidMount() {
 # leanpub-start-insert
   this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchsearchTopStories(searchTerm);
+  this.fetchSearchTopStories(searchTerm);
 }
 
 onsearchSubmit(event) {
@@ -852,7 +852,7 @@ onsearchSubmit(event) {
 # leanpub-start-insert
   this.setState({ searchKey: searchTerm });
 # leanpub-end-insert
-  this.fetchsearchTopStories(searchTerm);
+  this.fetchSearchTopStories(searchTerm);
   event.preventDefault();
 }
 ~~~~~~~~
@@ -950,14 +950,14 @@ class App extends Component {
           ...
         </div>
 # leanpub-start-insert
-        <table
+        <Table
           list={list}
           onDismiss={this.onDismiss}
         />
 # leanpub-end-insert
         <div className="interactions">
 # leanpub-start-insert
-          <Button onClick={() => this.fetchsearchTopStories(searchKey, page + 1)}>
+          <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
 # leanpub-end-insert
             More
           </Button>
@@ -1008,17 +1008,17 @@ class App extends Component {
     ...
 
 # leanpub-start-insert
-    this.needsTosearchTopStories = this.needsTosearchTopStories.bind(this);
+    this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
 # leanpub-end-insert
-    this.setsearchTopStories = this.setsearchTopStories.bind(this);
-    this.fetchsearchTopStories = this.fetchsearchTopStories.bind(this);
-    this.onsearchChange = this.onsearchChange.bind(this);
-    this.onsearchSubmit = this.onsearchSubmit.bind(this);
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
   }
 
 # leanpub-start-insert
-  needsTosearchTopStories(searchTerm) {
+  needsToSearchTopStories(searchTerm) {
     return !this.state.results[searchTerm];
   }
 # leanpub-end-insert
@@ -1084,10 +1084,10 @@ class App extends Component {
 
   ...
 
-  fetchsearchTopStories(searchTerm, page = 0) {
+  fetchSearchTopStories(searchTerm, page = 0) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(response => response.json())
-      .then(result => this.setsearchTopStories(result))
+      .then(result => this.setSearchTopStories(result))
 # leanpub-start-insert
       .catch(error => this.setState({ error }));
 # leanpub-end-insert
@@ -1178,7 +1178,7 @@ class App extends Component {
           ? <div className="interactions">
             <p>Something went wrong.</p>
           </div>
-          : <table
+          : <Table
             list={list}
             onDismiss={this.onDismiss}
           />
@@ -1238,7 +1238,7 @@ class App extends Component {
 
   ...
 
-  fetchsearchTopStories(searchTerm, page = 0) {
+  fetchSearchTopStories(searchTerm, page = 0) {
 # leanpub-start-insert
     axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(result => this.setsearchTopStories(result.data))
@@ -1282,7 +1282,7 @@ class App extends Component {
 
     const { searchTerm } = this.state;
     this.setState({ searchKey: searchTerm });
-    this.fetchsearchTopStories(searchTerm);
+    this.fetchSearchTopStories(searchTerm);
   }
 
 # leanpub-start-insert
@@ -1304,10 +1304,10 @@ class App extends Component {
 
   ...
 
-  fetchsearchTopStories(searchTerm, page = 0) {
+  fetchSearchTopStories(searchTerm, page = 0) {
     axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
 # leanpub-start-insert
-      .then(result => this._isMounted && this.setsearchTopStories(result.data))
+      .then(result => this._isMounted && this.setSearchTopStories(result.data))
       .catch(error => this._isMounted && this.setState({ error }));
 # leanpub-end-insert
   }
