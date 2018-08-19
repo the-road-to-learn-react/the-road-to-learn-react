@@ -234,7 +234,7 @@ The scripts are defined in your *package.json*, and your basic React application
 
 Now we will get to know JSX,  the syntax in React. As mentioned before, *create-react-app* has already bootstrapped a basic application for you, and all files come with their own default implementations. For now, the only file we will modify is the *src/App.js* file.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 import React, { Component } from 'react';
 import logo from './logo.svg';
@@ -269,7 +269,7 @@ You should see where the App component is instantiated, else you couldn't see th
 
 The content in the render block may look similar to HTML, but it is actually JSX. JSX allows you to mix HTML and JavaScript. It is powerful, but it can be confusing when you are used to separating the two languages. It is a good idea to start by using basic HTML in your JSX. Open the `App.js` file and remove all unnecessary HTML code as shown:
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';
@@ -289,7 +289,7 @@ export default App;
 
 Now, you only return HTML in your `render()` method without any JavaScript. Let's define the "Welcome to the Road to learn React" as a variable.  A variable is set in JSX by curly braces.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';
@@ -363,7 +363,7 @@ helloWorld.text = 'Bye Bye React';
 
 There are varying opinions about when to use *const* and when to use *let*. I would recommend using `const` whenever possible to keep your data structures immutable, so that you need only worry about the values contained in objects and arrays.  Immutability is embraced in the React ecosystem, so `const` should be your default choice when you define a variable, though it’s not just about immutability, but about assigning variables only once.  It shows the intent of not changing (re-assigning) the variable.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';
@@ -396,7 +396,7 @@ export default App;
 
 The App component is located in your entry point to the React world: the *src/index.js* file.
 
-{title="Code Playground",lang="javascript"}
+{title="src/index.js",lang="javascript"}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -438,7 +438,7 @@ By default, *create-react-app* will cause the browser to refresh the page whenev
 
 Hot Module Replacement (HMR) is a tool for reloading your application in the browser without the page refresh. You can activate it in *create-react-app* by adding the following configuration to your *src/index.js* file:
 
-{title="Code Playground",lang="javascript"}
+{title="src/index.js",lang="javascript"}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -474,7 +474,7 @@ So far, you have rendered a few primitive variables in your JSX. Now, we will re
 
 First you have to define the list of items:
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 import React, { Component } from 'react';
 import './App.css';
@@ -509,7 +509,7 @@ The sample data represents information we will fetch from an API later on.  Item
 
 Now you can use the built-in JavaScript `map` functionality in JSX, which iterates over a list of items to display them according to a specified classification. Again, we use curly braces to encapsulate the JavaScript expression in JSX:
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 class App extends Component {
   render() {
@@ -532,7 +532,7 @@ Using JavaScript alongside HTML in JSX is very powerful. For a different task yo
 
 So far, only the `title` is displayed for each item. Let's experiment with more of the item's properties:
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
   render() {
@@ -583,7 +583,7 @@ React will display each item, but you can still do more to help React embrace it
 ~~~~~~~~
 Make sure that the key attribute is a stable identifier. Avoid using the index of the item in the array, because the array index is not stable. If the list changes its order, for example, React will not be able to identify the items properly.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 // don't do this
 {list.map(function(item, key) {
@@ -634,7 +634,7 @@ item, key => { ... }
 ~~~~~~~~
 You can also write `map` functions more concisely with an ES6 arrow function:
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 # leanpub-start-insert
 {list.map(item => {
@@ -653,7 +653,7 @@ You can also write `map` functions more concisely with an ES6 arrow function:
 ~~~~~~~~
 You can remove the *block body*--the curly braces--with the ES6 arrow function. In a *concise body*, an implicit return is attached; thus, you can remove the `return` statement. This will happen often in this book, so be sure to understand the difference between a block body and a concise body when using arrow functions.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 # leanpub-start-insert
 {list.map(item =>

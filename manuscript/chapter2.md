@@ -6,7 +6,7 @@ The chapter will guide you through the basics of React. It covers state and inte
 
 Local component state, also known as local state, allows you to save, modify, and delete properties stored in your component. The ES6 class component then uses a constructor to initialize local component state. The constructor is called only once, when the component initializes:
 
-{title="Code Playground",lang="javascript"
+{title="src/App.js",lang="javascript"
 ~~~~~~~~
 class App extends Component {
 
@@ -25,7 +25,7 @@ The App component is a subclass of `Component`, so the `extends Component` is in
 
 It is mandatory to call `super(props);`.  It sets `this.props` in your constructor in case you want to access them there. They would be `undefined` when accessing `this.props` in your constructor otherwise.  In this case, the initial state of the component should be the sample list of items:
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 const list = [
   {
@@ -58,7 +58,7 @@ class App extends Component {
 
 The state is bound to the class using the `this` object. so you can access the local state of the whole component. For instance, it can be used in the `render()` method. Previously you have mapped a static list of items in your `render()` method that was defined outside of your component. Now you are about to use the list from your local state in your component.
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 class App extends Component {
 
@@ -183,7 +183,7 @@ Now you have a local state in your App component, but haven't manipulated the st
 
 We will practice this concept by adding a button for each item in the displayed list. The button will read "Dismiss", as its purpose will be to remove an item from the list.  In an email client, for example, it would be a useful way to mark some list items as 'read' while keeping the unread items separate.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
 
@@ -224,7 +224,7 @@ Note the use multilines for the button element, and how elements with multiple a
 
 Now we will implement the `onDismiss()` functionality. It takes an id to identify the item to dismiss. The function is bound to the class and thus becomes a class method. That's why you access it with `this.onDismiss()` and not `onDismiss()`. The `this` object is your class instance. In order to define the `onDismiss()` as class method, you have to bind it in the constructor:
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
 
@@ -248,7 +248,7 @@ class App extends Component {
 
 In the next step, we define its functionality, the business logic, in the class:
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 class App extends Component {
 
@@ -278,7 +278,7 @@ Now we can define what happens inside a class method. Remember, the objective is
 
 You can remove an item from a list using [JavaScript's built-in filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) functionality, which takes a function as input. The function has access to each value in the list because it iterates over each item, so you can evaluate them based on certain conditions. The function returns a new list instead of mutating the old one, and it supports the React convention of using immutable data structures.
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 onDismiss(id) {
 # leanpub-start-insert
@@ -291,7 +291,7 @@ onDismiss(id) {
 
 In the next step, we extract the function and pass it to the filter function:
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 onDismiss(id) {
 # leanpub-start-insert
@@ -304,9 +304,9 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
->Remember: You can filter moreefficiently using a JavaScript ES6 arrow function.
+**Remember**: You can filter moreefficiently using a JavaScript ES6 arrow function.
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 onDismiss(id) {
 # leanpub-start-insert
@@ -319,7 +319,7 @@ onDismiss(id) {
 You could even inline it again like you did in the `onClick` handler of the button, though it might get less readable:
 
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 onDismiss(id) {
 # leanpub-start-insert
@@ -331,7 +331,7 @@ onDismiss(id) {
 The list removes the clicked item now, but the state hasn't updated yet. Use the `setState()` class method to update the list in the local component state:
 
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 onDismiss(id) {
   const isNotId = item => item.objectID !== id;
@@ -352,7 +352,7 @@ Run the application again and try the "Dismiss" button.  What you experienced is
 
 It is important to learn about bindings in JavaScript classes when using React ES6 class components. In the previous chapter, you have bound your class method `onDismiss()` in the constructor.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
   constructor(props) {
@@ -1440,7 +1440,7 @@ So basically there are only two component declarations left. But when to use fun
 
 Let's get back to your application. The App component uses local state. That's why it has to stay as an ES6 class component. But the other three of your ES6 class components are stateless. They don't need access to `this.state` or `this.setState()`. Even more, they have no lifecycle methods. Let's refactor together the Search component to a stateless functional component. The Table and Button component refactoring will remain as your exercise.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 # leanpub-start-insert
 function Search(props) {
@@ -1460,7 +1460,7 @@ function Search(props) {
 
 That's basically it. The `props` are accessible in the function signature and the return value is JSX. But you can do more code wise in a functional stateless component. You already know the ES6 destructuring. The best practice is to use it in the function signature to destructure the `props`.
 
-{title="Code Playground",lang="javascript"} ~~~~~~~~
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 # leanpub-start-insert
 function Search({ value, onChange, children }) {
@@ -1479,7 +1479,7 @@ function Search({ value, onChange, children }) {
 
 But it can get better. You know already that ES6 arrow functions allow you to keep your functions concise. You can remove the block body of the function. In a concise body an implicit return is attached thus you can remove the `return` statement. Since your functional stateless component is a function, you can keep it concise as well.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 # leanpub-start-insert
 const Search = ({ value, onChange, children }) =>
@@ -1649,7 +1649,7 @@ Now you can use the style in some of your components. Don't forget to use React 
 
 First, apply it in your App ES6 class component.
 
-{title="Code Playground",lang="javascript"} ~~~~~~~~
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 class App extends Component {
 
@@ -1686,7 +1686,7 @@ class App extends Component {
 
 Second, apply it in your Table functional stateless component.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 const Table = ({ list, pattern, onDismiss }) =>
 # leanpub-start-insert
@@ -1725,7 +1725,7 @@ Now you have styled your application and components with basic CSS. It should lo
 
 Let's keep the Table column width flexible by using inline style.
 
-{title="Code Playground",lang="javascript"} ~~~~~~~~
+{title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 const Table = ({ list, pattern, onDismiss }) =>
   <div className="table">
@@ -1809,7 +1809,6 @@ rty of the item. We've already used the built-in JavaScript filter functionality
 
 {title="Code Playground",lang="javascript"} 
 ~~~~~~~~
-~~~~~~~~
 class App extends Component {
 
   ...
@@ -1840,7 +1839,7 @@ Normally I wouldn't mention higher-order functions, but in a React book it makes
 
 First, you have to define the higher-order function outside of your App component.
 
-{title="Code Playground",lang="javascript"} ~~~~~~~~
+{title="Code Playground",lang="javascript"} 
 ~~~~~~~~
 # leanpub-start-insert
 function isSearched(searchTerm) {
@@ -1859,7 +1858,7 @@ class App extends Component {
 
 The function takes the `searchTerm` and returns another function, because after all the filter function takes a function as its input. The returned function has access to the item object because it is the function that is passed to the filter function. In addition, the returned function will be used to filter the list based on the condition defined in the function. Let's define the condition.
 
-{title="Code Playground",lang="javascript"} ~~~~~~~~
+{title="Code Playground",lang="javascript"} 
 ~~~~~~~~
 function isSearched(searchTerm) {
   return function (item) {
@@ -1909,7 +1908,7 @@ One could argue which function is more readable. Personally I prefer the second 
 
 Last but not least, you have to use the defined `isSearched()` function to filter your list. You pass it the `searchTerm` property from your local state, it returns the filter input function, and filters your list based on the filter condition. Afterward it maps over the filtered list to display an element for each list item.
 
-{title="Code Playground",lang="javascript"} ~~~~~~~~
+{title="Code Playground",lang="javascript"} 
 ~~~~~~~~
 class App extends Component {
 
