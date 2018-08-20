@@ -15,9 +15,9 @@ If you are looking for more extensions for your application, I recommend several
 * **React Component Syntax:** The best practices for implementing React components evolve over time. You will find many ways to write your React components, especially React class components, in other learning resources. A GitHub repository called [react-alternative-class-component-syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax) is a great way to learn alternative ways to write React class components. By using class field declarations, you can write them even more concisely in the future.
 
 * **Other Projects:** There are plenty of tutorials out there that use only React to build exciting applications, which provide good practice to apply what you've learned in this book before you move on to intermediate projects. Here are a few of my own:
-	*  [a paginated and infinite scrolling list](https://www.robinwieruch.de/react-paginated-list/)
-	*   [showcasing tweets on a Twitter wall](https:/www.robinwieruch.de/react-svg-patterns/)
-	*   [connecting your React application to Stripe for charging money](https://www.robinwieruch.de/react-express-stripe-payment/).
+	*  [A paginated and infinite scrolling list](https://www.robinwieruch.de/react-paginated-list/)
+	*   [Showcasing tweets on a Twitter wall](https:/www.robinwieruch.de/react-svg-patterns/)
+	*   [Connecting your React application to Stripe for charging money](https://www.robinwieruch.de/react-express-stripe-payment/).
 
 * **UI Components:** Many beginners make the mistake of introducing UI component libraries too early in their projects. It is more practical to learn how to implement and use a dropdown, checkbox, or dialog in React with standard HTML elements. Most of these components will manage their own local state. A checkbox has to know whether it is checked or unchecked, so you should implement them as controlled components. After we covered the foundational implementations, introducing a UI component library with checkboxes and dialogs as React components should be easier.
 
@@ -40,6 +40,7 @@ Once again, if you liked the book, I ask that you take a moment to think about a
 Thank you for reading the Road to learn React.
 
 Regards,
+
 Robin Wieruch
 
 

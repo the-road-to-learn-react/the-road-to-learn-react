@@ -150,8 +150,8 @@ Now we can access the input DOM element. In our case it wouldn't help much since
 
 ### Exercises
 
-* read more about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
-* read more about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
+* Read more about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* Read more about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
 
 ## Loading ...
 
@@ -191,7 +191,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The initial value of that `isLoading` property is false. We don't load anything before the App component is mounted.  When the request is made, the loading state is set to true. The request will succeed eventually, and you can set the loading state to false.
+The initial value of that `isLoading` property is false. We don't load anything before the App component is mounted. When the request is made, the loading state is set to true. The request will succeed eventually, and you can set the loading state to false.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -274,7 +274,7 @@ Initially, the Loading component will show when you start your application, beca
 
 ### Exercises:
 
-* use a library such as [Font Awesome](https://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
+* Use a library such as [Font Awesome](https://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
 
 ## Higher-Order Components
 
@@ -337,7 +337,7 @@ const withLoading = (Component) => ({ isLoading, ...rest }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-It takes one property out of the object, but keeps the remaining object, which also works with multiple properties.  More can be read about it in Mozilla's [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+It takes one property out of the object, but keeps the remaining object, which also works with multiple properties. More can be read about it in Mozilla's [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
 
 Now you can use the HOC in JSX. Maybe you want to show either the "More" button or the Loading component. The Loading component is already encapsulated in the HOC, but an input component is missing. For showing either a Button component or a Loading component, the Button is the input component of the HOC. The enhanced output component is a ButtonWithLoading component.
 
@@ -420,10 +420,10 @@ Higher-order components are an advanced pattern in React. They have multiple pur
 
 ### Exercises:
 
-* read [a gentle introduction to higher-order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/)
-* experiment with the HOC you have created
-* think about a use case where another HOC would make sense
-  * implement the HOC, if there is a use case
+* Read [a gentle introduction to higher-order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/)
+* Experiment with the HOC you have created
+* Think about a use case where another HOC would make sense
+  * Implement the HOC, if there is a use case
 
 ## Advanced Sorting
 
@@ -590,7 +590,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-In theory, the list should get sorted by one of the functions. But the default sort is set to `NONE`, so nothing is sorted yet, as nothing executes the `onSort()` method to change the `sortKey`.  We extend the Table with a row of column headers that use Sort components in columns to sort each column:
+In theory, the list should get sorted by one of the functions. But the default sort is set to `NONE`, so nothing is sorted yet, as nothing executes the `onSort()` method to change the `sortKey`. We extend the Table with a row of column headers that use Sort components in columns to sort each column:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -957,25 +957,24 @@ describe('Table', () => {
 });
 ~~~~~~~~
 
-We may need to accept the failing snapshot tests again for the Table component, because we provided extended props for it.  The advanced sort interaction is finally complete.
+We may need to accept the failing snapshot tests again for the Table component, because we provided extended props for it. The advanced sort interaction is finally complete.
 
 ### Exercises:
 
-* use a library like [Font Awesome](https://fontawesome.io/) to indicate the (reverse) sort
-  * it could be an arrow up or arrow down icon next to each Sort header
-* read more about the [classnames library](https://github.com/JedWatson/classnames)
+* Use a library like [Font Awesome](https://fontawesome.io/) to indicate the (reverse) sort. It could be an arrow up or arrow down icon next to each Sort header
+* Read more about the [classnames library](https://github.com/JedWatson/classnames)
 
 {pagebreak}
 
 You have learned advanced component techniques in React! Let's recap the chapter:
 
-* React
-  * the `ref` attribute to reference DOM elements
-  * higher-order components are a common way to build advanced components
-  * implementation of advanced interactions in React
-  * conditional classNames with a neat helper library
-* ES6
-  * rest destructuring to split up objects and arrays
+* **React**
+  * The `ref` attribute to reference DOM elements
+  * Gigher-order components are a common way to build advanced components
+  * Implementation of advanced interactions in React
+  * Conditional classNames with a neat helper library
+* **ES6**
+  * Rest destructuring to split up objects and arrays
 
 You can always find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.5).
 

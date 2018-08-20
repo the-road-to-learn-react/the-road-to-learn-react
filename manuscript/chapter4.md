@@ -4,13 +4,13 @@ The chapter will focus on keeping code organized in a scaling application, so we
 
 ## ES6 Modules: Import and Export
 
-In JavaScript ES6, you can import and export functionalities from modules. These can be functions, classes, components, constants, essentially anything you can assign to a variable.  Modules can be single files or whole folders with one index file as entry point.
+In JavaScript ES6, you can import and export functionalities from modules. These can be functions, classes, components, constants, essentially anything you can assign to a variable. Modules can be single files or whole folders with one index file as entry point.
 
-After we bootstrapped our application with *create-react-app* at the beginning, we already developed several `import` and `export` statements in the initial files.  The `import` and `export` statements help you to share code across multiple files. There were already several solutions for this in the JavaScript environment, but it was a mess because there wasn't standardized method of completing this task. JavaScript ES6 added it as a native behavior.
+After we bootstrapped our application with *create-react-app* at the beginning, we already developed several `import` and `export` statements in the initial files. The `import` and `export` statements help you to share code across multiple files. There were already several solutions for this in the JavaScript environment, but it was a mess because there wasn't standardized method of completing this task. JavaScript ES6 added it as a native behavior.
 
 These statements embrace code splitting, where we distribute code across multiple files to keep it reusable and maintainable. The former is true because we can import a piece of code into multiple files. The latter is true because there is only one source where you maintain the piece of code.
 
-We also want to think about code encapsulation, since not every functionality needs to be exported from a file. Some of these functionalities should only be used in  files where they have been defined.  File exports are basically their public APIs, where only the exported functionalities are available to be reused elsewhere. This follows the best practice of encapsulation.
+We also want to think about code encapsulation, since not every functionality needs to be exported from a file. Some of these functionalities should only be used in files where they have been defined. File exports are basically their public APIs, where only the exported functionalities are available to be reused elsewhere. This follows the best practice of encapsulation.
 
 The following examples showcase the statements by sharing one or multiple variables across two files. In the end, the approach can scale to multiple files and could share more than simple variables.
 
@@ -124,8 +124,8 @@ These are the main functionalities for ES6 modules. They help you to organize yo
 
 ### Exercises:
 
-* read more about [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-* read more about [ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+* Read more about [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+* Read more about [ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 
 ## Code Organization with ES6 Modules
 
@@ -306,17 +306,17 @@ We refactored the source code in a module with the constraints of encapsulation.
 
 ### Exercises:
 
-* refactor your *src/App.js* file into multiple component modules when you finished the book
+* Refactor your *src/App.js* file into multiple component modules when you finished the book
 
 ## Snapshot Tests with Jest
 
-Testing source code is essential to programming, and should be seen as mandatory.  We want to keep the quality of your code high and make sure everything works before using it in production.  We will use the testing pyramid as our guide.
+Testing source code is essential to programming, and should be seen as mandatory. We want to keep the quality of your code high and make sure everything works before using it in production. We will use the testing pyramid as our guide.
 
-The testing pyramid includes end-to-end tests, integration tests, and unit tests.  A unit test is for an isolated and small block of code, such a single function. However, sometimes units work well in isolation but not in combination with other units, so they need to be tested as a group. That's where integration tests can help us figure out if units work well together. An end-to-end test is a simulation of a real-life scenario, such as the automated setup of a browser simulating the login flow in a web application. Where unit tests are fast and easy to write and maintain, end-to-end tests are at the opposite of the spectrum.
+The testing pyramid includes end-to-end tests, integration tests, and unit tests. A unit test is for an isolated and small block of code, such a single function. However, sometimes units work well in isolation but not in combination with other units, so they need to be tested as a group. That's where integration tests can help us figure out if units work well together. An end-to-end test is a simulation of a real-life scenario, such as the automated setup of a browser simulating the login flow in a web application. Where unit tests are fast and easy to write and maintain, end-to-end tests are at the opposite of the spectrum.
 
-We want to have many unit tests covering the isolated functions. After that, we can use several integration tests to make sure the most important functions work in combination as expected.  Finally, we may need a few end-to-end tests to simulate critical scenarios.
+We want to have many unit tests covering the isolated functions. After that, we can use several integration tests to make sure the most important functions work in combination as expected. Finally, we may need a few end-to-end tests to simulate critical scenarios.
 
-The foundation for testing in React are component tests,  generalized partly as unit tests and partly as snapshot tests. Unit tests for our components will be covered in the next chapter with a library called Enzyme. In this section, we focus on snapshot tests, using [Jest](https://jestjs.io/).
+The foundation for testing in React are component tests, generalized partly as unit tests and partly as snapshot tests. Unit tests for our components will be covered in the next chapter with a library called Enzyme. In this section, we focus on snapshot tests, using [Jest](https://jestjs.io/).
 
 Jest is a JavaScript testing framework used by Facebook. It is used for component tests by the React community. Fortunately, *create-react-app* already comes with Jest, so you don't need to set it up.
 
@@ -438,7 +438,7 @@ describe('App', () => {
 
 Run your tests again and observe how they succeed or fail. Once you change the output of the render block in your App component, the snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component.
 
-The `renderer.create()` function creates a snapshot of your App component. It renders it virtually, and then stores the DOM into a snapshot. Afterward, the snapshot is expected to match the previous version from the last test.  This is how we make sure the DOM stays the same and doesn't change anything by accident.
+The `renderer.create()` function creates a snapshot of your App component. It renders it virtually, and then stores the DOM into a snapshot. Afterward, the snapshot is expected to match the previous version from the last test. This is how we make sure the DOM stays the same and doesn't change anything by accident.
 
 Let's add more tests for our independent components. First, the search component:
 
@@ -550,10 +550,10 @@ Snapshot tests usually stay pretty basic. You only want to make sure the compone
 
 ### Exercises:
 
-* see how a snapshot test fails once you change your component's return value in the `render()` method
-  * either accept or deny the snapshot change
-* keep your snapshots tests up to date when the implementation of components change in next chapters
-* read more about [Jest in React](https://jestjs.io/docs/en/tutorial-react)
+* See how a snapshot test fails once you change your component's return value in the `render()` method
+  * Accept or deny the snapshot change(s)
+* Keep your snapshots tests up to date when the implementation of components change in next chapters
+* Read more about [Jest in React](https://jestjs.io/docs/en/tutorial-react)
 
 ## Unit Tests with Enzyme
 
@@ -634,10 +634,10 @@ Continue to unit test your components, but be sure to keep the tests simple and 
 
 ### Exercises:
 
-* write a unit test with Enzyme for your Button component
-* keep your unit tests up to date during the following chapters
-* read more about [Enzyme and its rendering API](https://github.com/airbnb/enzyme)
-* read more about [testing React applications](https://www.robinwieruch.de/react-testing-tutorial)
+* Write a unit test with Enzyme for your Button component
+* Keep your unit tests up to date during the following chapters
+* Read more about [Enzyme and its rendering API](https://github.com/airbnb/enzyme)
+* Read more about [testing React applications](https://www.robinwieruch.de/react-testing-tutorial)
 
 ## Component Interface with PropTypes
 
@@ -798,9 +798,9 @@ If you run your tests again, you might see PropType errors for your components o
 
 ### Exercises:
 
-* define the PropType interface for the search component
-* add and update the PropType interfaces when you add and update components in the next chapters
-* read more about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
+* Define the PropType interface for the search component
+* Add and update the PropType interfaces when you add and update components in the next chapters
+* Read more about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
 ## Debugging with React Developer Tools
 
@@ -818,23 +818,23 @@ If you right-click on any element, a dropdown menu will show several useful opti
 
 ### Exercises:
 
-* install the [React Developer Tools](https://github.com/facebook/react-devtools) extension on your favorite browser
-  * run your Hacker News Clone application and inspect it using the extension
-  * experiment with state and props changes
-  * watch what happens when you trigger an asynchronous request
-  * perform several requests, including repeated ones. Watch the cache mechanism working
-* read more about [how to debug your JavaScript functions in the browser](https://developers.google.com/web/tools/chrome-devtools/javascript/)
+* Install the [React Developer Tools](https://github.com/facebook/react-devtools) extension on your favorite browser
+  * Run your Hacker News Clone application and inspect it using the extension
+  * Experiment with state and props changes
+  * Watch what happens when you trigger an asynchronous request
+  * Perform several requests, including repeated ones. Watch the cache mechanism working
+* Read more about [how to debug your JavaScript functions in the browser](https://developers.google.com/web/tools/chrome-devtools/javascript/)
 
 You have learned how to organize and test React code! Let's recap the last chapter:
 
-* React
+* **React**
   * PropTypes let you define type checks for components
   * Jest allows you to write snapshot tests for your components
   * Enzyme allows you to write unit tests for your components
   * React Developer Tools is a helpful debugging tool
-* ES6
+* **ES6**
   * import and export statements help you to organize your code
-* General
+* **General**
   * code organization allows you to scale your application with best practices
 
 You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.4).

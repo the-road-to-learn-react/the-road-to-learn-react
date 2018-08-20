@@ -275,8 +275,8 @@ Now, imagine you want to show the state in a sibling component of your child com
 
 ### Exercises:
 
-* read more about [lifting state in React](https://reactjs.org/docs/lifting-state-up.html)
-* read more about lifting state in [learn React before using Redux](https://www.robinwieruch.de/learn-react-before-using-redux/)
+* Read more about [lifting state in React](https://reactjs.org/docs/lifting-state-up.html)
+* Read more about lifting state in [learn React before using Redux](https://www.robinwieruch.de/learn-react-before-using-redux/)
 
 ## Revisited: setState()
 
@@ -442,12 +442,11 @@ The function instead of object approach in `setState()` fixes potential bugs, an
 
 ### Exercise:
 
-* read more about [React using state correctly](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
-* export updateSearchTopStoriesState from the file
- * write a test for it which passes the a payload (hits, page) and a made up previous state and finally expect a new state
-* refactor your `setState()` methods to use a function
-  * but only when it makes sense, because it relies on props or state
-* run your tests again and verify that everything is up to date
+* Read more about [React using state correctly](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
+* Export updateSearchTopStoriesState from the file
+ * Write a test for it which passes the a payload (hits, page) and a made up previous state and finally expect a new state
+* Refactor your `setState()` methods to use a function, but only when it makes sense, because it relies on props or state
+* Run your tests again and verify that everything is up to date
 
 ## Taming the State
 
@@ -461,17 +460,17 @@ Because of this, there are standalone solutions to take care of state management
 
 ### Exercises:
 
-* read more about [external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
-* check out my second ebook about [state management in React](https://roadtoreact.com/)
+* Read more about [external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
+* Check out my second ebook about [state management in React](https://roadtoreact.com/)
 
 {pagebreak}
 
 You have learned advanced state management in React! Let's recap the last chapter:
 
-* React
-  * lift state management up and down to suitable components
+* **React**
+  * Lift state management up and down to suitable components
   * `setState()` can use a function to prevent stale state bugs
-  * existing external solutions that help you to tame the state
+  * Existing external solutions that help you to tame the state
 
 You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.6).
 

@@ -2,7 +2,7 @@
 
 Now it's time to get real with APIs and move past sample data. If you are not familiar, I encourage you [to read my article on how I got to know APIs](https://www.robinwieruch.de/what-is-an-api-javascript/).
 
-For our first foray into the concept, we will be using [Hacker News](https://news.ycombinator.com/), a solid news aggregator about tech topics. In this exercise, we will use the Hacker News API to fetch trending stories. There are [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) APIs to get data from the platform.  Search makes sense in this application, because we want to be able to search Hacker News stories. Visit the API specification to get an understanding of the data structure.
+For our first foray into the concept, we will be using [Hacker News](https://news.ycombinator.com/), a solid news aggregator about tech topics. In this exercise, we will use the Hacker News API to fetch trending stories. There are [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) APIs to get data from the platform. Search makes sense in this application, because we want to be able to search Hacker News stories. Visit the API specification to get an understanding of the data structure.
 
 ## Lifecycle Methods
 
@@ -36,7 +36,7 @@ You don't need to know all the lifecycle methods from the beginning, and even in
 
 * **constructor(props)** is called when the component gets initialized. You can set an initial component state and bind class methods during that lifecycle method.
 
-* **static getDerivedStateFromProps(props, state)**  is called before the `render()` lifecycle method, both on the initial mount and on the subsequent updates. It should return an object to update the state, or null to update nothing. It exists for **rare** use cases where the state depends on changes in props over time. It is important to know that this is a static method and it doesn't have access to the component instance.
+* **static getDerivedStateFromProps(props, state)** is called before the `render()` lifecycle method, both on the initial mount and on the subsequent updates. It should return an object to update the state, or null to update nothing. It exists for **rare** use cases where the state depends on changes in props over time. It is important to know that this is a static method and it doesn't have access to the component instance.
 
 * **render()** is a mandatory lifecycle method that returns elements as an output of the component. The method should be pure, so it shouldn't modify the component state. It gets an input as props and state, and returns an element.
 
@@ -56,9 +56,9 @@ Lastly, `componentDidCatch(error, info)` was introduced in [React 16](https://ww
 
 ### Exercises:
 
-* read more about [lifecycle methods in React](https://reactjs.org/docs/react-component.html)
-* read more about [the state related to lifecycle methods in React](https://reactjs.org/docs/state-and-lifecycle.html)
-* read more about [error handling in components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* Read more about [lifecycle methods in React](https://reactjs.org/docs/react-component.html)
+* Read more about [the state related to lifecycle methods in React](https://reactjs.org/docs/state-and-lifecycle.html)
+* Read more about [error handling in components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Fetching Data
 
@@ -142,7 +142,7 @@ First, we remove the sample list of items, because we will return a real list fr
 
 Second, you use the `componentDidMount()` lifecycle method to fetch the data after the component mounted. The first fetch uses default search term from the local state. It will fetch "redux" related stories, because that is the default parameter.
 
-Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the URL with the `searchTerm`. The URL is the argument for the native fetch API function. The response is transformed to a JSON data structure,  a mandatory step in a native fetch functions with JSON data structures, after which it can be set as result in the local component state.   occurs during the request, the function will run into the catch block instead of the then block.
+Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the URL with the `searchTerm`. The URL is the argument for the native fetch API function. The response is transformed to a JSON data structure, a mandatory step in a native fetch functions with JSON data structures, after which it can be set as result in the local component state. If this occurs during the request, the function will run into the catch block instead of the then block.
 
 **Remember** to bind your new component method in the constructor.
 
@@ -189,9 +189,9 @@ The list of hits should now be visible in our application; however, two regressi
 
 ### Exercises:
 
-* read more about [ES6 template literals](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
-* read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
-* read more about [data fetching in React](https://www.robinwieruch.de/react-fetching-data/)
+* Read more about [ES6 template literals](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
+* Read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
+* Read more about [data fetching in React](https://www.robinwieruch.de/react-fetching-data/)
 
 ## ES6 Spread Operators
 
@@ -314,9 +314,9 @@ The "Dismiss" button should work now, because the `onDismiss()` method is aware 
 
 ### Exercises:
 
-* read more about the [ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
-* read more about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
-  * the object spread operator is briefly mentioned
+* Read more about the [ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+* Read more about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+  * The object spread operator is briefly mentioned
 
 ## Conditional Rendering
 
@@ -394,8 +394,8 @@ You should be able to see the fetched data in your application by now. Everythin
 
 ### Exercises:
 
-* read more about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
-* read more about [React conditional rendering](https://reactjs.org/docs/conditional-rendering.html)
+* Read more about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
+* Read more about [React conditional rendering](https://reactjs.org/docs/conditional-rendering.html)
 
 ## Client- or Server-side search
 
@@ -553,7 +553,7 @@ const Search = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-In the table, you can remove the filter functionality, because there will be no client-side filter (search) anymore. Don't forget to remove the `issearched()` function as well, as it won't be used anymore.  Now, the result comes directly from the Hacker News API when the user clicks the "search" button.
+In the table, you can remove the filter functionality, because there will be no client-side filter (search) anymore. Don't forget to remove the `issearched()` function as well, as it won't be used anymore. Now, the result comes directly from the Hacker News API when the user clicks the "search" button.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -612,8 +612,8 @@ You should be able to search different Hacker News stories now. We have interact
 
 ### Exercises:
 
-* read more about [synthetic events in React](https://reactjs.org/docs/events.html)
-* experiment with the [Hacker News API](https://hn.algolia.com/api)
+* Read more about [synthetic events in React](https://reactjs.org/docs/events.html)
+* Experiment with the [Hacker News API](https://hn.algolia.com/api)
 
 ## Paginated Fetch
 
@@ -705,7 +705,7 @@ class App extends Component {
 
 In your `render()` method, make sure to default to page 0 when there is no result. Remember, the `render()` method is called before the data is fetched asynchronously in the `componentDidMount()` lifecycle method.
 
-There is still one step missing, because fetching the next page of data will override your previous page of data.  We want to concatenate the old and new list of hits from the local state and new result object, so we'll adjust its functionality to add new data rather than override it.
+There is still one step missing, because fetching the next page of data will override your previous page of data. We want to concatenate the old and new list of hits from the local state and new result object, so we'll adjust its functionality to add new data rather than override it.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -769,12 +769,12 @@ fetchSearchTopStories(searchTerm, page = 0) {
 }
 ~~~~~~~~
 
-The request to the Hacker News API fetches more list items in one request than before. As you can see, a powerful API such as the Hacker News API gives  plenty of ways to experiment with real world data. You should make use of it to make your endeavours when learning something new more exciting. That's [how I learned about the empowerment that APIs provide](https://www.robinwieruch.de/what-is-an-api-javascript/) when learning a new programming language or library.
+The request to the Hacker News API fetches more list items in one request than before. As you can see, a powerful API such as the Hacker News API gives plenty of ways to experiment with real world data. You should make use of it to make your endeavours when learning something new more exciting. That's [how I learned about the empowerment that APIs provide](https://www.robinwieruch.de/what-is-an-api-javascript/) when learning a new programming language or library.
 
 ### Exercises:
 
-* read more about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
-* experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
+* Read more about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
+* Experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
 
 ## Client Cache
 
@@ -1202,11 +1202,11 @@ The application now has error handling in case the API request fails.
 
 ### Exercises:
 
-* read more about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* Read more about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Axios instead of Fetch
 
-Before, we introduced the native fetch API to perform a request to the Hacker News platform. The browser allows you to use this native fetch API. However, not all browsers support this, older browsers especially. Once you start testing your application in a headless browser environment (where there is no browser, it is mocked), there can be issues with the fetch API.  There are a couple of ways to make fetch work in older browsers (polyfills) and in tests ([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)), but these concepts are bit off-task for the purpose of learning React.
+Before, we introduced the native fetch API to perform a request to the Hacker News platform. The browser allows you to use this native fetch API. However, not all browsers support this, older browsers especially. Once you start testing your application in a headless browser environment (where there is no browser, it is mocked), there can be issues with the fetch API. There are a couple of ways to make fetch work in older browsers (polyfills) and in tests ([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)), but these concepts are bit off-task for the purpose of learning React.
 
 One alternative is to substitute the native fetch API with a stable library such as [axios](https://github.com/axios/axios), which performins asynchronous requests to remote APIs. In this chapter, we will discover how to substitute a library--a native API of the browser in this case--with another library.
 
@@ -1260,7 +1260,7 @@ Now we'll introduce another improvement for the Hacker News request in the App c
 Warning: Can only update a mounted or mounting component. This usually means you called setState, replaceState, or forceUpdate on an unmounted component. This is a no-op.
 ~~~~~~~~
 
-You can handle this issue by aborting the request when your component unmounts or preventing `this.setState()` on an unmounted component. It is considered a best practice in React to preserve an clean application without warnings. However, the current promise API doesn't implement aborting a request, so we add a workaround, introducing a class field that holds the lifecycle state of your component. It can be initialized as `false` when the component initializes,  changed to `true` when the component mounted, and then reset to `false` when the component unmounted. This way, you can keep track of your component's lifecycle state. It doesn't affect the local state stored and modified with `this.state` and `this.setState()`, because you can access it directly on the component instance without relying on React's local state management. Moreover, it doesn't lead to any re-rendering of the component when the class field is changed.
+You can handle this issue by aborting the request when your component unmounts or preventing `this.setState()` on an unmounted component. It is considered a best practice in React to preserve an clean application without warnings. However, the current promise API doesn't implement aborting a request, so we add a workaround, introducing a class field that holds the lifecycle state of your component. It can be initialized as `false` when the component initializes, changed to `true` when the component mounted, and then reset to `false` when the component unmounted. This way, you can keep track of your component's lifecycle state. It doesn't affect the local state stored and modified with `this.state` and `this.setState()`, because you can access it directly on the component instance without relying on React's local state management. Moreover, it doesn't lead to any re-rendering of the component when the class field is changed.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1317,38 +1317,38 @@ class App extends Component {
 }
 ~~~~~~~~
 
-This chapter has shown you how you can replace one library with another in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to find a solution.  Also, we've learned how to avoid calling `this.setState()` in React on an unmounted component. If you dig deeper into the axios library, you will find a way to cancel the request beforehand.
+This chapter has shown you how you can replace one library with another in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to find a solution. Also, we've learned how to avoid calling `this.setState()` in React on an unmounted component. If you dig deeper into the axios library, you will find a way to cancel the request beforehand.
 
 ### Exercises:
 
-* read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
-* learn more about [an alternative React component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
+* Read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
+* Rearn more about [an alternative React component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
 
 {pagebreak}
 
 Now you've learned to interact with an API in React! Let's recap the last chapter:
 
-* React
+* **React**
   * ES6 class component lifecycle methods for different use cases
-  * componentDidMount() for API interactions
-  * conditional renderings
-  * synthetic events on forms
-  * error handling
-  * aborting a remote API request
-* ES6 and beyond
-  * template strings to compose strings
-  * spread operator for immutable data structures
-  * computed property names
-  * class fields
-* General
+  * `componentDidMount()` for API interactions
+  * Conditional renderings
+  * Synthetic events on forms
+  * Error handling
+  * Aborting a remote API request
+* **ES6 and beyond**
+  * Template strings to compose strings
+  * Spread operator for immutable data structures
+  * Computed property names
+  * Class fields
+* **General**
   * Hacker News API interaction
-  * native fetch browser API
-  * client- and server-side search
-  * pagination of data
-  * client-side caching
-  * axios as an alternative for the native fetch API
+  * Native fetch browser API
+  * Client and server-side search
+  * Pagination of data
+  * Client-side caching
+  * Axios as an alternative for the native fetch API
 
-Again, it makes sense to take a break, internalize the lessons and apply them on your own. Experiment with pulling data from different APIs and changing the parameters for different results.  You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.3.1).
+Again, it makes sense to take a break, internalize the lessons and apply them on your own. Experiment with pulling data from different APIs and changing the parameters for different results. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.3.1).
 
  
 

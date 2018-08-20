@@ -1,19 +1,19 @@
 # Introduction to React
 
-This chapter is an introduction to React, a JavaScript library for rendering interfaces in single-page and mobile applications. I explain why developers should consider adding the React library to their toolbelts.  We will dive into the React ecosystem, creating your first React application from scratch with no configuration. Along the way, we will introduce JavaScript XML(**JSX**) and **ReactDOM**, so you have an understanding of React's practical uses before the next chapter.
+This chapter is an introduction to React, a JavaScript library for rendering interfaces in single-page and mobile applications. I explain why developers should consider adding the React library to their toolbelts. We will dive into the React ecosystem, creating your first React application from scratch with no configuration. Along the way, we will introduce JavaScript XML(**JSX**) and **ReactDOM**, so you have an understanding of React's practical uses before the next chapter.
 
 ## Hi, my name is React.
-Single page applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) have become increasingly popular in recent years, as frameworks like Angular, Ember, and Backbone allow JavaScript developers to build modern web applications using techniques beyond vanilla JavaScript and jQuery.   The three mentioned are among the first SPAs, each coming into its own between 2010 and 2011, but there are many more options for single-page development. The first generation of SPA frameworks arrived at the enterprise level, so their frameworks are more rigid. React, on the other hand, remains an innovative library that has been adopted by many technological leaders like [Airbnb, Netflix, and Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). 
+Single page applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) have become increasingly popular in recent years, as frameworks like Angular, Ember, and Backbone allow JavaScript developers to build modern web applications using techniques beyond vanilla JavaScript and jQuery.  The three mentioned are among the first SPAs, each coming into its own between 2010 and 2011, but there are many more options for single-page development. The first generation of SPA frameworks arrived at the enterprise level, so their frameworks are more rigid. React, on the other hand, remains an innovative library that has been adopted by many technological leaders like [Airbnb, Netflix, and Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). 
 
-React was released by Facebook's web development team in 2013 as a view library, which makes it the 'V' in the [MVC](https://en.wikipedia.org/wiki/Model–view–controller) (model view controller).  As a view, it allows you to render components as viewable elements in a browser, while its ecosystem lets us build single page applications.  While the first generation of frameworks tried to solve many things at once, React is only used to build your view layer; specifically, it is a library wherein the view is a hierarchy of composable components.
+React was released by Facebook's web development team in 2013 as a view library, which makes it the 'V' in the [MVC](https://en.wikipedia.org/wiki/Model–view–controller) (model view controller). As a view, it allows you to render components as viewable elements in a browser, while its ecosystem lets us build single page applications. While the first generation of frameworks tried to solve many things at once, React is only used to build your view layer; specifically, it is a library wherein the view is a hierarchy of composable components.
 
-In React, the focus remains on the view layer until more aspects are introduced to the application.  These are the building blocks for an SPA, which are essential to build a mature application.  They come with two advantages:
+In React, the focus remains on the view layer until more aspects are introduced to the application. These are the building blocks for an SPA, which are essential to build a mature application. They come with two advantages:
 
 * You can learn the building blocks one at a time without having to understand them altogether. In contrast, an SPA framework gives you every building block from the start. This book focuses on React as the first building block. More building blocks will eventually follow.
 
 * All building blocks are interchangeable, which makes the ecosystem around React highly innovative. Multiple solutions can compete with each other, and you can choose the most appealing solution for any given challenge.
 
-React is one of the best choices for building modern web applications.  Again, it only delivers the view layer, but the surrounding ecosystem makes up an entirely flexible and interchangeable framework. React has a slim API, a robust and evolving ecosystem, and a great community. 
+React is one of the best choices for building modern web applications. Again, it only delivers the view layer, but the surrounding ecosystem makes up an entirely flexible and interchangeable framework. React has a slim API, a robust and evolving ecosystem, and a great community. 
 
 ### Exercises
 
@@ -29,7 +29,7 @@ To follow this book, you should be familiar with the basics of web development, 
 
 ### Editor and Terminal
 
-For the lessons, you will need a text editor or an IDE and terminal (command line tool).  I have provided [a setup guide](https://www.robinwieruch.de/developer-setup/) if you need additional help.  The article is specific to MacOS users, but there plenty of articles on the web that will show you how to set up a web development environment for your OS.
+For the lessons, you will need a text editor or an IDE and terminal (command line tool). I have provided [a setup guide](https://www.robinwieruch.de/developer-setup/) if you need additional help. The article is specific to MacOS users, but there plenty of articles on the web that will show you how to set up a web development environment for your OS.
 
 Optionally, we recommend you keep your projects in GitHub while conducting the exercises in this book. There is a [short guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. Github has excellent version control, so you can see what changes were made if you make a mistake or just want a more direct way to follow along. 
 
@@ -55,7 +55,7 @@ This section is a crash course in node and npm. It is not exhaustive, but it wil
 
 The **node package manager** (npm) installs external node packages from the command line. These packages can be a set of utility functions, libraries, or whole frameworks, and they are the dependencies of your application. You can either install these packages to your global node package folder, or to your local project folder.
 
-Global node packages are accessible from everywhere in the terminal, and only need to be installed to the global directory once.  Install a global package by typing the following into a terminal:
+Global node packages are accessible from everywhere in the terminal, and only need to be installed to the global directory once. Install a global package by typing the following into a terminal:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -78,9 +78,9 @@ To initialize the *node_modules/* folder and the *package.json* file for your pr
 npm init -y
 ~~~~~~~~
 
-The `-y` flag initializes all the defaults in your *package.json*.  After initializing your npm project, you are ready to install new packages via `npm install <package>`.
+The `-y` flag initializes all the defaults in your *package.json*. After initializing your npm project, you are ready to install new packages via `npm install <package>`.
 
-The *package.json* file allows you to share your project with other developers without sharing all the node packages.  It will contain references to all node packages used in your project, called **dependencies**. Other users can copy a project without the dependencies using the references in *package.json*, where the references make it easy to install all packages using `npm install`.  A`npm install` script will take all the dependencies listed in the *package.json* file and install them in the *node_modules/* folder.
+The *package.json* file allows you to share your project with other developers without sharing all the node packages. It will contain references to all node packages used in your project, called **dependencies**. Other users can copy a project without the dependencies using the references in *package.json*, where the references make it easy to install all packages using `npm install`. A`npm install` script will take all the dependencies listed in the *package.json* file and install them in the *node_modules/* folder.
 
 Finally, there's one more command to cover about npm:
 
@@ -89,27 +89,27 @@ Finally, there's one more command to cover about npm:
 npm install --save-dev <package>
 ~~~~~~~~
 
-The `--save-dev` flag indicates that the node package is only used in the development environment, meaning it won't be used in when the application is deployed to a the server or used in production.  It is useful for testing an application using a node package, but want to exclude it from your production environment.
+The `--save-dev` flag indicates that the node package is only used in the development environment, meaning it won't be used in when the application is deployed to a the server or used in production. It is useful for testing an application using a node package, but want to exclude it from your production environment.
 
-Some of you may want to use other package managers to work with node packages in your applications. **Yarn** is a dependency manager that works similar to **npm**. It has its own list of commands, but you still have access to the same npm registry. Yarn was created to solve  issues npm couldn't, but both tools have evolved to the point where either will suffice today.
+Some of you may want to use other package managers to work with node packages in your applications. **Yarn** is a dependency manager that works similar to **npm**. It has its own list of commands, but you still have access to the same npm registry. Yarn was created to solve issues npm couldn't, but both tools have evolved to the point where either will suffice today.
 
 ### Exercises:
 
-* setup a throw away npm project using the terminal:
+* Set up a throw away npm project using the terminal:
   * Create a new folder with `mkdir <folder_name>`
   * Navigate into the folder with `cd <folder_name>`
   * Execute `npm init -y` or `npm init`
   * Install a local package like React with `npm install react`
   * Check the *package.json* file and the *node_modules/* folder
   * Attempt to uninstall and reinstall the *react* node package
-* read more about [npm](https://docs.npmjs.com/)
-* About [yarn](https://yarnpkg.com/en/docs/) package manager
+* Read more about [npm](https://docs.npmjs.com/)
+* Read about [yarn](https://yarnpkg.com/en/docs/) package manager
 
 ## Installation
 
-There are many approaches to getting started with a React application.  The first we'll explore is a CDN, short for [content delivery network](https://en.wikipedia.org/wiki/Content_delivery_network). Don’t worry too much about CDNs now, because you will not use them in this book, but it makes sense to explain them briefly. Many companies use CDNs to host files publicly for their consumers.  Some of these files are libraries like React, since the bundled React library is just a *react.js* JavaScript file.
+There are many approaches to getting started with a React application. The first we'll explore is a CDN, short for [content delivery network](https://en.wikipedia.org/wiki/Content_delivery_network). Don’t worry too much about CDNs now, because you will not use them in this book, but it makes sense to explain them briefly. Many companies use CDNs to host files publicly for their consumers. Some of these files are libraries like React, since the bundled React library is just a *react.js* JavaScript file.
 
-To get the CDN started in React, find the `<script>` tag in your web page HTML that points to a CDN url.  You will need two libraries: *react* and *react-dom*.
+To get the CDN started in React, find the `<script>` tag in your web page HTML that points to a CDN url. You will need two libraries: *react* and *react-dom*.
 
 {title="Code Playground",lang="javascript"} 
 ~~~~~~~~
@@ -126,7 +126,7 @@ npm install react react-dom
 
 This approach is often used to add React to an existing application managed with npm.
 
-You may also have to deal with [Babel](http://babeljs.io/) to make your application aware of JSX (the React syntax) and JavaScript ES6. Babel transpiles your code--that is, it converts it to another language--so most modern browsers can interpret JavaScript ES6 and JSX.  Because of this complication, Facebook introduced *create-react-app* as a zero-configuration React solution. The next section will show you how to setup your application by using this bootstrapping tool.
+You may also have to deal with [Babel](http://babeljs.io/) to make your application aware of JSX (the React syntax) and JavaScript ES6. Babel transpiles your code--that is, it converts it to another language--so most modern browsers can interpret JavaScript ES6 and JSX. Because of this complication, Facebook introduced *create-react-app* as a zero-configuration React solution. The next section will show you how to setup your application by using this bootstrapping tool.
 
 ### Exercises:
 
@@ -150,7 +150,7 @@ You can check the version of *create-react-app* to verify a successful installat
 create-react-app --version
 *v1.5.1
 ~~~~~~~~
-Now you are ready to bootstrap your first React application.  The example will be referred to as *hackernews*, but you may choose any name you like.
+Now you are ready to bootstrap your first React application. The example will be referred to as *hackernews*, but you may choose any name you like.
 
 First, navigate into the folder:
 
@@ -165,22 +165,22 @@ Now you can open the application in your editor. The following folder structure,
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
 hackernews/
-  README.md
-  node_modules/
-  package.json
-  .gitignore
-  public/
-    favicon.ico
-    index.html
-    manifest.json
-  src/
-    App.css
-    App.js
-    App.test.js
-    index.css
-    index.js
-    logo.svg
-    registerServiceWorker.js
+ README.md
+ node_modules/
+ package.json
+ .gitignore
+ public/
+  favicon.ico
+  index.html
+  manifest.json
+ src/
+  App.css
+  App.js
+  App.test.js
+  index.css
+  index.js
+  logo.svg
+  registerServiceWorker.js
 ~~~~~~~~
 
 This is a breakdown of the folders and files:
@@ -201,9 +201,9 @@ This is a breakdown of the folders and files:
 
 In the beginning, everything you need is located in the *src/* folder. The main focus lies on the *src/App.js* file which is used to implement React components. It will be used to implement your application, but later you might want to split up your components into multiple files, where each file maintains one or more components on its own.
 
-Additionally, you will find a *src/App.test.js* file for your tests, and a *src/index.js* as an entry point to the React world. You will get to know both files intimately in a later chapter.  There is also a *src/index.css* and a *src/App.css* file to style your general application and components, which comes with the default style when you open them.
+Additionally, you will find a *src/App.test.js* file for your tests, and a *src/index.js* as an entry point to the React world. You will get to know both files intimately in a later chapter. There is also a *src/index.css* and a *src/App.css* file to style your general application and components, which comes with the default style when you open them.
 
-The *create-react-app* application is a npm project that you can use to install and uninstall node packages.  It comes with the following npm scripts for your command line:
+The *create-react-app* application is a npm project that you can use to install and uninstall node packages. It comes with the following npm scripts for your command line:
 
 {title="Command Line",lang="text"} 
 ~~~~~~~~
@@ -222,8 +222,8 @@ The scripts are defined in your *package.json*, and your basic React application
 ### Exercises:
 
 * `npm start` your application and visit the application in your browser (Exit the command by pressing Control + C)
-* run the  `npm test` script
-* run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it afterward.  Note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/))
+* Run the `npm test` script
+* Run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it afterward. Note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/))
 * Familiarize yourself with the folder structure
 * Check the content of the files
 
@@ -232,7 +232,7 @@ The scripts are defined in your *package.json*, and your basic React application
 
 ## Introduction to JSX
 
-Now we will get to know JSX,  the syntax in React. As mentioned before, *create-react-app* has already bootstrapped a basic application for you, and all files come with their own default implementations. For now, the only file we will modify is the *src/App.js* file.
+Now we will get to know JSX, the syntax in React. As mentioned before, *create-react-app* has already bootstrapped a basic application for you, and all files come with their own default implementations. For now, the only file we will modify is the *src/App.js* file.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -241,19 +241,19 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+ render() {
+  return (
+   <div className="App">
+    <header className="App-header">
+     <img src={logo} className="App-logo" alt="logo" />
+     <h1 className="App-title">Welcome to React</h1>
+    </header>
+    <p className="App-intro">
+     To get started, edit <code>src/App.js</code> and save to reload.
+    </p>
+   </div>
+  );
+ }
 }
 
 export default App;
@@ -263,7 +263,7 @@ Don't worry if you're confused by the import/export statements and class declara
 
 In the file you should see a **React ES6 class component** with the name App. This is a component declaration. After you have declared a component, you can use it as an element anywhere in your application. It will produce an **instance** of your **component** or, in other words, the component gets instantiated.
 
-The returned **element** is specified in the `render()` method.  The components you instantiated earlier are made up of elements, so it is important to understand the differences between a component, an instance of a component, and an element.
+The returned **element** is specified in the `render()` method. The components you instantiated earlier are made up of elements, so it is important to understand the differences between a component, an instance of a component, and an element.
 
 You should see where the App component is instantiated, else you couldn't see the rendered output in a browser. The App component is only the declaration, but not the usage. You can instantiate the component anywhere in your JSX with `<App />`. You will see later where this happens in this application.
 
@@ -275,19 +275,19 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h2>Welcome to the Road to learn React</h2>
-      </div>
-    );
-  }
+ render() {
+  return (
+   <div className="App">
+    <h2>Welcome to the Road to learn React</h2>
+   </div>
+  );
+ }
 }
 
 export default App;
 ~~~~~~~~
 
-Now, you only return HTML in your `render()` method without any JavaScript. Let's define the "Welcome to the Road to learn React" as a variable.  A variable is set in JSX by curly braces.
+Now, you only return HTML in your `render()` method without any JavaScript. Let's define the "Welcome to the Road to learn React" as a variable. A variable is set in JSX by curly braces.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -295,18 +295,18 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  render() {
+ render() {
 # leanpub-start-insert
-    var helloWorld = 'Welcome to the Road to learn React';
+  var helloWorld = 'Welcome to the Road to learn React';
 # leanpub-end-insert
-    return (
-      <div className="App">
+  return (
+   <div className="App">
 # leanpub-start-insert
-        <h2>{helloWorld}</h2>
+    <h2>{helloWorld}</h2>
 # leanpub-end-insert
-      </div>
-    );
-  }
+   </div>
+  );
+ }
 }
 
 export default App;
@@ -314,13 +314,13 @@ export default App;
 
 Start your application on the command line with `npm start` to verify the changes you've made.
 
-You might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML.  JSX had  replaced a handful of internal HTML attributes a while ago, but you can find all the [supported HTML attributes in React' documentation](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes), which all follow the camelCase convention. On your way to learn React, expect to run across more JSX specific attributes.
+You might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML. JSX had replaced a handful of internal HTML attributes a while ago, but you can find all the [supported HTML attributes in React' documentation](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes), which all follow the camelCase convention. On your way to learn React, expect to run across more JSX specific attributes.
 
 ### Exercises:
 
-* define more variables and render them in JSX
-  * use a complex object to represent a user with a first name and last name
-  * render the user properties in JSX
+* Define more variables and render them in JSX
+* Use a complex object to represent a user with a first name and last name
+* Render the user properties in JSX
 
 **More Reading**
 * About [JSX](https://reactjs.org/docs/introducing-jsx.html)
@@ -328,7 +328,7 @@ You might have noticed the `className` attribute. It reflects the standard `clas
 
 ## ES6 const and let
 
-Notice that we declared the variable `helloWorld` with a `var` statement. JavaScript ES6 comes with two more ways  to declare variables: `const` and `let`. In JavaScript ES6, you will rarely find `var` anymore.
+Notice that we declared the variable `helloWorld` with a `var` statement. JavaScript ES6 comes with two more ways to declare variables: `const` and `let`. In JavaScript ES6, you will rarely find `var` anymore.
 
 A variable declared with `const` cannot be re-assigned or re-declared, and cannot be changed or modified. Once the variable is assigned, you cannot change it:
 
@@ -348,7 +348,7 @@ let helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
 ~~~~~~~~
 
->**TIP:** Declare variables with `let` if you think you'll want to re-assign it later on.
+**TIP:** Declare variables with `let` if you think you'll want to re-assign it later on.
 
 Note that a variable declared directly with `const` cannot be modified. However, when the variable is an array or object, the values it holds can get updated through indirect means:
 
@@ -356,12 +356,12 @@ Note that a variable declared directly with `const` cannot be modified. However,
 ~~~~~~~~
 // allowed
 const helloWorld = {
-  text: 'Welcome to the Road to learn React'
+ text: 'Welcome to the Road to learn React'
 };
 helloWorld.text = 'Bye Bye React';
 ~~~~~~~~
 
-There are varying opinions about when to use *const* and when to use *let*. I would recommend using `const` whenever possible to keep your data structures immutable, so that you need only worry about the values contained in objects and arrays.  Immutability is embraced in the React ecosystem, so `const` should be your default choice when you define a variable, though it’s not just about immutability, but about assigning variables only once.  It shows the intent of not changing (re-assigning) the variable.
+There are varying opinions about when to use *const* and when to use *let*. I would recommend using `const` whenever possible to keep your data structures immutable, so that you need only worry about the values contained in objects and arrays. Immutability is embraced in the React ecosystem, so `const` should be your default choice when you define a variable, though it’s not just about immutability, but about assigning variables only once. It shows the intent of not changing (re-assigning) the variable.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -369,16 +369,16 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  render() {
+ render() {
 # leanpub-start-insert
-    const helloWorld = 'Welcome to the Road to learn React';
+  const helloWorld = 'Welcome to the Road to learn React';
 # leanpub-end-insert
-    return (
-      <div className="App">
-        <h2>{helloWorld}</h2>
-      </div>
-    );
-  }
+  return (
+   <div className="App">
+    <h2>{helloWorld}</h2>
+   </div>
+  );
+ }
 }
 
 export default App;
@@ -388,7 +388,7 @@ export default App;
 
 * Read about [ES6 const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
 * Read about [ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
-* Gain an understanding of immutable data structures
+* Gain an understanding of immutable data structures:
   * Why do they make sense in programming?
   * Why are they embraced in React and its ecosystem?
 
@@ -404,12 +404,12 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+ <App />,
+ document.getElementById('root')
 );
 ~~~~~~~~
 
-`ReactDOM.render()` uses a DOM node in your HTML to replace it with JSX.  It's a way to integrate React in any foreign application easily, and you can use `ReactDOM.render()` multiple times across your application. You can use it to bootstrap simple JSX syntax, a React component, multiple React components, or an entire application. In a plain React application, you would only use it once to bootstrap the component tree.
+`ReactDOM.render()` uses a DOM node in your HTML to replace it with JSX. It's a way to integrate React in any foreign application easily, and you can use `ReactDOM.render()` multiple times across your application. You can use it to bootstrap simple JSX syntax, a React component, multiple React components, or an entire application. In a plain React application, you would only use it once to bootstrap the component tree.
 
 `ReactDOM.render()` expects two arguments. The first argument is for rendered JSX. The second argument specifies the place where the React application hooks into your HTML. It expects an element with an `id='root'`, found in the *public/index.html* file.
 
@@ -418,14 +418,14 @@ During implementation, `ReactDOM.render()` takes your App component, though it c
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 ReactDOM.render(
-  <h1>Hello React World</h1>,
-  document.getElementById('root')
+ <h1>Hello React World</h1>,
+ document.getElementById('root')
 );
 ~~~~~~~~
 
 ### Exercises:
 
-* open the *public/index.html* to see where the React applications hook into your HTML
+* Open the *public/index.html* to see where the React applications hook into your HTML
 
 **More Reading**
 * About [rendering elements in React](https://reactjs.org/docs/rendering-elements.html)
@@ -446,22 +446,22 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+ <App />,
+ document.getElementById('root')
 );
 
 # leanpub-start-insert
 if (module.hot) {
-  module.hot.accept();
+ module.hot.accept();
 }
 # leanpub-end-insert
 ~~~~~~~~
 
 Again, change the `helloWorld` variable in your *src/App.js* file. The browser shouldn't refresh, but the application will reload and show the correct output. HMR comes with multiple advantages:
 
-Imagine you are debugging your code with `console.log()` statements. These statements will stay in your developer console, even though you changed your code, because the browser doesn't refresh the page anymore.  In a growing application, page refreshes delay productivity; HMR removes this obstacle by eliminating the incremental time loss it takes for a browser to reload.
+Imagine you are debugging your code with `console.log()` statements. These statements will stay in your developer console, even though you changed your code, because the browser doesn't refresh the page anymore. In a growing application, page refreshes delay productivity; HMR removes this obstacle by eliminating the incremental time loss it takes for a browser to reload.
 
-The most useful benefit of HMR is that you can keep the application state after the application reloads. For instance, assume you have a dialog or wizard in your application with multiple steps, and you are on step 3. Without HMR, you make changes to the source code and your browser refreshes the page. You would then have to open the dialog again and navigate from step 1 to step 3 each time. With HMR your dialog stays open at step 3, so you can debug from the exact point you're working on.  With the time saved from page loads, this makes HMR an invaluable tool for React developers.
+The most useful benefit of HMR is that you can keep the application state after the application reloads. For instance, assume you have a dialog or wizard in your application with multiple steps, and you are on step 3. Without HMR, you make changes to the source code and your browser refreshes the page. You would then have to open the dialog again and navigate from step 1 to step 3 each time. With HMR your dialog stays open at step 3, so you can debug from the exact point you're working on. With the time saved from page loads, this makes HMR an invaluable tool for React developers.
 
 ### Exercises:
 
@@ -481,48 +481,48 @@ import './App.css';
 
 # leanpub-start-insert
 const list = [
-  {
-    title: 'React',
-    url: 'https://reactjs.org/',
-    author: 'Jordan Walke',
-    num_comments: 3,
-    points: 4,
-    objectID: 0,
-  },
-  {
-    title: 'Redux',
-    url: 'https://redux.js.org/',
-    author: 'Dan Abramov, Andrew Clark',
-    num_comments: 2,
-    points: 5,
-    objectID: 1,
-  },
+ {
+  title: 'React',
+  url: 'https://reactjs.org/',
+  author: 'Jordan Walke',
+  num_comments: 3,
+  points: 4,
+  objectID: 0,
+ },
+ {
+  title: 'Redux',
+  url: 'https://redux.js.org/',
+  author: 'Dan Abramov, Andrew Clark',
+  num_comments: 2,
+  points: 5,
+  objectID: 1,
+ },
 ];
 # leanpub-end-insert
 
 class App extends Component {
-  ...
+ ...
 }
 ~~~~~~~~
 
-The sample data represents information we will fetch from an API later on.  Items in this list each have a title, a url, and an author, as well an identifier, points (which indicate how popular an article is), and a count of comments.
+The sample data represents information we will fetch from an API later on. Items in this list each have a title, a url, and an author, as well an identifier, points (which indicate how popular an article is), and a count of comments.
 
 Now you can use the built-in JavaScript `map` functionality in JSX, which iterates over a list of items to display them according to a specified classification. Again, we use curly braces to encapsulate the JavaScript expression in JSX:
 
 {title="src/App.js",lang="javascript"} 
 ~~~~~~~~
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
+ render() {
+  return (
+   <div className="App">
 # leanpub-start-insert
-        {list.map(function(item) {
-          return <div>{item.title}</div>;
-        })}
+    {list.map(function(item) {
+     return <div>{item.title}</div>;
+    })}
 # leanpub-end-insert
-      </div>
-    );
-  }
+   </div>
+  );
+ }
 }
 
 export default App;
@@ -535,26 +535,26 @@ So far, only the `title` is displayed for each item. Let's experiment with more 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
+ render() {
+  return (
+   <div className="App">
 # leanpub-start-insert
-        {list.map(function(item) {
-          return (
-            <div>
-              <span>
-                <a href={item.url}>{item.title}</a>
-              </span>
-              <span>{item.author}</span>
-              <span>{item.num_comments}</span>
-              <span>{item.points}</span>
-            </div>
-          );
-        })}
-# leanpub-end-insert
+    {list.map(function(item) {
+     return (
+      <div>
+       <span>
+        <a href={item.url}>{item.title}</a>
+       </span>
+       <span>{item.author}</span>
+       <span>{item.num_comments}</span>
+       <span>{item.points}</span>
       </div>
-    );
-  }
+     );
+    })}
+# leanpub-end-insert
+   </div>
+  );
+ }
 }
 
 export default App;
@@ -567,18 +567,18 @@ React will display each item, but you can still do more to help React embrace it
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 {list.map(function(item) {
-  return (
+ return (
 # leanpub-start-insert
-    <div key={item.objectID}>
+  <div key={item.objectID}>
 # leanpub-end-insert
-      <span>
-        <a href={item.url}>{item.title}</a>
-      </span>
-      <span>{item.author}</span>
-      <span>{item.num_comments}</span>
-      <span>{item.points}</span>
-    </div>
-  );
+   <span>
+    <a href={item.url}>{item.title}</a>
+   </span>
+   <span>{item.author}</span>
+   <span>{item.num_comments}</span>
+   <span>{item.points}</span>
+  </div>
+ );
 })}
 ~~~~~~~~
 Make sure that the key attribute is a stable identifier. Avoid using the index of the item in the array, because the array index is not stable. If the list changes its order, for example, React will not be able to identify the items properly.
@@ -587,11 +587,11 @@ Make sure that the key attribute is a stable identifier. Avoid using the index o
 ~~~~~~~~
 // don't do this
 {list.map(function(item, key) {
-  return (
-    <div key={key}>
-      ...
-    </div>
-  );
+ return (
+  <div key={key}>
+   ...
+  </div>
+ );
 })}
 ~~~~~~~~
 
@@ -639,16 +639,16 @@ You can also write `map` functions more concisely with an ES6 arrow function:
 # leanpub-start-insert
 {list.map(item => {
 # leanpub-end-insert
-  return (
-    <div key={item.objectID}>
-      <span>
-        <a href={item.url}>{item.title}</a>
-      </span>
-      <span>{item.author}</span>
-      <span>{item.num_comments}</span>
-      <span>{item.points}</span>
-    </div>
-  );
+ return (
+  <div key={item.objectID}>
+   <span>
+    <a href={item.url}>{item.title}</a>
+   </span>
+   <span>{item.author}</span>
+   <span>{item.num_comments}</span>
+   <span>{item.points}</span>
+  </div>
+ );
 })}
 ~~~~~~~~
 You can remove the *block body*--the curly braces--with the ES6 arrow function. In a *concise body*, an implicit return is attached; thus, you can remove the `return` statement. This will happen often in this book, so be sure to understand the difference between a block body and a concise body when using arrow functions.
@@ -658,14 +658,14 @@ You can remove the *block body*--the curly braces--with the ES6 arrow function. 
 # leanpub-start-insert
 {list.map(item =>
 # leanpub-end-insert
-  <div key={item.objectID}>
-    <span>
-      <a href={item.url}>{item.title}</a>
-    </span>
-    <span>{item.author}</span>
-    <span>{item.num_comments}</span>
-    <span>{item.points}</span>
-  </div>
+ <div key={item.objectID}>
+  <span>
+   <a href={item.url}>{item.title}</a>
+  </span>
+  <span>{item.author}</span>
+  <span>{item.num_comments}</span>
+  <span>{item.points}</span>
+ </div>
 # leanpub-start-insert
 )}
 # leanpub-end-insert
@@ -688,18 +688,18 @@ Consider the following Developer class to examine a JavaScript ES6 class without
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 class Developer {
-  constructor(firstname, lastname) {
-    this.firstname = firstname;
-    this.lastname = lastname;
-  }
+ constructor(firstname, lastname) {
+  this.firstname = firstname;
+  this.lastname = lastname;
+ }
 
-  getName() {
-    return this.firstname + ' ' + this.lastname;
-  }
+ getName() {
+  return this.firstname + ' ' + this.lastname;
+ }
 }
 ~~~~~~~~
 
-A class has a constructor to make it instantiable. The constructor takes arguments and assigns them to the class instance.  A class can also define functions. Because the function is associated with a class, it is called a method, or a class method.
+A class has a constructor to make it instantiable. The constructor takes arguments and assigns them to the class instance. A class can also define functions. Because the function is associated with a class, it is called a method, or a class method.
 
 The Developer class is only the class declaration we user here, as you can create multiple instances of a class by invoking it. It is similar to the ES6 class component, which has a declaration, but you have to use it somewhere else to instantiate it:
 
@@ -719,17 +719,17 @@ import React, { Component } from 'react';
 ...
 
 class App extends Component {
-  render() {
-    ...
-  }
+ render() {
+  ...
+ }
 }
 ~~~~~~~~
 
-When you declare the App component it extends from another component.  In object-oriented programming, the term "extends" refers to the principle of inheritance, which means that functionality can be passed from one class to another.  The App class extends from the Component class, meaning it inherits functionality from the Component class. The Component class is used to extend a basic ES6 class to a ES6 component class. It has all the functionalities that a component in React needs. The render method is one function you have already used. You will learn about other component class methods as we move along.
+When you declare the App component it extends from another component. In object-oriented programming, the term "extends" refers to the principle of inheritance, which means that functionality can be passed from one class to another. The App class extends from the Component class, meaning it inherits functionality from the Component class. The Component class is used to extend a basic ES6 class to a ES6 component class. It has all the functionalities that a component in React needs. The render method is one function you have already used. You will learn about other component class methods as we move along.
 
 The `Component` class encapsulates all the implementation details of a React component, which allows developers to use classes as components in React.
 
-Methods exposed by a React `Component` are its public interface. One of these methods must be overridden, while the others don't need to be overridden. You will learn about these when we discuss lifecycle methods later. The `render()` method has to be overridden, because it defines the output of a React `Component, so it must be defined.  These are the basics of JavaScript ES6 classes, and how they are used in React to extend them to components. 
+Methods exposed by a React `Component` are its public interface. One of these methods must be overridden, while the others don't need to be overridden. You will learn about these when we discuss lifecycle methods later. The `render()` method has to be overridden, because it defines the output of a React `Component, so it must be defined. These are the basics of JavaScript ES6 classes, and how they are used in React to extend them to components. 
 
 ### Exercises:
 
@@ -741,18 +741,18 @@ Methods exposed by a React `Component` are its public interface. One of these me
 
 Congratulations, you have learned to bootstrap your first React application! Let's recap:
 
-* React
-  * create-react-app bootstraps a React application
+* **React**
+   * Create-react-app bootstraps a React application
   * JSX mixes up HTML and JavaScript to define the output of React components in their render methods
-  * components, instances, and elements are different items in React
+  * Components, instances, and elements are different items in React
   * `ReactDOM.render()` is an entry point for a React application to hook React into the DOM
-  * built-in JavaScript functionalities can be used in JSX
-    * map can be used to render a list of items as HTML elements
-* ES6
-  * variable declarations with `const` and `let` can be used for specific use cases
-    * use const over let in React applications
-  * arrow functions can be used to keep your functions concise
-  * classes are used to define components in React by extending them
+  * Built-in JavaScript functionalities can be used in JSX
+  * Map can be used to render a list of items as HTML elements
+* **ES6**
+  * Variable declarations with `const` and `let` can be used for specific use cases
+  * Use const over let in React applications
+  * Arrow functions can be used to keep your functions concise
+  * Classes are used to define components in React by extending them
 
-At this point, it's advisable to experiment with the source code you have written so far and see what changes you can make on your own. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1).
+Now that you've completed the first chapter, it's advisable to experiment with the source code you have written so far and see what changes you can make on your own. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1).
  
