@@ -4,7 +4,7 @@ This chapter focuses on implementing advanced React components. You will learn h
 
 ## Ref a DOM Element
 
-Sometimes you need to interact with your DOM nodes in React. The `ref` attribute gives you access to a node in your elements. That’s is usually an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. We learned about it when we introduced the first search input field, but there are certain cases where you need access to the DOM node. The official documentation mentions three:
+Sometimes you need to interact with your DOM nodes in React. The `ref` attribute gives you access to a node in your elements. That is usually an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. We learned about it when we introduced the first search input field, but there are certain cases where you need access to the DOM node. The official documentation mentions three:
 
 * to use the DOM API (focus, media playback etc.)
 * to invoke imperative DOM node animations

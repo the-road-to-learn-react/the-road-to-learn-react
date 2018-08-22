@@ -396,7 +396,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-That will fix the issue with a stale state, but there is still one more improvement. Since it is a function, you can extract the function for improved readability. One more advantage to use a function over an object is that function can live outside of the component.  We still have to use a higher-order function to pass the result to it since we want to update the state based on the fetched result from the API.
+That will fix the issue with a stale state, but there is still one more improvement. Since it is a function, you can extract the function for improved readability. One more advantage to use a function over an object is that function can live outside of the component. We still have to use a higher-order function to pass the result to it since we want to update the state based on the fetched result from the API.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -438,7 +438,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The function instead of object approach in `setState()` fixes potential bugs, and increases readability and maintainability of your code. Further, it becomes testable outside of the App component.  I advise exporting and testing it as practice.
+The function instead of object approach in `setState()` fixes potential bugs, while increasing the readability and maintainability of your code. Further, it becomes testable outside of the App component. I advise exporting and testing it as practice.
 
 ### Exercise:
 

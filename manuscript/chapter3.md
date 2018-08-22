@@ -362,7 +362,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's your second option to express a conditional rendering. A third is the logical `&&` operator. In JavaScript a `true && 'Hello World'` always evaluates to 'Hello World'. A `false && 'Hello World'` always evaluates to false.
+That's your second option to express a conditional rendering. A third option is the logical `&&` operator. In JavaScript a `true && 'Hello World'` always evaluates to 'Hello World'. A `false && 'Hello World'` always evaluates to false.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -397,7 +397,7 @@ You should be able to see the fetched data in your application by now. Everythin
 * Read more about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
 * Read more about [React conditional rendering](https://reactjs.org/docs/conditional-rendering.html)
 
-## Client- or Server-side search
+## Client- or Server-side Search
 
 Now, when you use the search component with its input field, you will filter the list. That's happening on the client-side, though. We want to use the Hacker News API to search on the server-side. Otherwise you would only deal with the first API response you got on `componentDidMount()`, the default search term parameter.
 
@@ -553,7 +553,7 @@ const Search = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-In the table, you can remove the filter functionality, because there will be no client-side filter (search) anymore. Don't forget to remove the `issearched()` function as well, as it won't be used anymore. Now, the result comes directly from the Hacker News API when the user clicks the "search" button.
+In the Table, you can remove the filter functionality, because there will be no client-side filter (search) anymore. Don't forget to remove the `isSearched()` function as well, as it won't be used anymore. Now, the result comes directly from the Hacker News API when the user clicks the "Search" button.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1047,7 +1047,7 @@ Now your client only makes a request to the API once, though you searched for a 
 
 ## Error Handling
 
-Now we've taken care of interactions with the Hacker News API. We've introduced an elegant way to cache results from the API and make use of its paginated list functionality to fetch an endless list of sublists of stories from the API.  But no application is complete without error handling.
+Now we've taken care of interactions with the Hacker News API. We've introduced an elegant way to cache results from the API and make use of its paginated list functionality to fetch an endless list of sublists of stories from the API. But no application is complete without error handling.
 
 In this chapter, we introduce an efficient solution to add error handling for your application in case of an erroneous API request. We have learned the necessary building block to introduce error handling in React: local state and conditional rendering. The error is just another state, which we store in the local state and display with conditional rendering in the component.
 
@@ -1322,7 +1322,7 @@ This chapter has shown you how you can replace one library with another in React
 ### Exercises:
 
 * Read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
-* Rearn more about [an alternative React component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
+* Learn more about [an alternative React component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
 
 {pagebreak}
 

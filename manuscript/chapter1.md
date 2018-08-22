@@ -33,12 +33,11 @@ For the lessons, you will need a text editor or an IDE and terminal (command lin
 
 Optionally, we recommend you keep your projects in GitHub while conducting the exercises in this book. There is a [short guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. Github has excellent version control, so you can see what changes were made if you make a mistake or just want a more direct way to follow along. 
 
-**Node and NPM**
+## Node and NPM
 
 Finally, you will need an installation of [node and npm](https://nodejs.org/en/). Both are used to manage libraries you will need along the way. In this book, you will install external node packages via npm (node package manager). These node packages can be libraries or whole frameworks.
 
 You can verify your versions of node and npm on the command line. If you don't get any output in the terminal, you need to install node and npm first. These are my versions at the time of writing this book:
-
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -46,7 +45,6 @@ node --version
 *v8.9.4
 npm --version
 *v5.6.0
-
 ~~~~~~~~
 
 ## node and npm
@@ -130,7 +128,7 @@ You may also have to deal with [Babel](http://babeljs.io/) to make your applicat
 
 ### Exercises:
 
-* [React installations](https://reactjs.org/docs/getting-started.html)
+* Read about [React installations](https://reactjs.org/docs/getting-started.html)
 
 ## Zero-Configuration Setup
 
@@ -203,7 +201,7 @@ In the beginning, everything you need is located in the *src/* folder. The main 
 
 Additionally, you will find a *src/App.test.js* file for your tests, and a *src/index.js* as an entry point to the React world. You will get to know both files intimately in a later chapter. There is also a *src/index.css* and a *src/App.css* file to style your general application and components, which comes with the default style when you open them.
 
-The *create-react-app* application is a npm project that you can use to install and uninstall node packages. It comes with the following npm scripts for your command line:
+The *create-react-app* application is a npm project you can use to install and uninstall node packages. It comes with the following npm scripts for your command line:
 
 {title="Command Line",lang="text"} 
 ~~~~~~~~
@@ -226,9 +224,7 @@ The scripts are defined in your *package.json*, and your basic React application
 * Run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it afterward. Note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/))
 * Familiarize yourself with the folder structure
 * Check the content of the files
-
-**More Reading**
-* About [npm scripts and create-react-app](https://github.com/facebookincubator/create-react-app)
+* Read about [npm scripts and create-react-app](https://github.com/facebookincubator/create-react-app)
 
 ## Introduction to JSX
 
@@ -241,25 +237,25 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
- render() {
-  return (
-   <div className="App">
-    <header className="App-header">
-     <img src={logo} className="App-logo" alt="logo" />
-     <h1 className="App-title">Welcome to React</h1>
-    </header>
-    <p className="App-intro">
-     To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-   </div>
-  );
- }
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+    );
+  }
 }
 
 export default App;
 ~~~~~~~~
 
-Don't worry if you're confused by the import/export statements and class declaration now. These are features of JavaScript ES6 that we will revisit in a later chapter.
+Don't worry if you're confused by the import/export statements and class declaration now. These are features of JavaScript ES6  we will revisit in a later chapter.
 
 In the file you should see a **React ES6 class component** with the name App. This is a component declaration. After you have declared a component, you can use it as an element anywhere in your application. It will produce an **instance** of your **component** or, in other words, the component gets instantiated.
 
@@ -295,18 +291,18 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
- render() {
+  render() {
 # leanpub-start-insert
-  var helloWorld = 'Welcome to the Road to learn React';
+    var helloWorld = 'Welcome to the Road to learn React';
 # leanpub-end-insert
-  return (
-   <div className="App">
+    return (
+      <div className="App">
 # leanpub-start-insert
-    <h2>{helloWorld}</h2>
+        <h2>{helloWorld}</h2>
 # leanpub-end-insert
-   </div>
-  );
- }
+      </div>
+    );
+  }
 }
 
 export default App;
@@ -323,8 +319,8 @@ You might have noticed the `className` attribute. It reflects the standard `clas
 * Render the user properties in JSX
 
 **More Reading**
-* About [JSX](https://reactjs.org/docs/introducing-jsx.html)
-* About [React components, elements and instances](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
+* Read about [JSX](https://reactjs.org/docs/introducing-jsx.html)
+* Read about [React components, elements and instances](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
 
 ## ES6 const and let
 
@@ -356,7 +352,7 @@ Note that a variable declared directly with `const` cannot be modified. However,
 ~~~~~~~~
 // allowed
 const helloWorld = {
- text: 'Welcome to the Road to learn React'
+  text: text: 'Welcome to the Road to learn React'
 };
 helloWorld.text = 'Bye Bye React';
 ~~~~~~~~
@@ -404,8 +400,8 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
- <App />,
- document.getElementById('root')
+  <App />,
+  document.getElementById('root')
 );
 ~~~~~~~~
 
@@ -418,8 +414,8 @@ During implementation, `ReactDOM.render()` takes your App component, though it c
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 ReactDOM.render(
- <h1>Hello React World</h1>,
- document.getElementById('root')
+  <h1>Hello React World</h1>,
+  document.getElementById('root')
 );
 ~~~~~~~~
 
@@ -428,7 +424,7 @@ ReactDOM.render(
 * Open the *public/index.html* to see where the React applications hook into your HTML
 
 **More Reading**
-* About [rendering elements in React](https://reactjs.org/docs/rendering-elements.html)
+* Read about [rendering elements in React](https://reactjs.org/docs/rendering-elements.html)
 
 ## Hot Module Replacement
 
@@ -446,13 +442,13 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
- <App />,
- document.getElementById('root')
+  <App />,
+  document.getElementById('root')
 );
 
 # leanpub-start-insert
 if (module.hot) {
- module.hot.accept();
+  module.hot.accept();
 }
 # leanpub-end-insert
 ~~~~~~~~
@@ -482,26 +478,26 @@ import './App.css';
 # leanpub-start-insert
 const list = [
  {
-  title: 'React',
-  url: 'https://reactjs.org/',
-  author: 'Jordan Walke',
-  num_comments: 3,
-  points: 4,
-  objectID: 0,
+    title: 'React',
+    url: 'https://reactjs.org/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
  },
  {
-  title: 'Redux',
-  url: 'https://redux.js.org/',
-  author: 'Dan Abramov, Andrew Clark',
-  num_comments: 2,
-  points: 5,
-  objectID: 1,
+    title: 'Redux',
+    url: 'https://redux.js.org/',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
  },
 ];
 # leanpub-end-insert
 
 class App extends Component {
- ...
+  ...
 }
 ~~~~~~~~
 
@@ -520,9 +516,9 @@ class App extends Component {
      return <div>{item.title}</div>;
     })}
 # leanpub-end-insert
-   </div>
-  );
- }
+    </div>
+   );
+  }
 }
 
 export default App;
@@ -535,26 +531,26 @@ So far, only the `title` is displayed for each item. Let's experiment with more 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
- render() {
-  return (
-   <div className="App">
+  render() {
+    return (
+      <div className="App">
 # leanpub-start-insert
-    {list.map(function(item) {
-     return (
-      <div>
-       <span>
-        <a href={item.url}>{item.title}</a>
-       </span>
-       <span>{item.author}</span>
-       <span>{item.num_comments}</span>
-       <span>{item.points}</span>
-      </div>
-     );
-    })}
+        {list.map(function(item) {
+          return (
+            <div>
+              <span>
+                <a href={item.url}>{item.title}</a>
+              </span>
+              <span>{item.author}</span>
+              <span>{item.num_comments}</span>
+              <span>{item.points}</span>
+            </div>
+          );
+        })}
 # leanpub-end-insert
-   </div>
-  );
- }
+      </div>
+    );
+  }
 }
 
 export default App;
@@ -587,11 +583,11 @@ Make sure that the key attribute is a stable identifier. Avoid using the index o
 ~~~~~~~~
 // don't do this
 {list.map(function(item, key) {
- return (
-  <div key={key}>
-   ...
-  </div>
- );
+  return (
+    <div key={key}>
+      ...
+    </div>
+  );
 })}
 ~~~~~~~~
 
@@ -693,9 +689,9 @@ class Developer {
   this.lastname = lastname;
  }
 
- getName() {
-  return this.firstname + ' ' + this.lastname;
- }
+  getName() {
+    return this.firstname + ' ' + this.lastname;
+  }
 }
 ~~~~~~~~
 
@@ -719,9 +715,9 @@ import React, { Component } from 'react';
 ...
 
 class App extends Component {
- render() {
-  ...
- }
+  render() {
+    ...
+  }
 }
 ~~~~~~~~
 

@@ -440,7 +440,7 @@ Run your tests again and observe how they succeed or fail. Once you change the o
 
 The `renderer.create()` function creates a snapshot of your App component. It renders it virtually, and then stores the DOM into a snapshot. Afterward, the snapshot is expected to match the previous version from the last test. This is how we make sure the DOM stays the same and doesn't change anything by accident.
 
-Let's add more tests for our independent components. First, the search component:
+Let's add more tests for our independent components. First, the Search component:
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -798,7 +798,7 @@ If you run your tests again, you might see PropType errors for your components o
 
 ### Exercises:
 
-* Define the PropType interface for the search component
+* Define the PropType interface for the Search component
 * Add and update the PropType interfaces when you add and update components in the next chapters
 * Read more about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
