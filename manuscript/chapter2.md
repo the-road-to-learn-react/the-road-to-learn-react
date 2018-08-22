@@ -2,11 +2,13 @@
 
 The chapter will guide you through the basics of React. It covers state and interactions in components as we move past static components.  We will also cover the different ways to declare a component, and how to keep components composable and reusable.
 
-## Local Component State
+## Internal Component State
 
-Local component state, also known as local state, allows you to save, modify, and delete properties stored in your component. The ES6 class component then uses a constructor to initialize local component state. The constructor is called only once, when the component initializes:
+Internal component state, also known as local state, allows you to save, modify, and delete properties stored in your component. The ES6 class component then uses a constructor to initialize local component state. The constructor is called only once, when the component initializes:
 
-{title="src/App.js",lang="javascript"
+Let's introduce a class constructor.
+
+{title="src/App.js",lang=javascript}++
 ~~~~~~~~
 class App extends Component {
 
@@ -25,7 +27,8 @@ The App component is a subclass of `Component`, so the `extends Component` is in
 
 It is mandatory to call `super(props);`.  It sets `this.props` in your constructor in case you want to access them there. They would be `undefined` when accessing `this.props` in your constructor otherwise.  In this case, the initial state of the component should be the sample list of items:
 
-{title="src/App.js",lang="javascript"} 
+
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const list = [
   {
@@ -58,7 +61,7 @@ class App extends Component {
 
 The state is bound to the class using the `this` object. so you can access the local state of the whole component. For instance, it can be used in the `render()` method. Previously you have mapped a static list of items in your `render()` method that was defined outside of your component. Now you are about to use the list from your local state in your component.
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -100,7 +103,7 @@ Be careful not to mutate the state directly. Instead, you should use a method ca
 
 In JavaScript ES6, you can use a shorthand property syntax to initialize your objects more concisely, like following object initialization:
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 const name = 'Robin';
 
@@ -111,7 +114,7 @@ const user = {
 
 When the property name in your object is the same as your variable name, you can do the following:
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 const name = 'Robin';
 
@@ -122,7 +125,7 @@ const user = {
 
 In your application, you can do the same. The list variable name and the state property name share the same name.
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 // ES5
 this.state = {
@@ -137,7 +140,7 @@ this.state = {
 
 Shorthand method names are also useful. In JavaScript ES6, you can initialize methods in an object more concisely:
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang="javascript"}
 ~~~~~~~~
 // ES5
 var userService = {
@@ -155,6 +158,7 @@ const userService = {
 ~~~~~~~~
 
 Finally, you are allowed to use computed property names in JavaScript ES6:
+
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -177,13 +181,14 @@ Later, you will be able to use computed property names to allocate values by key
 * Experiment with ES6 object initializer
 * Read more about [ES6 object initializer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
+
 ## Unidirectional Data Flow
 
 Now you have a local state in your App component, but haven't manipulated the state yet. The local state is static, so its component is as well.  A good way to experience state manipulation is to engage in component interaction.
 
 We will practice this concept by adding a button for each item in the displayed list. The button will read "Dismiss", as its purpose will be to remove an item from the list.  In an email client, for example, it would be a useful way to mark some list items as 'read' while keeping the unread items separate.
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -224,7 +229,7 @@ Note the use multilines for the button element, and how elements with multiple a
 
 Now we will implement the `onDismiss()` functionality. It takes an id to identify the item to dismiss. The function is bound to the class and thus becomes a class method. That's why you access it with `this.onDismiss()` and not `onDismiss()`. The `this` object is your class instance. In order to define the `onDismiss()` as class method, you have to bind it in the constructor:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -248,7 +253,7 @@ class App extends Component {
 
 In the next step, we define its functionality, the business logic, in the class:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -278,7 +283,8 @@ Now we can define what happens inside a class method. Remember, the objective is
 
 You can remove an item from a list using [JavaScript's built-in filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) functionality, which takes a function as input. The function has access to each value in the list because it iterates over each item, so you can evaluate them based on certain conditions. The function returns a new list instead of mutating the old one, and it supports the React convention of using immutable data structures.
 
-{title="src/App.js",lang="javascript"} 
+
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 onDismiss(id) {
 # leanpub-start-insert
@@ -291,7 +297,7 @@ onDismiss(id) {
 
 In the next step, we extract the function and pass it to the filter function:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 onDismiss(id) {
 # leanpub-start-insert
@@ -306,7 +312,7 @@ onDismiss(id) {
 
 **Remember**: You can filter moreefficiently using a JavaScript ES6 arrow function.
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 onDismiss(id) {
 # leanpub-start-insert
@@ -318,7 +324,7 @@ onDismiss(id) {
 
 You could even inline it again like you did in the `onClick` handler of the button, though it might get less readable:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 onDismiss(id) {
 # leanpub-start-insert
@@ -329,8 +335,7 @@ onDismiss(id) {
 
 The list removes the clicked item now, but the state hasn't updated yet. Use the `setState()` class method to update the list in the local component state:
 
-
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 onDismiss(id) {
   const isNotId = item => item.objectID !== id;
@@ -351,7 +356,7 @@ Run the application again and try the "Dismiss" button.  What you experienced is
 
 It is important to learn about bindings in JavaScript classes when using React ES6 class components. In the previous chapter, you have bound your class method `onDismiss()` in the constructor.
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
   constructor(props) {
@@ -370,7 +375,7 @@ class App extends Component {
 
 The binding step is necessary because class methods don't automatically bind `this` to the class instance. Let's demonstrate it with the help of the following ES6 class component:
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang=javascript}
 ~~~~~~~~
 class ExplainBindingsComponent extends Component {
   onClickMe() {
@@ -394,7 +399,7 @@ The component renders just fine, but when you click the button, you see `undefin
 
 In the following class component the class method is properly bound in the class constructor:
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang=javascript}
 ~~~~~~~~
 class ExplainBindingsComponent extends Component {
 # leanpub-start-insert
@@ -424,7 +429,7 @@ class ExplainBindingsComponent extends Component {
 
 Class method binding can happen somewhere else too. For instance, it can happen in the `render()` class method:
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang=javascript}
 ~~~~~~~~
 class ExplainBindingsComponent extends Component {
   onClickMe() {
@@ -450,7 +455,7 @@ Avoid this practice, however, because it binds the class method every time the `
 
 Some developers will define the business logic of their class methods in the constructor:
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang=javascript}
 ~~~~~~~~
 class ExplainBindingsComponent extends Component {
   constructor() {
@@ -478,7 +483,8 @@ class ExplainBindingsComponent extends Component {
 
 Avoid this method as well, as it will clutter your constructor over time. The constructor is only there to instantiate your class with all its properties, so the business logic of class methods should be defined outside the constructor.
 
-{title="Code Playground",lang="javascript"} 
+
+{title="Code Playground",lang=javascript}
 ~~~~~~~~
 class ExplainBindingsComponent extends Component {
   constructor() {
@@ -502,7 +508,7 @@ class ExplainBindingsComponent extends Component {
 
 Class methods can be auto-bound using JavaScript ES6 arrow functions:
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang=javascript}
 ~~~~~~~~
 class ExplainBindingsComponent extends Component {
   onClickMe = () => {
@@ -532,7 +538,7 @@ Use this method if the repetitive binding in the constructor annoys you. The off
 
 Now we'll cover event handlers in elements. In your application, you are using the following button element to dismiss an item from the list.
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
 
@@ -548,7 +554,7 @@ Now we'll cover event handlers in elements. In your application, you are using t
 
 This function is already complex, because it passes a value to the class method and has to wrap it in another (arrow) function. Essentially, it has to be a function that is passed to the event handler. The following code wouldn't work, because the class method would be executed immediately when you open the application in the browser:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
 
@@ -566,7 +572,8 @@ When using `onClick={doSomething()}`, the `doSomething()` function executes imme
 
 However, using `onClick={this.onDismiss}` wouldn't suffice, because the `item.objectID`property needs to be passed to the class method to identify the item that should be dismissed. We wrap it into another function to sneak in the property. This concept is called higher-order functions in JavaScript, which we will cover briefly later.
 
-{title="src/App.js",lang="javascript"} 
+
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
 
@@ -582,7 +589,7 @@ However, using `onClick={this.onDismiss}` wouldn't suffice, because the `item.ob
 
 We can also define wrapping function outside the method, to pass only the defined function to the handler. Since it needs access to the individual item, it has to live inside the map function block.
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -625,9 +632,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-After all, it has to be a function that is passed to the element's handler. As an example, try this code instead:
+A function has to be passed to the element's handler. As an example, try this code instead:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -658,7 +665,7 @@ class App extends Component {
 
 This method will run when you open the application in the browser, but not when you click the button. The following code would only run when you click the button, a function that is executed when you trigger the handler:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
 
@@ -678,7 +685,7 @@ This method will run when you open the application in the browser, but not when 
 
 **Remember:** You can transform functions into a JavaScript ES6 arrow function, just as we did with the `onDismiss()` class method:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
 
@@ -694,9 +701,9 @@ This method will run when you open the application in the browser, but not when 
 ...
 ~~~~~~~~
 
-Newcomers to React often have difficulty using functions in event handlers, so don't get discouraged if you have trouble on the first pass. You should end up with the following code in your button, for an inlined JavaScript ES6 arrow function with access to the `objectID` property of the `item` object:
+Newcomers to React often have difficulty using functions in event handlers, so don't get discouraged if you have trouble on the first pass. You should end up an inlined JavaScript ES6 arrow function with access to the `objectID` property of the `item` object:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
   ...
@@ -733,11 +740,11 @@ Using arrow functions in event handlers directly impacts your application's perf
 
 ## Interactions with Forms and Events
 
-Now, we'll add another interaction for the application to experience forms and events using React. The interaction is a search functionality, where the input of the search field is used to temporarily filter a list based on the title property of an item.
+We'll add another interaction to see forms and events in React, a search functionality where the input of each search field temporarily filters a list based on the title property of an item.
 
 In the first step, we define a form with an input field in JSX:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -760,11 +767,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the following scenario you will place a temporary list in the input field and filter by the search term used in the input field. To filter the list based on the value of the input field, we store the value of the input field in the local state. We use **synthetic events** in React to access the value in the event payload.
+In the following scenario, we place a temporary list in the input field and filter it by the input field's search term. To filter the list based on the value of the input field, we store the value of the input field in the local state. We use **synthetic events** in React to access a value in an event payload.
 
 Let's define a `onChange` handler for the input field:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -790,7 +797,7 @@ class App extends Component {
 
 The function is bound to the component, so it is a class method again. You just need to bind and define the method:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -819,7 +826,7 @@ class App extends Component {
 
 When using a handler in your element, you get access to the synthetic React event in your callback function's signature.
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -837,7 +844,7 @@ class App extends Component {
 
 The event has the value of the input field in its target object, so you can update the local state with a search term using `this.setState()`.
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -855,7 +862,7 @@ class App extends Component {
 
 Don't forget to define the initial state for the `searchTerm` property in the constructor. The input field should be empty in the beginning, so its value is empty string.
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -883,7 +890,7 @@ We can assume that when updating the `searchTerm` with `this.setState(),` the li
 
 Returning to the application, we see the list isn't filtered yet, based on the input field value stored in the local state. We need to filter the list temporarily based on the `searchTerm`, and we have everything we need to perform this operation. In the `render()` method, before mapping over the list, we apply a filter to it. The filter will only evaluate if the `searchTerm` matches the title property of the item. We've already used the built-in JavaScript filter functionality, so let's use it again to sneak in the filter function before the map function. The filter function returns a new array, so the map function can be used on it in lots of useful ways.
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -909,13 +916,13 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Let's approach the filter function in a different way this time. We want to define the filter argument, the function that is passed to the filter function, outside of the ES6 class component. There we don't have access to the state of the component and thus we have no access to the `searchTerm` property to evaluate the filter condition. We have to pass the `searchTerm` to the filter function and have to return a new function to evaluate the condition. That's called a higher-order function.
+Let's approach the filter function in a different way this time. We want to define the filter argument, which is the function passed to the filter function outside the ES6 class component. We don't have access to the state of the component, so we have no access to the `searchTerm` property to evaluate the filter condition. This means we'll need to pass the `searchTerm` to the filter function, returning a new function to evaluate the condition. This is called a higher-order function.
 
-Normally I wouldn't mention higher-order functions, but in a React book it makes total sense. It makes sense to know about higher-order functions, because React deals with a concept called higher-order components. You will get to know the concept later in the book. Now again, let's focus on the filter functionality.
+It makes sense to know about higher-order functions, because React deals with a concept called higher-order components. You will get to know the concept later in the book. Now again, let's focus on the filter functionality.
 
 First, you have to define the higher-order function outside of your App component.
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 function isSearched(searchTerm) {
@@ -932,9 +939,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The function takes the `searchTerm` and returns another function, because the filter function takes a function as its input. The returned function has access to the item object because it is the function that is passed to the filter function. In addition, the returned function will be used to filter the list based on the condition defined in the function. Let's define the condition.
+The function takes the `searchTerm` and returns another function, because the filter function only takes that type as its input. The returned function has access to the item object, because it is the one passed to the filter function.  
 
-{title="src/App.js",lang="javascript"}
+It will also be used to filter the list based on the condition defined in the function, so let's define the condition:
+
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 function isSearched(searchTerm) {
   return function (item) {
@@ -951,16 +960,16 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The condition says that you match the incoming `searchTerm` pattern with the title property of the item from your list. You can do that with the built-in `includes` JavaScript functionality. Only when the pattern matches, you return true and the item stays in the list. When the pattern doesn't match the item is removed from the list. But be careful with pattern matching: You shouldn't forget to lower case both strings. Otherwise there will be mismatches between a search term 'redux' and an item title 'Redux'. Since we are working on a immutable list and return a new list by using the filter function, the original list in the local state isn't modified at all.
+The condition matches the incoming `searchTerm` pattern with the title property of the item from your list. You can do that with the built-in `includes` JavaScript functionality. When the pattern matches, it returns true and the item stays in the list; when the pattern doesn't match, the item is removed from the list. Don't forget to match the capitalizion on both strings to the letter, as there will be mismatches between the search term 'redux' and an item title 'Redux'. Since we are working on a immutable list and return a new list by using the filter function, the original list in the local state isn't modified at all.
 
-One thing is left to mention: We cheated a bit by using the [built-in includes JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) functionality. It is already a JavaScriptES7 feature. How would that look like in JavaScript ES5? You would use the `indexOf()` function to get the index of the item in the list. When the item is in the list, `indexOf()` will return its index in the array.
+We cheated a bit using JavaScript ES6 features, but these aren't present in ES5.  For this version, use the `indexOf()` function to get the index of the item in the list instead. When the item is in the list, `indexOf()` will return its index in the array.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 // ES5
 string.indexOf(pattern) !== -1
 
-// ES7
+// ES6
 string.includes(pattern)
 ~~~~~~~~
 
@@ -975,16 +984,16 @@ function isSearched(searchTerm) {
   }
 }
 
-// ES6 + ES7
+// ES6
 const isSearched = searchTerm => item =>
   item.title.toLowerCase().includes(searchTerm.toLowerCase());
 ~~~~~~~~
 
-One could argue which function is more readable. Personally I prefer the second one. The React ecosystem uses a lot of functional programming concepts. It happens often that you will use a function which returns a function (higher-order functions). In JavaScript ES6, you can express these more concisely with arrow functions.
+The React ecosystem uses a lot of functional programming concepts, often using functions that return high-order functions to pass information. JavaScript ES6 lets us express these even more concisely with arrow functions.
 
-Last but not least, you have to use the defined `isSearched()` function to filter your list. You pass it the `searchTerm` property from your local state, it returns the filter input function, and filters your list based on the filter condition. Afterward it maps over the filtered list to display an element for each list item.
+We can also use the defined `isSearched()` function to filter lists. We pass it to the `searchTerm` property from the internal state, where it returns the filter input function and filters your list based on the filter condition. After that it maps over the filtered list to display an element for each list item.
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -1019,7 +1028,7 @@ The search functionality should work now. Try it yourself in the browser.
 
 ## ES6 Destructuring
 
-There is a way in JavaScript ES6 for an easier access to properties in objects and arrays. It's called destructuring. Compare the following snippet in JavaScript ES5 and ES6.
+Destructuring in JavaScript ES6 provides easier access to properties in objects and arrays. Compare the following snippet in JavaScript ES5 and ES6:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1042,7 +1051,7 @@ console.log(firstname + ' ' + lastname);
 // output: Robin Wieruch
 ~~~~~~~~
 
-While you have to add an extra line each time you want to access an object property in JavaScript ES5, you can do it in one line in JavaScript ES6. A best practice for readability is to use multilines when you destructure an object into multiple properties.
+While we add an extra line each time we access an object property in JavaScript ES5, it takes just one line in JavaScript ES6. For readability, use multilines when you destructure an object into multiple properties.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1052,7 +1061,7 @@ const {
 } = user;
 ~~~~~~~~
 
-The same goes for arrays. You can destructure them too. Again, multilines will keep your code scannable and readable.
+The same concept applies to arrays. You can destructure them, too, again using multilines to keep your code scannable and readable.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1067,9 +1076,9 @@ console.log(userOne, userTwo, userThree);
 // output: Robin Andrew Dan
 ~~~~~~~~
 
-Perhaps you have noticed that the local state object in the App component can get destructured the same way. You can shorten the filter and map line of code.
+Note that the local state object in the App component can get destructured the same way. You can shorten the filter and map line of code.
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
   render() {
 # leanpub-start-insert
@@ -1099,7 +1108,7 @@ var list = this.state.list;
 const { searchTerm, list } = this.state;
 ~~~~~~~~
 
-But since the book uses JavaScript ES6 and beyond most of the time, you should stick to it.
+But since the book uses JavaScript ES6 most of the time, you should stick to it.
 
 ### Exercises:
 
@@ -1107,15 +1116,13 @@ But since the book uses JavaScript ES6 and beyond most of the time, you should s
 
 ## Controlled Components
 
-You already learned about the unidirectional data flow in React. The same law applies for the input field, which updates the local state with the `searchTerm` in order to filter the list. When the state changes, the `render()` method runs again and uses the recent `searchTerm` from the local state to apply the filter condition.
+We covered unidirectional data flows before, and the same law applies for the input field, which updates the internal state with the `searchTerm` to filter the list. When the state changes, the `render()` method runs again and uses the recent `searchTerm` from the internal state to apply the filter condition.
 
-But didn't we forget something in the input element? A HTML input tag comes with a `value` attribute. The value attribute usually has the value that is shown in the input field. In this case it would be the `searchTerm` property. However, it seems like we don't need that in React.
+An HTML input tag comes with a `value` attribute. The value attribute usually contains the value shown in the input field.  In this case, that is the `searchTerm` property. Form elements such as `<input>`, `<textarea>`, and `<select>` hold their own state in plain HTML. They modify the value internally once someone changes it from the outside. In React, that's called an **uncontrolled component**, because it handles its own state. We want to make sure those elements are **controlled components** instead.
 
-That's wrong. Form elements such as `<input>`, `<textarea>` and `<select>` hold their own internal state in plain HTML. They modify the value internally once someone changes it from the outside. In React that's called an **uncontrolled component**, because it handles its own state. In React, you should make sure to make those elements **controlled components**.
+To do this, we set the value attribute of the input field, which is already saved in the `searchTerm` state property, so we can access it from there:
 
-How should you do that? You only have to set the value attribute of the input field. The value is already saved in the `searchTerm` state property. So why not access it from there?
-
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -1141,9 +1148,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's it. The unidirectional data flow loop for the input field is self-contained now. The local component state is the single source of truth for the input field.
+The unidirectional data flow loop for the input field is self-contained, and the internal component state is the single source of truth for the input field.
 
-The whole local state management and unidirectional data flow might be new to you. But once you are used to it, it will be your natural flow to implement things in React. In general, React brought a novel pattern with the unidirectional data flow to the world of single page applications. It is now adopted by several frameworks and libraries.
+Internal state management and unidirectional data flow might be new to you, but once you adjust to it, it will likely become your natural flow of React implementation. React brings novel patterns with unidirectional data flow with single page applications, which have been adopted by several frameworks and libraries.
 
 ### Exercises:
 
@@ -1152,9 +1159,9 @@ The whole local state management and unidirectional data flow might be new to yo
 
 ## Split Up Components
 
-You now have one large App component, that keeps growing and can eventually become confusing. Let's start to split it up into chunks of smaller components, creating separate components for the search input and for the list of items.
+Now we have one large App component that keeps growing and may eventually become too complex to manage efficiently. We need to split it into smaller, more manageable parts by creating separate components for search input and the items list.
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -1174,9 +1181,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-You can pass those components properties which they can use themselves. In the case of the App component it needs to pass the properties managed in the local state and its class methods.
+We pass the components properties that they can use themselves. The App component needs to pass the properties managed in the internal state and its class methods.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -1203,11 +1210,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can define the components next to your App component. Those components will be ES6 class components as well. They render the same elements like before.
+Now we define the components next to the App component, which will be done using JavaScript ES6. They render the same elements as before.
 
-The first one is the Search component.
+The first one is the Search component:
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
   ...
@@ -1233,7 +1240,7 @@ class Search extends Component {
 
 The second one is the Table component.
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
 
@@ -1268,19 +1275,19 @@ class Table extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
+Now you have three ES6 class components. Notice the `props` object is accessible via the class instance by using `this`. Props, short for properties, have all the values passed to the components when we used App component. That way, components can pass properties down the component tree.
 
-By extracting those components from the App component, they have become reusable. Since components get their values by using the `props` object, you can pass different props to your components every time you use them somewhere else.
+By extracting these components from the App component, they become reusable. Since components get their values using the `props` object, you can pass different props to your components every time you use them somewhere else.
 
 ### Exercises:
 
-* Figure out further components that you could split up as you have done with the Search and Table component; but wait until you've gone through the next few chapters before deploying them.
+* Discover more components that can be split up like the Search and Table components, but wait until we've covered more of its concepts before you implement any of them.
 
 ## Composable Components
 
-There is one more little property which is accessible in the props object: the `children` prop. You can use it to pass elements to your components from above, which are unknown to the component itself but which make it possible to compose your components together. Let's see how this looks when you pass a text string, as a child, to the Search component.
+The `children` prop is used to pass elements to components from above, which are unknown to the component itself but make it possible to compose components together. We'll see how this looks when you pass a text string as a child to the Search component.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -1311,7 +1318,7 @@ class App extends Component {
 
 Now the Search component can destructure the `children` property from the `props` object, and specify where it should be displayed.
 
-{title="Code Playground",lang="javascript"} ~~~~~~~~
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Search extends Component {
   render() {
@@ -1333,20 +1340,19 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The "Search" text should now be visible next to your input field. And, when you use the Search component somewhere else, you can, if you like, use different text. After all, it's not only text that can be passed as children. You can pass an element, or element trees (which can be encapsulated by components again), as children. The children property makes it possible to weave components into each other.
+The "Search" text should now be visible next to your input field. When you use the Search component elsewhere, you can use different entities, since it's not just text that can be passed as children. You can also pass an element, or element trees that can be encapsulated by components, as children. The children property makes it possible to weave components into each other.
 
 ### Exercises:
 
 * Read more about [the composition model of React](https://reactjs.org/docs/composition-vs-inheritance.html)
-* Read more about [passing props in React](https://www.robinwieruch.de/react-pass-props-to-component/)
 
 ## Reusable Components
 
-Reusable and composable components empower you to come up with capable component hierarchies. They are the foundation of React's view layer. The last chapters mentioned reusability. Now, you can reuse the Table and Search components. Even the App component is reusable, as you could instantiate it somewhere else again.
+Reusable and composable components empower you to come up with capable component hierarchies, the foundation of React's view layer. The last chapter mentioned reusability, and now we can see how reusing the Table and Search components to create more functionality. Even the App component is reusable, as it can be instantiated elsewhere as well.
 
-Let's define one more reusable component, a Button component, which will, eventually, be reused more often.
+Let's define one more reusable component, a Button component which we'll eventually reuse often:
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Button extends Component {
   render() {
@@ -1369,11 +1375,13 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-It might seem redundant to declare a component such as this. You will use a `Button` component instead of a `button` element. It only spares the `type="button"`. Except for the type attribute you have to define everything else when you want to use the Button component. But you have to think about the long term investment here. Imagine you have several buttons in your application, but want to change an attribute, style or behavior for the button. Without the component you would have to refactor every button. Instead the Button component ensures to have only one single source of truth. One Button to refactor all buttons at once. One Button to rule them all.
+It might seem redundant to declare components like this, but it's not. We use a `Button` component instead of a `button` element, which spares only the `type="button"`. Outside the type attribute, we'll need to define everything else to use the Button component. 
+
+These measures are abouth long term, however. Imagine you have several buttons in your application, and you want to change an attribute, style, or behavior for just one. Without the component, you'd have to refactor each one. The Button component ensures that the operation has a single source of truth, or one Button to refactor all the others at once.
 
 Since you already have a button element, you can use the Button component instead. It omits the type attribute, because the Button component specifies it.
 
-{title="Code Playground",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Table extends Component {
   render() {
@@ -1403,9 +1411,9 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-The Button component expects a `className` property in the `props`. The `className` attribute is another React derivate for the HTML attribute class. But we didn't pass any `className` when the Button was used. In the code it should be more explicit in the Button component that the `className` is optional. Therefore, you can assign a default value in your object destructuring.
+The Button component expects a `className` property in the `props`. The `className` attribute is another React derivate for the HTML attribute class. We didn't pass any `className` when the Button was used, though. It should be more explicit in our Button component that the `className` is optional, so we'll assign a default value in the object destructuring.
 
-{title="Code Playground",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Button extends Component {
   render() {
@@ -1422,23 +1430,23 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-Now, whenever there is no `className` property specified when using the Button component, the value will be an empty string instead of `undefined`.
+Now, whenever there is no `className` property specified in the Button component, the value will be an empty string instead of `undefined`.
 
 ## Component Declarations
 
-By now you have four ES6 class components. But you can do better. Let me introduce functional stateless components as alternative for ES6 class components. Before you refactor your components, let's introduce the different types of components in React.
+Now we have four ES6 class components, but the application can still be improved using functional stateless components as alternative for ES6 class components. Before you refactor your components, let's introduce the different types.
 
-* **Functional Stateless Components:** These components are functions which get an input and return an output. The input are the props. The output is a component instance thus plain JSX. So far it is quite similar to an ES6 class component. However, functional stateless components are functions (functional) and they have no local state (stateless). You cannot access or update the state with `this.state` or `this.setState()` because there is no `this` object. Additionally, they have no lifecycle methods. You didn't learn about lifecycle methods yet, but you already used two: `constructor()` and `render()`. Whereas the constructor runs only once in the lifetime of a component, the `render()` class method runs once in the beginning and every time the component updates. Keep in mind that functional stateless components have no lifecycle methods, when you arrive at the lifecycle methods chapter later on.
+* **Functional Stateless Components** are functions that take input and return an output. The inputs are the props, and the output is a component instance in plain JSX. So far, it is quite similar to an ES6 class component. However, functional stateless components are functions (functional) and they have no local state (stateless). You cannot access or update the state with `this.state` or `this.setState()` because there is no `this` object. Additionally, they have no lifecycle methods. You didn't learn about lifecycle methods yet, but you already used two: `constructor()` and `render()`. The constructor runs only once in the lifetime of a component, whereas the `render()` class method runs once in the beginning and every time the component updates. Keep in mind that functional stateless components have no lifecycle methods, when we arrive at lifecycle methods chapter later.
 
-* **ES6 Class Components:** You already used this type of component declaration in your four components. In the class definition, they extend from the React component. The `extend` hooks all the lifecycle methods, available in the React component API, to the component. That way you were able to use the `render()` class method. Additionally, you can store and manipulate state in ES6 class components by using `this.state` and `this.setState()`.
+* **ES6 Class Components** extend from the React component. The `extend` hooks all the lifecycle methods--available in the React component API--to the component. This is how we were able to use the `render()` class method. You can also store and manipulate state in ES6 class components using `this.state` and `this.setState()`.
 
-* **React.createClass:** The component declaration was used in older versions of React and still in JavaScript ES5 React applications. But [Facebook declared it as deprecated](https://reactjs.org/blog/2015/03/10/react-v0.13.html) in favor of JavaScript ES6. They even added a [deprecation warning in version 15.5](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html). You will not use it in the book.
+* **React.createClass** was used in older versions of React, and is still used in JavaScript ES5 React applications. But [Facebook declared it as deprecated](https://reactjs.org/blog/2015/03/10/react-v0.13.html) in favor of JavaScript ES6. They even added a [deprecation warning in version 15.5](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html), so we will not use it in the book.
 
-So basically there are only two component declarations left. But when to use functional stateless components over ES6 class components? A rule of thumb is to use functional stateless components when you don't need local state or component lifecycle methods. Usually you start to implement your components as functional stateless components. Once you need access to the state or lifecycle methods, you have to refactor it to an ES6 class component. In our application, we started the other way around for the sake of learning React.
+When deciding when tto use functional stateless components over ES6 class components, a good rule of thumb is to use functional stateless components when you don't need local state or component lifecycle methods. Usually, we implement components as functional stateless components, but once access to the state or lifecycle methods is required, we have to refactor it to an ES6 class component. We started the other way around in our application for the sake of learning.
 
-Let's get back to your application. The App component uses local state. That's why it has to stay as an ES6 class component. But the other three of your ES6 class components are stateless. They don't need access to `this.state` or `this.setState()`. Even more, they have no lifecycle methods. Let's refactor together the Search component to a stateless functional component. The Table and Button component refactoring will remain as your exercise.
+Back to the application, we see the App component uses internal state, so it has to stay as an ES6 class component. The other three ES6 class components are stateless, so they don't need access to `this.state` or `this.setState()`, and hey have no lifecycle methods. We're going to refactor the Search component to a stateless functional component. The Table and Button component refactoring will become your exercise.
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 function Search(props) {
@@ -1456,9 +1464,9 @@ function Search(props) {
 # leanpub-end-insert
 ~~~~~~~~
 
-That's basically it. The `props` are accessible in the function signature and the return value is JSX. But you can do more code wise in a functional stateless component. You already know the ES6 destructuring. The best practice is to use it in the function signature to destructure the `props`.
+The `props` are accessible in the function signature, and the return value is JSX; but we can do more with the code in a functional stateless component using ES6 destructuring. The best practice is to use it in the function signature to destructure the `props`:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 function Search({ value, onChange, children }) {
@@ -1475,9 +1483,9 @@ function Search({ value, onChange, children }) {
 }
 ~~~~~~~~
 
-We know ES6 arrow functions allow you to keep your functions concise, by removing the block body of a function. In a concise body, an implicit return is attached, you can remove the `return` statement. Since your functional stateless component is a function, you can keep it concise as well.
+Remember that ES6 arrow functions allow you to keep your functions concise and let you remove the block body of the function. In a concise body, an implicit return is attached, letting us remove the `return` statement. Since the functional stateless component is a function, it can be made more concise as well:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 const Search = ({ value, onChange, children }) =>
@@ -1491,9 +1499,9 @@ const Search = ({ value, onChange, children }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-The last step was especially useful to enforce only to have props as input and JSX as output. Nothing in between. Still, you could *do something* in between by using a block body in your ES6 arrow function.
+The last step is especially useful to enforce props as input and JSX as output. Still, you can still improve the code using a block body in your ES6 arrow function:w
 
-{title="Code Playground",lang="javascript"} 
+{title="Code Playground",lang=javascript}
 ~~~~~~~~
 const Search = ({ value, onChange, children }) => {
 
@@ -1511,9 +1519,7 @@ const Search = ({ value, onChange, children }) => {
 }
 ~~~~~~~~
 
-But you don't need it for now, so you can keep the previous version without the block body. When using block bodies, programmers tend to overload the function. By leaving the block body out, you can focus on the input and output.
-
-Now you have a lightweight functional stateless component. Once you need access to its local component state or lifecycle methods, you would refactor it to an ES6 class component. In addition you saw how JavaScript ES6 can be used in React components to make them more concise and elegant.
+Now you have one lightweight functional stateless component. When we need accss to the internal component state or lifecycle methods, we can refactor them to ES6 class components. When using block bodies, programmers tend to overload their functions, but leaving the block body out lets you focus on the input and output. JavaScript ES6 in React components makes components more readable and elegant.
 
 ### Exercises:
 
@@ -1522,9 +1528,9 @@ Now you have a lightweight functional stateless component. Once you need access 
 
 ## Styling Components
 
-Let's add some basic styling to your application and components. You can reuse the *src/App.css* and *src/index.css* files. These files should already be in your project since you have bootstrapped it with *create-react-app*. They should be imported in your *src/App.js* and *src/index.js* files too. I prepared some CSS which you can simply copy and paste to these files, but feel free to use your own style at this point.
+In this section, we'll add some basic styling to our application and components using the *src/App.css* and *src/index.css* files. These files should already be in your project, since you have bootstrapped it with *create-react-app*. They should be imported in your *src/App.js* and *src/index.js* files too. The following is CSS that can be copied and pastes to these files, but feel free to use your own if you're comfortable with CSS.
 
-First, styling for your overall application.
+First, styling for your overall application:
 
 {title="src/index.css",lang="css"}
 ~~~~~~~~
@@ -1574,7 +1580,7 @@ button:hover {
 }
 ~~~~~~~~
 
-Second, styling for your components in the App file.
+Second, styling for your components in the App file:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~~
@@ -1643,11 +1649,11 @@ Second, styling for your components in the App file.
 }
 ~~~~~~~~
 
-Now you can use the style in some of your components. Don't forget to use React `className` instead of `class` as HTML attribute.
+Now we can use this style with some of our components. Rememebr to use React `className` instead of `class` as an HTML attribute.
 
-First, apply it in your App ES6 class component.
+First, apply it in your App ES6 class component:
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -1682,9 +1688,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Second, apply it in your Table functional stateless component.
+Second, apply it in your Table functional stateless component:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Table = ({ list, pattern, onDismiss }) =>
 # leanpub-start-insert
@@ -1719,11 +1725,11 @@ const Table = ({ list, pattern, onDismiss }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you have styled your application and components with basic CSS. It should look quite decent. As you know, JSX mixes up HTML and JavaScript. Now one could argue to add CSS in the mix as well. That's called inline style. You can define JavaScript objects and pass them to the style attribute of an element.
+Now the application and components has been syled with basic CSS. Further, we know JSX mixes up HTML and JavaScript, and now we arguably add CSS to that mix. That's called inline style, where you can define JavaScript objects and pass them to the style attribute of an element.
 
 Let's keep the Table column width flexible by using inline style.
 
-{title="src/App.js",lang="javascript"} 
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 const Table = ({ list, pattern, onDismiss }) =>
   <div className="table">
@@ -1756,7 +1762,7 @@ const Table = ({ list, pattern, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-The style is inlined now. You could define the style objects outside of your elements to make it cleaner.
+The style is inlined now. Define the style objects outside of your elements to make it cleaner.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1773,28 +1779,24 @@ const smallColumn = {
 };
 ~~~~~~~~
 
-After that you would use them in your columns: `<span style={smallColumn}>`.
+After that, we use them in the columns: `<span style={smallColumn}>`.  There different opinions and solutions about style in React, but the pure inline CSS we used is sufficient for this tutorial.
 
-In general, you will find different opinions and solutions for style in React. You used pure CSS and inline style now. That's sufficient to get started.
-
-I don't want to be opinionated here, but I want to leave you some more options. You can read about them and apply them on your own. But if you are new to React, I would recommend to stick to pure CSS and inline style for now.
-
-* [styled-components](https://github.com/styled-components/styled-components)
+* [Styled-components](https://github.com/styled-components/styled-components)
 * [CSS Modules](https://github.com/css-modules/css-modules)
 
 {pagebreak}
 
-You have learned the basics to write your own React application! Let's recap the last chapters:
+You have learned the basics on how to write your own React application! Let's recap the last chapter:
 
 * **React**
-  * Use `this.state` and `setState()` to manage your local component state
+  * Use `this.state` and `setState()` to manage your internal component state
   * Pass functions or class methods to your element handler
   * Use forms and events in React to add interactions
   * Unidirectional data flow is an important concept in React
   * Embrace controlled components
   * Compose components with children and reusable components
   * Usage and implementation of ES6 class components and functional stateless components
-  * approaches to style your components
+  * Approaches to style your components
 * **ES6**
   * Functions that are bound to a class are class methods
   * Destructuring of objects and arrays
@@ -1802,4 +1804,4 @@ You have learned the basics to write your own React application! Let's recap the
 * **General**
   * Higher-order functions
 
-Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.2).
+Again, it makes sense to take a break, internalize the lessons, and apply them on your own. Wxperiment with the source code you have written so far. The source code for this project is found in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.2).
