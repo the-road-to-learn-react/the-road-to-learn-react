@@ -46,7 +46,7 @@ You don't need to know all the lifecycle methods from the beginning, and even in
 
 * **getSnapshotBeforeUpdate(prevProps, prevState)** is a lifecycle method, invoked before the most recently rendered output is committed to the DOM. In rare cases, the component needs to capture information from the DOM before it is potentially changed. This lifecycle method enables the component to do it. Another method (`componentDidUpdate()`) will receive any value returned by `getSnapshotBeforeUpdate()` as a parameter.
 
-* **componentDidUpdate(prevProps, prevState, snapshot)** is a lifecycle method that is  invoked immediately after updating, but not for the initial render. You can use it as to perform DOM operations, or to perform more asynchronous requests. If your component implements the `getSnapshotBeforeUpdate()` method, the value it returns will be received as the `snapshot` parameter.
+* **componentDidUpdate(prevProps, prevState, snapshot)** is a lifecycle method that is invoked immediately after updating, but not for the initial render. You can use it as to perform DOM operations or to perform more asynchronous requests. If your component implements the `getSnapshotBeforeUpdate()` method, the value it returns will be received as the `snapshot` parameter.
 
 * **componentWillUnmount()** is called before you destroy your component. You can use this lifecycle method to perform any clean up tasks.
 
@@ -179,7 +179,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now, let's recap what happens during the component lifecycle. Your component is initialized by the constructor, after which it renders for the first time. We prevented it from displaying anything, because the result in the local state is null. It is allowed to return null for a component to display nothing. Then the `componentDidMount()` lifecycle method fetches the data from the Hacker News API asynchronously. Once the data arrives, it changes your local component state in `setSearchTopStories()`.  The update lifecycle activates because the local state was updated. The component runs the `render()` method again, but this time with populated result in your local component state. The component and the table component will be rendered with its content.
+Now, let's recap what happens during the component lifecycle. Your component is initialized by the constructor, after which it renders for the first time. We prevented it from displaying anything, because the result in the local state is null. It is allowed to return null for a component to display nothing. Then the `componentDidMount()` lifecycle method fetches the data from the Hacker News API asynchronously. Once the data arrives, it changes your local component state in `setSearchTopStories()`. The update lifecycle activates because the local state was updated. The component runs the `render()` method again, but this time with populated result in your local component state. The component and the table component will be rendered with its content.
 
 We used the native fetch API supported by most browsers to perform an asynchronous request to an API. The *create-react-app* configuration makes sure it is supported by all browsers. There are also third-party node packages that you can use to substitute the native fetch API: [axios](https://github.com/mzabriskie/axios).
 
@@ -1251,9 +1251,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In this code, we call `axios()`, which uses an HTTP GET request by default. You can make the GET request explicit by calling `axios.get()`, or you can use another HTTP method such as HTTP POST with `axios.post()`.  With these examples alone, we can see that Axios is a powerful library to perform requests to remote APIs. I recommend you use it instead of the native fetch API when requests become complex, or you have to deal with promises.
+In this code, we call `axios()`, which uses an HTTP GET request by default. You can make the GET request explicit by calling `axios.get()`, or you can use another HTTP method such as HTTP POST with `axios.post()`. With these examples alone, we can see that Axios is a powerful library to perform requests to remote APIs. I recommend you use it instead of the native fetch API when requests become complex, or you have to deal with promises.
 
-Now we'll introduce another improvement for the Hacker News request in the App component. Imagine the component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but the application navigates away from the page.  App component unmounts, but there is still a pending request from `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. You will likely see the following warning on your command line, or in your browser's developer output:
+Now we'll introduce another improvement for the Hacker News request in the App component. Imagine the component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but the application navigates away from the page. App component unmounts, but there is still a pending request from `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. You will likely see the following warning on your command line, or in your browser's developer output:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~

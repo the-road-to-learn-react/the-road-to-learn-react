@@ -4,7 +4,7 @@ The Road to learn React teaches the fundamentals of React. You will build a real
 
 In the Road to learn React, I offer a foundation before you dive into the broader React ecosystem. The concepts will have less tooling and less external state management, but a lot of information about React. It explains general concepts, patterns, and best practices in a real world React application.
 
-Essentially, you will learn to build your own React application from scratch, with features like pagination, client-side caching, and interactions like searching and sorting. Additionally, you will transition from JavaScript ES5 to JavaScript ES6.
+Essentially, you will learn to build your own React application from scratch, with features like pagination, client-side caching, and interactions like searching and sorting. Additionally, you will transition from JavaScript ES5 to JavaScript ES6.  I hope this book captures my enthusiasm for React and JavaScript, and that it helps you get started with it.
 
 {pagebreak}
 
@@ -85,6 +85,9 @@ If you believe in the content I create, you can [support me](https://www.robinwi
 **What's your motivation behind the book?**
 I want to teach about this topic consistently. I often find materials online that don't receive update, or only applies to a small part of a topic. Sometimes people struggle to find consistent and up-to-date resources to learn from. I want to provide this consistent and up-to-date learning experience. Also, I hope I can support the less fortunate with my projects by giving them the content for free or by [having other impacts](https://www.robinwieruch.de/giving-back-by-learning-react/).  Recently I'v found myself fulfilled when teaching others about programming, as it's a meaningful activity I prefer over any 9 to 5 job at any company.  I hope to continue this path in the future.
 
+**Is there a call to action?** 
+Yes. I want you to take a moment to think about a person who would be a good match to learn React. The person could have shown the interest already, could be in the middle of learning React or might not yet be aware about wanting to learn React. Reach out to that person and share the book. It would mean a lot to me. The book is intended to be given to others.
+
 {pagebreak}
 
 # Change Log
@@ -144,7 +147,7 @@ I want to teach about this topic consistently. I often find materials online tha
 
 * professional proofreading and editing by Emmanuel Stalling
 * [16 Source Code Projects](https://roadtoreact.com)
-* [v6 Pull Request](https://github.com/the-road-to-learn-react/the-road-to-learn-react/pull/105)
+* [v6 Pull Request](https://github.com/the-road-to-learn-react/the-road-to-learn-react/pull/170)
 
 {pagebreak}
 

@@ -461,7 +461,7 @@ Because of this, there are standalone solutions to take care of state management
 ### Exercises:
 
 * Read more about [external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
-* Check out my second ebook about [state management in React](https://roadtoreact.com/)
+* Check out my second book about [state management in React](https://roadtoreact.com/)
 
 {pagebreak}
 

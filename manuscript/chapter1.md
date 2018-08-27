@@ -3,7 +3,7 @@
 This chapter is an introduction to React, a JavaScript library for rendering interfaces in single-page and mobile applications. I explain why developers should consider adding the React library to their toolbelts. We will dive into the React ecosystem, creating your first React application from scratch with no configuration. Along the way, we will introduce JavaScript XML(**JSX**) and **ReactDOM**, so you have an understanding of React's practical uses before the next chapter.
 
 ## Hi, my name is React.
-Single page applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) have become increasingly popular in recent years, as frameworks like Angular, Ember, and Backbone allow JavaScript developers to build modern web applications using techniques beyond vanilla JavaScript and jQuery.  The three mentioned are among the first SPAs, each coming into its own between 2010 and 2011, but there are many more options for single-page development. The first generation of SPA frameworks arrived at the enterprise level, so their frameworks are more rigid. React, on the other hand, remains an innovative library that has been adopted by many technological leaders like [Airbnb, Netflix, and Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). 
+Single page applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) have become increasingly popular in recent years, as frameworks like Angular, Ember, and Backbone allow JavaScript developers to build modern web applications using techniques beyond vanilla JavaScript and jQuery. The three mentioned are among the first SPAs, each coming into its own between 2010 and 2011, but there are many more options for single-page development. The first generation of SPA frameworks arrived at the enterprise level, so their frameworks are more rigid. React, on the other hand, remains an innovative library that has been adopted by many technological leaders like [Airbnb, Netflix, and Facebook](https://github.com/facebook/react/wiki/Sites-Using-React).
 
 React was released by Facebook's web development team in 2013 as a view library, which makes it the 'V' in the [MVC](https://en.wikipedia.org/wiki/Model–view–controller) (model view controller). As a view, it allows you to render components as viewable elements in a browser, while its ecosystem lets us build single page applications. While the first generation of frameworks tried to solve many things at once, React is only used to build your view layer; specifically, it is a library wherein the view is a hierarchy of composable components.
 
@@ -124,7 +124,7 @@ npm install react react-dom
 
 This approach is often used to add React to an existing application managed with npm.
 
-You may also have to deal with [Babel](http://babeljs.io/) to make your application aware of JSX (the React syntax) and JavaScript ES6. Babel transpiles your code--that is, it converts it to another language--so most modern browsers can interpret JavaScript ES6 and JSX. Because of this complication, Facebook introduced *create-react-app* as a zero-configuration React solution. The next section will show you how to setup your application by using this bootstrapping tool.
+You may also have to deal with [Babel](http://babeljs.io/) to make your application aware of JSX (the React syntax) and JavaScript ES6. Babel transpiles your code--that is, it converts it to vanilla JavaScript--so most modern browsers can interpret JavaScript ES6 and JSX. Because of this difficult setup, Facebook introduced *create-react-app* as a zero-configuration React solution. The next section will show you how to setup your application using this bootstrapping tool.
 
 ### Exercises:
 
@@ -357,7 +357,7 @@ const helloWorld = {
 helloWorld.text = 'Bye Bye React';
 ~~~~~~~~
 
-There are varying opinions about when to use *const* and when to use *let*. I would recommend using `const` whenever possible to keep your data structures immutable, so that you need only worry about the values contained in objects and arrays. Immutability is embraced in the React ecosystem, so `const` should be your default choice when you define a variable, though it’s not just about immutability, but about assigning variables only once. It shows the intent of not changing (re-assigning) the variable.
+There are varying opinions about when to use *const* and when to use *let*. I would recommend using `const` whenever possible to keep your data structures immutable, so you only have to worry about the values contained in objects and arrays. Immutability is embraced in the React ecosystem, so `const` should be your default choice when you define a variable, though it’s not just about immutability, but about assigning variables only once. It shows the intent of not changing (re-assigning) the variable.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -422,8 +422,6 @@ ReactDOM.render(
 ### Exercises:
 
 * Open the *public/index.html* to see where the React applications hook into your HTML
-
-**More Reading**
 * Read about [rendering elements in React](https://reactjs.org/docs/rendering-elements.html)
 
 ## Hot Module Replacement
@@ -466,7 +464,7 @@ The most useful benefit of HMR is that you can keep the application state after 
 
 ## Complex JavaScript in JSX
 
-So far, you have rendered a few primitive variables in your JSX. Now, we will render a list of items. The list will contain sample data in the beginning, but later we will learn how to fetch the data from an external [API](https://www.robinwieruch.de/what-is-an-api-javascript/).
+So far, you have rendered a few primitive variables in your JSX. Now, we will render a list of items. The list will contain sample data in the beginning, but later we will learn how to fetch the data from an external API.
 
 First you have to define the list of items:
 
@@ -503,7 +501,7 @@ class App extends Component {
 
 The sample data represents information we will fetch from an API later on. Items in this list each have a title, a url, and an author, as well an identifier, points (which indicate how popular an article is), and a count of comments.
 
-Now you can use the built-in JavaScript `map` functionality in JSX, which iterates over a list of items to display them according to a specified classification. Again, we use curly braces to encapsulate the JavaScript expression in JSX:
+Now you can use the built-in JavaScript `map` functionality in JSX, which iterates over a list of items to display them according to specific attributes. Again, we use curly braces to encapsulate the JavaScript expression in JSX:
 
 {title="src/App.js",lang="javascript"} 
 ~~~~~~~~
@@ -725,7 +723,7 @@ When you declare the App component it extends from another component. In object-
 
 The `Component` class encapsulates all the implementation details of a React component, which allows developers to use classes as components in React.
 
-Methods exposed by a React `Component` are its public interface. One of these methods must be overridden, while the others don't need to be overridden. You will learn about these when we discuss lifecycle methods later. The `render()` method has to be overridden, because it defines the output of a React `Component, so it must be defined. These are the basics of JavaScript ES6 classes, and how they are used in React to extend them to components. 
+Methods exposed by a React `Component` are its public interface. One of these methods must be overridden, while the others don't need to be overridden. You will learn about these when we discuss lifecycle methods later. The `render()` method has to be overridden, because it defines the output of a React `Component`, so it must be defined. These are the basics of JavaScript ES6 classes, and how they are used in React to extend them to components. 
 
 ### Exercises:
 
