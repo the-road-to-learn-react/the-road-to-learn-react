@@ -1,6 +1,6 @@
 # Basics in React
 
-This chapter will guide you through the basics of React. It covers state and interactions in components as we move past static components.  We will also cover the different ways to declare a component, and how to keep components composable and reusable.
+This chapter will guide you through the basics of React. It covers state and interactions in components as we move past static components. We will also cover the different ways to declare a component, and how to keep components composable and reusable.
 
 ## Local Component State
 
@@ -8,7 +8,7 @@ Local component state, also known as internal state, allows you to save, modify,
 
 Let's introduce a class constructor.
 
-{title="src/App.js",lang=javascript}++
+{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
 
@@ -23,9 +23,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The App component is a subclass of `Component`, so the `extends Component` is in the App component declaration. 
+The App component is a subclass of `Component`, so the `extends Component` is in the App component declaration.
 
-It is mandatory to call `super(props);`.  It sets `this.props` in your constructor in case you want to access them there. They would be `undefined` when accessing `this.props` in your constructor otherwise. In this case, the initial state of the component should be the sample list of items:
+It is mandatory to call `super(props);`. It sets `this.props` in your constructor in case you want to access them there. They would be `undefined` when accessing `this.props` in your constructor otherwise. In this case, the initial state of the component should be the sample list of items:
 
 
 {title="src/App.js",lang=javascript}
@@ -97,7 +97,7 @@ Be careful not to mutate the state directly. Instead, you should use a method ca
 * Experiment with the local state
   * Define more initial state in the constructor
   * Use and access the state in your `render()` method
-*  Read more about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
+* Read more about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
 
 ## ES6 Object Initializer
 
@@ -183,9 +183,9 @@ Later, you will be able to use computed property names to allocate values by key
 
 ## Unidirectional Data Flow
 
-Now you have a local state in your App component, but haven't manipulated the state yet. The local state is static, so its component is as well.  A good way to experience state manipulation is to engage in component interaction.
+Now you have a local state in your App component, but haven't manipulated the state yet. The local state is static, so its component is as well. A good way to experience state manipulation is to engage in component interaction.
 
-We will practice this concept by adding a button for each item in the displayed list. The button will read "Dismiss", as its purpose will be to remove an item from the list.  In an email client, for example, it would be a useful way to mark some list items as 'read' while keeping the unread items separate.
+We will practice this concept by adding a button for each item in the displayed list. The button will read "Dismiss", as its purpose will be to remove an item from the list. In an email client, for example, it would be a useful way to mark some list items as 'read' while keeping the unread items separate.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -222,7 +222,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `onDismiss()` class method is not defined yet. We will do it in a moment, but for now, let's focus on the `onClick` handler of the button element. As you can see, the `onDismiss()` method in the `onClick` handler is enclosed by an arrow function.  You can use it to peek at the `objectID` property of the `item` object and identify the item to be dismissed. An alternative way would be to define the function outside of the `onClick` handler and only pass the defined function to it. We will cover handlers more in-depth as we move along.
+The `onDismiss()` class method is not defined yet. We will do it in a moment, but for now, let's focus on the `onClick` handler of the button element. As you can see, the `onDismiss()` method in the `onClick` handler is enclosed by an arrow function. You can use it to peek at the `objectID` property of the `item` object and identify the item to be dismissed. An alternative way would be to define the function outside of the `onClick` handler and only pass the defined function to it. We will cover handlers more in-depth as we move along.
 
 Note the use multilines for the button element, and how elements with multiple attributes can get disorganized easily. The button element is used with multilines and indentations to keep it readable. While this practice isn't specific to React development, it is a programming style I recommend for cleanliness and your own peace of mind.
 
@@ -278,7 +278,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now we can define what happens inside a class method. Remember, the objective is to remove the item identified by the id from the list and store an updated list to the local state.  The updated list will be used in the re-running `render()` method to display it, where the removed item should no longer appear.
+Now we can define what happens inside a class method. Remember, the objective is to remove the item identified by the id from the list and store an updated list to the local state. The updated list will be used in the re-running `render()` method to display it, where the removed item should no longer appear.
 
 You can remove an item from a list using [JavaScript's built-in filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) functionality, which takes a function as input. The function has access to each value in the list because it iterates over each item, so you can evaluate them based on certain conditions. The function returns a new list instead of mutating the old one, and it supports the React convention of using immutable data structures.
 
@@ -345,7 +345,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-Run the application again and try the "Dismiss" button. What you experienced is the **unidirectional data flow** of React.  An action is triggered in the view layer with `onClick()`, a function or class method modifies the local component state, and then the `render()` method of the component runs again to update the view.
+Run the application again and try the "Dismiss" button. What you experienced is the **unidirectional data flow** of React. An action is triggered in the view layer with `onClick()`, a function or class method modifies the local component state, and then the `render()` method of the component runs again to update the view.
 
 ### Exercises:
 
@@ -937,7 +937,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The function takes the `searchTerm` and returns another function, because the filter function only takes that type as its input. The returned function has access to the item object, because it is the one passed to the filter function.  
+The function takes the `searchTerm` and returns another function, because the filter function only takes that type as its input. The returned function has access to the item object, because it is the one passed to the filter function.
 
 It will also be used to filter the list based on the condition defined in the function, so let's define the condition:
 
@@ -960,7 +960,7 @@ class App extends Component {
 
 The condition matches the incoming `searchTerm` pattern with the title property of the item from your list. You can do that with the built-in `includes` JavaScript functionality. When the pattern matches, it returns true and the item stays in the list; when the pattern doesn't match, the item is removed from the list. Don't forget to match the capitalizion on both strings to the letter, as there will be mismatches between the search term 'redux' and an item title 'Redux'. Since we are working on a immutable list and return a new list by using the filter function, the original list in the local state isn't modified at all.
 
-We cheated a bit using JavaScript ES6 features, but these aren't present in ES5.  For ES5, use the `indexOf()` function to get the index of the item in the list instead. When the item is in the list, `indexOf()` will return its index in the array.
+We cheated a bit using JavaScript ES6 features, but these aren't present in ES5. For ES5, use the `indexOf()` function to get the index of the item in the list instead. When the item is in the list, `indexOf()` will return its index in the array.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -987,7 +987,7 @@ const isSearched = searchTerm => item =>
   item.title.toLowerCase().includes(searchTerm.toLowerCase());
 ~~~~~~~~
 
-The React ecosystem uses a lot of functional programming concepts, often using functions that return high-order functions to pass information. JavaScript ES6 lets us express these even more concisely with arrow functions.
+The React ecosystem uses a lot of functional programming concepts, often using functions that return functions (the concept is called high-order functions) to pass information. JavaScript ES6 lets us express these even more concisely with arrow functions.
 
 We can also use the defined `isSearched()` function to filter lists. We pass it to the `searchTerm` property from the local state, where it returns the filter input function and filters your list based on the filter condition. After that it maps over the filtered list to display an element for each list item.
 
@@ -1208,7 +1208,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now we define the components next to the App component, which will be done using JavaScript ES6. They render the same elements as before.
+Now we define the components next to the App component, which will be done using JavaScript ES6 by using classes. They render the same elements as before.
 
 The first one is the Search component:
 
@@ -1373,7 +1373,7 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-It might seem redundant to declare components like this, but it's not. We use a `Button` component instead of a `button` element, which spares only the `type="button"`. Outside the type attribute, we'll need to define everything else to use the Button component. 
+It might seem redundant to declare components like this, but it's not. We use a `Button` component instead of a `button` element, which spares only the `type="button"`. Outside the type attribute, we'll need to define everything else to use the Button component.
 
 These measures are abouth long term, however. Imagine you have several buttons in your application, and you want to change an attribute, style, or behavior for just one. Without the component, you'd have to refactor each one. The Button component ensures that the operation has a single source of truth, or one Button to refactor all the others at once.
 
