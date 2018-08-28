@@ -977,5 +977,3 @@ You have learned advanced component techniques in React! Let's recap the chapter
   * Rest destructuring to split up objects and arrays
 
 You can always find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.5).
-
-
