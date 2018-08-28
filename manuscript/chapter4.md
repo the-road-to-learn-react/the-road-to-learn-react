@@ -219,7 +219,7 @@ export const PARAM_HPP = 'hitsPerPage=';
 
 The *App/index.js* file could import these variables in order to use them.
 
-{title="Code Playground: src/components/App/index.js",lang=javascript}
+{title="Code Playground: src/components/App/index.js",lang="javascript"}
 ~~~~~~~~
 import {
   DEFAULT_QUERY,
@@ -236,7 +236,7 @@ import {
 
 When you use the *index.js* naming convention, you can omit the filename from the relative path.
 
-{title="Code Playground: src/components/App/index.js",lang=javascript}
+{title="Code Playground: src/components/App/index.js",lang="javascript"}
 ~~~~~~~~
 import {
   DEFAULT_QUERY,
@@ -285,7 +285,7 @@ export {
 
 Now the *src/App/index.js* can import the buttons from the public module API located in the *index.js* file.
 
-{title="Code Playground: src/App/index.js",lang=javascript}
+{title="Code Playground: src/App/index.js",lang="javascript"}
 ~~~~~~~~
 import {
   SubmitButton,
@@ -296,7 +296,7 @@ import {
 
 However, it can be seen as bad practice to reach into other files than the *index.js* in the module, as it breaks the rules of encapsulation.
 
-{title="Code Playground: src/App/index.js",lang=javascript}
+{title="Code Playground: src/App/index.js",lang="javascript"}
 ~~~~~~~~
 // bad practice, don't do it
 import SubmitButton from '../Buttons/SubmitButton';
@@ -322,7 +322,7 @@ Jest is a JavaScript testing framework used by Facebook. It is used for componen
 
 Before you can test your first components, you have to export them from your *src/App.js* file. Afterward, you can test them in a different file.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 ...
 
@@ -345,7 +345,7 @@ export {
 
 In your *App.test.js* file, you will find the first test that came with *create-react-app*. It verifies the App component will render without errors.
 
-{title="src/App.test.js",lang=javascript}
+{title="src/App.test.js",lang="javascript"}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -382,7 +382,7 @@ npm install --save-dev react-test-renderer
 
 Now you can extend the App component test with your first snapshot test. First, import the new functionality from the node package and wrap your previous "it"-block for the App component into a descriptive "describe"-block. In this case, the test suite is only for the App component.
 
-{title="src/App.test.js",lang=javascript}
+{title="src/App.test.js",lang="javascript"}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -408,7 +408,7 @@ describe('App', () => {
 
 Now you can implement your first snapshot test by using a "test"-block:
 
-{title="src/App.test.js",lang=javascript}
+{title="src/App.test.js",lang="javascript"}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -442,7 +442,7 @@ The `renderer.create()` function creates a snapshot of your App component. It re
 
 Let's add more tests for our independent components. First, the Search component:
 
-{title="src/App.test.js",lang=javascript}
+{title="src/App.test.js",lang="javascript"}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -478,7 +478,7 @@ The Search component has two tests similar to the App component. The first test 
 
 Second, you can test the Button component whereas the same test rules as in the Search component apply.
 
-{title="src/App.test.js",lang=javascript}
+{title="src/App.test.js",lang="javascript"}
 ~~~~~~~~
 ...
 # leanpub-start-insert
@@ -510,7 +510,7 @@ describe('Button', () => {
 
 Finally, the Table component that you can pass a bunch of initial props to render it with a sample list.
 
-{title="src/App.test.js",lang=javascript}
+{title="src/App.test.js",lang="javascript"}
 ~~~~~~~~
 ...
 # leanpub-start-insert
@@ -566,7 +566,7 @@ npm install --save-dev enzyme react-addons-test-utils enzyme-adapter-react-16
 
 Second, we include it in the test setup and we initialize its adapter.
 
-{title="src/App.test.js",lang=javascript}
+{title="src/App.test.js",lang="javascript"}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -584,7 +584,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 Now you can write your first unit test in the Table "describe"-block. You will use `shallow()` to render your component and assert that the Table was passed two items. The assertion simply checks if the element has two elements with the class `table-row`.
 
-{title="src/App.test.js",lang=javascript}
+{title="src/App.test.js",lang="javascript"}
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -656,7 +656,7 @@ npm install prop-types
 
 Now, you can import the PropTypes.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -667,7 +667,7 @@ import PropTypes from 'prop-types';
 
 Let's start to assign a props interface to the components:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 const Button = ({
   onClick,
@@ -709,7 +709,7 @@ You already used the `node` PropType for the Button component. There are more Pr
 
 At the moment, all the defined PropTypes for the Button are optional. The parameters can be `null` or `undefined`. But for several props you want to enforce that they be defined. To do this, we make it a requirement that these props are passed to the component.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 Button.propTypes = {
 # leanpub-start-insert
@@ -724,7 +724,7 @@ Button.propTypes = {
 
 The `className` is not required, because it can default to an empty string. Next you will define a PropType interface for the Table component:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 # leanpub-start-insert
 Table.propTypes = {
@@ -736,7 +736,7 @@ Table.propTypes = {
 
 You can define the content of an array PropType more explicitly:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 Table.propTypes = {
   list: PropTypes.arrayOf(
@@ -756,7 +756,7 @@ Only the `objectID` is required, because some of the code depends on it. The oth
 
 You can also define default props in your component. The `className` property has an ES6 default parameter in the component signature:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 const Button = ({
   onClick,
@@ -768,7 +768,7 @@ const Button = ({
 
 Replace it with the internal React default prop:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 # leanpub-start-insert
 const Button = ({

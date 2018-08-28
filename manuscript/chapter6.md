@@ -10,7 +10,7 @@ Moving substate from one component to another is known as *lifting state*. We wa
 
 Your Table component as a functional stateless component:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 const Table = ({
   list,
@@ -32,7 +32,7 @@ const Table = ({
 
 Your Table component as an ES6 class component:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 # leanpub-start-insert
 class Table extends Component {
@@ -60,7 +60,7 @@ class Table extends Component {
 
 Since you want to deal with state and methods in your component, you have to add a constructor and initial state.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class Table extends Component {
 # leanpub-start-insert
@@ -79,7 +79,7 @@ class Table extends Component {
 
 Now you can move state and class methods with the sort functionality from your App component down to your Table component.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class Table extends Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class Table extends Component {
 
 Remember to remove the moved state and `onSort()` class method from your App component.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
   _isMounted = false;
@@ -141,7 +141,7 @@ class App extends Component {
 
 You can also make the Table component more lightweight. To do this, we move props that are passed to it from the App component, because they are handled internally in the Table component.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
 
@@ -183,7 +183,7 @@ class App extends Component {
 
 In the Table component, use the internal `onSort()` method and the internal Table state:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class Table extends Component {
 
@@ -322,7 +322,7 @@ We will fix it so that `setState()` is used and relies on the state or props con
 
 The `setSearchTopStories()` method relies on the previous state, and this is a good example to use a function over an object in `setState()`. Right now, it looks like the following code:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 setSearchTopStories(result) {
   const { hits, page } = result;
@@ -351,7 +351,7 @@ Here, we extracted values from the state, but updated the state depending on the
 
 Now we'll use the functional approach to prevent bugs from a stale state:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 setSearchTopStories(result) {
   const { hits, page } = result;
@@ -366,7 +366,7 @@ setSearchTopStories(result) {
 
 We can move the whole block we implemented into the function by directing it to operate on the `prevState` instead of the `this.state`.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 setSearchTopStories(result) {
   const { hits, page } = result;
@@ -398,7 +398,7 @@ setSearchTopStories(result) {
 
 That will fix the issue with a stale state, but there is still one more improvement. Since it is a function, you can extract the function for improved readability. One more advantage to use a function over an object is that function can live outside of the component. We still have to use a higher-order function to pass the result to it since we want to update the state based on the fetched result from the API.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 setSearchTopStories(result) {
   const { hits, page } = result;
@@ -408,7 +408,7 @@ setSearchTopStories(result) {
 
 The `updateSearchTopStoriesState()` function has to return a function. It is a higher-order function that can be defined outside the App component. Note how the function signature changes slightly now.
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 # leanpub-start-insert
 const updateSearchTopStoriesState = (hits, page) => (prevState) => {

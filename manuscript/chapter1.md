@@ -3,6 +3,7 @@
 This chapter is an introduction to React, a JavaScript library for rendering interfaces in single-page and mobile applications. I explain why developers should consider adding the React library to their toolbelts. We will dive into the React ecosystem, creating your first React application from scratch with no configuration. Along the way, we will introduce **JSX**, the syntax for React, and **ReactDOM**, so you have an understanding of React's practical uses before the next chapter.
 
 ## Hi, my name is React.
+
 Single page applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) have become increasingly popular in recent years, as frameworks like Angular, Ember, and Backbone allow JavaScript developers to build modern web applications using techniques beyond vanilla JavaScript and jQuery. The three mentioned are among the first SPAs, each coming into its own between 2010 and 2011, but there are many more options for single-page development. The first generation of SPA frameworks arrived at the enterprise level, so their frameworks are more rigid. React, on the other hand, remains an innovative library that has been adopted by many technological leaders like [Airbnb, Netflix, and Facebook](https://github.com/facebook/react/wiki/Sites-Using-React).
 
 React was released by Facebook's web development team in 2013 as a view library, which makes it the 'V' in the [MVC](https://en.wikipedia.org/wiki/Model–view–controller) (model view controller). As a view, it allows you to render components as viewable elements in a browser, while its ecosystem lets us build single page applications. While the first generation of frameworks tried to solve many things at once, React is only used to build your view layer; specifically, it is a library wherein the view is a hierarchy of composable components.
@@ -33,7 +34,7 @@ For the lessons, you will need a text editor or an IDE and terminal (command lin
 
 Optionally, we recommend you keep your projects in GitHub while conducting the exercises in this book. There is a [short guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. Github has excellent version control, so you can see what changes were made if you make a mistake or just want a more direct way to follow along.
 
-## Node and NPM
+### Node and NPM
 
 Finally, you will need an installation of [node and npm](https://nodejs.org/en/). Both are used to manage libraries you will need along the way. In this book, you will install external node packages via npm (node package manager). These node packages can be libraries or whole frameworks.
 
@@ -47,9 +48,7 @@ npm --version
 *v5.6.0
 ~~~~~~~~
 
-## node and npm
-
-This section is a crash course in node and npm. It is not exhaustive, but it will cover all of the necessary tools. If you are familiar with both of them, you can skip this section.
+The additional content of this section is a crash course in node and npm. It is not exhaustive, but it will cover all of the necessary tools. If you are familiar with both of them, you can skip this section.
 
 The **node package manager** (npm) installs external node packages from the command line. These packages can be a set of utility functions, libraries, or whole frameworks, and they are the dependencies of your application. You can either install these packages to your global node package folder, or to your local project folder.
 
@@ -148,6 +147,7 @@ You can check the version of *create-react-app* to verify a successful installat
 create-react-app --version
 *v1.5.1
 ~~~~~~~~
+
 Now you are ready to bootstrap your first React application. The example will be referred to as *hackernews*, but you may choose any name you like.
 
 First, navigate into the folder:
@@ -556,7 +556,7 @@ Note how the `map` function is inlined in your JSX. Each item property is displa
 
 React will display each item, but you can still do more to help React embrace its full potential. By assigning a key attribute to each list element, React can identify modified items when the list changes. These sample list items come with an identifier:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 {list.map(function(item) {
   return (
@@ -705,7 +705,7 @@ console.log(robin.getName());
 
 React uses JavaScript ES6 classes for ES6 class components, which you have already used at least once so far:
 
-{title="src/App.js",lang=javascript}
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 import React, { Component } from 'react';
 
