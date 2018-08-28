@@ -204,7 +204,7 @@ src/
     ...
 ~~~~~~~~
 
-Naturally, the modules would split up into *src/constants/* and *src/components/*.  The *src/constants/index.js* file could look like the following:
+Naturally, the modules would split up into *src/constants/* and *src/components/*. The *src/constants/index.js* file could look like the following:
 
 {title="Code Playground: src/constants/index.js",lang="javascript"}
 ~~~~~~~~
@@ -464,7 +464,7 @@ describe('Search', () => {
 
   test('has a valid snapshot', () => {
     const component = renderer.create(
-      <Search>Search</search>
+      <Search>Search</Search>
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -474,9 +474,9 @@ describe('Search', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-The Search component has two tests similar to the App component. The first test simply renders the search component to the DOM and verifies that there is no error during the rendering process. If there would be an error, the test would break even though there isn't any assertion (e.g. expect, match, equal) in the test block. The second snapshot test is used to store a snapshot of the rendered component and to run it against a previous snapshot. It fails when the snapshot has changed.
+The Search component has two tests similar to the App component. The first test simply renders the Search component to the DOM and verifies that there is no error during the rendering process. If there would be an error, the test would break even though there isn't any assertion (e.g. expect, match, equal) in the test block. The second snapshot test is used to store a snapshot of the rendered component and to run it against a previous snapshot. It fails when the snapshot has changed.
 
-Second, you can test the Button component whereas the same test rules as in the search component apply.
+Second, you can test the Button component whereas the same test rules as in the Search component apply.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -514,7 +514,7 @@ Finally, the Table component that you can pass a bunch of initial props to rende
 ~~~~~~~~
 ...
 # leanpub-start-insert
-import App, { Search, Button, Table} from './App';
+import App, { Search, Button, Table } from './App';
 # leanpub-end-insert
 
 ...
@@ -531,12 +531,12 @@ describe('Table', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Table{ ...props } />, div);
+    ReactDOM.render(<Table { ...props } />, div);
   });
 
   test('has a valid snapshot', () => {
     const component = renderer.create(
-      <Table{ ...props } />
+      <Table { ...props } />
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -575,7 +575,7 @@ import renderer from 'react-test-renderer';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 # leanpub-end-insert
-import App, { search, Button, Table} from './App';
+import App, { Search, Button, Table } from './App';
 
 # leanpub-start-insert
 Enzyme.configure({ adapter: new Adapter() });
@@ -593,7 +593,7 @@ import renderer from 'react-test-renderer';
 import Enzyme, { shallow } from 'enzyme';
 # leanpub-end-insert
 import Adapter from 'enzyme-adapter-react-16';
-import App, { Search, Button, Table} from './App';
+import App, { Search, Button, Table } from './App';
 
 ...
 
@@ -611,7 +611,7 @@ describe('Table', () => {
 # leanpub-start-insert
   it('shows two items in list', () => {
     const element = shallow(
-      <Table{ ...props } />
+      <Table { ...props } />
     );
 
     expect(element.find('.table-row').length).toBe(2);
@@ -752,7 +752,7 @@ Table.propTypes = {
 };
 ~~~~~~~~
 
-Only the `objectID` is required, because some of the code depends on it. The other properties are only displayed, so they are not required. Moreover you cannot be sure  the Hacker News API always has a defined property for each object in the array.
+Only the `objectID` is required, because some of the code depends on it. The other properties are only displayed, so they are not required. Moreover you cannot be sure the Hacker News API always has a defined property for each object in the array.
 
 You can also define default props in your component. The `className` property has an ES6 default parameter in the component signature:
 
@@ -794,7 +794,7 @@ Button.defaultProps = {
 
 Like the ES6 default parameter, the default prop ensures the property is set to a default value when the parent component doesn't specify it. The PropType type check happens after the default prop is evaluated.
 
-If you run your tests again, you might see PropType errors for your components on your command line. It  happens when we don't define all props for components in the tests that are required in the PropType definition. The tests themselves all pass correctly though. Make sure to pass all required props to the components in your tests to avoid these errors.
+If you run your tests again, you might see PropType errors for your components on your command line. It happens when we don't define all props for components in the tests that are required in the PropType definition. The tests themselves all pass correctly though. Make sure to pass all required props to the components in your tests to avoid these errors.
 
 ### Exercises:
 
@@ -812,7 +812,7 @@ The extension shows on the side pane the component's state and props for the sel
 
 First, check the "Highlight Updates" option, usually above the elements tree. Second, type a different search term in the application’s input field. Only `searchTerm` will be changed in the component’s state. We already knew that would happen, but now we can see it working as planned.
 
-Finally, press the "search" button. The `searchKey` state will immediately changes to same value as `searchTerm`, and then the response object is added to `results`. The asynchronous nature of your code is now visible.
+Finally, press the "Search" button. The `searchKey` state will immediately changes to same value as `searchTerm`, and then the response object is added to `results`. The asynchronous nature of your code is now visible.
 
 If you right-click on any element, a dropdown menu will show several useful options. For instance, you could copy the element’s props or name, find the corresponding DOM node, or jump to the application’s source code in the browser. The last option is very useful for inserting breakpoints and debugging your JavaScript functions.
 
@@ -838,5 +838,3 @@ You have learned how to organize and test React code! Let's recap the last chapt
   * code organization allows you to scale your application with best practices
 
 You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.4).
-
-
