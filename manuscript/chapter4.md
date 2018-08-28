@@ -1,22 +1,20 @@
 # Code Organization and Testing
 
-The chapter will focus on important topics to keep your code maintainable in a scaling application. You will learn about code organization to embrace best practices when structuring your folders and files. Another aspect you will learn is testing, which is important to keep your code robust. Last, you are going to learn about a useful tool for debugging your React applications. Most of the chapter will take a step back from the practical application and explain a couple of these topics for you.
+The chapter will focus on keeping code organized in a scaling application, so we will cover the best practices for structuring your folders and files. We will also cover testing, an important practice to keep source code robust, as well as useful tools for debugging a React application. This chapter will step back from the practical application for a moment, so we can cover these topics in detail before moving on.
 
 ## ES6 Modules: Import and Export
 
-In JavaScript ES6 you can import and export functionalities from modules. These functionalities can be functions, classes, components, constants and others. Basically everything that you can assign to a variable. The modules can be single files or whole folders with one index file as entry point.
+In JavaScript ES6, you can import and export functionalities from modules. These can be functions, classes, components, constants, essentially anything you can assign to a variable. Modules can be single files or whole folders with one index file as entry point.
 
-In the beginning of the book, after you have bootstrapped your application with *create-react-app*, you already had several `import` and `export` statements across your initial files. Now it is the appropriate time to explain these.
+After we bootstrapped our application with *create-react-app* at the beginning, we already developed several `import` and `export` statements in the initial files. The `import` and `export` statements help you to share code across multiple files. There were already several solutions for this in the JavaScript environment, but it was a mess because there wasn't standardized method of completing this task. JavaScript ES6 added it as a native behavior.
 
-The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one standardized way rather than having several approaches for the same thing. Now it is a native behavior since JavaScript ES6.
+These statements embrace code splitting, where we distribute code across multiple files to keep it reusable and maintainable. The former is true because we can import a piece of code into multiple files. The latter is true because there is only one source where you maintain the piece of code.
 
-Additionally these statements embrace code splitting. You distribute your code across multiple files to keep it reusable and maintainable. The former is true because you can import the piece of code in multiple files. The latter is true because you have one single source where you maintain the piece of code.
+We also want to think about code encapsulation, since not every functionality needs to be exported from a file. Some of these functionalities should only be used in files where they have been defined. File exports are basically their public APIs, where only the exported functionalities are available to be reused elsewhere. This follows the best practice of encapsulation.
 
-Last but not least, it helps you to think about code encapsulation. Not every functionality needs to get exported from a file. Some of these functionalities should only be used in the file where they have been defined. The exports of a file are basically the public API to the file. Only the exported functionalities are available to be reused somewhere else. It follows the best practice of encapsulation.
+The following examples showcase the statements by sharing one or multiple variables across two files. In the end, the approach can scale to multiple files and could share more than simple variables.
 
-But let's get practical. How do these `import` and `export` statements work? The following examples showcase the statements by sharing one or multiple variables across two files. In the end, the approach can scale to multiple files and could share more than simple variables.
-
-You can export one or multiple variables. It is called a named export.
+The act of exporting one or multiple variables is called a named export:
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
@@ -46,7 +44,7 @@ console.log(person.firstname);
 // output: Robin
 ~~~~~~~~
 
-Imports can have an alias. It can happen that you import functionalities from multiple files that have the same named export. That's why you can use an alias.
+Imports can have aliases, which are necessary when we import functionalities from multiple files that have the same named export.
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
@@ -56,7 +54,7 @@ console.log(username);
 // output: Robin
 ~~~~~~~~
 
-Last but not least there exists the `default` statement. It can be used for a few use cases:
+There is also the `default` statement, which can be used for a few cases:
 
 * to export and import a single functionality
 * to highlight the main functionality of the exported API of a module
@@ -72,7 +70,7 @@ const robin = {
 export default robin;
 ~~~~~~~~
 
-You can leave out the curly braces for the import to import the default export.
+You can leave out the curly braces to import the default export.
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
@@ -82,7 +80,7 @@ console.log(developer);
 // output: { firstname: 'Robin', lastname: 'Wieruch' }
 ~~~~~~~~
 
-Furthermore, the import name can differ from the exported default name. You can also use it in conjunction with the named export and import statements.
+The import name can differ from the exported default name, and it can be used with the named export and import statements:
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
@@ -102,7 +100,7 @@ export {
 export default person;
 ~~~~~~~~
 
-And import the default or the named exports in another file.
+Import the default or the named exports in another file:
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
@@ -114,7 +112,7 @@ console.log(firstname, lastname);
 // output: Robin Wieruch
 ~~~~~~~~
 
-You can also spare additional lines and export the variables directly for named exports.
+You can spare the extra lines, and export the variables directly for named exports.
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
@@ -122,20 +120,20 @@ export const firstname = 'Robin';
 export const lastname = 'Wieruch';
 ~~~~~~~~
 
-These are the main functionalities for ES6 modules. They help you to organize your code, to maintain your code and to design reusable module APIs. You can also export and import functionalities to test them. You will do that in one of the following chapters.
+These are the main functionalities for ES6 modules. They help you to organize your code, to maintain it, and to design reusable module APIs. Export and import functionalities to test them.
 
 ### Exercises:
 
-* read more about [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-* read more about [ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+* Read more about [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+* Read more about [ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 
 ## Code Organization with ES6 Modules
 
-You might wonder: Why didn't we follow the best practices of code splitting for the *src/App.js* file? In the file we already have multiple components which could be defined in their own files/folders (modules). For the sake of learning React, it is practical to keep these things at one place. But once your React application grows, you should consider to split up these components into multiple modules. Only that way your application scales.
+You might wonder why we didn't follow the best practices of putting components into different files for the *src/App.js* file. We already have multiple components in the file that can be defined in their own files/folders (modules). For the sake of learning React, it is practical to keep these items in one place. Once your React application grows, you should consider splitting these components into multiple modules so it can scale properly.
 
-In the following, I will propose several module structures you *could* apply. I would recommend to apply them as an exercise at the end of the book. To keep the book itself simple, I will not perform the code splitting and will continue the following chapters with the *src/App.js* file.
+In the following, I propose several module structures you can apply. You can apply them as an exercise later, but we will continue developing our app with the *src/App.js* file to keep things simple.
 
-One possible module structure could be:
+Here is one possible module structure:
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -156,7 +154,7 @@ src/
   Search.css
 ~~~~~~~~
 
-It separates the components into their own files, but it doesn't look too promising. You can see a lot of naming duplications and only the file extension differs. Another module structure could be:
+This one separates the components into their own files, but it doesn't look too promising. You can see a lot of naming duplications, and only the file extension differs. Another module structure could be:
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -181,9 +179,9 @@ src/
     index.css
 ~~~~~~~~
 
-It looks cleaner than before. The index naming of a file describes it as an entry point file to the folder. It is just a common naming convention, but you can use your own naming as well. In this module structure, a component is defined by its component declaration in the JavasScript file, but also by its style and tests.
+Now it looks cleaner than before. The index naming of a file describes it as an entry point file to the folder. It is just a common naming convention, but you can use your own naming as well. In this module structure, a component is defined by its component declaration in the JavaScript file, but also by its style and tests. If you have trouble finding your components this way while searching for them in your editor/IDE, search for paths rather than files (e.g. search for “Table index”).
 
-Another step could be extracting the constant variables from the App component. These constants were used to compose the Hacker News API URL.
+Another step is extracting the constant variables from the App component, which were used to compose the Hacker News API URL.
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -206,7 +204,7 @@ src/
     ...
 ~~~~~~~~
 
-Naturally the modules would split up into *src/constants/* and *src/components/*. Now the *src/constants/index.js* file could look like the following:
+Naturally, the modules would split up into *src/constants/* and *src/components/*.  The *src/constants/index.js* file could look like the following:
 
 {title="Code Playground: src/constants/index.js",lang="javascript"}
 ~~~~~~~~
@@ -255,7 +253,7 @@ import {
 ...
 ~~~~~~~~
 
-But what's behind the *index.js* file naming? The convention was introduced in the node.js world. The index file is the entry point to a module. It describes the public API to the module. External modules are only allowed to use the *index.js* file to import shared code from the module. Consider the following made up module structure to demonstrate it:
+The *index.js* file naming is convention was introduced in the Node.js world, where the index file is the entry point to a module. It describes the public API to the module. External modules are only allowed to use the *index.js* file to import shared code from the module. Consider the following module structure to demonstrate it:
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -270,7 +268,7 @@ src/
     CancelButton.js
 ~~~~~~~~
 
-The *Buttons/* folder has multiple button components defined in its distinct files. Each file can `export default` the specific component making it available to *Buttons/index.js*. The *Buttons/index.js* file imports all different button representations and exports them as public module API.
+The *Buttons/* folder has multiple button components defined in its distinct files. Each file can `export default` the specific component, making it available to *Buttons/index.js*. The *Buttons/index.js* file imports all different button representations and exports them as public module API.
 
 {title="Code Playground: src/Buttons/index.js",lang="javascript"}
 ~~~~~~~~
@@ -296,7 +294,7 @@ import {
 } from '../Buttons';
 ~~~~~~~~
 
-By going with this constraint, it would be a bad practice to reach into other files than the *index.js* in the module. It would break the rules of encapsulation.
+However, it can be seen as bad practice to reach into other files than the *index.js* in the module, as it breaks the rules of encapsulation.
 
 {title="Code Playground: src/App/index.js",lang=javascript}
 ~~~~~~~~
@@ -304,25 +302,25 @@ By going with this constraint, it would be a bad practice to reach into other fi
 import SubmitButton from '../Buttons/SubmitButton';
 ~~~~~~~~
 
-Now you know how you could refactor your source code in modules with the constraints of encapsulation. As I said, for the sake of keeping the book simple I will not apply these changes. But you should do the refactoring when you finished reading the book.
+We refactored the source code in a module with the constraints of encapsulation. Again, we'll keep things simple in this book, but you should always refractor your source code to keep it clean.
 
 ### Exercises:
 
-* refactor your *src/App.js* file into multiple component modules when you finished the book
+* Refactor your *src/App.js* file into multiple component modules when you finished the book
 
 ## Snapshot Tests with Jest
 
-The book will not dive deeply into the topic of testing, but it shouldn't be unmentioned. Testing your code in programming is essential and should be seen as mandatory. You want to keep the quality of your code high and an assurance that everything works.
+Testing source code is essential to programming, and should be seen as mandatory. We want to keep the quality of your code high and make sure everything works before using it in production. We will use the testing pyramid as our guide.
 
-Perhaps you have heard about the testing pyramid. There are end-to-end tests, integration tests and unit tests. If you are not familiar with those, the book gives you a quick and basic overview. A unit test is used to test an isolated and small block of code. It can be a single function that is tested by an unit test. However, sometimes the units work well in isolation yet don't work in combination with other units. They need to be tested as a group of units. That's where integration tests can help out by covering whether units work well together. Last but not least, an end-to-end test is the simulation of a real user scenario. It could be an automated setup in a browser simulating the login flow of an user in a web application. While unit tests are fast and easy to write and to maintain, end-to-end tests are the opposite of this spectrum.
+The testing pyramid includes end-to-end tests, integration tests, and unit tests. A unit test is for an isolated and small block of code, such a single function. However, sometimes units work well in isolation but not in combination with other units, so they need to be tested as a group. That's where integration tests can help us figure out if units work well together. An end-to-end test is a simulation of a real-life scenario, such as the automated setup of a browser simulating the login flow in a web application. Where unit tests are fast and easy to write and maintain, end-to-end tests are at the opposite of the spectrum.
 
-How many tests do I need of each type? You want to have many unit tests to cover your isolated functions. After that, you can have several integration tests to cover that the most important functions work in combination as expected. Last but not least, you might want to have only a few end-to-end tests to simulate critical scenarios in your web application. That's it for the general excursion in the world of testing.
+We want to have many unit tests covering the isolated functions. After that, we can use several integration tests to make sure the most important functions work in combination as expected. Finally, we may need a few end-to-end tests to simulate critical scenarios.
 
-So how do you apply this knowledge in testing your React application? The foundation for testing in React are component tests which can be generalized as unit tests and a part of it as snapshot tests. You will conduct unit tests for your components in the next chapter by using a library called Enzyme. In this section of the chapter, you will focus on another kind of tests: snapshot tests. That's where Jest comes into play.
+The foundation for testing in React are component tests, generalized partly as unit tests and partly as snapshot tests. Unit tests for our components will be covered in the next chapter with a library called Enzyme. In this section, we focus on snapshot tests, using [Jest](https://jestjs.io/).
 
-[Jest](https://jestjs.io/) is a JavaScript testing framework that is used at Facebook. In the React community, it is used for React component tests. Fortunately *create-react-app* already comes with Jest, so you don't need to worry about setting it up.
+Jest is a JavaScript testing framework used by Facebook. It is used for component tests by the React community. Fortunately, *create-react-app* already comes with Jest, so you don't need to set it up.
 
-Let's start to test your first components. Before you can do that, you have to export the components, which you are going to test, from your *src/App.js* file. Afterward you can test them in a different file. You have learned about this in the code organization chapter.
+Before you can test your first components, you have to export them from your *src/App.js* file. Afterward, you can test them in a different file.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -345,7 +343,7 @@ export {
 # leanpub-end-insert
 ~~~~~~~~
 
-In your *App.test.js* file, you will find a first test that came with *create-react-app*. It verifies that the App component would render without any errors.
+In your *App.test.js* file, you will find the first test that came with *create-react-app*. It verifies the App component will render without errors.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -360,22 +358,22 @@ it('renders without crashing', () => {
 });
 ~~~~~~~~
 
-The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suite. A test suite could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separate and organize your test cases.
+The "it"-block describes one test case. It comes with a test description, and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suite. A test suite could include a bunch of the "it"-blocks for one specific component. You will see "describe"-blocks later. Both blocks are used to separate and organize your test cases.
 
-Note that the `it` function is acknowledged in the JavaScript community as the function where you run a single test. However, in Jest it is often found as an alias `test` function.
+Note that the `it` function is acknowledged in the JavaScript community as the function where you run a single test. However, while it is often found as an alias `test` function in Jest.
 
-You can run your test cases by using the interactive *create-react-app* test script on the command line. You will get the output for all test cases on your command line interface.
+You can run the test cases using the interactive *create-react-app* test script on the command line. You will get the output for all test cases on your command line interface.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm test
 ~~~~~~~~
 
-Now Jest enables you to write snapshot tests. These tests make a snapshot of your rendered component and run this snapshot against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the diffs of the rendered output. It doesn't add big maintenance costs, because you can simply accept changed snapshots when you changed something on purpose for the rendered output in your component.
+Jest enables you to write snapshot tests. These tests make a snapshot of your rendered component and runs it against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the differences of the rendered output. It doesn't add big maintenance costs since you can accept snapshots for intentional changes.
 
-Jest stores the snapshots in a folder. Only that way it can validate the diff against a future snapshot. Additionally, the snapshots can be shared across teams by having them in one folder.
+Jest stores snapshots in a folder so it can validate the diff against a future snapshot. This also lets use share snapshots across teams.
 
-Before writing your first snapshot test with Jest, you have to install an utility library.
+Before writing your first snapshot test with Jest, you have to install its utility library:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -408,7 +406,7 @@ describe('App', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can implement your first snapshot test by using a "test"-block.
+Now you can implement your first snapshot test by using a "test"-block:
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -438,9 +436,9 @@ describe('App', () => {
 });
 ~~~~~~~~
 
-Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component.
+Run your tests again and observe how they succeed or fail. Once you change the output of the render block in your App component, the snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component.
 
-Basically the `renderer.create()` function creates a snapshot of your App component. It renders it virtually and stores the DOM into a snapshot. Afterward, the snapshot is expected to match the previous snapshot from when you ran your snapshot tests the last time. This way, you can assure that your DOM stays the same and doesn't change anything by accident.
+The `renderer.create()` function creates a snapshot of your App component. It renders it virtually, and then stores the DOM into a snapshot. Afterward, the snapshot is expected to match the previous version from the last test. This is how we make sure the DOM stays the same and doesn't change anything by accident.
 
 Let's add more tests for our independent components. First, the Search component:
 
@@ -466,7 +464,7 @@ describe('Search', () => {
 
   test('has a valid snapshot', () => {
     const component = renderer.create(
-      <Search>Search</Search>
+      <Search>Search</search>
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -476,9 +474,9 @@ describe('Search', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-The Search component has two tests similar to the App component. The first test simply renders the Search component to the DOM and verifies that there is no error during the rendering process. If there would be an error, the test would break even though there isn't any assertion (e.g. expect, match, equal) in the test block. The second snapshot test is used to store a snapshot of the rendered component and to run it against a previous snapshot. It fails when the snapshot has changed.
+The Search component has two tests similar to the App component. The first test simply renders the search component to the DOM and verifies that there is no error during the rendering process. If there would be an error, the test would break even though there isn't any assertion (e.g. expect, match, equal) in the test block. The second snapshot test is used to store a snapshot of the rendered component and to run it against a previous snapshot. It fails when the snapshot has changed.
 
-Second, you can test the Button component whereas the same test rules as in the Search component apply.
+Second, you can test the Button component whereas the same test rules as in the search component apply.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -510,13 +508,13 @@ describe('Button', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Last but not least, the Table component that you can pass a bunch of initial props to render it with a sample list.
+Finally, the Table component that you can pass a bunch of initial props to render it with a sample list.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
 ...
 # leanpub-start-insert
-import App, { Search, Button, Table } from './App';
+import App, { Search, Button, Table} from './App';
 # leanpub-end-insert
 
 ...
@@ -533,12 +531,12 @@ describe('Table', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Table { ...props } />, div);
+    ReactDOM.render(<Table{ ...props } />, div);
   });
 
   test('has a valid snapshot', () => {
     const component = renderer.create(
-      <Table { ...props } />
+      <Table{ ...props } />
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -548,27 +546,25 @@ describe('Table', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Snapshot tests usually stay pretty basic. You only want to cover that the component doesn't change its output. Once it changes the output, you have to decide if you accept the changes. Otherwise you have to fix the component when the output is not the desired output.
+Snapshot tests usually stay pretty basic. You only want to make sure the component doesn't change its output. Once it does, you have to decide if you accept the changes, otherwise you have to fix the component.
 
 ### Exercises:
 
-* see how a snapshot test fails once you change your component's return value in the `render()` method
-  * either accept or deny the snapshot change
-* keep your snapshots tests up to date when the implementation of components change in next chapters
-* read more about [Jest in React](https://jestjs.io/docs/en/tutorial-react)
+* See how a snapshot test fails once you change your component's return value in the `render()` method
+  * Accept or deny the snapshot change(s)
+* Keep your snapshots tests up to date when the implementation of components change in next chapters
+* Read more about [Jest in React](https://jestjs.io/docs/en/tutorial-react)
 
 ## Unit Tests with Enzyme
 
-[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests to complement your snapshot tests in React.
-
-Let's see how you can use Enzyme. First you have to install it since it doesn't come by default with *create-react-app*. It comes also with an extension to use it in React.
+[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate, and traverse React components. It is used to conduct unit tests to complement snapshot tests in React. First we have to install it along with its extension, since it doesn't come with *create-react-app*.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save-dev enzyme react-addons-test-utils enzyme-adapter-react-16
 ~~~~~~~~
 
-Second, you need to include it in your test setup and initialize its Adapter for using it in React.
+Second, we include it in the test setup and we initialize its adapter.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -579,14 +575,14 @@ import renderer from 'react-test-renderer';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 # leanpub-end-insert
-import App, { Search, Button, Table } from './App';
+import App, { search, Button, Table} from './App';
 
 # leanpub-start-insert
 Enzyme.configure({ adapter: new Adapter() });
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can write your first unit test in the Table "describe"-block. You will use `shallow()` to render your component and assert that the Table has two items, because you pass it two list items. The assertion simply checks if the element has two elements with the class `table-row`.
+Now you can write your first unit test in the Table "describe"-block. You will use `shallow()` to render your component and assert that the Table was passed two items. The assertion simply checks if the element has two elements with the class `table-row`.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -597,7 +593,7 @@ import renderer from 'react-test-renderer';
 import Enzyme, { shallow } from 'enzyme';
 # leanpub-end-insert
 import Adapter from 'enzyme-adapter-react-16';
-import App, { Search, Button, Table } from './App';
+import App, { Search, Button, Table} from './App';
 
 ...
 
@@ -615,7 +611,7 @@ describe('Table', () => {
 # leanpub-start-insert
   it('shows two items in list', () => {
     const element = shallow(
-      <Table { ...props } />
+      <Table{ ...props } />
     );
 
     expect(element.find('.table-row').length).toBe(2);
@@ -625,33 +621,33 @@ describe('Table', () => {
 });
 ~~~~~~~~
 
-Shallow renders the component without its child components. That way, you can make the test very dedicated to one component.
+Shallow renders the component without its child components, so you can dedicate the test to one component.
 
-Enzyme has overall three rendering mechanisms in its API. You already know `shallow()`, but there also exist `mount()` and `render()`. Both instantiate instances of the parent component and all child components. Additionally `mount()` gives you access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
+Enzyme has three rendering mechanisms in its API. You already know `shallow()`, but there is also `mount()` and `render()`. Both instantiate instances of the parent component and all child components. `mount()` gives you access to the component lifecycle methods. These are the rules of them as to when to use each mechanism:
 
 * Always begin with a shallow test
 * If `componentDidMount()` or `componentDidUpdate()` should be tested, use `mount()`
 * If you want to test component lifecycle and children behavior, use `mount()`
 * If you want to test a component's children rendering with less overhead than `mount()` and you are not interested in lifecycle methods, use `render()`
 
-You could continue to unit test your components. But make sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. That's why Facebook introduced snapshot tests with Jest in the first place.
+Continue to unit test your components, but be sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. This is one the main reason Facebook introduced snapshot tests with Jest.
 
 ### Exercises:
 
-* write a unit test with Enzyme for your Button component
-* keep your unit tests up to date during the following chapters
-* read more about [Enzyme and its rendering API](https://github.com/airbnb/enzyme)
-* read more about [testing React applications](https://www.robinwieruch.de/react-testing-tutorial)
+* Write a unit test with Enzyme for your Button component
+* Keep your unit tests up to date during the following chapters
+* Read more about [Enzyme and its rendering API](https://github.com/airbnb/enzyme)
+* Read more about [testing React applications](https://www.robinwieruch.de/react-testing-tutorial)
 
 ## Component Interface with PropTypes
 
-You may know [TypeScript](https://www.typescriptlang.org/) or [Flow](https://flowtype.org/) to introduce a type interface to JavaScript. A typed language is less error prone, because the code gets validated based on its program text. Editors and other utilities can catch these errors before the program runs. It makes your program more robust.
+[TypeScript](https://www.typescriptlang.org/) and [Flow](https://flowtype.org/) are used to introduce a type system to JavaScript. A typed language is less error prone because the code gets validated based on its program text. Editors and other utilities can catch these errors before the program runs.
 
-In the book, you will not introduce Flow or TypeScript, but another neat way to check your types in components. React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props that get passed from a parent component to a child component get validated based on the PropTypes interface assigned to the child component.
+In the book, you will not introduce Flow or TypeScript, but another useful way to check your types in components. React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props passed from a parent component to a child get validated based on the PropTypes interface assigned to the child.
 
-This section of the chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code refactorings. But you should keep and update them along the way to keep your components interface type safe.
+This section will show you to make components type safe with PropTypes. I will omit the changes for the following chapters, since they add unnecessary code refactorings, but you should update them along the way to keep your components interface type safe.
 
-First, you have to install a separate package for React.
+First, install a separate package for React:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -695,7 +691,7 @@ Button.propTypes = {
 # leanpub-end-insert
 ~~~~~~~~
 
-Basically that's it. You take every argument from the function signature and assign a PropType to it. The basic PropTypes for primitives and complex objects are:
+Essentially, we want to take every argument from the function signature and assign a PropType to it. The basic PropTypes for primitives and complex objects are:
 
 * PropTypes.array
 * PropTypes.bool
@@ -704,14 +700,14 @@ Basically that's it. You take every argument from the function signature and ass
 * PropTypes.object
 * PropTypes.string
 
-Additionally you have two more PropTypes to define a renderable fragment (node), e.g. a string, and a React element:
+There are two more PropTypes that can define a renderable fragment (node), e.g. a string, and a React element:
 
 * PropTypes.node
 * PropTypes.element
 
-You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up on in the official React documentation.
+You already used the `node` PropType for the Button component. There are more PropType definitions in the official React documentation.
 
-At the moment all of the defined PropTypes for the Button are optional. The parameters can be `null` or `undefined`. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
+At the moment, all the defined PropTypes for the Button are optional. The parameters can be `null` or `undefined`. But for several props you want to enforce that they be defined. To do this, we make it a requirement that these props are passed to the component.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -756,9 +752,9 @@ Table.propTypes = {
 };
 ~~~~~~~~
 
-Only the `objectID` is required, because you know that some of your code depends on it. The other properties are only displayed, thus they are not necessarily required. Moreover you cannot be sure that the Hacker News API has always a defined property for each object in the array.
+Only the `objectID` is required, because some of the code depends on it. The other properties are only displayed, so they are not required. Moreover you cannot be sure  the Hacker News API always has a defined property for each object in the array.
 
-That's it for PropTypes. But there is one more aspect. You can define default props in your component. Let's take again the Button component. The `className` property has an ES6 default parameter in the component signature.
+You can also define default props in your component. The `className` property has an ES6 default parameter in the component signature:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -770,7 +766,7 @@ const Button = ({
   ...
 ~~~~~~~~
 
-You could replace it with the internal React default prop:
+Replace it with the internal React default prop:
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -796,51 +792,51 @@ Button.defaultProps = {
 # leanpub-end-insert
 ~~~~~~~~
 
-Same as the ES6 default parameter, the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
+Like the ES6 default parameter, the default prop ensures the property is set to a default value when the parent component doesn't specify it. The PropType type check happens after the default prop is evaluated.
 
-If you run your tests again, you might see PropType errors for your components on your command line. It can happen because you didn't define all props for your components in the tests that are defined as required in your PropType definition. The tests themselves all pass correctly though. You can pass all required props to the components in your tests to avoid these errors.
+If you run your tests again, you might see PropType errors for your components on your command line. It  happens when we don't define all props for components in the tests that are required in the PropType definition. The tests themselves all pass correctly though. Make sure to pass all required props to the components in your tests to avoid these errors.
 
 ### Exercises:
 
-* define the PropType interface for the Search component
-* add and update the PropType interfaces when you add and update components in the next chapters
-* read more about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
+* Define the PropType interface for the Search component
+* Add and update the PropType interfaces when you add and update components in the next chapters
+* Read more about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
 ## Debugging with React Developer Tools
 
-This last section presents to you a helpful tool, generally used to inspect and debug React applications. [React Developer Tools](https://github.com/facebook/react-devtools) lets you inspect the React components hierarchy, props and state. It comes as a browser extension (for Chrome and Firefox) and as a standalone app (that works with other environments). Once installed, the extension icon will light up on the websites using React. On such pages, you will see a tab called "React" in your browser's developer tools.
+[React Developer Tools](https://github.com/facebook/react-devtools) lets you inspect the React components hierarchy, props and state. It comes as a browser extension for Chrome and Firefox and as a standalone app that works with other environments. Once installed, the extension icon will light up on websites using React. On such pages, you will see a tab called "React" in your browser's developer tools.
 
-Let's try it on your Hacker News application. On most browsers, a quick way to bring the *dev tools* up is to right-click on the page and than hit "Inspect". Do it when your application is loaded, then click on the "React" tab. You should see its elements hierarchy, being `<App>` the root element. If you expand it, you will find instances of your `<Search>`, `<Table>` and `<Button>` components, as well.
+Let's try it on our Hacker News application. On most browsers, a quick way to bring the *dev tools* up is to right-click on the page and than hit "Inspect". Do it when your application is loaded, then click on the "React" tab. You should see its elements hierarchy, being `<App>` the root element. If you expand it, you will find instances of your `<Search>`, `<Table>` and `<Button>` components, as well.
 
-The extension shows on the side pane the component's state and props for the selected element. For instance, if you click on `<App>`, you will see that it has no props, but it already has a state. A very straightforward debugging technique is to monitor your application's state changing because of the user interaction.
+The extension shows on the side pane the component's state and props for the selected element. For instance, if you click on `<App>`, you will see that it has no props, but it already has a state. A very straightforward debugging technique is monitoring your application's state changes from user interaction.
 
-First, you would like to check the "Highlight Updates" option (usually above the elements tree). Second, you can type a different search term in the application’s input field. As you will see, only `searchTerm` will be changed in the component’s state. You already knew that would happen, but now you can actually see it working as planned.
+First, check the "Highlight Updates" option, usually above the elements tree. Second, type a different search term in the application’s input field. Only `searchTerm` will be changed in the component’s state. We already knew that would happen, but now we can see it working as planned.
 
-Finally, you can press the "Search" button. The `searchKey` state will immediately be changed for the same value as `searchTerm` and the response object will be added to `results` a few seconds later. The asynchronous nature of your code is now visible to your eyes.
+Finally, press the "search" button. The `searchKey` state will immediately changes to same value as `searchTerm`, and then the response object is added to `results`. The asynchronous nature of your code is now visible.
 
-Last but not least, if you right-click on any element, a dropdown menu will show several useful options to you. For instance, you could copy the element’s props or name, find the corresponding DOM node or jump to the application’s source code in the browser. This last option is very useful for inserting breakpoints and debug your JavaScript functions.
+If you right-click on any element, a dropdown menu will show several useful options. For instance, you could copy the element’s props or name, find the corresponding DOM node, or jump to the application’s source code in the browser. The last option is very useful for inserting breakpoints and debugging your JavaScript functions.
 
 ### Exercises:
 
-* install the [React Developer Tools](https://github.com/facebook/react-devtools) extension on your favorite browser
-  * run your Hacker News Clone application and inspect it using the extension
-  * experiment with state and props changes
-  * watch what happens when you trigger an asynchronous request
-  * perform several requests, including repeated ones. Watch the cache mechanism working
-* read more about [how to debug your JavaScript functions in the browser](https://developers.google.com/web/tools/chrome-devtools/javascript/)
+* Install the [React Developer Tools](https://github.com/facebook/react-devtools) extension on your favorite browser
+  * Run your Hacker News Clone application and inspect it using the extension
+  * Experiment with state and props changes
+  * Watch what happens when you trigger an asynchronous request
+  * Perform several requests, including repeated ones. Watch the cache mechanism working
+* Read more about [how to debug your JavaScript functions in the browser](https://developers.google.com/web/tools/chrome-devtools/javascript/)
 
-{pagebreak}
+You have learned how to organize and test React code! Let's recap the last chapter:
 
-You have learned how to organize your code and how to test it! Let's recap the last chapters:
-
-* React
+* **React**
   * PropTypes let you define type checks for components
   * Jest allows you to write snapshot tests for your components
   * Enzyme allows you to write unit tests for your components
   * React Developer Tools is a helpful debugging tool
-* ES6
+* **ES6**
   * import and export statements help you to organize your code
-* General
+* **General**
   * code organization allows you to scale your application with best practices
 
 You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.4).
+
+
