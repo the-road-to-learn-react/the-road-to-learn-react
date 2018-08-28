@@ -4,7 +4,7 @@ The Road to learn React teaches the fundamentals of React. You will build a real
 
 In the Road to learn React, I offer a foundation before you dive into the broader React ecosystem. The concepts will have less tooling and less external state management, but a lot of information about React. It explains general concepts, patterns, and best practices in a real world React application.
 
-Essentially, you will learn to build your own React application from scratch, with features like pagination, client-side caching, and interactions like searching and sorting. Additionally, you will transition from JavaScript ES5 to JavaScript ES6.  I hope this book captures my enthusiasm for React and JavaScript, and that it helps you get started with it.
+Essentially, you will learn to build your own React application from scratch, with features like pagination, client-side caching, and interactions like searching and sorting. Additionally, you will transition from JavaScript ES5 to JavaScript ES6. I hope this book captures my enthusiasm for React and JavaScript, and that it helps you get started with it.
 
 {pagebreak}
 
@@ -38,8 +38,6 @@ There are many [testimonials](https://roadtoreact.com/), [ratings](https://www.g
 
 **[Eric Priou](https://twitter.com/erixtekila/status/840875459730657283):** "The Road to learn React by Robin Wieruch is a must read. Clean and concise for React and JavaScript."
 
-
-
 {pagebreak}
 
 # Education for Children
@@ -52,41 +50,29 @@ The book should enable everyone to learn React. However, not everyone has access
 
 # FAQ
 
-**How to get updates?**
-I have two channels where I share updates about my content. You can [subscribe to updates by email](https://www.getrevue.co/profile/rwieruch) or [follow me on Twitter](https://twitter.com/rwieruch). Regardless of the channel, my objective is to only share quality content. Once you receive notification the book has changed, you can download a new version of it.
+**How to get updates?** I have two channels where I share updates about my content. You can [subscribe to updates by email](https://www.getrevue.co/profile/rwieruch) or [follow me on Twitter](https://twitter.com/rwieruch). Regardless of the channel, my objective is to only share quality content. Once you receive notification the book has changed, you can download a new version of it.
 
-**Does it use the recent React version?**
-The book always receives an update when the React version is updated. Programming books are usually outdated soon after their release, but since this book is self-published, I can update it as needed.
+**Does it use the recent React version?** The book always receives an update when the React version is updated. Programming books are usually outdated soon after their release, but since this book is self-published, I can update it as needed.
 
-**Does it cover Redux?**
-It doesn't, so I have written a second book. The Road to learn React should give you a solid foundation before you dive into advanced topics. The implementation of the sample application in the book will show that you don't need Redux to build an application in React. After you have read the book, you should be able to implement a solid application without Redux. Then you can read my second book, Taming the State in React, to learn [Redux](https://roadtoreact.com).
+**Does it cover Redux?** It doesn't, so I have written a second book. The Road to learn React should give you a solid foundation before you dive into advanced topics. The implementation of the sample application in the book will show that you don't need Redux to build an application in React. After you have read the book, you should be able to implement a solid application without Redux. Then you can read my second book, Taming the State in React, to learn [Redux](https://roadtoreact.com).
 
-**Does it use JavaScript ES6?**
-Yes. Don't worry, though, you will be fine if you are familiar with JavaScript ES5. All JavaScript ES6 features, that I describe in The Journey to Learn React, will transition from ES5 to ES6. The book does not only teach React, but also all useful JavaScript ES6 features.
+**Does it use JavaScript ES6?** Yes. Don't worry, though, you will be fine if you are familiar with JavaScript ES5. All JavaScript ES6 features, that I describe in The Journey to Learn React, will transition from ES5 to ES6. The book does not only teach React, but also all useful JavaScript ES6 features.
 
-**How to get access to the source code projects and screencasts series?**
-If you bought one of the extended packages that grant access to the source code projects, screencast series or any other add-on, you should find these on your [course dashboard](https://roadtoreact.com/my-courses). If you bought the course other than [the official Road to React](https://roadtoreact.com) course platform, create an account on the platform, and then go to the Admin page and contact me with one of the email templates. After that I can enroll you in the course. If you haven't bought one of the extended packages, you can reach out any time to upgrade your content to access the source code projects and screencast series.
+**How to get access to the source code projects and screencasts series?** If you bought one of the extended packages that grant access to the source code projects, screencast series or any other add-on, you should find these on your [course dashboard](https://roadtoreact.com/my-courses). If you bought the course other than [the official Road to React](https://roadtoreact.com) course platform, create an account on the platform, and then go to the Admin page and contact me with one of the email templates. After that I can enroll you in the course. If you haven't bought one of the extended packages, you can reach out any time to upgrade your content to access the source code projects and screencast series.
 
-**How can I get help while reading the book?**
-The book has a [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for people who are reading along. You can join the channel to get help, or to help others, as helping others may help you internalize your own understanding. If there is no one available to help you, you can always reach out to me.
+**How can I get help while reading the book?** The book has a [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for people who are reading along. You can join the channel to get help, or to help others, as helping others may help you internalize your own understanding. If there is no one available to help you, you can always reach out to me.
 
-**Is there any troubleshoot area?**
-If you run into problems, please join the Slack Group. Also, check the [open issues on GitHub](https://github.com/rwieruch/the-road-to-learn-react/issues) to see if any solutions are listed for specific issue.  If your problem wasn't mentioned, open a new issue where you can explain your problem, provide a screenshot, and offer more details (e.g. book page, node version).
+**Is there any troubleshoot area?** If you run into problems, please join the Slack Group. Also, check the [open issues on GitHub](https://github.com/rwieruch/the-road-to-learn-react/issues) to see if any solutions are listed for specific issue. If your problem wasn't mentioned, open a new issue where you can explain your problem, provide a screenshot, and offer more details (e.g. book page, node version).
 
-**Can I help to improve the content?**
-Yes, I love to hear feedback. Simply open an issue on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). These can be technical improvements, or clarification on the discussed topics. I am not a native speaker, so any feedback is appreciated. You can open pull requests on the GitHub page as well.
+**Can I help to improve the content?** Yes, I love to hear feedback. Simply open an issue on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). These can be technical improvements, or clarification on the discussed topics. I am not a native speaker, so any feedback is appreciated. You can open pull requests on the GitHub page as well.
 
-**Is there a money back guarantee?**
-Yes, there is 100% money back guarantee for two months if you don't think it's a good fit. Please reach out to me to get a refund.
+**Is there a money back guarantee?** Yes, there is 100% money back guarantee for two months if you don't think it's a good fit. Please reach out to me to get a refund.
 
-**How to support the project?**
-If you believe in the content I create, you can [support me](https://www.robinwieruch.de/about/). It also helps if you spread the word about this book, or you can sign on as my [Patron on Patreon](https://www.patreon.com/rwieruch).
+**How to support the project?** If you believe in the content I create, you can [support me](https://www.robinwieruch.de/about/). It also helps if you spread the word about this book, or you can sign on as my [Patron on Patreon](https://www.patreon.com/rwieruch).
 
-**What's your motivation behind the book?**
-I want to teach about this topic consistently. I often find materials online that don't receive update, or only applies to a small part of a topic. Sometimes people struggle to find consistent and up-to-date resources to learn from. I want to provide this consistent and up-to-date learning experience. Also, I hope I can support the less fortunate with my projects by giving them the content for free or by [having other impacts](https://www.robinwieruch.de/giving-back-by-learning-react/).  Recently I'v found myself fulfilled when teaching others about programming, as it's a meaningful activity I prefer over any 9 to 5 job at any company.  I hope to continue this path in the future.
+**What's your motivation behind the book?** I want to teach about this topic consistently. I often find materials online that don't receive update, or only applies to a small part of a topic. Sometimes people struggle to find consistent and up-to-date resources to learn from. I want to provide this consistent and up-to-date learning experience. Also, I hope I can support the less fortunate with my projects by giving them the content for free or by [having other impacts](https://www.robinwieruch.de/giving-back-by-learning-react/). Recently I'v found myself fulfilled when teaching others about programming, as it's a meaningful activity I prefer over any 9 to 5 job at any company. I hope to continue this path in the future.
 
-**Is there a call to action?**
-Yes. I want you to take a moment to think about a person who would be a good match to learn React. The person could have shown the interest already, could be in the middle of learning React or might not yet be aware about wanting to learn React. Reach out to that person and share the book. It would mean a lot to me. The book is intended to be given to others.
+**Is there a call to action?** Yes. I want you to take a moment to think about a person who would be a good match to learn React. The person could have shown the interest already, could be in the middle of learning React or might not yet be aware about wanting to learn React. Reach out to that person and share the book. It would mean a lot to me. The book is intended to be given to others.
 
 {pagebreak}
 
