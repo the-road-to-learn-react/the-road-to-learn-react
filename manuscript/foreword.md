@@ -129,11 +129,11 @@ The book should enable everyone to learn React. However, not everyone has access
 * extra reading material
 * 1 new chapter (Axios instead of Fetch)
 
-**9. August 2018:**
+**28. August 2018:**
 
 * professional proofreading and editing by Emmanuel Stalling
 * [16 Source Code Projects](https://roadtoreact.com)
-* [v6 Pull Request](https://github.com/the-road-to-learn-react/the-road-to-learn-react/pull/170)
+* [v6 Pull Request](https://github.com/the-road-to-learn-react/the-road-to-learn-react/pull/172)
 
 {pagebreak}
 
