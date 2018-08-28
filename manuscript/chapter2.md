@@ -97,7 +97,7 @@ Be careful not to mutate the state directly. Instead, you should use a method ca
 * Experiment with the local state
   * Define more initial state in the constructor
   * Use and access the state in your `render()` method
-* Read more about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
+* Read about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
 
 ## ES6 Object Initializer
 
@@ -178,7 +178,7 @@ Later, you will be able to use computed property names to allocate values by key
 ### Exercises:
 
 * Experiment with ES6 object initializer
-* Read more about [ES6 object initializer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer)
+* Read about [ES6 object initializer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
 
 ## Unidirectional Data Flow
@@ -1021,8 +1021,8 @@ The search functionality should work now. Try it yourself in the browser.
 
 ### Exercises:
 
-* Read more about [React events](https://reactjs.org/docs/handling-events.html)
-* Read more about [higher-order functions](https://en.wikipedia.org/wiki/Higher-order_function)
+* Read about [React events](https://reactjs.org/docs/handling-events.html)
+* Read about [higher-order functions](https://en.wikipedia.org/wiki/Higher-order_function)
 
 ## ES6 Destructuring
 
@@ -1110,7 +1110,7 @@ But since the book uses JavaScript ES6 most of the time, you should stick to it.
 
 ### Exercises:
 
-* Read more about [ES6 destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+* Read about [ES6 destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
 ## Controlled Components
 
@@ -1152,7 +1152,7 @@ Local state management and unidirectional data flow might be new to you, but onc
 
 ### Exercises:
 
-* Read more about [React forms](https://reactjs.org/docs/forms.html)
+* Read about [React forms](https://reactjs.org/docs/forms.html)
 * Learn more about [different controlled components](https://github.com/the-road-to-learn-react/react-controlled-components-examples)
 
 ## Split Up Components
@@ -1342,7 +1342,7 @@ The "Search" text should now be visible next to your input field. When you use t
 
 ### Exercises:
 
-* Read more about [the composition model of React](https://reactjs.org/docs/composition-vs-inheritance.html)
+* Read about [the composition model of React](https://reactjs.org/docs/composition-vs-inheritance.html)
 
 ## Reusable Components
 
@@ -1522,7 +1522,7 @@ Now you have one lightweight functional stateless component. When we need accss 
 ### Exercises:
 
 * Refactor the Table and Button component to stateless functional components
-* Read more about [ES6 class components and functional stateless components](https://reactjs.org/docs/components-and-props.html)
+* Read about [ES6 class components and functional stateless components](https://reactjs.org/docs/components-and-props.html)
 
 ## Styling Components
 

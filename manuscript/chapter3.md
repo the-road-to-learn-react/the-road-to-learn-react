@@ -56,9 +56,9 @@ Lastly, `componentDidCatch(error, info)` was introduced in [React 16](https://ww
 
 ### Exercises:
 
-* Read more about [lifecycle methods in React](https://reactjs.org/docs/react-component.html)
-* Read more about [the state related to lifecycle methods in React](https://reactjs.org/docs/state-and-lifecycle.html)
-* Read more about [error handling in components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* Read about [lifecycle methods in React](https://reactjs.org/docs/react-component.html)
+* Read about [the state related to lifecycle methods in React](https://reactjs.org/docs/state-and-lifecycle.html)
+* Read about [error handling in components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Fetching Data
 
@@ -189,9 +189,9 @@ The list of hits should now be visible in our application; however, two regressi
 
 ### Exercises:
 
-* Read more about [ES6 template literals](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
-* Read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
-* Read more about [data fetching in React](https://www.robinwieruch.de/react-fetching-data/)
+* Read about [ES6 template literals](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
+* Read about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
+* Read about [data fetching in React](https://www.robinwieruch.de/react-fetching-data/)
 
 ## ES6 Spread Operators
 
@@ -314,8 +314,8 @@ The "Dismiss" button should work now, because the `onDismiss()` method is aware 
 
 ### Exercises:
 
-* Read more about the [ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
-* Read more about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+* Read about the [ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+* Read about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
   * The object spread operator is briefly mentioned
 
 ## Conditional Rendering
@@ -394,8 +394,8 @@ You should be able to see the fetched data in your application by now. Everythin
 
 ### Exercises:
 
-* Read more about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
-* Read more about [React conditional rendering](https://reactjs.org/docs/conditional-rendering.html)
+* Read about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
+* Read about [React conditional rendering](https://reactjs.org/docs/conditional-rendering.html)
 
 ## Client- or Server-side Search
 
@@ -612,7 +612,7 @@ You should be able to search different Hacker News stories now. We have interact
 
 ### Exercises:
 
-* Read more about [synthetic events in React](https://reactjs.org/docs/events.html)
+* Read about [synthetic events in React](https://reactjs.org/docs/events.html)
 * Experiment with the [Hacker News API](https://hn.algolia.com/api)
 
 ## Paginated Fetch
@@ -773,7 +773,7 @@ The request to the Hacker News API fetches more list items in one request than b
 
 ### Exercises:
 
-* Read more about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
+* Read about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 * Experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
 
 ## Client Cache
@@ -1203,7 +1203,7 @@ The application now has error handling in case the API request fails.
 
 ### Exercises:
 
-* Read more about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* Read about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Axios instead of Fetch
 
@@ -1322,7 +1322,7 @@ This chapter has shown you how you can replace one library with another in React
 
 ### Exercises:
 
-* Read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
+* Read about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
 * Learn more about [an alternative React component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
 
 {pagebreak}

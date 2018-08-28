@@ -124,8 +124,8 @@ These are the main functionalities for ES6 modules. They help you to organize yo
 
 ### Exercises:
 
-* Read more about [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-* Read more about [ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+* Read about [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+* Read about [ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 
 ## Code Organization with ES6 Modules
 
@@ -553,7 +553,7 @@ Snapshot tests usually stay pretty basic. You only want to make sure the compone
 * See how a snapshot test fails once you change your component's return value in the `render()` method
   * Accept or deny the snapshot change(s)
 * Keep your snapshots tests up to date when the implementation of components change in next chapters
-* Read more about [Jest in React](https://jestjs.io/docs/en/tutorial-react)
+* Read about [Jest in React](https://jestjs.io/docs/en/tutorial-react)
 
 ## Unit Tests with Enzyme
 
@@ -636,8 +636,8 @@ Continue to unit test your components, but be sure to keep the tests simple and 
 
 * Write a unit test with Enzyme for your Button component
 * Keep your unit tests up to date during the following chapters
-* Read more about [Enzyme and its rendering API](https://github.com/airbnb/enzyme)
-* Read more about [testing React applications](https://www.robinwieruch.de/react-testing-tutorial)
+* Read about [Enzyme and its rendering API](https://github.com/airbnb/enzyme)
+* Read about [testing React applications](https://www.robinwieruch.de/react-testing-tutorial)
 
 ## Component Interface with PropTypes
 
@@ -800,7 +800,7 @@ If you run your tests again, you might see PropType errors for your components o
 
 * Define the PropType interface for the Search component
 * Add and update the PropType interfaces when you add and update components in the next chapters
-* Read more about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
+* Read about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
 ## Debugging with React Developer Tools
 
@@ -823,7 +823,7 @@ If you right-click on any element, a dropdown menu will show several useful opti
   * Experiment with state and props changes
   * Watch what happens when you trigger an asynchronous request
   * Perform several requests, including repeated ones. Watch the cache mechanism working
-* Read more about [how to debug your JavaScript functions in the browser](https://developers.google.com/web/tools/chrome-devtools/javascript/)
+* Read about [how to debug your JavaScript functions in the browser](https://developers.google.com/web/tools/chrome-devtools/javascript/)
 
 You have learned how to organize and test React code! Let's recap the last chapter:
 

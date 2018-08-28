@@ -150,8 +150,8 @@ Now we can access the input DOM element. In our case it wouldn't help much since
 
 ### Exercises
 
-* Read more about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
-* Read more about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
+* Read about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* Read about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
 
 ## Loading ...
 
@@ -962,7 +962,7 @@ We may need to accept the failing snapshot tests again for the Table component, 
 ### Exercises:
 
 * Use a library like [Font Awesome](https://fontawesome.io/) to indicate the (reverse) sort. It could be an arrow up or arrow down icon next to each Sort header
-* Read more about the [classnames library](https://github.com/JedWatson/classnames)
+* Read about the [classnames library](https://github.com/JedWatson/classnames)
 
 {pagebreak}
 

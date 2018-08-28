@@ -100,7 +100,7 @@ Some of you may want to use other package managers to work with node packages in
   * Install a local package like React with `npm install react`
   * Check the *package.json* file and the *node_modules/* folder
   * Attempt to uninstall and reinstall the *react* node package
-* Read more about [npm](https://docs.npmjs.com/)
+* Read about [npm](https://docs.npmjs.com/)
 * Read about [yarn](https://yarnpkg.com/en/docs/) package manager
 
 ## Installation

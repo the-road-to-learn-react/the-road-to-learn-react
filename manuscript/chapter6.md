@@ -275,8 +275,8 @@ Now, imagine you want to show the state in a sibling component of your child com
 
 ### Exercises:
 
-* Read more about [lifting state in React](https://reactjs.org/docs/lifting-state-up.html)
-* Read more about lifting state in [learn React before using Redux](https://www.robinwieruch.de/learn-react-before-using-redux/)
+* Read about [lifting state in React](https://reactjs.org/docs/lifting-state-up.html)
+* Read about lifting state in [learn React before using Redux](https://www.robinwieruch.de/learn-react-before-using-redux/)
 
 ## Revisited: setState()
 
@@ -442,7 +442,7 @@ The function instead of object approach in `setState()` fixes potential bugs, wh
 
 ### Exercise:
 
-* Read more about [React using state correctly](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
+* Read about [React using state correctly](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
 * Export updateSearchTopStoriesState from the file
  * Write a test for it which passes the a payload (hits, page) and a made up previous state and finally expect a new state
 * Refactor your `setState()` methods to use a function, but only when it makes sense, because it relies on props or state
@@ -460,7 +460,7 @@ Because of this, there are standalone solutions to take care of state management
 
 ### Exercises:
 
-* Read more about [external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
+* Read about [external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
 * Check out my second book about [state management in React](https://roadtoreact.com/)
 
 {pagebreak}

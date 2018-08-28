@@ -14,7 +14,7 @@ Its official documentation says *create-react-app* is suitable for small to mid 
 
 ### Exercises:
 
-* Read more about [eject](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject)
+* Read about [eject](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject)
 
 ## Deploy your App
 
