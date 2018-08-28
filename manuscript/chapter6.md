@@ -269,7 +269,7 @@ class Table extends Component {
 
 We made a crucial refactoring by moving functionality and state closer into another component, and other components got more lightweight. Again, the component API of the Table got lighter because it deals internally with the sort functionality.
 
-Lifting state can go the other way as well: from child to parent component. It is called as lifting state up. Imagine you were dealing with local state in a child component, and  you want to fulfill a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component.
+Lifting state can go the other way as well: from child to parent component. It is called as lifting state up. Imagine you were dealing with local state in a child component, and you want to fulfill a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component.
 
 Now, imagine you want to show the state in a sibling component of your child component. Again, you would lift the state up to your parent component. The parent component deals with the internal state, but exposes it to both child components.
 
@@ -454,9 +454,9 @@ Previous chapters have shown you that state management can be a crucial topic in
 
 Compared to other solutions, React has already taken a big step forward. A unidirectional data flow and a simple API to manage state in components is indispensable. These concepts make it easier to reason about your state and your state changes. It also makes it easier to reason about it on a component level and on an application level to a certain degree.
 
-It is possible to introduce bugs by operating on stale state when using an object over a function in `setState()`. We lift state around to share or hide necessary state across components.  Sometimes a component needs to lift up state, because its sibling component depends on it. Perhaps the component is far away in the component tree, so the stated needs to be shared across the whole component tree. Components are more involved in state management, as the main responsibility of components is representing the UI.
+It is possible to introduce bugs by operating on stale state when using an object over a function in `setState()`. We lift state around to share or hide necessary state across components. Sometimes a component needs to lift up state, because its sibling component depends on it. Perhaps the component is far away in the component tree, so the stated needs to be shared across the whole component tree. Components are more involved in state management, as the main responsibility of components is representing the UI.
 
-Because of this, there are standalone solutions to take care of state management. Libraries like [Redux](https://redux.js.org/introduction) or [MobX](https://mobx.js.org/) are both feasible solutions in a React application. They come with extensions, [react-redux](https://github.com/reactjs/react-redux) and [mobx-react](https://github.com/mobxjs/mobx-react), to integrate them into the React view layer.  Redux and MobX are outside of the scope of this book, but this [article](https://www.robinwieruch.de/redux-mobx-confusion/) can give a better understanding of how to learn external state management. I encourage you to study the different ways to handle scaling state management as your React applications become more complex.
+Because of this, there are standalone solutions to take care of state management. Libraries like [Redux](https://redux.js.org/introduction) or [MobX](https://mobx.js.org/) are both feasible solutions in a React application. They come with extensions, [react-redux](https://github.com/reactjs/react-redux) and [mobx-react](https://github.com/mobxjs/mobx-react), to integrate them into the React view layer. Redux and MobX are outside of the scope of this book, but this [article](https://www.robinwieruch.de/redux-mobx-confusion/) can give a better understanding of how to learn external state management. I encourage you to study the different ways to handle scaling state management as your React applications become more complex.
 
 ### Exercises:
 
@@ -473,5 +473,3 @@ You have learned advanced state management in React! Let's recap the last chapte
   * Existing external solutions that help you to tame the state
 
 You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.6).
-
-
