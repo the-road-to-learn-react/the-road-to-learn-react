@@ -509,7 +509,7 @@ class App extends Component {
       <div className="App">
 # leanpub-start-insert
         {list.map(function(item) {
-         return <div>{item.title}</div>;
+          return <div>{item.title}</div>;
         })}
 # leanpub-end-insert
       </div>
@@ -681,10 +681,10 @@ Consider the following Developer class to examine a JavaScript ES6 class without
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 class Developer {
- constructor(firstname, lastname) {
-  this.firstname = firstname;
-  this.lastname = lastname;
- }
+  constructor(firstname, lastname) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+  }
 
   getName() {
     return this.firstname + ' ' + this.lastname;
