@@ -318,11 +318,11 @@ Based on the loading property, you can apply a conditional rendering. The functi
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 // before you would have to destructure the props before passing them
-const { foo, bar } = props;
-<SomeComponent foo={foo} bar={bar} />
+const { firstname, lastname } = props;
+<UserProfile firstname={firstname} lastname={lastname} />
 
 // but you can use the object spread operator to pass all object properties
-<SomeComponent { ...props } />
+<UserProfile { ...props } />
 ~~~~~~~~
 
 We passed all the props including the `isLoading` property by spreading the object into the input component. The input component may not care about the `isLoading` property. You can use the ES6 rest destructuring to avoid it:
