@@ -456,12 +456,12 @@ Compared to other solutions, React has already taken a big step forward. A unidi
 
 It is possible to introduce bugs by operating on stale state when using an object over a function in `setState()`. We lift state around to share or hide necessary state across components. Sometimes a component needs to lift up state, because its sibling component depends on it. Perhaps the component is far away in the component tree, so the stated needs to be shared across the whole component tree. Components are more involved in state management, as the main responsibility of components is representing the UI.
 
-Because of this, there are standalone solutions to take care of state management. Libraries like [Redux](https://redux.js.org/introduction) or [MobX](https://mobx.js.org/) are both feasible solutions in a React application. They come with extensions, [react-redux](https://github.com/reactjs/react-redux) and [mobx-react](https://github.com/mobxjs/mobx-react), to integrate them into the React view layer. Redux and MobX are outside of the scope of this book, but this [article](https://www.robinwieruch.de/redux-mobx-confusion/) can give a better understanding of how to learn external state management. I encourage you to study the different ways to handle scaling state management as your React applications become more complex.
+Because of this, there are standalone solutions to take care of state management. Libraries like [Redux](https://redux.js.org/introduction) or [MobX](https://mobx.js.org/) are both feasible solutions in a React application. They come with extensions, [react-redux](https://github.com/reactjs/react-redux) and [mobx-react](https://github.com/mobxjs/mobx-react), to integrate them into the React view layer. Redux and MobX are outside of the scope of this book, but I encourage you to study the different ways to handle scaling state management as your React applications become more complex.
 
 ### Exercises:
 
 * Read about [external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
-* Check out my second book about [state management in React](https://roadtoreact.com/)
+* Check out my second book about state management in React called [Taming the State in React](https://roadtoreact.com/)
 
 {pagebreak}
 
