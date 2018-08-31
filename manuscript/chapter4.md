@@ -6,11 +6,11 @@ The chapter will focus on keeping code organized in a scaling application, so we
 
 In JavaScript ES6, you can import and export functionalities from modules. These can be functions, classes, components, constants, essentially anything you can assign to a variable. Modules can be single files or whole folders with one index file as entry point.
 
-After we bootstrapped our application with *create-react-app* at the beginning, we already developed several `import` and `export` statements in the initial files. The `import` and `export` statements help you to share code across multiple files. There were already several solutions for this in the JavaScript environment, but it was a mess because there wasn't standardized method of completing this task. JavaScript ES6 added it as a native behavior.
+After we bootstrapped our application with *create-react-app* at the beginning, we already used several `import` and `export` statements in the initial files. The `import` and `export` statements help you to share code across multiple files. Historically there were already several solutions for this in the JavaScript environment, but it was a mess because there wasn't standardized method of performing this task. JavaScript ES6 added it as a native behavior eventually.
 
 These statements embrace code splitting, where we distribute code across multiple files to keep it reusable and maintainable. The former is true because we can import a piece of code into multiple files. The latter is true because there is only one source where you maintain the piece of code.
 
-We also want to think about code encapsulation, since not every functionality needs to be exported from a file. Some of these functionalities should only be used in files where they have been defined. File exports are basically their public APIs, where only the exported functionalities are available to be reused elsewhere. This follows the best practice of encapsulation.
+We also want to think about code encapsulation, since not every functionality needs to be exported from a file. Some of these functionalities should only be used in files where they have been defined. File exports are basically a public API to a file, where only the exported functionalities are available to be reused elsewhere. This follows the best practice of encapsulation.
 
 The following examples showcase the statements by sharing one or multiple variables across two files. In the end, the approach can scale to multiple files and could share more than simple variables.
 
@@ -70,7 +70,7 @@ const robin = {
 export default robin;
 ~~~~~~~~
 
-You can leave out the curly braces to import the default export.
+You have to leave out the curly braces to import the default export.
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
@@ -120,7 +120,7 @@ export const firstname = 'Robin';
 export const lastname = 'Wieruch';
 ~~~~~~~~
 
-These are the main functionalities for ES6 modules. They help you to organize your code, to maintain it, and to design reusable module APIs. Export and import functionalities to test them.
+These are the main functionalities for ES6 modules. They help you to organize your code, to maintain it, and to design reusable module APIs. You can also export and import functionalities to test them which you will do in a later chapter.
 
 ### Exercises:
 
@@ -179,7 +179,7 @@ src/
     index.css
 ~~~~~~~~
 
-Now it looks cleaner than before. The index naming of a file describes it as an entry point file to the folder. It is just a common naming convention, but you can use your own naming as well. In this module structure, a component is defined by its component declaration in the JavaScript file, but also by its style and tests. If you have trouble finding your components this way while searching for them in your editor/IDE, search for paths rather than files (e.g. search for “Table index”).
+Now it looks cleaner than before. The index naming of a file describes it as an entry point file to the folder. It is just a common naming convention, but you can use your own naming as well. In this module structure, a component is defined by its component declaration in the JavaScript file, but also by its style and tests. If you have trouble finding your components this way while searching for them in your editor/IDE, search for paths rather than files (e.g. search for "Table index").
 
 Another step is extracting the constant variables from the App component, which were used to compose the Hacker News API URL.
 
@@ -302,7 +302,7 @@ However, it can be seen as bad practice to reach into other files than the *inde
 import SubmitButton from '../Buttons/SubmitButton';
 ~~~~~~~~
 
-We refactored the source code in a module with the constraints of encapsulation. Again, we'll keep things simple in this book, but you should always refractor your source code to keep it clean.
+We refactored the source code in a module with the constraints of encapsulation. Again, we'll keep things simple in this book, but you should always refactor your source code to keep it clean.
 
 ### Exercises:
 
@@ -360,7 +360,7 @@ it('renders without crashing', () => {
 
 The "it"-block describes one test case. It comes with a test description, and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suite. A test suite could include a bunch of the "it"-blocks for one specific component. You will see "describe"-blocks later. Both blocks are used to separate and organize your test cases.
 
-Note that the `it` function is acknowledged in the JavaScript community as the function where you run a single test. However, while it is often found as an alias `test` function in Jest.
+Note that the `it` function is acknowledged in the JavaScript community as the function where you run a single test. However, in Jest it is often found as an alias `test` function.
 
 You can run the test cases using the interactive *create-react-app* test script on the command line. You will get the output for all test cases on your command line interface.
 
@@ -371,7 +371,7 @@ npm test
 
 Jest enables you to write snapshot tests. These tests make a snapshot of your rendered component and runs it against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the differences of the rendered output. It doesn't add big maintenance costs since you can accept snapshots for intentional changes.
 
-Jest stores snapshots in a folder so it can validate the diff against a future snapshot. This also lets use share snapshots across teams.
+Jest stores snapshots in a folder so it can validate the diff against a future snapshot. This also lets use share snapshots across teams when having version control such as git in place.
 
 Before writing your first snapshot test with Jest, you have to install its utility library:
 
@@ -643,7 +643,7 @@ Continue to unit test your components, but be sure to keep the tests simple and 
 
 [TypeScript](https://www.typescriptlang.org/) and [Flow](https://flowtype.org/) are used to introduce a type system to JavaScript. A typed language is less error prone because the code gets validated based on its program text. Editors and other utilities can catch these errors before the program runs.
 
-In the book, you will not introduce Flow or TypeScript, but another useful way to check your types in components. React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props passed from a parent component to a child get validated based on the PropTypes interface assigned to the child.
+In the book, you will not introduce Flow or TypeScript, but another useful way to check your types in components: React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props passed from a parent component to a child get validated based on the PropTypes interface assigned to the child.
 
 This section will show you to make components type safe with PropTypes. I will omit the changes for the following chapters, since they add unnecessary code refactorings, but you should update them along the way to keep your components interface type safe.
 
