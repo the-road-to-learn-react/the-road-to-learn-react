@@ -1,29 +1,29 @@
 # Final Steps to Production
 
-The last chapters will show you how to deploy your application to production. You will use the free hosting service Heroku. On the way to deploy your application, you will learn more about *create-react-app*.
+The last chapters will show you how to deploy your application to production. For this, we use the free hosting service Heroku. On the way to deploying the application, we will uncover more about *create-react-app*.
 
 ## Eject
 
-The following step and knowledge is **not necessary** to deploy your application to production. Still, I want to explain it to you. *create-react-app* comes with one feature to keep it extendable but also to prevent a vendor lock-in. A vendor lock-in usually happens when you buy into a technology but there is no escape hatch of using it in the future. Fortunately in *create-react-app* you have such an escape hatch with "eject".
+The following knowledge is not necessary to deploy your application to production, but it still bears mentioning. *create-react-app* comes with one feature to keep it extendable, but also to prevent a vendor lock-in. A vendor lock-in usually happens when you buy into a technology but there is no escape hatch from using it in the future. Fortunately, in *create-react-app* you have such an escape hatch with "eject".
 
-In your *package.json* you will find the scripts to *start*, *test* and *build* your application. The last script is *eject*. You could try it, but there is no way back. **It is a one-way operation. Once you eject, you can't go back!** If you just started to learn React, it makes no sense to leave the convenient environment of *create-react-app*.
+In your *package.json* you will find the scripts to *start*, *test*, and *build* your application. The last script is *eject*. However, it is important you know that **it is a one-way operation.** That means **once you eject, you can't go back!** It is advisable to stay in the safe environment of *create-react-app* if you have just started creating applications in React.
 
-If you would run `npm run eject`, the command would copy all the configuration and dependencies to your *package.json* and a new *config/* folder. You would convert the whole project into a custom setup with tooling that includes Babel and Webpack. After all, you would have full control over all these tools.
+If you feel comfortable enough to run `npm run eject`, the command copies all the configuration and dependencies to your *package.json* and a new *config/* folder. It converts the whole project into a custom setup with tooling that includes Babel and Webpack, and grants full control over all these tools.
 
-The official documentation says that *create-react-app* is suitable for small to mid size projects. You shouldn't feel obligated to use the "eject" command.
+Its official documentation says *create-react-app* is suitable for small to mid size projects, so you shouldn't feel obligated to use the "eject" command until you're ready.
 
 ### Exercises:
 
-* read more about [eject](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject)
+* Read about [eject](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-eject)
 
 ## Deploy your App
 
-In the end, no application should stay on localhost. You want to go live. Heroku is a platform as a service where you can host your application. They offer a seamless integration with React. To be more specific: It's possible to deploy a *create-react-app* in minutes. It is a zero-configuration deployment which follows the philosophy of *create-react-app*.
+No application should stay on localhost; eventually, it has to go live to see how it will perform in real-life scenarios. Heroku is a platform as a service where you can host your application, and it offers seamless integration with React. Specifically, it's possible to deploy a *create-react-app* in minutes, with a a zero-configuration deployment which follows the philosophy of *create-react-app*.
 
-You need to fulfill two requirements before you can deploy your application to Heroku:
+There are two requirements before an application can be deployed to Heroku:
 
-* install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
-* create a [free Heroku account](https://www.heroku.com/)
+* Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+* Create a [free Heroku account](https://www.heroku.com/)
 
 If you have installed Homebrew, you can install the Heroku CLI from command line:
 
@@ -33,7 +33,7 @@ brew update
 brew install heroku-toolbelt
 ~~~~~~~~
 
-Now you can use git and Heroku CLI to deploy your application.
+Now you can use git and Heroku CLI to deploy your application:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -45,7 +45,7 @@ git push heroku master
 heroku open
 ~~~~~~~~
 
-That's it. I hope your application is up and running now. If you run into problems you can check the following resources:
+That's all there is to it. If you run into problems, check these resources for troubleshooting options:
 
 * [Git and GitHub Essentials](https://www.robinwieruch.de/git-essential-commands/)
 * [Deploying React with Zero Configuration](https://blog.heroku.com/deploying-react-with-zero-configuration)
