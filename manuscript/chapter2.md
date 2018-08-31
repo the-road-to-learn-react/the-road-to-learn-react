@@ -1375,7 +1375,7 @@ class Button extends Component {
 
 It might seem redundant to declare components like this, but it's not. We use a `Button` component instead of a `button` element, which spares only the `type="button"`. Outside the type attribute, we'll need to define everything else to use the Button component.
 
-These measures are abouth long term, however. Imagine you have several buttons in your application, and you want to change an attribute, style, or behavior for just one. Without the component, you'd have to refactor each one. The Button component ensures that the operation has a single source of truth, or one Button to refactor all the others at once.
+These measures are about long term, however. Imagine you have several buttons in your application, and you want to change an attribute, style, or behavior for just one. Without the component, you'd have to refactor each one. The Button component ensures that the operation has a single source of truth, or one Button to refactor all the others at once.
 
 Since you already have a button element, you can use the Button component instead. It omits the type attribute, because the Button component specifies it.
 
@@ -1440,7 +1440,7 @@ Now we have four ES6 class components, but the application can still be improved
 
 * **React.createClass** was used in older versions of React, and is still used in JavaScript ES5 React applications. But [Facebook declared it as deprecated](https://reactjs.org/blog/2015/03/10/react-v0.13.html) in favor of JavaScript ES6. They even added a [deprecation warning in version 15.5](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html), so we will not use it in the book.
 
-When deciding when tto use functional stateless components over ES6 class components, a good rule of thumb is to use functional stateless components when you don't need local state or component lifecycle methods. Usually, we implement components as functional stateless components, but once access to the state or lifecycle methods is required, we have to refactor it to an ES6 class component. We started the other way around in our application for the sake of learning.
+When deciding when to use functional stateless components over ES6 class components, a good rule of thumb is to use functional stateless components when you don't need local state or component lifecycle methods. Usually, we implement components as functional stateless components, but once access to the state or lifecycle methods is required, we have to refactor it to an ES6 class component. We started the other way around in our application for the sake of learning.
 
 Returning to the application, we see the App component uses local state, so it has to stay as an ES6 class component. The other three ES6 class components are stateless, so they don't need access to `this.state` or `this.setState()`, and they have no lifecycle methods. We're going to refactor the Search component to a stateless functional component. The Table and Button component refactoring will become your exercise.
 
@@ -1517,7 +1517,7 @@ const Search = ({ value, onChange, children }) => {
 }
 ~~~~~~~~
 
-Now you have one lightweight functional stateless component. When we need accss to the local component state or lifecycle methods, we can refactor them to ES6 class components. When using block bodies, programmers tend to overload their functions, but leaving the block body out lets you focus on the input and output. JavaScript ES6 in React components makes components more readable and elegant.
+Now you have one lightweight functional stateless component. When we need access to the local component state or lifecycle methods, we can refactor them to ES6 class components. When using block bodies, programmers tend to overload their functions, but leaving the block body out lets you focus on the input and output. JavaScript ES6 in React components makes components more readable and elegant.
 
 ### Exercises:
 
@@ -1723,7 +1723,7 @@ const Table = ({ list, pattern, onDismiss }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-Now the application and components has been syled with basic CSS. Further, we know JSX mixes up HTML and JavaScript, and now we arguably add CSS to that mix. That's called inline style, where you can define JavaScript objects and pass them to the style attribute of an element.
+Now the application and components has been styled with basic CSS. Further, we know JSX mixes up HTML and JavaScript, and now we arguably add CSS to that mix. That's called inline style, where you can define JavaScript objects and pass them to the style attribute of an element.
 
 Let's keep the Table column width flexible by using inline style.
 

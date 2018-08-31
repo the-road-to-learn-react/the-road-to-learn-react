@@ -970,7 +970,7 @@ You have learned advanced component techniques in React! Let's recap the chapter
 
 * **React**
   * The `ref` attribute to reference DOM elements
-  * Gigher-order components are a common way to build advanced components
+  * Higher-order components are a common way to build advanced components
   * Implementation of advanced interactions in React
   * Conditional classNames with a neat helper library
 * **ES6**

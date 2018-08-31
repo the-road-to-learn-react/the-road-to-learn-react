@@ -216,7 +216,7 @@ We could alleviate this challenge by mutating the hits in the result object. It 
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-// don`t do this
+// don't do this
 this.state.result.hits = updatedHits;
 ~~~~~~~~
 
@@ -1209,7 +1209,7 @@ The application now has error handling in case the API request fails.
 
 Before, we introduced the native fetch API to perform a request to the Hacker News platform. The browser allows you to use this native fetch API. However, not all browsers support this, older browsers especially. Once you start testing your application in a headless browser environment (where there is no browser, it is mocked), there can be issues with the fetch API. There are a couple of ways to make fetch work in older browsers (polyfills) and in tests ([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)), but these concepts are bit off-task for the purpose of learning React.
 
-One alternative is to substitute the native fetch API with a stable library such as [axios](https://github.com/axios/axios), which performins asynchronous requests to remote APIs. In this chapter, we will discover how to substitute a library--a native API of the browser in this case--with another library.
+One alternative is to substitute the native fetch API with a stable library such as [axios](https://github.com/axios/axios), which performs asynchronous requests to remote APIs. In this chapter, we will discover how to substitute a library--a native API of the browser in this case--with another library.
 
 Below, the native fetch API is substituted with axios. First, we install axios on the command line:
 
