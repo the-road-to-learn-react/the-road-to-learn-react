@@ -228,7 +228,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the last step, we used the Loading component in App. A conditional rendering based on the loading state will decide whether to show a Loading component or the Button component. The latter is the button to fetch more data.
+In the last step, we used the Loading component in the App component. A conditional rendering based on the loading state will decide whether to show a Loading component or the Button component. The latter is the button to fetch more data.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
