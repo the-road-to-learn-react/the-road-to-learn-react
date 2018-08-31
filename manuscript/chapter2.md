@@ -1430,6 +1430,10 @@ class Button extends Component {
 
 Now, whenever there is no `className` property specified in the Button component, the value will be an empty string instead of `undefined`.
 
+### Exercises:
+
+* Read about [how to pass props in React](https://www.robinwieruch.de/react-pass-props-to-component/)
+
 ## Component Declarations
 
 Now we have four ES6 class components, but the application can still be improved using functional stateless components as alternative for ES6 class components. Before you refactor your components, let's introduce the different types.
