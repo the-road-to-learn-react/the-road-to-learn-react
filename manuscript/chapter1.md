@@ -102,9 +102,9 @@ Some of you may want to use other package managers to work with node packages in
 
 ## Installation
 
-There are many approaches to getting started with a React application. The first we'll explore is a CDN, short for [content delivery network](https://en.wikipedia.org/wiki/Content_delivery_network). Don’t worry too much about CDNs now, because you will not use them in this book, but it makes sense to explain them briefly. Many companies use CDNs to host files publicly for their consumers. Some of these files are libraries like React, since the bundled React library is just a *react.js* JavaScript file.
+There are many approaches to getting started with a React application. The first we'll explore is a CDN, short for [content delivery network](https://en.wikipedia.org/wiki/Content_delivery_network). Don't worry too much about CDNs now, because you will not use them in this book, but it makes sense to explain them briefly. Many companies use CDNs to host files publicly for their consumers. Some of these files are libraries like React, since the bundled React library is just a *react.js* JavaScript file.
 
-To get the CDN started in React, find the `<script>` tag in your web page HTML that points to a CDN url. You will need two libraries: *react* and *react-dom*.
+To get started with React by using a CDN, find the `<script>` tag in your web page HTML that points to a CDN url. You will need two libraries: *react* and *react-dom*.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -131,7 +131,7 @@ You may also have to deal with [Babel](http://babeljs.io/) to make your applicat
 
 In the Road to learn React, we will be using [create-react-app](https://github.com/facebookincubator/create-react-app) to bootstrap your application. It's an opinionated yet zero-configuration starter kit for React introduced by Facebook in 2016, [recommended for beginners by 96% of React users](https://twitter.com/dan_abramov/status/806985854099062785). In *create-react-app* the tooling and configuration evolve in the background, while the focus is on the application implementation.
 
-To get started, install the package to the application's global node packages, and keep it available on the command line to bootstrap new React applications:
+To get started, install the package to your global node packages, which keeps it available on the command line to bootstrap new React applications:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -146,9 +146,7 @@ create-react-app --version
 *v1.5.1
 ~~~~~~~~
 
-Now you are ready to bootstrap your first React application. The example will be referred to as *hackernews*, but you may choose any name you like.
-
-First, navigate into the folder:
+Now you are ready to bootstrap your first React application. The example will be referred to as *hackernews*, but you may choose any name you like. First, navigate into the folder:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -187,9 +185,9 @@ This is a breakdown of the folders and files:
 
 * **package.json:** This file shows you a list of node package dependencies and other project configurations.
 
-* **.gitignore:** This file displays all files and folders that shouldn't be added to your git repository when using git; such files and folders should only be located in your local project. The *node_modules/* folder is one example. It is enough to share the *package.json* file with others, so they can install dependencies on their end without your dependency folder.
+* **.gitignore:** This file displays all files and folders that shouldn't be added to your git repository when using git; such files and folders should only be located in your local project. The *node_modules/* folder is one example. It is enough to share the *package.json* file with others, so they can install dependencies on their end with `npm install` without your dependency folder.
 
-* **public/:** This folder holds development root files, such as *public/index.html*. The index is displayed on localhost:3000 when developing your app. The boilerplate takes care of relating this index with all the scripts in *src/*.
+* **public/:** This folder holds development files, such as *public/index.html*. The index is displayed on localhost:3000 when developing your app. The boilerplate takes care of relating this index with all the scripts in *src/*.
 
 * **build/** This folder is created when you build the project for production, as it holds all of the production files. When building your project for production, all the source code in the *src/* and *public/* folders are bundled and placed in the build folder.
 
@@ -197,7 +195,7 @@ This is a breakdown of the folders and files:
 
 In the beginning, everything you need is located in the *src/* folder. The main focus lies on the *src/App.js* file which is used to implement React components. It will be used to implement your application, but later you might want to split up your components into multiple files, where each file maintains one or more components on its own.
 
-Additionally, you will find a *src/App.test.js* file for your tests, and a *src/index.js* as an entry point to the React world. You will get to know both files intimately in a later chapter. There is also a *src/index.css* and a *src/App.css* file to style your general application and components, which comes with the default style when you open them.
+Additionally, you will find a *src/App.test.js* file for your tests, and a *src/index.js* as an entry point to the React world. You will get to know both files intimately in a later chapter. There is also a *src/index.css* and a *src/App.css* file to style your general application and components, which comes with the default style when you open them. You will modify them later as well.
 
 The *create-react-app* application is a npm project you can use to install and uninstall node packages. It comes with the following npm scripts for your command line:
 
@@ -308,21 +306,19 @@ export default App;
 
 Start your application on the command line with `npm start` to verify the changes you've made.
 
-You might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML. JSX had replaced a handful of internal HTML attributes a while ago, but you can find all the [supported HTML attributes in React' documentation](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes), which all follow the camelCase convention. On your way to learn React, expect to run across more JSX specific attributes.
+You might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML. JSX had replaced a handful of internal HTML attributes, but you can find all the [supported HTML attributes in React's documentation](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes), which all follow the camelCase convention. On your way to learn React, expect to run across more JSX specific attributes.
 
 ### Exercises:
 
 * Define more variables and render them in JSX
-* Use a complex object to represent a user with a first name and last name
-* Render the user properties in JSX
+  * Use a complex object to represent a user with a first name and last name
+  * Render the user properties in JSX
 * Read about [JSX](https://reactjs.org/docs/introducing-jsx.html)
 * Read about [React components, elements and instances](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
 
 ## ES6 const and let
 
-Notice that we declared the variable `helloWorld` with a `var` statement. JavaScript ES6 comes with two more ways to declare variables: `const` and `let`. In JavaScript ES6, you will rarely find `var` anymore.
-
-A variable declared with `const` cannot be re-assigned or re-declared, and cannot be changed or modified. Once the variable is assigned, you cannot change it:
+Notice that we declared the variable `helloWorld` with a `var` statement. JavaScript ES6 comes with two more ways to declare variables: `const` and `let`. In JavaScript ES6, you will rarely find `var` anymore. A variable declared with `const` cannot be re-assigned or re-declared, and cannot be changed or modified. Once the variable is assigned, you cannot change it:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -353,7 +349,7 @@ const helloWorld = {
 helloWorld.text = 'Bye Bye React';
 ~~~~~~~~
 
-There are varying opinions about when to use *const* and when to use *let*. I would recommend using `const` whenever possible to keep your data structures immutable, so you only have to worry about the values contained in objects and arrays. Immutability is embraced in the React ecosystem, so `const` should be your default choice when you define a variable, though it’s not just about immutability, but about assigning variables only once. It shows the intent of not changing (re-assigning) the variable.
+There are varying opinions about when to use *const* and when to use *let*. I would recommend using `const` whenever possible to show the intent of keeping your data structures immutable, so you only have to worry about the values contained in objects and arrays. Immutability is embraced in the React ecosystem, so `const` should be your default choice when you define a variable, though it's not really about immutability, but about assigning variables only once. It shows the intent of not changing (re-assigning) the variable even though its content can be changed.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -375,6 +371,8 @@ class App extends Component {
 
 export default App;
 ~~~~~~~~
+
+In your application, we will use `const` and `let` over `var` for the rest of the book.
 
 ### Exercises:
 
@@ -403,9 +401,7 @@ ReactDOM.render(
 
 `ReactDOM.render()` uses a DOM node in your HTML to replace it with JSX. It's a way to integrate React in any foreign application easily, and you can use `ReactDOM.render()` multiple times across your application. You can use it to bootstrap simple JSX syntax, a React component, multiple React components, or an entire application. In a plain React application, you would only use it once to bootstrap the component tree.
 
-`ReactDOM.render()` expects two arguments. The first argument is for rendered JSX. The second argument specifies the place where the React application hooks into your HTML. It expects an element with an `id='root'`, found in the *public/index.html* file.
-
-During implementation, `ReactDOM.render()` takes your App component, though it can also pass simple JSX. It doesn't require an component instance.
+`ReactDOM.render()` expects two arguments. The first argument is for rendering the JSX. The second argument specifies the place where the React application hooks into your HTML. It expects an element with an `id='root'`, found in the *public/index.html* file.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -415,16 +411,16 @@ ReactDOM.render(
 );
 ~~~~~~~~
 
+During implementation, `ReactDOM.render()` takes your App component, though it can also pass simple JSX. It doesn't require an component instance.
+
 ### Exercises:
 
-* Open the *public/index.html* to see where the React applications hook into your HTML
+* Open the *public/index.html* to see where the React application hooks into your HTML
 * Read about [rendering elements in React](https://reactjs.org/docs/rendering-elements.html)
 
 ## Hot Module Replacement
 
-Hot Module Replacement lets you use the *src/index.js* file to improve your experience as a developer, but it may be too complex if you're a beginner to JavaScript.
-
-By default, *create-react-app* will cause the browser to refresh the page whenever its source code is modified. Try it by changing the `helloWorld` variable in your *src/App.js* file, which should cause the browser to refresh the page. There is a better way of handling source code changes during development, however.
+Hot Module Replacement can be used in the *src/index.js* file to improve your experience as a developer. By default, *create-react-app* will cause the browser to refresh the page whenever its source code is modified. Try it by changing the `helloWorld` variable in your *src/App.js* file, which should cause the browser to refresh the page. There is a better way of handling source code changes during development, however.
 
 Hot Module Replacement (HMR) is a tool for reloading your application in the browser without the page refresh. You can activate it in *create-react-app* by adding the following configuration to your *src/index.js* file:
 
@@ -497,7 +493,7 @@ class App extends Component {
 
 The sample data represents information we will fetch from an API later on. Items in this list each have a title, a url, and an author, as well an identifier, points (which indicate how popular an article is), and a count of comments.
 
-Now you can use the built-in JavaScript `map` functionality in JSX, which iterates over a list of items to display them according to specific attributes. Again, we use curly braces to encapsulate the JavaScript expression in JSX:
+Now you can use the [built-in JavaScript map functionality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) in JSX, which iterates over a list of items to display them according to specific attributes. Again, we use curly braces to encapsulate the JavaScript expression in JSX:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -519,6 +515,17 @@ export default App;
 ~~~~~~~~
 
 Using JavaScript alongside HTML in JSX is very powerful. For a different task you may have used `map` to convert one list of items to another. This time, we used `map` to convert a list of items to HTML elements.
+
+{title="Code Playground",lang="javascript"}
+~~~~~~~~
+const array = [1, 4, 9, 16];
+
+// pass a function to map
+const newArray = array.map(function (x) { return x * 2; });
+
+console.log(newArray);
+// expected output: Array [2, 8, 18, 32]
+~~~~~~~~
 
 So far, only the `title` is displayed for each item. Let's experiment with more of the item's properties:
 
