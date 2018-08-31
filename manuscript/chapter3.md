@@ -22,7 +22,7 @@ Overall, the mounting process has 4 lifecycle methods, invoked in the following 
 * render()
 * componentDidMount()
 
-For the lifecycle update of a component when the state or the props changes, there are 5 lifecycle methods, in the following order:
+For the update lifecycle of a component when the state or the props change, there are 5 lifecycle methods, in the following order:
 
 * getDerivedStateFromProps()
 * shouldComponentUpdate()
@@ -62,7 +62,7 @@ Lastly, `componentDidCatch(error, info)` was introduced in [React 16](https://ww
 
 ## Fetching Data
 
-Now we're prepared to fetch data from the Hacker News API. We will use the native fetch API in JavaScript to perform `componentDidMount()`. Before we use it, let's set up the URL constants and default parameters to break the API request into smaller pieces.
+Now we're prepared to fetch data from the Hacker News API. There was one lifecycle method mentioned that can be used to fetch data: `componentDidMount()`. Before we use it, let's set up the URL constants and default parameters to break the URL endpoint for the API request into smaller pieces.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -142,13 +142,13 @@ First, we remove the sample list of items, because we will return a real list fr
 
 Second, you use the `componentDidMount()` lifecycle method to fetch the data after the component mounted. The first fetch uses default search term from the local state. It will fetch "redux" related stories, because that is the default parameter.
 
-Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the URL with the `searchTerm`. The URL is the argument for the native fetch API function. The response is transformed to a JSON data structure, a mandatory step in a native fetch functions with JSON data structures, after which it can be set as result in the local component state. If this occurs during the request, the function will run into the catch block instead of the then block.
+Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the URL with the `searchTerm`. The URL is the argument for the native fetch API function. The response is transformed to a JSON data structure, a mandatory step in a native fetch with JSON data structures, after which it can be set as result in the local component state. If an error occurs during the request, the function will run into the catch block instead of the then block.
 
-**Remember** to bind your new component method in the constructor.
+Last, remember to bind your new component method in the constructor.
 
 Now you can use the fetched data instead of the sample list. Note that the result is not only a list of data, [but a complex object with meta information and a list of hits that are news stories](https://hn.algolia.com/api). You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
 
-In the next step, we use the result to render it. But we will prevent it from rendering anything and return it null since there is no result. Once the request to the API has succeeded, the result is saved to the state and the App component will re-render with the updated state.
+In the next step, we use the result to render it. But we will prevent it from rendering anything, so we will return null, when there is no result in the first place. Once the request to the API has succeeded, the result is saved to the state and the App component will re-render with the updated state.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -181,11 +181,11 @@ class App extends Component {
 
 Now, let's recap what happens during the component lifecycle. Your component is initialized by the constructor, after which it renders for the first time. We prevented it from displaying anything, because the result in the local state is null. It is allowed to return null for a component to display nothing. Then the `componentDidMount()` lifecycle method fetches the data from the Hacker News API asynchronously. Once the data arrives, it changes your local component state in `setSearchTopStories()`. The update lifecycle activates because the local state was updated. The component runs the `render()` method again, but this time with populated result in your local component state. The component and the Table component will be rendered with its content.
 
-We used the native fetch API supported by most browsers to perform an asynchronous request to an API. The *create-react-app* configuration makes sure it is supported by all browsers. There are also third-party node packages that you can use to substitute the native fetch API: [axios](https://github.com/mzabriskie/axios).
+We used the native fetch API supported by most browsers to perform an asynchronous request to an API. The *create-react-app* configuration makes sure it is supported by all browsers. There are also third-party node packages that you can use to substitute the native fetch API: [axios](https://github.com/mzabriskie/axios). You will use axios later in this book.
 
 In this book, we build on JavaScript's shorthand notation for truthfulness checks. In the previous example, `if (!result)` was used in favor of `if (result === null)`. The same applies for other cases as well. For instance, `if (!list.length)` is used in favor of `if (list.length === 0)` or `if (someString)` is used in favor of `if (someString !== '')`.
 
-The list of hits should now be visible in our application; however, two regression bugs have appeared. First, the "Dismiss" button is broken, because it doesn't know about the complex result object, but it still operates on the plain list from the local state when dismissing an item. Second, when the list is displayed and you try to search for something else, it gets filtered on the client-side, though the initial search was made by searching for stories on the server-side. The perfect behavior would be to fetch another result object from the API when using the Search component. Both regression bugs will be fixed in the following chapters.
+The list of hits should now be visible in our application; however, two regression bugs have appeared. First, the "Dismiss" button is broken, because it doesn't know about the complex result object, but it still operates on the plain list from the sample data when dismissing an item. Second, when the list is displayed and you try to search for something else, it gets filtered on the client-side, though the initial search was made by searching for stories on the server-side. The perfect behavior would be to fetch another result object from the API when using the Search component. Both regression bugs will be fixed in the following chapters.
 
 ### Exercises:
 
@@ -220,7 +220,7 @@ We could alleviate this challenge by mutating the hits in the result object. It 
 this.state.result.hits = updatedHits;
 ~~~~~~~~
 
-As we know, React embraces immutable data structures, so we don't want to mutate an object (or mutate the state directly) if we don't have to. We want to generate a new object based on the information given, so none of the objects get altered and we keep the immutable data structures. You will always return a new object, but never alter the original object.
+As we know, React embraces immutable data structures, so we don't want to mutate an object (or mutate the state directly). We want to generate a new object based on the information given, so none of the objects get altered and we keep the immutable data structures. You will always return a new object, but never alter the original object.
 
 For this, we use JavaScript ES6's `Object.assign()`. It takes a target object as first argument. All following arguments are source objects, which are merged into the target object. The target object can be an empty object. It embraces immutability, because no source object gets mutated.
 
@@ -230,7 +230,7 @@ const updatedHits = { hits: updatedHits };
 const updatedResult = Object.assign({}, this.state.result, updatedHits);
 ~~~~~~~~
 
-Objects will override previously merged objects with the same property names. Let's do this on the `onDismiss()` method:
+Source objects will override previously merged objects with the same property names. Let's do this on the `onDismiss()` method:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -315,8 +315,7 @@ The "Dismiss" button should work now, because the `onDismiss()` method is aware 
 ### Exercises:
 
 * Read about the [ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
-* Read about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
-  * The object spread operator is briefly mentioned
+* Read about the [ES6 array (and object) spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 
 ## Conditional Rendering
 
@@ -324,7 +323,7 @@ Conditional rendering is usually introduced early in React applications, though 
 
 The `result` object in the local component state is `null` in the beginning. So far, the App component returned no elements when the `result` hasn't arrived from the API. That's already a conditional rendering, because you return earlier from the `render()` lifecycle method for a certain condition. The App component either renders nothing or its elements.
 
-But let's go one step further. It makes more sense to wrap the Table component, which is the only component that depends on `result` in an independent conditional rendering. Everything else should be displayed, even though there is no `result` yet. You can simply use a ternary operator in the JSX:
+But let's go one step further. It makes more sense to wrap the Table component, which is the only component that depends on `result` in an independent conditional rendering. Everything else should be displayed, even though there is no `result` yet. You can simply use a [ternary operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) in the JSX:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -375,7 +374,7 @@ console.log(result);
 // output: false
 ~~~~~~~~
 
-In React, you can make use of that behavior. If the condition is true, the expression after the logical `&&` operator will be the output. If the condition is false, React ignores the expression. It is applicable in the Table component's conditional rendering case, because it should either return a table or nothing.
+In React, you can make use of that behavior. If the condition is true, the expression after the logical `&&` operator will be the output. If the condition is false, React ignores the expression. It is applicable in the Table component's conditional rendering case, because it should either return a Table or nothing.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -390,7 +389,7 @@ In React, you can make use of that behavior. If the condition is true, the expre
 
 These were a few approaches to use conditional rendering in React. You can read about [more alternatives in an exhaustive list of examples](https://www.robinwieruch.de/conditional-rendering-react/). Moreover, you will get to know their different uses and when to apply them.
 
-You should be able to see the fetched data in your application by now. Everything except the table is displayed when data fetching is pending. Once the request resolves the result and stores it into the local state, the table is displayed because the `render()` method runs again, and the condition in the conditional rendering resolves in favor of displaying the Table component.
+You should be able to see the fetched data in your application by now. Everything except the Table is displayed when data fetching is pending. Once the request resolves the result and stores it into the local state, the Table is displayed because the `render()` method runs again, and the condition in the conditional rendering resolves in favor of displaying the Table component.
 
 ### Exercises:
 
@@ -1052,7 +1051,7 @@ Now we've taken care of interactions with the Hacker News API. We've introduced 
 
 In this chapter, we introduce an efficient solution to add error handling for your application in case of an erroneous API request. We have learned the necessary building block to introduce error handling in React: local state and conditional rendering. The error is just another state, which we store in the local state and display with conditional rendering in the component.
 
-Now, we'll implement it in the App component, since that's how we fetch data from the Hacker News API. First, introduce the error in the local state. It is initialized as null, but will be set to the error object in case of an error.
+Now, we'll implement it in the App component, since that's where we fetch data from the Hacker News API. First, introduce the error in the local state. It is initialized as null, but will be set to the error object in case of an error.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -1231,7 +1230,7 @@ import './App.css';
 ...
 ~~~~~~~~
 
-You can use axios instead of `fetch()`, and its usage looks almost identical to the native fetch API. It takes the URL as argument and returns a promise. You don't have to transform the returned response to JSON anymore, since Axios wraps the result into a `data` object in JavaScript. Just make sure to adapt your code to the returned data structure:
+You can use axios instead of `fetch()`, and its usage looks almost identical to the native fetch API. It takes the URL as argument and returns a promise. You don't have to transform the returned response to JSON anymore, since axios wraps the result into a `data` object in JavaScript. Just make sure to adapt your code to the returned data structure:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -1252,9 +1251,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In this code, we call `axios()`, which uses an HTTP GET request by default. You can make the GET request explicit by calling `axios.get()`, or you can use another HTTP method such as HTTP POST with `axios.post()`. With these examples alone, we can see that Axios is a powerful library to perform requests to remote APIs. I recommend you use it instead of the native fetch API when requests become complex, or you have to deal with promises.
+In this code, we call `axios()`, which uses an HTTP GET request by default. You can make the GET request explicit by calling `axios.get()`, or you can use another HTTP method such as HTTP POST with `axios.post()`. With these examples alone, we can see that axios is a powerful library to perform requests to remote APIs. I recommend you use it instead of the native fetch API when requests become complex, or you have to deal with promises.
 
-Now we'll introduce another improvement for the Hacker News request in the App component. Imagine the component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but the application navigates away from the page. App component unmounts, but there is still a pending request from `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. You will likely see the following warning on your command line, or in your browser's developer output:
+Now we'll introduce another improvement for the Hacker News request in the App component. Imagine the component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but then the user navigates away from the page with this rendered component. Then the App component unmounts, but there is still a pending request from `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. You will likely see the following warning on your command line, or in your browser's developer output:
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -1348,4 +1347,4 @@ Now you've learned to interact with an API in React! Let's recap the last chapte
   * Client-side caching
   * Axios as an alternative for the native fetch API
 
-Again, it makes sense to take a break, internalize the lessons and apply them on your own. Experiment with pulling data from different APIs and changing the parameters for different results. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.3.1).
+Again, it makes sense to take a break, internalize the lessons and apply them on your own. Experiment with the parameters for the API endpoint to query different results. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.3.1).
