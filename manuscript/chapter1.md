@@ -30,9 +30,7 @@ To follow this book, you should be familiar with the basics of web development, 
 
 ### Editor and Terminal
 
-For the lessons, you will need a text editor or an IDE and terminal (command line tool). I have provided [a setup guide](https://www.robinwieruch.de/developer-setup/) if you need additional help. The article is specific to MacOS users, but there plenty of articles on the web that will show you how to set up a web development environment for your OS.
-
-Optionally, we recommend you keep your projects in GitHub while conducting the exercises in this book. There is a [short guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. Github has excellent version control, so you can see what changes were made if you make a mistake or just want a more direct way to follow along.
+For the lessons, you will need a text editor or an IDE and terminal (command line tool). I have provided [a setup guide](https://www.robinwieruch.de/developer-setup/) if you need additional help. Optionally, we recommend you keep your projects in GitHub while conducting the exercises in this book. There is a [short guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. Github has excellent version control, so you can see what changes were made if you make a mistake or just want a more direct way to follow along.
 
 ### Node and NPM
 
