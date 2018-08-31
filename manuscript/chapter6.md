@@ -269,9 +269,7 @@ class Table extends Component {
 
 We made a crucial refactoring by moving functionality and state closer into another component, and other components got more lightweight. Again, the component API of the Table got lighter because it deals internally with the sort functionality.
 
-Lifting state can go the other way as well: from child to parent component. It is called as lifting state up. Imagine you were dealing with local state in a child component, and you want to fulfil a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component.
-
-Now, imagine you want to show the state in a sibling component of your child component. Again, you would lift the state up to your parent component. The parent component deals with the internal state, but exposes it to both child components.
+Lifting state can go the other way as well: from child to parent component. It is called as lifting state up. Imagine you were dealing with local state in a child component, and you want to fulfil a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component. Moreover, imagine you want to show the state in a sibling component of your child component. Again, you would lift the state up to your parent component. The parent component deals with the local state, but exposes it to both child components.
 
 ### Exercises:
 
@@ -280,7 +278,7 @@ Now, imagine you want to show the state in a sibling component of your child com
 
 ## Revisited: setState()
 
-So far, we have used React `setState()` to manage your internal component state. We can pass an object to the function where it updates partially the internal state.
+So far, we have used React `setState()` to manage your internal component state. We can pass an object to the function where it updates partially the local state.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -318,9 +316,7 @@ this.setState((prevState, props) => {
 });
 ~~~~~~~~
 
-We will fix it so that `setState()` is used and relies on the state or props consistently. You fix it at other places, too.
-
-The `setSearchTopStories()` method relies on the previous state, and this is a good example to use a function over an object in `setState()`. Right now, it looks like the following code:
+In our code, the `setSearchTopStories()` method relies on the previous state, and this is a good example to use a function over an object in `setState()`. Right now, it looks like the following code:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -347,9 +343,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-Here, we extracted values from the state, but updated the state depending on the previous state asynchronously.
-
-Now we'll use the functional approach to prevent bugs from a stale state:
+Here, we extracted values from the state, but updated the state depending on the previous state asynchronously. Now we'll use the functional approach to prevent bugs from a stale state:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -444,7 +438,7 @@ The function instead of object approach in `setState()` fixes potential bugs, wh
 
 * Read about [React using state correctly](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
 * Export updateSearchTopStoriesState from the file
- * Write a test for it which passes the a payload (hits, page) and a made up previous state and finally expect a new state
+  * Write a test for it which passes the a payload (hits, page) and a made up previous state and finally expect a new state
 * Refactor your `setState()` methods to use a function, but only when it makes sense, because it relies on props or state
 * Run your tests again and verify that everything is up to date
 
