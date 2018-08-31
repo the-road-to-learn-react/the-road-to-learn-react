@@ -1,6 +1,6 @@
 # State Management in React
 
-We have already covered the basics of state management in React in the previous chapters by using React’s local state, so this chapter will dig a bit deeper. It will expand on the best practices, how to apply them, and why you could consider using a third-party state management library.
+We have already covered the basics of state management in React in the previous chapters by using React's local state, so this chapter will dig a bit deeper. It will expand on the best practices, how to apply them, and why you could consider using a third-party state management library.
 
 ## Lifting State
 
@@ -284,7 +284,7 @@ So far, we have used React `setState()` to manage your internal component state.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-this.setState({ value: ‘hello’});
+this.setState({ value: ‘hello'});
 ~~~~~~~~
 
 But `setState()` doesn't take only an object. In its second version, you can pass a function to update the state.
