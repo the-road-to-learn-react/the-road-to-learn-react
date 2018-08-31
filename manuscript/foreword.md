@@ -54,7 +54,7 @@ The book should enable everyone to learn React. However, not everyone has access
 
 **Does it use the recent React version?** The book always receives an update when the React version is updated. Programming books are usually outdated soon after their release, but since this book is self-published, I can update it as needed.
 
-**Does it cover Redux?** It doesn't, so I have written a second book. The Road to learn React should give you a solid foundation before you dive into advanced topics. The implementation of the sample application in the book will show that you don't need Redux to build an application in React. After you have read the book, you should be able to implement a solid application without Redux. Then you can read my second book, Taming the State in React, to learn [Redux](https://roadtoreact.com).
+**Does it cover Redux?** It doesn't, so I have written a second book. The Road to learn React should give you a solid foundation before you dive into advanced topics. The implementation of the sample application in the book will show that you don't need Redux to build an application in React. After you have read the book, you should be able to implement a solid application without Redux. Then you can read my second book, Taming the State in React, to learn Redux.
 
 **Does it use JavaScript ES6?** Yes. Don't worry, though, you will be fine if you are familiar with JavaScript ES5. All JavaScript ES6 features, that I describe in The Journey to Learn React, will transition from ES5 to ES6. The book does not only teach React, but also all useful JavaScript ES6 features.
 
@@ -129,7 +129,7 @@ The book should enable everyone to learn React. However, not everyone has access
 * extra reading material
 * 1 new chapter (Axios instead of Fetch)
 
-**28. August 2018:**
+**31. August 2018:**
 
 * professional proofreading and editing by Emmanuel Stalling
 * [16 Source Code Projects](https://roadtoreact.com)
