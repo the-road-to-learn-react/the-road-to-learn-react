@@ -4,7 +4,7 @@ This chapter will guide you through the basics of React. It covers state and int
 
 ## Local Component State
 
-Local component state, also known as internal state, allows you to save, modify, and delete properties stored in your component. The ES6 class component then uses a constructor to initialize local component state. The constructor is called only once, when the component initializes:
+Local component state, also known as internal component state, allows you to save, modify, and delete properties stored in your component. The ES6 class component then uses a constructor to initialize local component state. The constructor is called only once, when the component initializes:
 
 Let's introduce a class constructor.
 
@@ -59,7 +59,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The state is bound to the class using the `this` object. so you can access the local state of the whole component. For instance, it can be used in the `render()` method. Previously you have mapped a static list of items in your `render()` method that was defined outside of your component. Now you are about to use the list from your local state in your component.
+The state is bound to the class using the `this` object, so you can access the local state of the whole component. For instance, it can be used in the `render()` method. Previously you have mapped a static list of items in your `render()` method that was defined outside of your component. Now you are about to use the list from your local state in your component.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -180,7 +180,6 @@ Later, you will be able to use computed property names to allocate values by key
 * Experiment with ES6 object initializer
 * Read about [ES6 object initializer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
-
 ## Unidirectional Data Flow
 
 Now you have a local state in your App component, but haven't manipulated the state yet. The local state is static, so its component is as well. A good way to experience state manipulation is to engage in component interaction.
@@ -224,7 +223,7 @@ class App extends Component {
 
 The `onDismiss()` class method is not defined yet. We will do it in a moment, but for now, let's focus on the `onClick` handler of the button element. As you can see, the `onDismiss()` method in the `onClick` handler is enclosed by an arrow function. You can use it to peek at the `objectID` property of the `item` object and identify the item to be dismissed. An alternative way would be to define the function outside of the `onClick` handler and only pass the defined function to it. We will cover handlers more in-depth as we move along.
 
-Note the use multilines for the button element, and how elements with multiple attributes can get disorganized easily. The button element is used with multilines and indentations to keep it readable. While this practice isn't specific to React development, it is a programming style I recommend for cleanliness and your own peace of mind.
+Note the use of multilines for the button element, and how elements with multiple attributes can get disorganized easily. The button element is used with multilines and indentations to keep it readable. While this practice isn't specific to React development, it is a programming style I recommend for cleanliness and your own peace of mind.
 
 Now we will implement the `onDismiss()` functionality. It takes an id to identify the item to dismiss. The function is bound to the class and thus becomes a class method. That's why you access it with `this.onDismiss()` and not `onDismiss()`. The `this` object is your class instance. In order to define the `onDismiss()` as class method, you have to bind it in the constructor:
 
@@ -280,8 +279,19 @@ class App extends Component {
 
 Now we can define what happens inside a class method. Remember, the objective is to remove the item identified by the id from the list and store an updated list to the local state. The updated list will be used in the re-running `render()` method to display it, where the removed item should no longer appear.
 
-You can remove an item from a list using [JavaScript's built-in filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) functionality, which takes a function as input. The function has access to each value in the list because it iterates over each item, so you can evaluate them based on certain conditions. The function returns a new list instead of mutating the old one, and it supports the React convention of using immutable data structures.
+You can remove an item from a list using [JavaScript's built-in filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) functionality, which takes a function as input. The function has access to each value in the list because it iterates over each item, so you can evaluate them based on certain conditions.
 
+{title="Code Playground",lang="javascript"}
+~~~~~~~~
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const filteredWords = words.filter(word => word.length > 6);
+
+console.log(filteredWords);
+// expected output: Array ["exuberant", "destruction", "present"]
+~~~~~~~~
+
+The function returns a new list instead of mutating the old one, and it supports the React convention of using immutable data structures.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
