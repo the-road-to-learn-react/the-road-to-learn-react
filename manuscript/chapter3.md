@@ -1323,7 +1323,6 @@ This chapter has shown you how you can replace one library with another in React
 ### Exercises:
 
 * Read about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
-* Learn more about [an alternative React component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
 
 {pagebreak}
 

@@ -460,7 +460,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-Avoid this practice, however, because it binds the class method every time the `render()` method runs, meaning every time the component updates, which will hurt your application's performance. Binding the class method in the constructor need only be done once, when the component is instantiated.
+Avoid this practice, however, because it binds the class method every time the `render()` method runs, meaning every time the component updates, which will hurt your application's performance eventually. Binding the class method in the constructor need only be done once, when the component is instantiated.
 
 Some developers will define the business logic of their class methods in the constructor:
 
@@ -541,6 +541,7 @@ Use this method if the repetitive binding in the constructor annoys you. The off
 ### Exercises:
 
 * Try different approaches of bindings and console log the `this` object
+* Learn more about [an alternative React component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax)
 
 ## Event Handler
 
