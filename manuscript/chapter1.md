@@ -578,6 +578,7 @@ React will display each item, but you can still do more to help React embrace it
   );
 })}
 ~~~~~~~~
+
 Make sure that the key attribute is a stable identifier. Avoid using the index of the item in the array, because the array index is not stable. If the list changes its order, for example, React will not be able to identify the items properly.
 
 {title="src/App.js",lang="javascript"}
@@ -598,7 +599,7 @@ Start your app in a browser, and you should see both items of the list displayed
 
 * Read about [React lists and keys](https://reactjs.org/docs/lists-and-keys.html)
 * Recap the [standard built-in array functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/)
-* Use more strategic JavaScript expressions on your own in JSX
+* Use more JavaScript expressions on your own in JSX
 
 ## ES6 Arrow Functions
 
@@ -649,7 +650,8 @@ You can also write `map` functions more concisely with an ES6 arrow function:
   );
 })}
 ~~~~~~~~
-You can remove the *block body*--the curly braces--with the ES6 arrow function. In a *concise body*, an implicit return is attached; thus, you can remove the `return` statement. This will happen often in this book, so be sure to understand the difference between a block body and a concise body when using arrow functions.
+
+You can remove the *block body*, the curly braces, with the ES6 arrow function. In a *concise body*, an implicit return is attached; thus, you can remove the `return` statement. This will happen often in this book, so be sure to understand the difference between a block body and a concise body when using arrow functions.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -679,7 +681,7 @@ Your JSX should look more concise and readable now, as it omits the `function` s
 
 JavaScript ES6 introduced classes, which are commonly used in object-oriented programming languages. JavaScript, always flexible in its programming paradigms, allows functional programming and object-oriented programming to work side-by-side.
 
-While React embraces functional programming, e.g. immutable data structures, classes are used to declare ES6 class components. React mixes the good parts of both programming paradigms.
+While React embraces functional programming, e.g. immutable data structures and function compositions, classes are used to declare ES6 class components. React mixes the good parts of both programming paradigms.
 
 Consider the following Developer class to examine a JavaScript ES6 class without a component.
 
@@ -699,7 +701,7 @@ class Developer {
 
 A class has a constructor to make it instantiable. The constructor takes arguments and assigns them to the class instance. A class can also define functions. Because the function is associated with a class, it is called a method, or a class method.
 
-The Developer class is only the class declaration we user here, as you can create multiple instances of a class by invoking it. It is similar to the ES6 class component, which has a declaration, but you have to use it somewhere else to instantiate it:
+The Developer class is only the class declaration we use here, as you can create multiple instances of a class by invoking it. It is similar to the ES6 class component, which has a declaration, but you have to use it somewhere else to instantiate it:
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -731,8 +733,8 @@ Methods exposed by a React `Component` are its public interface. One of these me
 
 ### Exercises:
 
-* Read about [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 * Read about [JavaScript fundamentals before learning React](https://www.robinwieruch.de/javascript-fundamentals-react-requirements/)
+* Read about [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 
 {pagebreak}
 
