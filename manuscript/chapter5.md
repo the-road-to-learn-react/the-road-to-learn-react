@@ -151,6 +151,7 @@ Now we can access the input DOM element. In our case it wouldn't help much since
 ### Exercises
 
 * Read about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* Read about [a case study of using React's ref API for accessing the intersection observer API](https://www.robinwieruch.de/react-intersection-observer-api/)
 * Read about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
 
 ## Loading ...
