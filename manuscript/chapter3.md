@@ -13,7 +13,7 @@ We have already covered two lifecycle methods that can be used in an ES6 class c
 * The constructor is only called when an instance of the component is created and inserted in the DOM. The component gets instantiated in a process called mounting.
 * The `render()` method is called during the mount process too, but also when the component updates. Each time the state or the props of a component changes, the `render()` method is called.
 
-Mounting a component has two more lifecycle methods: `getDerivedStateFromProps()` and `componentDidMount()`. The constructor is called first, `getDerivedStateFromProps()` is called before the `render()` method, and `componentDidMount()` is called after the `render()` method.
+There are two more lifecycle methods when mounting a component: `getDerivedStateFromProps()` and `componentDidMount()`. The constructor is called first, `getDerivedStateFromProps()` is called before the `render()` method, and `componentDidMount()` is called after the `render()` method.
 
 Overall, the mounting process has 4 lifecycle methods, invoked in the following order:
 
