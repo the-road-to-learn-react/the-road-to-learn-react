@@ -824,6 +824,7 @@ If you right-click on any element, a dropdown menu will show several useful opti
   * Watch what happens when you trigger an asynchronous request
   * Perform several requests, including repeated ones. Watch the cache mechanism working
 * Read about [how to debug your JavaScript functions in the browser](https://developers.google.com/web/tools/chrome-devtools/javascript/)
+* Read about (and use) [the React Profiler](https://reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)
 
 You have learned how to organize and test React code! Let's recap the last chapter:
 
