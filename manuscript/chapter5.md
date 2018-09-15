@@ -146,7 +146,7 @@ const Search = ({
 }
 ~~~~~~~~
 
-Now we can access the input DOM element. In our case it wouldn't help much since there's no lifecycle method in a functional stateless component to trigger the focus. In the future, though, you may encounter cases where it makes sense to use a functional stateless component with the `ref` attribute.
+Now we can access the input DOM element. In our case it wouldn't help much since there's no lifecycle method in a functional stateless component to trigger the focus. So we are not going to make use of the input variable here. In the future, though, you may encounter cases where it makes sense to use a functional stateless component with the `ref` attribute.
 
 ### Exercises
 
@@ -274,7 +274,7 @@ Initially, the Loading component will show when you start your application, beca
 
 ### Exercises:
 
-* Use a library such as [Font Awesome](https://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
+* Use a library such as [Font Awesome](https://fontawesome.com/) to show a loading icon instead of the "Loading ..." text
 
 ## Higher-Order Components
 
@@ -961,7 +961,7 @@ We may need to accept the failing snapshot tests again for the Table component, 
 
 ### Exercises:
 
-* Use a library like [Font Awesome](https://fontawesome.io/) to indicate the (reverse) sort. It could be an arrow up or arrow down icon next to each Sort header
+* Use a library like [Font Awesome](https://fontawesome.com/) to indicate the (reverse) sort. It could be an arrow up or arrow down icon next to each Sort header
 * Read about the [classnames library](https://github.com/JedWatson/classnames)
 
 {pagebreak}

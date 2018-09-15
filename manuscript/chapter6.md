@@ -97,7 +97,9 @@ class Table extends Component {
 
 # leanpub-start-insert
   onSort(sortKey) {
-    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
+    const isSortReverse = this.state.sortKey === sortKey &&
+      !this.state.isSortReverse;
+
     this.setState({ sortKey, isSortReverse });
   }
 # leanpub-end-insert
@@ -282,7 +284,7 @@ So far, we have used React `setState()` to manage your internal component state.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-this.setState({ value: ‘hello'});
+this.setState({ value: 'hello'});
 ~~~~~~~~
 
 But `setState()` doesn't take only an object. In its second version, you can pass a function to update the state.
