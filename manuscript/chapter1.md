@@ -262,6 +262,18 @@ Don't worry if you're confused by the import/export statements and class declara
 
 In the file you should see a **React ES6 class component** with the name App. This is a component declaration. After you have declared a component, you can use it as an element anywhere in your application. It will produce an **instance** of your **component** or, in other words, the component gets instantiated.
 
+{title="Code Playground",lang="javascript"}
+~~~~~~~~
+// component declaration
+class App extends Component {
+  ...
+}
+
+// component usage (also called instantiation for a class)
+// creates an instance of the component
+<App />
+~~~~~~~~
+
 The returned **element** is specified in the `render()` method. The components you instantiated earlier are made up of elements, so it is important to understand the differences between a component, an instance of a component, and an element.
 
 You should see where the App component is instantiated, else you couldn't see the rendered output in a browser. The App component is only the declaration, but not the usage. You can instantiate the component anywhere in your JSX with `<App />`. You will see later where this happens in this application.
