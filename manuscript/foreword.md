@@ -135,6 +135,12 @@ The book should enable everyone to learn React. However, not everyone has access
 * [16 Source Code Projects](https://roadtoreact.com)
 * [v6 Pull Request](https://github.com/the-road-to-learn-react/the-road-to-learn-react/pull/172)
 
+**3. October 2018:**
+
+* upgrade to node 10.11.0
+* upgrade to npm 6.4.1
+* upgrade to create-react-app 2.0.2
+
 {pagebreak}
 
 # Challenge

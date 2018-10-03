@@ -41,9 +41,9 @@ You can verify your versions of node and npm on the command line. If you don't g
 {title="Command Line",lang="text"}
 ~~~~~~~~
 node --version
-*v8.9.4
+*v10.11.0
 npm --version
-*v5.6.0
+*v6.4.1
 ~~~~~~~~
 
 The additional content of this section is a crash course in node and npm. It is not exhaustive, but it will cover all of the necessary tools. If you are familiar with both of them, you can skip this section.
@@ -150,7 +150,7 @@ You can check the version of *create-react-app* to verify a successful installat
 {title="Command Line",lang="text"}
 ~~~~~~~~
 create-react-app --version
-*v1.5.1
+*v2.0.2
 ~~~~~~~~
 
 Now you are ready to bootstrap your first React application. The example will be referred to as *hackernews*, but you may choose any name you like. First, navigate into the folder:
@@ -181,7 +181,7 @@ hackernews/
     index.css
     index.js
     logo.svg
-    registerServiceWorker.js
+    serviceWorker.js
 ~~~~~~~~
 
 This is a breakdown of the folders and files:
@@ -198,7 +198,7 @@ This is a breakdown of the folders and files:
 
 * **build/** This folder is created when you build the project for production, as it holds all of the production files. When building your project for production, all the source code in the *src/* and *public/* folders are bundled and placed in the build folder.
 
-* **manifest.json** and **registerServiceWorker.js:** These files won't be used for this project, so you can ignore them for now.
+* **manifest.json** and **serviceWorker.js:** These files won't be used for this project, so you can ignore them for now.
 
 In the beginning, everything you need is located in the *src/* folder. The main focus lies on the *src/App.js* file which is used to implement React components. It will be used to implement your application, but later you might want to split up your components into multiple files, where each file maintains one or more components on its own.
 
@@ -245,11 +245,18 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }
@@ -447,8 +454,8 @@ Hot Module Replacement (HMR) is a tool for reloading your application in the bro
 ~~~~~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './index.css';
+import App from './App';
 
 ReactDOM.render(
   <App />,
