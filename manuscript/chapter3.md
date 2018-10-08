@@ -1256,66 +1256,15 @@ class App extends Component {
 
 In this code, we call `axios()`, which uses an HTTP GET request by default. You can make the GET request explicit by calling `axios.get()`, or you can use another HTTP method such as HTTP POST with `axios.post()`. With these examples alone, we can see that axios is a powerful library to perform requests to remote APIs. I recommend you use it instead of the native fetch API when requests become complex, or you have to deal with promises.
 
-Now we'll introduce another improvement for the Hacker News request in the App component. Imagine the component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but then the user navigates away from the page with this rendered component. Then the App component unmounts, but there is still a pending request from `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. You will likely see the following warning on your command line, or in your browser's developer output: *Warning: Can only update a mounted or mounting component. This usually means you called setState, replaceState, or forceUpdate on an unmounted component. This is a no-op.*
+There exists another improvement for the Hacker News request in the App component. Imagine the component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but then the user navigates away from the page with this rendered component. Then the App component unmounts, but there is still a pending request from `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. You will likely see the following warning(s) on your command line, or in your browser's developer output:
 
-You can handle this issue by aborting the request when your component unmounts or preventing `this.setState()` on an unmounted component. It is considered a best practice in React to preserve an clean application without warnings. However, the current promise API doesn't implement aborting a request, so we add a workaround, introducing a class field that holds the lifecycle state of your component. It can be initialized as `false` when the component initializes, changed to `true` when the component mounted, and then reset to `false` when the component unmounted. This way, you can keep track of your component's lifecycle state. It doesn't affect the local state stored and modified with `this.state` and `this.setState()`, because you can access it directly on the component instance without relying on React's local state management. Moreover, it doesn't lead to any re-rendering of the component when the class field is changed.
+* *Warning: Can only update a mounted or mounting component. This usually means you called setState, replaceState, or forceUpdate on an unmounted component. This is a no-op.*
 
-{title="src/App.js",lang="javascript"}
-~~~~~~~~
-class App extends Component {
-# leanpub-start-insert
-  _isMounted = false;
-# leanpub-end-insert
+* *Warning: Can’t call setState (or forceUpdate) on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.*
 
-  constructor(props) {
-    ...
-  }
+If you encounter one of them in your browser's developer tools, checkout [this walkthrough on how to prevent memory leaks in React](https://www.robinwieruch.de/react-warning-cant-call-setstate-on-an-unmounted-component/). It isn't too important for starting out with React, but I have seen many React beginners being confused about this warning.
 
-  ...
-
-  componentDidMount() {
-# leanpub-start-insert
-    this._isMounted = true;
-# leanpub-end-insert
-
-    const { searchTerm } = this.state;
-    this.setState({ searchKey: searchTerm });
-    this.fetchSearchTopStories(searchTerm);
-  }
-
-# leanpub-start-insert
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-# leanpub-end-insert
-
-  ...
-
-}
-~~~~~~~~
-
-Finally, you can use this knowledge not to abort the request itself, but avoid calling `this.setState()` on your component instance, even though the component already unmounted. It will prevent the warning.
-
-{title="src/App.js",lang="javascript"}
-~~~~~~~~
-class App extends Component {
-
-  ...
-
-  fetchSearchTopStories(searchTerm, page = 0) {
-    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
-# leanpub-start-insert
-      .then(result => this._isMounted && this.setSearchTopStories(result.data))
-      .catch(error => this._isMounted && this.setState({ error }));
-# leanpub-end-insert
-  }
-
-  ...
-
-}
-~~~~~~~~
-
-This chapter has shown you how you can replace one library with another in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to find a solution. Also, we've learned how to avoid calling `this.setState()` in React on an unmounted component. If you dig deeper into the axios library, you will find a way to cancel the request beforehand.
+This chapter has shown you how you can replace one library with another in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to find a solution.
 
 ### Exercises:
 
@@ -1331,7 +1280,7 @@ Now you've learned to interact with an API in React! Let's recap the last chapte
   * Conditional renderings
   * Synthetic events on forms
   * Error handling
-  * Aborting a remote API request
+  * Preventing `this.setState` in unmounted components
 * **ES6 and beyond**
   * Template strings to compose strings
   * Spread operator for immutable data structures
