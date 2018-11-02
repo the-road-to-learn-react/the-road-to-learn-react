@@ -8,7 +8,7 @@ Essentially, you will learn to build your own React application from scratch, wi
 
 {pagebreak}
 
-# About the Author
+## About the Author
 
 I am a German software and web engineer dedicated to learning and teaching programming in JavaScript. After obtaining my Master's Degree in computer science, I continued learning on my own. I gained experience from the startup world, where I used JavaScript intensively during both my professional life and spare time, which eventually led to a desire to teach others about these topics.
 
@@ -20,7 +20,7 @@ Currently, I am a self-employed software engineer and educator. I find it a fulf
 
 {pagebreak}
 
-# Testimonials
+## Testimonials
 
 There are many [testimonials](https://roadtoreact.com/), [ratings](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) and [reviews](https://www.amazon.com/dp/B077HJFCQX) about the book that you can read to ascertain its quality. I am proud of it, and I never expected such overwhelming feedback. I would love to find your rating/review. It helps me to spread the word about the book and make improvements for future projects. The following shows a short excerpt of these voices:
 
@@ -40,7 +40,7 @@ There are many [testimonials](https://roadtoreact.com/), [ratings](https://www.g
 
 {pagebreak}
 
-# Education for Children
+## Education for Children
 
 The book should enable everyone to learn React. However, not everyone has access to the required resources, because not everyone is educated in the English language. I want to use this project to support other projects that teach children English in the developing world.
 
@@ -48,7 +48,7 @@ The book should enable everyone to learn React. However, not everyone has access
 
 {pagebreak}
 
-# FAQ
+## FAQ
 
 **How to get updates?** I have two channels where I share updates about my content. You can [subscribe to updates by email](https://www.getrevue.co/profile/rwieruch) or [follow me on Twitter](https://twitter.com/rwieruch). Regardless of the channel, my objective is to only share quality content. Once you receive notification the book has changed, you can download a new version of it.
 
@@ -78,7 +78,7 @@ The book should enable everyone to learn React. However, not everyone has access
 
 {pagebreak}
 
-# Change Log
+## Change Log
 
 **10. January 2017:**
 
@@ -145,7 +145,7 @@ The book should enable everyone to learn React. However, not everyone has access
 
 {pagebreak}
 
-# Challenge
+## Challenge
 
 Personally I write a lot about my learnings. That's how I got where I am right now. You are teaching a topic at its best when you have just learned about it yourself. Since teaching helped me a lot in my career, I want you to experience the same effects of it. But first you have to do the cause: teaching yourself. My challenge for the book is the following: teach others what you are learning while reading the book. A couple of breakpoints on how you could achieve it:
 
