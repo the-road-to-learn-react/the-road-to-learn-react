@@ -146,7 +146,7 @@ Third, the native fetch API is used. The JavaScript ES6 template strings allow i
 
 Last, remember to bind your new component method in the constructor.
 
-Now you can use the fetched data instead of the sample list. Note that the result is not only a list of data, [but a complex object with meta information and a list of hits that are news stories](https://hn.algolia.com/api). You can output the lcoal state with `console.log(this.state);` in your `render()` method to visualize it.
+Now you can use the fetched data instead of the sample list. Note that the result is not only a list of data, [but a complex object with meta information and a list of hits that are news stories](https://hn.algolia.com/api). You can output the local state with `console.log(this.state);` in your `render()` method to visualize it.
 
 In the next step, we use the result to render it. But we will prevent it from rendering anything, so we will return null, when there is no result in the first place. Once the request to the API has succeeded, the result is saved to the state and the App component will re-render with the updated state.
 
