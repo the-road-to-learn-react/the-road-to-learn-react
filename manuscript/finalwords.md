@@ -1,6 +1,6 @@
 # Outline
 
-So now we've reached the end of The Road to Learn React. I hope you enjoyed reading it, and I hope it helped you to gain some traction in React. If you liked the book, share it as a way to learn React with your friends. It should be used as giveaway. Also, a review on [Amazon](https://www.amazon.com/dp/B077HJFCQX) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) can really help improve future projects.
+So now we've reached the end of The Road to Learn React. I hope you enjoyed reading it, and I hope it helped you to gain some traction in React. If you liked the book, share it as a way to learn React with your friends. It should be used as giveaway. Also, a review on [Amazon](https://amzn.to/2JHlP42) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) can really help improve future projects.
 
 **So, where can you go from here?** I recommend you extend the application on your own, so eventually you can start creating your very own React projects. Consider doing this before you dive into another book, course or tutorial. Do it for one week, take it to production by deploying it, and reach out to me [me](https://twitter.com/rwieruch) or others to showcase it. I am always interested in seeing what my readers built and helping them along.
 
