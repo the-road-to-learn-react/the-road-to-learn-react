@@ -812,7 +812,7 @@ The extension shows on the side pane the component's state and props for the sel
 
 First, check the "Highlight Updates" option, usually above the elements tree. Second, type a different search term in the application's input field. Only `searchTerm` will be changed in the component's state. We already knew that would happen, but now we can see it working as planned.
 
-Finally, press the "Search" button. The `searchKey` state will immediately changes to same value as `searchTerm`, and then the response object is added to `results`. The asynchronous nature of your code is now visible.
+Finally, press the "Search" button. The `searchKey` state immediately changes to same value as `searchTerm`, and then the response object is added to `results`. The asynchronous nature of your code is now visible.
 
 If you right-click on any element, a dropdown menu will show several useful options. For instance, you could copy the element's props or name, find the corresponding DOM node, or jump to the application's source code in the browser. The last option is very useful for inserting breakpoints and debugging your JavaScript functions.
 
