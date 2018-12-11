@@ -2,7 +2,7 @@
 
 [![Slack](https://slack-the-road-to-learn-react.wieruch.com/badge.svg)](https://slack-the-road-to-learn-react.wieruch.com/)
 
-The official repository for [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). In addition, here you can find the [Source Code](https://github.com/the-road-to-learn-react/hackernews-client) and [Complete Course](https://roadtoreact.com/). If you want to leave a review, you can do it on [Amazon](https://www.amazon.com/dp/B077HJFCQX?tag=21moves-20) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react). This book is hosted on [Leanpub](https://leanpub.com/the-road-to-learn-react) as well.
+Official repository for [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). If you want to leave a review, please do it on [Amazon](https://www.amazon.com/dp/B077HJFCQX?tag=21moves-20) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react).
 
 ## Translations of the book into Leanpub
 
@@ -13,12 +13,13 @@ The Road to learn React is also available in other languages. Thanks for all tra
 * 🇰🇷 [Korean](https://leanpub.com/the-road-to-learn-react-korean)
 * 🇧🇷 [Portuguese](https://leanpub.com/the-road-to-learn-react-portuguese)
 * 🇷🇺 [Russian](https://leanpub.com/the-road-to-learn-react-russian)
+* 🇷🇺 [Spanish](https://leanpub.com/the-road-to-learn-react-spanish)
 
 ## Updates, Help and Support
 
 * Get book updates via [E-Mail](https://www.getrevue.co/profile/rwieruch) or [Twitter](https://twitter.com/rwieruch)
-* Get help, while learning React with the book or teach others, in the official [Slack Channel](https://slack-the-road-to-learn-react.wieruch.com/)
-* Find out how you can [Support the Book](https://www.robinwieruch.de/about/)
+* Get help, while learning with the book or teach others, in the official [Slack Channel](https://slack-the-road-to-learn-react.wieruch.com/)
+* Find out how you can [support the Book](https://www.robinwieruch.de/about/)
 
 ## Contribute
 
@@ -29,7 +30,3 @@ You can open up any PR that corrects spelling or explains a certain lesson with 
 In addition, you can open Issues when you run into problems. In order to make the fix for the Issue as easy as possible, please provide a couple of details such as error log, screenshot, which page of the book it happened, your node version (command line: `node -v`) and a link to your own repository. Not all of these details are mandatory, but most of them help to fix the Issue and to improve the book.
 
 Thanks a lot for your help!
-
-## Become a Patron
-
-The Road to learn React is a free ebook which should enable everyone to learn about React. This kind of educational content needs your support to sustain itself. Robin Wieruch writes a lot of this educational content on [his website](https://www.robinwieruch.de/) too. So you can support him be being his [Patron on Patreon](https://www.patreon.com/rwieruch).
