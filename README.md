@@ -13,7 +13,7 @@ The Road to learn React is also available in other languages. Thanks for all tra
 * 🇰🇷 [Korean](https://leanpub.com/the-road-to-learn-react-korean)
 * 🇧🇷 [Portuguese](https://leanpub.com/the-road-to-learn-react-portuguese)
 * 🇷🇺 [Russian](https://leanpub.com/the-road-to-learn-react-russian)
-* 🇷🇺 [Spanish](https://leanpub.com/the-road-to-learn-react-spanish)
+* 🇪🇸 [Spanish](https://leanpub.com/the-road-to-learn-react-spanish)
 
 ## Updates, Help and Support
 
