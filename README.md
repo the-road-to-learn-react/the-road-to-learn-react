@@ -14,6 +14,7 @@ The Road to learn React is also available in other languages. Thanks for all tra
 * 🇧🇷 [Portuguese](https://leanpub.com/the-road-to-learn-react-portuguese)
 * 🇷🇺 [Russian](https://leanpub.com/the-road-to-learn-react-russian)
 * 🇪🇸 [Spanish](https://leanpub.com/the-road-to-learn-react-spanish)
+* 🇮🇹 [Italian](https://leanpub.com/the-road-to-learn-react-italian)
 
 ## Updates, Help and Support
 
