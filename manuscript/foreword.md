@@ -96,7 +96,7 @@ If you find my lessons useful and would like to contribute, seek my website's [A
 
 **What's your motivation behind the book?**
 
-I want to teach about this topic consistently. I often find materials online that don't receive update, or only applies to a small part of a topic. Sometimes people struggle to find consistent and up-to-date resources to learn from. I want to provide this consistent and up-to-date learning experience. Also, I hope I can support the less fortunate with my projects by giving them the content for free or by [having other impacts](https://www.robinwieruch.de/giving-back-by-learning-react/). Recently I'v found myself fulfilled when teaching others about programming, as it's a meaningful activity I prefer over any 9 to 5 job at any company. I hope to continue this path in the future.
+I want to teach about this topic consistently. I often find materials online that don't receive update, or only applies to a small part of a topic. Sometimes people struggle to find consistent and up-to-date resources to learn from. I want to provide this consistent and up-to-date learning experience. Also, I hope I can support the less fortunate with my projects by giving them the content for free or by [having other impacts](https://www.robinwieruch.de/giving-back-by-learning-react/). Recently I've found myself fulfilled when teaching others about programming, as it's a meaningful activity I prefer over any 9 to 5 job at any company. I hope to continue this path in the future.
 
 {pagebreak}
 
