@@ -437,7 +437,7 @@ ReactDOM.render(
 );
 ~~~~~~~~
 
-During implementation, `ReactDOM.render()` takes your App component, though it can also pass simple JSX. It doesn't require an component instance.
+During implementation, `ReactDOM.render()` takes your App component, though it can also pass simple JSX. It doesn't require a component instance.
 
 ### Exercises:
 
