@@ -1539,7 +1539,7 @@ Now you have one lightweight functional stateless component. When we need access
 
 ## Styling Components
 
-In this section, we'll add some basic styling to our application and components using the *src/App.css* and *src/index.css* files. These files should already be in your project, since you have bootstrapped it with *create-react-app*. They should be imported in your *src/App.js* and *src/index.js* files too. The following is CSS that can be copied and pastes to these files, but feel free to use your own if you're comfortable with CSS.
+In this section, we'll add some basic styling to our application and components using the *src/App.css* and *src/index.css* files. These files should already be in your project, since you have bootstrapped it with *create-react-app*. They should be imported in your *src/App.js* and *src/index.js* files too. The following is CSS that can be copied and pasted to these files, but feel free to use your own if you're comfortable with CSS.
 
 First, styling for your overall application:
 
