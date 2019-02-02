@@ -630,7 +630,7 @@ Enzyme has three rendering mechanisms in its API. You already know `shallow()`, 
 * If you want to test component lifecycle and children behavior, use `mount()`
 * If you want to test a component's children rendering with less overhead than `mount()` and you are not interested in lifecycle methods, use `render()`
 
-Continue to unit test your components, but be sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. This is one the main reason Facebook introduced snapshot tests with Jest.
+Continue to unit test your components, but be sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. This is one of the main reasons Facebook introduced snapshot tests with Jest.
 
 ### Exercises:
 
