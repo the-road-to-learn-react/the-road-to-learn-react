@@ -741,15 +741,15 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Using arrow functions in event handlers directly impacts your application's performance. For instance, the `onClick` handler for the `onDismiss()` method wraps the method in another arrow function to pass the item identifier. Every time the `render()` method runs, the handler instantiates the higher-order arrow function. It can have an impact on your application performance, but in most cases you won't notice. If you have a huge table of data with 1000 items and each row or column has an arrow function in an event handler, it is worth thinking about the performance implications, so you could implement a dedicated Button component to bind the method in the constructor. Before that, though, it is premature optimization, and it is more prudent learn the basics of React before thinking about optimization.
+Using arrow functions in event handlers directly impacts your application's performance. For instance, the `onClick` handler for the `onDismiss()` method wraps the method in another arrow function to pass the item identifier. Every time the `render()` method runs, the handler instantiates the higher-order arrow function. It can have an impact on your application performance, but in most cases you won't notice. If you have a huge table of data with 1000 items and each row or column has an arrow function in an event handler, it is worth thinking about the performance implications, so you could implement a dedicated Button component to bind the method in the constructor. Before that, though, it is premature optimization, and it is more prudent to learn the basics of React before thinking about optimization.
 
 ### Exercises:
 
-* Try the different approaches of using functions in the `onClick` handler of your button
+* Try the different approaches of using functions in the `onClick` handler of your button.
 
 ## Interactions with Forms and Events
 
-We'll add another interaction to see forms and events in React, a search functionality where the input the search field temporarily filters a list based on the title property of an item.
+We'll add another interaction to see forms and events in React, a search functionality where the input in the search field temporarily filters a list based on the title property of an item.
 
 In the first step, we define a form with an input field in JSX:
 
@@ -969,7 +969,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The condition matches the incoming `searchTerm` pattern with the title property of the item from your list. You can do that with the built-in `includes` JavaScript functionality. When the pattern matches, it returns true and the item stays in the list; when the pattern doesn't match, the item is removed from the list. Don't forget to match the capitalizion on both strings to the letter, as there will be mismatches between the search term 'redux' and an item title 'Redux'. Since we are working on a immutable list and return a new list by using the filter function, the original list in the local state isn't modified at all.
+The condition matches the incoming `searchTerm` pattern with the title property of the item from your list. You can do that with the built-in `includes` JavaScript functionality. When the pattern matches, it returns true and the item stays in the list; when the pattern doesn't match, the item is removed from the list. Don't forget to match the capitalization on both strings to the letter, as there will be mismatches between the search term 'redux' and an item title 'Redux'. Since we are working on an immutable list and return a new list by using the filter function, the original list in the local state isn't modified at all.
 
 We cheated a bit using JavaScript ES7 features, but these aren't present in ES5. For ES5, use the `indexOf()` function to get the index of the item in the list instead. When the item is in the list, `indexOf()` will return its index in the array.
 
