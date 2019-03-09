@@ -284,7 +284,7 @@ Let's do a simple HOC that takes a component as input and returns a component. Y
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
-function withFoo(Component) {
+function withFeature(Component) {
   return function(props) {
     return <Component { ...props } />;
   }
