@@ -1568,7 +1568,6 @@ ul, li {
 input {
   padding: 10px;
   border-radius: 5px;
-  outline: none;
   margin-right: 10px;
   border: 1px solid #dddddd;
 }
@@ -1584,10 +1583,6 @@ button {
 
 button:hover {
   color: #222;
-}
-
-*:focus {
-  outline: none;
 }
 ~~~~~~~~
 
