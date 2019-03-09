@@ -1369,7 +1369,7 @@ The "Search" text should now be visible next to your input field. When you use t
 
 * Confirm your [source code for the last section](http://bit.ly/2H82ZVg)
   * Confirm the [changes from the last section](http://bit.ly/2Hb4FwY)
-* Read about [the composition model of React](https://reactjs.org/docs/composition-vs-inheritance.html)
+* Read about [the composition model of React](https://reactjs.org/docs/composition-vs-inheritance.html) and [why/how to conduct component composition in React](https://www.robinwieruch.de/react-component-composition/)
 
 ## Reusable Components
 
@@ -1810,6 +1810,7 @@ After that, we use them in the columns: `<span style={smallColumn}>`. There diff
 * [styled-components](https://github.com/styled-components/styled-components)
 * [CSS Modules](https://github.com/css-modules/css-modules) (read my short article on [how to use CSS modules in create-react-app](https://www.robinwieruch.de/create-react-app-css-modules/))
 * [Sass](https://sass-lang.com/) (read my short article on [how to use Sass in create-react-app](https://www.robinwieruch.de/create-react-app-with-sass-support/))
+* UI Libraries: [Semantic UI](https://www.robinwieruch.de/react-semantic-ui-tutorial/) or Material UI
 
 But if you are new to React, I would recommend to stick to pure CSS and inline style for now.
 

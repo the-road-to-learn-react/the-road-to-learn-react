@@ -634,7 +634,7 @@ Start your app in a browser, and you should see both items of the list displayed
 * Confirm your [source code for the last section](http://bit.ly/2H7jMHT)
   * Confirm the [changes from the last section](http://bit.ly/2H6LKnb)
 * Read about [React lists and keys](https://reactjs.org/docs/lists-and-keys.html)
-* Recap the [standard built-in array functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/)
+* Recap the [standard built-in array functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/) and [discover a couple of use cases](https://www.robinwieruch.de/javascript-map-array/)
 * Use more JavaScript expressions on your own in JSX
 
 ## ES6 Arrow Functions
