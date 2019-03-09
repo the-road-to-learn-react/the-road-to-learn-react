@@ -189,6 +189,8 @@ The list of hits should now be visible in our application; however, two regressi
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HkOIDO)
+  * Confirm the [changes from the last section](http://bit.ly/2HkOHzK)
 * Read about [ES6 template literals](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
 * Read about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
 * Read about [data fetching in React](https://www.robinwieruch.de/react-fetching-data/)
@@ -314,6 +316,8 @@ The "Dismiss" button should work now, because the `onDismiss()` method is aware 
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HmzEpb)
+  * Confirm the [changes from the last section](http://bit.ly/2HpC32j)
 * Read about the [ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 * Read about the [ES6 array (and object) spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 
@@ -393,6 +397,8 @@ You should be able to see the fetched data in your application by now. Everythin
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HnZObc)
+  * Confirm the [changes from the last section](http://bit.ly/2Ho99jl)
 * Read about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
 * Read about [React conditional rendering](https://reactjs.org/docs/conditional-rendering.html)
 
@@ -611,6 +617,8 @@ You should be able to search different Hacker News stories now. We have interact
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HtekOK)
+  * Confirm the [changes from the last section](http://bit.ly/2HnYg0J)
 * Read about [synthetic events in React](https://reactjs.org/docs/events.html)
 * Experiment with the [Hacker News API](https://hn.algolia.com/api)
 
@@ -775,6 +783,8 @@ The request to the Hacker News API fetches more list items in one request than b
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2Hotq8c)
+  * Confirm the [changes from the last section](http://bit.ly/2Hmrj52)
 * Read about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 * Experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
 
@@ -1208,6 +1218,8 @@ The application now has error handling in case the API request fails.
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HoLAGY)
+  * Confirm the [changes from the last section](http://bit.ly/2HquJnd)
 * Read about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Axios instead of Fetch
@@ -1271,6 +1283,8 @@ This chapter has shown you how you can replace one library with another in React
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2Hotuos)
+  * Confirm the [changes from the last section](http://bit.ly/2HkpMMC)
 * Read about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/)
 
 {pagebreak}
@@ -1297,4 +1311,4 @@ Now you've learned to interact with an API in React! Let's recap the last chapte
   * Client-side caching
   * Axios as an alternative for the native fetch API
 
-Again, it makes sense to take a break, internalize the lessons and apply them on your own. Experiment with the parameters for the API endpoint to query different results. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.3.1).
+Again, it makes sense to take a break, internalize the lessons and apply them on your own. Experiment with the parameters for the API endpoint to query different results. You can find the source code in the [official repository](http://bit.ly/2Hotuos).

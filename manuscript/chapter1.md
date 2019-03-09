@@ -222,6 +222,8 @@ The scripts are defined in your *package.json*, and your basic React application
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2Tt3Vd8)
+  * Confirm the [changes from the last section](http://bit.ly/2Cc5CRw)
 * `npm start` your application and visit the application in your browser (Exit the command by pressing Control + C)
 * Run the `npm test` script
 * Run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it afterward. Note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/))
@@ -336,6 +338,8 @@ You might have noticed the `className` attribute. It reflects the standard `clas
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H8H14h)
+  * Confirm the [changes from the last section](http://bit.ly/2H9KwHA)
 * Define more variables and render them in JSX
   * Use a complex object to represent a user with a first name and last name
   * Render the user properties in JSX
@@ -402,6 +406,8 @@ In your application, we will use `const` and `let` over `var` for the rest of th
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H9AqH2)
+  * Confirm the [changes from the last section](http://bit.ly/2H61Vkw)
 * Read about [ES6 const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
 * Read about [ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 * Gain an understanding of immutable data structures:
@@ -477,6 +483,8 @@ The most useful benefit of HMR is that you can keep the application state after 
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H6pn1j)
+  * Confirm the [changes from the last section](http://bit.ly/2H8C6jW)
 * Change your *src/App.js* source code a few times to see HMR in action
 * Watch the first 10 minutes of [Live React: Hot Reloading with Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs) by Dan Abramov
 
@@ -623,6 +631,8 @@ Start your app in a browser, and you should see both items of the list displayed
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H7jMHT)
+  * Confirm the [changes from the last section](http://bit.ly/2H6LKnb)
 * Read about [React lists and keys](https://reactjs.org/docs/lists-and-keys.html)
 * Recap the [standard built-in array functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/)
 * Use more JavaScript expressions on your own in JSX
@@ -701,6 +711,8 @@ Your JSX should look more concise and readable now, as it omits the `function` s
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H6Mfh3)
+  * Confirm the [changes from the last section](http://bit.ly/2H92076)
 * Read about [ES6 arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 ## ES6 Classes
@@ -779,4 +791,4 @@ Congratulations, you have learned to bootstrap your first React application! Let
   * Arrow functions can be used to keep your functions concise
   * Classes are used to define components in React by extending them
 
-Now that you've completed the first chapter, it's advisable to experiment with the source code you have written so far and see what changes you can make on your own. You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1).
+Now that you've completed the first chapter, it's advisable to experiment with the source code you have written so far and see what changes you can make on your own. You can find the source code in the [official repository](http://bit.ly/2H6Mfh3).

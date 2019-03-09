@@ -150,6 +150,9 @@ Now we can access the input DOM element. In our case it wouldn't help much since
 
 ### Exercises
 
+* Confirm your [source code for the last section](http://bit.ly/2H8597l)
+  * Confirm the [changes from the last section](http://bit.ly/2H8EoQ4)
+  * Note that the changes get reverted for the next section
 * Read about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
 * Read about [the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
 
@@ -272,6 +275,8 @@ Initially, the Loading component will show when you start your application, beca
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HkQk0k)
+  * Confirm the [changes from the last section](http://bit.ly/2Hns4uz)
 * Use a library such as [Font Awesome](https://fontawesome.com/) to show a loading icon instead of the "Loading ..." text
 
 ## Higher-Order Components
@@ -418,6 +423,8 @@ Higher-order components are an advanced pattern in React. They have multiple pur
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HkoP7c)
+  * Confirm the [changes from the last section](http://bit.ly/2Ho9uT9)
 * Read [a gentle introduction to higher-order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/)
 * Experiment with the HOC you have created
 * Think about a use case where another HOC would make sense
@@ -957,6 +964,8 @@ We may need to accept the failing snapshot tests again for the Table component, 
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HteRAe)
+  * Confirm the [changes from the last section](http://bit.ly/2HnYFAh)
 * Use a library like [Font Awesome](https://fontawesome.com/) to indicate the (reverse) sort. It could be an arrow up or arrow down icon next to each Sort header
 * Read about the [classnames library](https://github.com/JedWatson/classnames)
 
@@ -972,4 +981,4 @@ You have learned advanced component techniques in React! Let's recap the chapter
 * **ES6**
   * Rest destructuring to split up objects and arrays
 
-You can always find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.5).
+You can always find the source code in the [official repository](http://bit.ly/2HteRAe).

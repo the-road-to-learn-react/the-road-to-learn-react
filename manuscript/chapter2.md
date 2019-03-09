@@ -94,6 +94,8 @@ Be careful not to mutate the state directly. Instead, you should use a method ca
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2Had8Rh)
+  * Confirm the [changes from the last section](http://bit.ly/2HacLWT)
 * Experiment with the local state
   * Define more initial state in the constructor
   * Use and access the state in your `render()` method
@@ -177,6 +179,8 @@ Later, you will be able to use computed property names to allocate values by key
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H9Ewif)
+  * Confirm the [changes from the last section](http://bit.ly/2HadAyX)
 * Experiment with ES6 object initializer
 * Read about [ES6 object initializer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
@@ -359,6 +363,8 @@ Run the application again and try the "Dismiss" button. What you experienced is 
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H928n6)
+  * Confirm the [changes from the last section](http://bit.ly/2Ha1s0S)
 * Read about [the state and lifecycle in React](https://reactjs.org/docs/state-and-lifecycle.html)
 
 ## Bindings
@@ -1032,6 +1038,8 @@ The search functionality should work now. Try it yourself in the browser.
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HaaV8y)
+  * Confirm the [changes from the last section](http://bit.ly/2HaB8DB)
 * Read about [React events](https://reactjs.org/docs/handling-events.html)
 * Read about [higher-order functions](https://en.wikipedia.org/wiki/Higher-order_function)
 
@@ -1121,6 +1129,8 @@ But since the book uses JavaScript ES6 most of the time, you should stick to it.
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2Hae4oL)
+  * Confirm the [changes from the last section](http://bit.ly/2H9EDub)
 * Read about [ES6 destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
 ## Controlled Components
@@ -1163,6 +1173,8 @@ Local state management and unidirectional data flow might be new to you, but onc
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2Habuzc)
+  * Confirm the [changes from the last section](http://bit.ly/2HaRQ5P)
 * Read about [React forms](https://reactjs.org/docs/forms.html)
 * Learn more about [different controlled components](https://github.com/the-road-to-learn-react/react-controlled-components-examples)
 
@@ -1290,6 +1302,8 @@ By extracting these components from the App component, they become reusable. Sin
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H84S47)
+  * Confirm the [changes from the last section](http://bit.ly/2H62M4I)
 * Discover more components that can be split up like the Search and Table components, but wait until we've covered more of its concepts before you implement any of them.
 
 ## Composable Components
@@ -1353,6 +1367,8 @@ The "Search" text should now be visible next to your input field. When you use t
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H82ZVg)
+  * Confirm the [changes from the last section](http://bit.ly/2Hb4FwY)
 * Read about [the composition model of React](https://reactjs.org/docs/composition-vs-inheritance.html)
 
 ## Reusable Components
@@ -1441,6 +1457,8 @@ Now, whenever there is no `className` property specified in the Button component
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HcAyp4)
+  * Confirm the [changes from the last section](http://bit.ly/2H6q3Up)
 * Read about [how to pass props in React](https://www.robinwieruch.de/react-pass-props-to-component/)
 
 ## Component Declarations
@@ -1534,6 +1552,8 @@ Now you have one lightweight functional stateless component. When we need access
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HpBVzR)
+  * Confirm the [changes from the last section](http://bit.ly/2Hs4tsR)
 * Refactor the Table and Button component to stateless functional components
 * Read about [ES6 class components and functional stateless components](https://reactjs.org/docs/components-and-props.html)
 
@@ -1793,6 +1813,11 @@ After that, we use them in the columns: `<span style={smallColumn}>`. There diff
 
 But if you are new to React, I would recommend to stick to pure CSS and inline style for now.
 
+### Exercises:
+
+* Confirm your [source code for the last section](http://bit.ly/2HlA6Ed)
+  * Confirm the [changes from the last section](http://bit.ly/2HlA67b)
+
 {pagebreak}
 
 You have learned the basics on how to write your own React application! Let's recap the last chapter:
@@ -1813,4 +1838,4 @@ You have learned the basics on how to write your own React application! Let's re
 * **General**
   * Higher-order functions
 
-Again, it makes sense to take a break, internalize the lessons, and apply them on your own. Experiment with the source code you have written so far. The source code for this project is found in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.2).
+Again, it makes sense to take a break, internalize the lessons, and apply them on your own. Experiment with the source code you have written so far. The source code for this project is found in the [official repository](http://bit.ly/2HlA6Ed).

@@ -550,6 +550,8 @@ Snapshot tests usually stay pretty basic. You only want to make sure the compone
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H9GkI3)
+  * Confirm the [changes from the last section](http://bit.ly/2Ha22f6)
 * See how a snapshot test fails once you change your component's return value in the `render()` method
   * Accept or deny the snapshot change(s)
 * Keep your snapshots tests up to date when the implementation of components change in next chapters
@@ -634,6 +636,8 @@ Continue to unit test your components, but be sure to keep the tests simple and 
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HaT2Gl)
+  * Confirm the [changes from the last section](http://bit.ly/2H842oa)
 * Write a unit test with Enzyme for your Button component
 * Keep your unit tests up to date during the following chapters
 * Read about [Enzyme and its rendering API](https://github.com/airbnb/enzyme)
@@ -798,6 +802,9 @@ If you run your tests again, you might see PropType errors for your components o
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2H8ILul)
+  * Confirm the [changes from the last section](http://bit.ly/2H843se)
+  * Note that the changes get reverted for the next section
 * Define the PropType interface for the Search component
 * Add and update the PropType interfaces when you add and update components in the next chapters
 * Read about [React PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
@@ -838,4 +845,4 @@ You have learned how to organize and test React code! Let's recap the last chapt
 * **General**
   * code organization allows you to scale your application with best practices
 
-You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.4).
+You can find the source code in the [official repository](http://bit.ly/2H647bK).

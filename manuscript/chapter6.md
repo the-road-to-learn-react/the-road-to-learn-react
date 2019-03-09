@@ -273,6 +273,8 @@ Lifting state can go the other way as well: from child to parent component. It i
 
 ### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2Ho9AtZ)
+  * Confirm the [changes from the last section](http://bit.ly/2Hnuh9d)
 * Read about [lifting state in React](https://reactjs.org/docs/lifting-state-up.html)
 * Read about lifting state in [learn React before using Redux](https://www.robinwieruch.de/learn-react-before-using-redux/)
 
@@ -434,8 +436,10 @@ class App extends Component {
 
 The function instead of object approach in `setState()` fixes potential bugs, while increasing the readability and maintainability of your code. Further, it becomes testable outside of the App component. I advise exporting and testing it as practice.
 
-### Exercise:
+### Exercises:
 
+* Confirm your [source code for the last section](http://bit.ly/2HteTbk)
+  * Confirm the [changes from the last section](http://bit.ly/2Hmbz1T)
 * Read about [React using state correctly](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
 * Export updateSearchTopStoriesState from the file
   * Write a test for it which passes the a payload (hits, page) and a made up previous state and finally expect a new state
@@ -466,4 +470,4 @@ You have learned advanced state management in React! Let's recap the last chapte
   * `setState()` can use a function to prevent stale state bugs
   * Existing external solutions that help you to tame the state
 
-You can find the source code in the [official repository](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.6).
+You can find the source code in the [official repository](http://bit.ly/2HteTbk).
