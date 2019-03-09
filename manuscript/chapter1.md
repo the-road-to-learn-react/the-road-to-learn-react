@@ -43,7 +43,7 @@ You can verify your versions of node and npm on the command line. If you don't g
 node --version
 *v10.11.0
 npm --version
-*v6.4.1
+*v6.9.0
 ~~~~~~~~
 
 The additional content of this section is a crash course in node and npm. It is not exhaustive, but it will cover all of the necessary tools. If you are familiar with both of them, you can skip this section.
