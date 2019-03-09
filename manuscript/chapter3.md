@@ -759,6 +759,9 @@ Now you can use the constants to extend the API URL.
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
 fetchSearchTopStories(searchTerm, page = 0) {
+  // be careful with the "\" which shows up in the PDF/print version of the book
+  // it's only a line break a should not be in the actual code
+  // https://github.com/the-road-to-learn-react/the-road-to-learn-react/issues/43
 # leanpub-start-insert
   fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
 # leanpub-end-insert
