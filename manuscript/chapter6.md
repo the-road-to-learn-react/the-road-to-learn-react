@@ -115,8 +115,6 @@ Remember to remove the moved state and `onSort()` class method from your App com
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
 

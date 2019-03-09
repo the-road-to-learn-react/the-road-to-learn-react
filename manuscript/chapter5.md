@@ -168,8 +168,6 @@ Now we need a property to store the loading state. Based on the loading state, w
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
 
@@ -219,8 +217,8 @@ class App extends Component {
 # leanpub-end-insert
 
     axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
-      .then(result => this._isMounted && this.setSearchTopStories(result.data))
-      .catch(error => this._isMounted && this.setState({ error }));
+      .then(result => this.setSearchTopStories(result.data))
+      .catch(error => this.setState({ error }));
   }
 
   ...
@@ -497,8 +495,6 @@ Now we define a new class method in App component that sets a `sortKey` to the l
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
-  _isMounted = false;
-
   constructor(props) {
 
     ...
