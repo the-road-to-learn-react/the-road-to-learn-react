@@ -115,7 +115,7 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The input field should be focused when the application renders. We access to the `ref` in a functional stateless component without the `this` object using the following functional stateless component:
+The input field should be focused when the application renders. We access to `ref` in a functional stateless component without the `this` object using the following functional stateless component:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~~
@@ -317,7 +317,7 @@ Based on the loading property, you can apply a conditional rendering. The functi
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-// before you would have to destructure the props before passing them
+// before you would have had to destructure the props before passing them
 const { firstname, lastname } = props;
 <UserProfile firstname={firstname} lastname={lastname} />
 

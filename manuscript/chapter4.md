@@ -253,7 +253,7 @@ import {
 ...
 ~~~~~~~~
 
-The *index.js* file naming is convention was introduced in the Node.js world, where the index file is the entry point to a module. It describes the public API to the module. External modules are only allowed to use the *index.js* file to import shared code from the module. Consider the following module structure to demonstrate it:
+The *index.js* file naming convention was introduced in the Node.js world, where the index file is the entry point to a module. It describes the public API to the module. External modules are only allowed to use the *index.js* file to import shared code from the module. Consider the following module structure to demonstrate it:
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -371,7 +371,7 @@ npm test
 
 Jest enables you to write snapshot tests. These tests make a snapshot of your rendered component and runs it against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the differences of the rendered output. It doesn't add big maintenance costs since you can accept snapshots for intentional changes.
 
-Jest stores snapshots in a folder so it can validate the diff against a future snapshot. This also lets use share snapshots across teams when having version control such as git in place.
+Jest stores snapshots in a folder so it can validate the diff against a future snapshot. This also lets users share snapshots across teams when having version control such as git in place.
 
 Before writing your first snapshot test with Jest, you have to install its utility library:
 
