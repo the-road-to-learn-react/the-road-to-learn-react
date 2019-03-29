@@ -46,7 +46,7 @@ You don't need to know all the lifecycle methods from the beginning, and even in
 
 * **getSnapshotBeforeUpdate(prevProps, prevState)** is a lifecycle method, invoked before the most recently rendered output is committed to the DOM. In rare cases, the component needs to capture information from the DOM before it is potentially changed. This lifecycle method enables the component to do it. Another method (`componentDidUpdate()`) will receive any value returned by `getSnapshotBeforeUpdate()` as a parameter.
 
-* **componentDidUpdate(prevProps, prevState, snapshot)** is a lifecycle method that is invoked immediately after updating, but not for the initial render. You can use it as to perform DOM operations or to perform more asynchronous requests. If your component implements the `getSnapshotBeforeUpdate()` method, the value it returns will be received as the `snapshot` parameter.
+* **componentDidUpdate(prevProps, prevState, snapshot)** is a lifecycle method that is invoked immediately after updating, but not for the initial render. You can use it to perform DOM operations or to perform more asynchronous requests. If your component implements the `getSnapshotBeforeUpdate()` method, the value it returns will be received as the `snapshot` parameter.
 
 * **componentWillUnmount()** is called before you destroy your component. You can use this lifecycle method to perform any clean up tasks.
 
@@ -1086,7 +1086,7 @@ class App extends Component {
 
   fetchSearchTopStories(searchTerm, page = 0) {
     // be careful with the "\" which shows up in the PDF/print version of the book
-    // it's only a line break a should not be in the actual code
+    // it's only a line break and should not be in the actual code
     // https://github.com/the-road-to-learn-react/the-road-to-learn-react/issues/43
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(response => response.json())
@@ -1260,7 +1260,7 @@ There exists another improvement for the Hacker News request in the App componen
 
 * *Warning: Can only update a mounted or mounting component. This usually means you called setState, replaceState, or forceUpdate on an unmounted component. This is a no-op.*
 
-* *Warning: Can’t call setState (or forceUpdate) on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.*
+* *Warning: Can't call setState (or forceUpdate) on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.*
 
 If you encounter one of them in your browser's developer tools, checkout [this walkthrough on how to prevent memory leaks in React](https://www.robinwieruch.de/react-warning-cant-call-setstate-on-an-unmounted-component/). It isn't too important for starting out with React, but I have seen many React beginners being confused about this warning.
 
