@@ -1218,8 +1218,8 @@ The application now has error handling in case the API request fails.
 
 ### Exercises:
 
-* Confirm your [source code for the last section](http://bit.ly/2HoLAGY)
-  * Confirm the [changes from the last section](http://bit.ly/2HquJnd)
+* Confirm your [source code for the last section](http://bit.ly/2CYMRlf)
+  * Confirm the [changes from the last section](http://bit.ly/2CZYet7)
 * Read about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Axios instead of Fetch
