@@ -977,7 +977,7 @@ class App extends Component {
 
 The condition matches the incoming `searchTerm` pattern with the title property of the item from your list. You can do that with the built-in `includes` JavaScript functionality. When the pattern matches, it returns true and the item stays in the list; when the pattern doesn't match, the item is removed from the list. Don't forget to match the capitalization on both strings to the letter, as there will be mismatches between the search term 'redux' and an item title 'Redux'. Since we are working on an immutable list and return a new list by using the filter function, the original list in the local state isn't modified at all.
 
-We cheated a bit using JavaScript ES7 features, but these aren't present in ES5. For ES5, use the `indexOf()` function to get the index of the item in the list instead. When the item is in the list, `indexOf()` will return its index in the array.
+We cheated a bit using JavaScript ES6 features, but these aren't present in ES5. For ES5, use the `indexOf()` function to get the index of the item in the list instead. When the item is in the list, `indexOf()` will return its index in the array.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
