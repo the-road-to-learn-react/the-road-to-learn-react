@@ -984,7 +984,7 @@ We cheated a bit using JavaScript ES7 features, but these aren't present in ES5.
 // ES5
 string.indexOf(pattern) !== -1
 
-// ES6
+// ES7
 string.includes(pattern)
 ~~~~~~~~
 
