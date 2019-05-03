@@ -1805,7 +1805,7 @@ const smallColumn = {
 };
 ~~~~~~~~
 
-After that, we use them in the columns: `<span style={smallColumn}>`. There different opinions and solutions about style in React, but the pure inline CSS we used is sufficient for this tutorial. I don't want to be opinionated here, but I want to leave you some more options. You can read about them and apply them on your own:
+After that, we use them in the columns: `<span style={smallColumn}>`. There are different opinions and solutions about style in React, but the pure inline CSS we used is sufficient for this tutorial. I don't want to be opinionated here, but I want to leave you some more options. You can read about them and apply them on your own:
 
 * [styled-components](https://github.com/styled-components/styled-components)
 * [CSS Modules](https://github.com/css-modules/css-modules) (read my short article on [how to use CSS modules in create-react-app](https://www.robinwieruch.de/create-react-app-css-modules/))
