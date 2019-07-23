@@ -106,8 +106,8 @@ There are many approaches to getting started with a React application. The first
 
 To get started with React by using a CDN, find the `<script>` tag in your web page HTML that points to a CDN url. You will need two libraries: *react* and *react-dom*.
 
-{title="Code Playground",lang="javascript"}
-~~~~~~~~
+{title="Code Playground",lang="html"}
+~~~~~~~~html
 <script
   crossorigin
   src="https://unpkg.com/react@16/umd/react.development.js"
@@ -236,7 +236,7 @@ The scripts are defined in your *package.json*, and your basic React application
 Now we will get to know JSX, the syntax in React. As mentioned before, *create-react-app* has already bootstrapped a basic application for you, and all files come with their own default implementations. For now, the only file we will modify is the *src/App.js* file.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -272,7 +272,7 @@ Don't worry if you're confused by the import/export statements and class declara
 In the file you should see a **React ES6 class component** with the name App. This is a component declaration. After you have declared a component, you can use it as an element anywhere in your application. It will produce an **instance** of your **component** or, in other words, the component gets instantiated.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 // component declaration
 class App extends Component {
   ...
@@ -290,7 +290,7 @@ You should see where the App component is instantiated, else you couldn't see th
 The content in the render block may look similar to HTML, but it is actually JSX. JSX allows you to mix HTML and JavaScript. It is powerful, but it can be confusing when you are used to separating the two languages. It is a good idea to start by using basic HTML in your JSX. Open the `App.js` file and remove all unnecessary HTML code as shown:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React, { Component } from 'react';
 import './App.css';
 
@@ -310,7 +310,7 @@ export default App;
 Now, you only return HTML in your `render()` method without any JavaScript. Let's define the "Welcome to the Road to learn React" as a variable. A variable is set in JSX by curly braces.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React, { Component } from 'react';
 import './App.css';
 
@@ -351,7 +351,7 @@ You might have noticed the `className` attribute. It reflects the standard `clas
 Notice that we declared the variable `helloWorld` with a `var` statement. JavaScript ES6 comes with two more ways to declare variables: `const` and `let`. In JavaScript ES6, you will rarely find `var` anymore. A variable declared with `const` cannot be re-assigned or re-declared, and cannot be changed or modified. Once the variable is assigned, you cannot change it:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 // not allowed
 const helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
@@ -360,7 +360,7 @@ helloWorld = 'Bye Bye React';
 Conversely, a variable declared with `let` can be modified:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 // allowed
 let helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
@@ -371,7 +371,7 @@ helloWorld = 'Bye Bye React';
 Note that a variable declared directly with `const` cannot be modified. However, when the variable is an array or object, the values it holds can get updated through indirect means:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 // allowed
 const helloWorld = {
   text: 'Welcome to the Road to learn React'
@@ -382,7 +382,7 @@ helloWorld.text = 'Bye Bye React';
 There are varying opinions about when to use *const* and when to use *let*. I would recommend using `const` whenever possible to show the intent of keeping your data structures immutable, so you only have to worry about the values contained in objects and arrays. Immutability is embraced in the React ecosystem, so `const` should be your default choice when you define a variable, though it's not really about immutability, but about assigning variables only once. It shows the intent of not changing (re-assigning) the variable even though its content can be changed.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React, { Component } from 'react';
 import './App.css';
 
@@ -419,7 +419,7 @@ In your application, we will use `const` and `let` over `var` for the rest of th
 The App component is located in your entry point to the React world: the *src/index.js* file.
 
 {title="src/index.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -436,7 +436,7 @@ ReactDOM.render(
 `ReactDOM.render()` expects two arguments. The first argument is for rendering the JSX. The second argument specifies the place where the React application hooks into your HTML. It expects an element with an `id='root'`, found in the *public/index.html* file.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 ReactDOM.render(
   <h1>Hello React World</h1>,
   document.getElementById('root')
@@ -457,7 +457,7 @@ Hot Module Replacement can be used in the *src/index.js* file to improve your ex
 Hot Module Replacement (HMR) is a tool for reloading your application in the browser without the page refresh. You can activate it in *create-react-app* by adding the following configuration to your *src/index.js* file:
 
 {title="src/index.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -495,7 +495,7 @@ So far, you have rendered a few primitive variables in your JSX. Now, we will re
 First you have to define the list of items:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React, { Component } from 'react';
 import './App.css';
 
@@ -530,7 +530,7 @@ The sample data represents information we will fetch from an API later on. Items
 Now you can use the [built-in JavaScript map functionality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) in JSX, which iterates over a list of items to display them according to specific attributes. Again, we use curly braces to encapsulate the JavaScript expression in JSX:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
   render() {
     return (
@@ -551,7 +551,7 @@ export default App;
 Using JavaScript alongside HTML in JSX is very powerful. For a different task you may have used `map` to convert one list of items to another. This time, we used `map` to convert a list of items to HTML elements.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const array = [1, 4, 9, 16];
 
 // pass a function to map
@@ -564,7 +564,7 @@ console.log(newArray);
 So far, only the `title` is displayed for each item. Let's experiment with more of the item's properties:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
   render() {
     return (
@@ -596,7 +596,7 @@ Note how the `map` function is inlined in your JSX. Each item property is displa
 React will display each item, but you can still do more to help React embrace its full potential. By assigning a key attribute to each list element, React can identify modified items when the list changes. These sample list items come with an identifier:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 {list.map(function(item) {
   return (
 # leanpub-start-insert
@@ -616,7 +616,7 @@ React will display each item, but you can still do more to help React embrace it
 Make sure that the key attribute is a stable identifier. Avoid using the index of the item in the array, because the array index is not stable. If the list changes its order, for example, React will not be able to identify the items properly.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 // don't do this
 {list.map(function(item, key) {
   return (
@@ -642,7 +642,7 @@ Start your app in a browser, and you should see both items of the list displayed
 JavaScript ES6 introduced arrow functions expressions, which are shorter than a function expressions.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 // function declaration
 function () { ... }
 
@@ -653,7 +653,7 @@ function () { ... }
 You can remove the parentheses in an arrow function expression if it only has one argument, but you have to keep the parentheses if it gets multiple arguments:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 // allowed
 item => { ... }
 
@@ -670,7 +670,7 @@ item, key => { ... }
 You can also write `map` functions more concisely with an ES6 arrow function:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 # leanpub-start-insert
 {list.map(item => {
 # leanpub-end-insert
@@ -690,7 +690,7 @@ You can also write `map` functions more concisely with an ES6 arrow function:
 You can remove the *block body*, the curly braces, with the ES6 arrow function. In a *concise body*, an implicit return is attached; thus, you can remove the `return` statement. This will happen often in this book, so be sure to understand the difference between a block body and a concise body when using arrow functions.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 # leanpub-start-insert
 {list.map(item =>
 # leanpub-end-insert
@@ -724,7 +724,7 @@ While React embraces functional programming, e.g. immutable data structures and 
 Consider the following Developer class to examine a JavaScript ES6 class without a component.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class Developer {
   constructor(firstname, lastname) {
     this.firstname = firstname;
@@ -742,7 +742,7 @@ A class has a constructor to make it instantiable. The constructor takes argumen
 The Developer class is the only class declaration we use here, as you can create multiple instances of a class by invoking it. It is similar to the ES6 class component, which has a declaration, but you have to use it somewhere else to instantiate it:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const robin = new Developer('Robin', 'Wieruch');
 console.log(robin.getName());
 // output: Robin Wieruch
@@ -751,7 +751,7 @@ console.log(robin.getName());
 React uses JavaScript ES6 classes for ES6 class components, which you have already used at least once so far:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React, { Component } from 'react';
 
 ...

@@ -65,7 +65,7 @@ Lastly, `componentDidCatch(error, info)` was introduced in [React 16](https://ww
 Now we're prepared to fetch data from the Hacker News API. There was one lifecycle method mentioned that can be used to fetch data: `componentDidMount()`. Before we use it, let's set up the URL constants and default parameters to break the URL endpoint for the API request into smaller pieces.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React, { Component } from 'react';
 import './App.css';
 
@@ -83,7 +83,7 @@ const PARAM_SEARCH = 'query=';
 In JavaScript ES6, you can use [template literals](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) for string concatenation or interpolation. You will use it to concatenate your URL for the API endpoint.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 // ES6
 const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`;
 
@@ -97,7 +97,7 @@ console.log(url);
 This will keep your URL composition flexible in the future. Below, the entire data fetch process will be presented, and each step will be explained afterward.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 ...
 
 class App extends Component {
@@ -151,7 +151,7 @@ Now you can use the fetched data instead of the sample list. Note that the resul
 In the next step, we use the result to render it. But we will prevent it from rendering anything, so we will return null, when there is no result in the first place. Once the request to the API has succeeded, the result is saved to the state and the App component will re-render with the updated state.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -200,7 +200,7 @@ The list of hits should now be visible in our application; however, two regressi
 The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the complex result object. It only knows about a plain list in the local state. But it isn't a plain list anymore. Let's change it to operate on the result object instead of the list itself.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 onDismiss(id) {
   const isNotId = item => item.objectID !== id;
 # leanpub-start-insert
@@ -217,7 +217,7 @@ In `setState()`, the result is now a complex object, and the list of hits is onl
 We could alleviate this challenge by mutating the hits in the result object. It is demonstrated below for the sake of understanding, but we'll end up using another way.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 // don't do this
 this.state.result.hits = updatedHits;
 ~~~~~~~~
@@ -227,7 +227,7 @@ As we know, React embraces immutable data structures, so we don't want to mutate
 For this, we use JavaScript ES6's `Object.assign()`. It takes a target object as first argument. All following arguments are source objects, which are merged into the target object. The target object can be an empty object. It embraces immutability, because no source object gets mutated.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const updatedHits = { hits: updatedHits };
 const updatedResult = Object.assign({}, this.state.result, updatedHits);
 ~~~~~~~~
@@ -235,7 +235,7 @@ const updatedResult = Object.assign({}, this.state.result, updatedHits);
 Source objects will override previously merged objects with the same property names. Let's do this on the `onDismiss()` method:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 onDismiss(id) {
   const isNotId = item => item.objectID !== id;
   const updatedHits = this.state.result.hits.filter(isNotId);
@@ -252,7 +252,7 @@ That's one solution, but there is a simpler way in JavaScript ES6, called the *s
 We'll examine the ES6 **array** spread operator even though you don't need it yet:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const userList = ['Robin', 'Andrew', 'Dan'];
 const additionalUser = 'Jordan';
 const allUsers = [ ...userList, additionalUser ];
@@ -264,7 +264,7 @@ console.log(allUsers);
 The `allUsers` variable is a completely new array. The other variables `userList` and `additionalUser` stay the same. You can even merge two arrays into a new array.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const oldUsers = ['Robin', 'Andrew'];
 const newUsers = ['Dan', 'Jordan'];
 const allUsers = [ ...oldUsers, ...newUsers ];
@@ -276,7 +276,7 @@ console.log(allUsers);
 Now let's have a look at the object spread operator, which is not JavaScript ES6. It is part of a [proposal for a next JavaScript version](https://github.com/sebmarkbage/ecmascript-rest-spread) that is already being used by the React community, which is why *create-react-app* incorporated the feature in the configuration. The object spread operator works just like the JavaScript ES6 array spread operator, except with objects. Each key value pair is copied into a new object:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const userNames = { firstname: 'Robin', lastname: 'Wieruch' };
 const age = 28;
 const user = { ...userNames, age };
@@ -288,7 +288,7 @@ console.log(user);
 Multiple objects can be spread, as with the array spread example.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const userNames = { firstname: 'Robin', lastname: 'Wieruch' };
 const userAge = { age: 28 };
 const user = { ...userNames, ...userAge };
@@ -300,7 +300,7 @@ console.log(user);
 It can be used to replace `Object.assign()`:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 onDismiss(id) {
   const isNotId = item => item.objectID !== id;
   const updatedHits = this.state.result.hits.filter(isNotId);
@@ -330,7 +330,7 @@ The `result` object in the local component state is `null` in the beginning. So 
 But let's go one step further. It makes more sense to wrap the Table component, which is the only component that depends on `result` in an independent conditional rendering. Everything else should be displayed, even though there is no `result` yet. You can simply use a [ternary operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) in the JSX:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -368,7 +368,7 @@ class App extends Component {
 That's your second option to express a conditional rendering. A third option is the logical `&&` operator. In JavaScript a `true && 'Hello World'` always evaluates to 'Hello World'. A `false && 'Hello World'` always evaluates to false.
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const result = true && 'Hello World';
 console.log(result);
 // output: Hello World
@@ -381,7 +381,7 @@ console.log(result);
 In React, you can make use of that behavior. If the condition is true, the expression after the logical `&&` operator will be the output. If the condition is false, React ignores the expression. It is applicable in the Table component's conditional rendering case, because it should either return a Table or nothing.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 { result &&
   <Table
     list={result.hits}
@@ -409,7 +409,7 @@ Now, when you use the Search component with its input field, you will filter the
 You can define an `onSearchSubmit()` method in your App component, which fetches results from the Hacker News API when executing a search in the Search component.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   constructor(props) {
@@ -443,7 +443,7 @@ class App extends Component {
 The `onSearchSubmit()` method should use the same functionality as the `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term. Thus you can extract the functionality as a reusable class method.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   constructor(props) {
@@ -501,7 +501,7 @@ As an alternative, you could debounce (delay) the `onChange()` function and spar
 First, pass the `onSearchSubmit()` method to your Search component.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -537,7 +537,7 @@ class App extends Component {
 Second, introduce a button in your Search component. The button has the `type="submit"` and the form uses its `onSubmit` attribute to pass the `onSubmit()` method. You can reuse the `children` property, but this time it will be used as the content of the button.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 # leanpub-start-insert
 const Search = ({
   value,
@@ -561,7 +561,7 @@ const Search = ({
 In the Table, you can remove the filter functionality, because there will be no client-side filter (search) anymore. Don't forget to remove the `isSearched()` function as well, as it won't be used anymore. Now, the result comes directly from the Hacker News API when the user clicks the "Search" button.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -601,7 +601,7 @@ const Table = ({ list, onDismiss }) =>
 Now when you try to search, you will notice the browser reloads. That's a native browser behavior for a submit callback in an HTML form. In React, you will often come across the `preventDefault()` event method to suppress the native browser behavior.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 # leanpub-start-insert
 onSearchSubmit(event) {
 # leanpub-end-insert
@@ -629,7 +629,7 @@ Take a closer look at the data structure and observe how the [Hacker News API](h
 Let's extend the composable API constants so it can deal with paginated data:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const DEFAULT_QUERY = 'redux';
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
@@ -643,7 +643,7 @@ const PARAM_PAGE = 'page=';
 Now you can use the new constant to add the page parameter to your API request:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}&${PARAM_PAGE}`;
 
 console.log(url);
@@ -653,7 +653,7 @@ console.log(url);
 The `fetchSearchTopStories()` method will take the page as second argument. If you don't provide the second argument, it will fallback to the `0` page for the initial request. Thus the `componentDidMount()` and `onSearchSubmit()` methods fetch the first page on the first request. Every additional fetch should fetch the next page by providing the second argument.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -677,7 +677,7 @@ The page argument uses the JavaScript ES6 default parameter to introduce the fal
 Now you can use the current page from the API response in `fetchSearchTopStories()`. You can use this method in a button to fetch more stories with an `onClick` button handler. Let's use the Button to fetch more paginated data from the Hacker News API. For this, we'll define the `onClick()` handler, which takes the current search term and the next page (current page + 1).
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -715,7 +715,7 @@ In your `render()` method, make sure to default to page 0 when there is no resul
 There is still one step missing, because fetching the next page of data will override your previous page of data. We want to concatenate the old and new list of hits from the local state and new result object, so we'll adjust its functionality to add new data rather than override it.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 setSearchTopStories(result) {
 # leanpub-start-insert
   const { hits, page } = result;
@@ -747,7 +747,7 @@ Fourth, you set the merged hits and page in the local component state.
 Now we'll make one last adjustment. When you try the "More" button it only fetches a few list items. The API URL can be extended to fetch more list items with each request, so we add even more composable path constants:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const DEFAULT_QUERY = 'redux';
 # leanpub-start-insert
 const DEFAULT_HPP = '100';
@@ -765,7 +765,7 @@ const PARAM_HPP = 'hitsPerPage=';
 Now you can use the constants to extend the API URL.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 fetchSearchTopStories(searchTerm, page = 0) {
   // be careful with the "\" which shows up in the PDF/print version of the book
   // it's only a line break a should not be in the actual code
@@ -797,7 +797,7 @@ To have a client cache for each result, you have to store multiple `results` rat
 At the moment, your result in the local state looks like this:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 result: {
   hits: [ ... ],
   page: 2,
@@ -807,7 +807,7 @@ result: {
 Imagine you have made two API requests. One for the search term "redux" and another one for "react". The results object should look like the following:
 
 {title="Code Playground",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 results: {
   redux: {
     hits: [ ... ],
@@ -824,7 +824,7 @@ results: {
 Let's implement a client-side cache with React `setState()`. First, rename the `result` object to `results` in the initial component state. Second, define a temporary `searchKey` to store each `result`.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   constructor(props) {
@@ -850,7 +850,7 @@ class App extends Component {
 The `searchKey` has to be set before each request is made. It reflects the `searchTerm`. Understanding why we don't use `searchTerm` here is a crucial part to understand before continuing with the implementation. The `searchTerm` is a fluctuant variable, because it gets changed every time you type into the search input field. We want a non fluctuant variable that determines the recent submitted search term to the API and can be used to retrieve the correct result from the map of results. It is a pointer to your current result in the cache, which can be used to display the current result in the `render()` method.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 componentDidMount() {
   const { searchTerm } = this.state;
 # leanpub-start-insert
@@ -872,7 +872,7 @@ onSearchSubmit(event) {
 Now we will change where the result is stored to the local component state. It should store each result by `searchKey`.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -916,7 +916,7 @@ Second, the old hits have to get merged with the new hits as before. But this ti
 Third, a new result can be set in the `results` map in the state. Let's examine the `results` object in `setState()`.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 results: {
   ...results,
   [searchKey]: { hits: updatedHits, page }
@@ -930,7 +930,7 @@ The upper part needs to spread all other results by `searchKey` in the state usi
 Now you store all results by search term. That's the first step to enable your cache. In the next step, you can retrieve the result depending on the non fluctuant `searchKey` from your map of results. That's why you had to introduce the `searchKey` in the first place as non fluctuant variable. Otherwise, the retrieval would be broken when you would use the fluctuant `searchTerm` to retrieve the current result, because this value might change when we use the Search component.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -987,7 +987,7 @@ The search functionality should store all results from the Hacker News API now.
 Now, we can see the `onDismiss()` method needs improvement, as it still deals with the `result` object. We want it deal with multiple `results`:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
   onDismiss(id) {
 # leanpub-start-insert
     const { searchKey, results } = this.state;
@@ -1013,7 +1013,7 @@ Check to make sure the "Dismiss" button is working again.
 Note that nothing will stop the application from sending an API request on each search submit. Though there might be already a result, there is no check that prevents the request, so the cache functionality is not complete yet. It caches the results, but it doesn't make use of them. The last step is to prevent the API request when a result is available in the cache:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   constructor(props) {
@@ -1067,7 +1067,7 @@ In this chapter, we introduce an efficient solution to add error handling for yo
 Now, we'll implement it in the App component, since that's where we fetch data from the Hacker News API. First, introduce the error in the local state. It is initialized as null, but will be set to the error object in case of an error.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
   constructor(props) {
     super(props);
@@ -1092,7 +1092,7 @@ class App extends Component {
 Second, use the catch block in your native fetch to store the error object in the local state by using `setState()`. Every time the API request isn't successful, the catch block is executed.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -1117,7 +1117,7 @@ class App extends Component {
 Third, retrieve the error object from your local state in the `render()` method, and display a message in case of an error using React's conditional rendering.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -1152,14 +1152,14 @@ class App extends Component {
 If you want to test that your error handling is working, change the API URL to something non-existent to force an error.
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const PATH_BASE = 'https://hn.mydomain.com/api/v1';
 ~~~~~~~~
 
 Now you should see an error message instead of your application. It's up to you where you want to place the conditional rendering for the error message. In this case, the app is overridden by the error message, but that wouldn't be the best user experience. The remaining application would still be visible so the user knows it's still running:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
@@ -1210,7 +1210,7 @@ class App extends Component {
 **Remember** to revert the URL for the API to the existent one:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 ~~~~~~~~
 
@@ -1238,7 +1238,7 @@ npm install axios
 Second, import axios in your App component's file:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 import React, { Component } from 'react';
 # leanpub-start-insert
 import axios from 'axios';
@@ -1251,7 +1251,7 @@ import './App.css';
 You can use axios instead of `fetch()`, and its usage looks almost identical to the native fetch API. It takes the URL as argument and returns a promise. You don't have to transform the returned response to JSON anymore, since axios wraps the result into a `data` object in JavaScript. Just make sure to adapt your code to the returned data structure:
 
 {title="src/App.js",lang="javascript"}
-~~~~~~~~
+~~~~~~~~js
 class App extends Component {
 
   ...
