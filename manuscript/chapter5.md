@@ -135,7 +135,7 @@ const Search = ({
         value={value}
         onChange={onChange}
 # leanpub-start-insert
-        ref={el => this.input = el}
+        ref={el => input = el}
 # leanpub-end-insert
       />
       <button type="submit">
