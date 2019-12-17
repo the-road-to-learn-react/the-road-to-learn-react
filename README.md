@@ -1,7 +1,5 @@
 # The Road to learn React [Book]
 
-[![Slack](https://slack-the-road-to-learn-react.wieruch.com/badge.svg)](https://slack-the-road-to-learn-react.wieruch.com/)
-
 Official repository for [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). If you want to leave a review, please do it on [Amazon](https://www.amazon.com/dp/B077HJFCQX?tag=21moves-20) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react).
 
 ## Translations of the book into Leanpub
