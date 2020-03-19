@@ -1,3 +1,5 @@
+**Deprecated: This is the old version of The Road to React with React class components and without React Hooks. Check out the new [The Road to React](http://roadtoreact.com/) which teahces React Hooks.**
+
 # The Road to learn React [Book]
 
 Official repository for [The Road to learn React](https://www.robinwieruch.de/the-road-to-learn-react/). If you want to leave a review, please do it on [Amazon](https://www.amazon.com/dp/B077HJFCQX?tag=21moves-20) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react).
