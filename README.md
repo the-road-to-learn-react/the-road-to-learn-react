@@ -1,4 +1,6 @@
-**Deprecated: This is the old version of The Road to React with React class components and without React Hooks. Check out the new [The Road to React](http://roadtoreact.com/) which teahces React Hooks.**
+⛔️ **Deprecated** 
+
+This is the old version of The Road to React with React class components and without React Hooks. Check out the new [The Road to React](http://roadtoreact.com/) which teahces React Hooks.
 
 # The Road to learn React [Book]
 
